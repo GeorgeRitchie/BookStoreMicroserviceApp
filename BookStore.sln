@@ -7,12 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6AF26D42-072
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{DD1E4756-20E8-483D-A3FD-9040CD54A4D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Common\Shared\Shared.csproj", "{761F8663-E9AD-4C5B-9403-A8469F633EE6}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{761F8663-E9AD-4C5B-9403-A8469F633EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761F8663-E9AD-4C5B-9403-A8469F633EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761F8663-E9AD-4C5B-9403-A8469F633EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761F8663-E9AD-4C5B-9403-A8469F633EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DD1E4756-20E8-483D-A3FD-9040CD54A4D5} = {6AF26D42-072A-480D-81DD-A6F3C767880D}
+		{761F8663-E9AD-4C5B-9403-A8469F633EE6} = {DD1E4756-20E8-483D-A3FD-9040CD54A4D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC2C67E6-9091-44CF-B200-E16EC3FE9C25}
