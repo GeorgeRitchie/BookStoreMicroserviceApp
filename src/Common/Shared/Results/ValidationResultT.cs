@@ -33,5 +33,12 @@ namespace Shared.Results
 			: base(default, false, errors)
 		{
 		}
+
+		/// <summary>
+		/// Creates a new <see cref="ValidationResult{TValue}"/> with the specified errors.
+		/// </summary>
+		/// <param name="errors">The errors.</param>
+		/// <returns>The new validation result instance with the specified errors.</returns>
+		public static ValidationResult<TValue> WithErrors(Error[] errors) => new(errors);
 	}
 }
