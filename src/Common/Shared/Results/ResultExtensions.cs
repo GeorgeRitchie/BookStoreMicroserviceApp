@@ -306,5 +306,24 @@ namespace Shared.Results
 
 			return predicate(result.Value) ? result : Result.Failure<TIn>(Error.ConditionNotMet);
 		}
+
+		/// <summary>
+		/// Converts a <see cref="Result"/> object to a <see cref="Task{TResult}"/> with the same <see cref="Result"/> type.
+		/// This method facilitates asynchronous handling of a synchronous result, allowing it
+		/// to be used in async-await operations without modification of the original result.
+		/// </summary>
+		/// <param name="result">The <see cref="Result"/> object to be converted into a <see cref="Task{TResult}"/>.</param>
+		/// <returns>A <see cref="Task{TResult}"/> encapsulating the provided <see cref="Result"/> object.</returns>
+		public static Task<Result> ToTask(this Result result) => Task.FromResult(result);
+
+		/// <summary>
+		/// Converts a generic <see cref="Result{T}"/> object to a <see cref="Task{TResult}"/> with the same <see cref="Result{T}"/> type.
+		/// This method facilitates asynchronous handling of a synchronous result, allowing it
+		/// to be used in async-await operations without modification of the original result.
+		/// </summary>
+		/// <typeparam name="TValue">The type of the value encapsulated by the <see cref="Result{T}"/> object.</typeparam>
+		/// <param name="result">The generic <see cref="Result{T}"/> object to be converted into a <see cref="Task{TResult}"/>.</param>
+		/// <returns>A <see cref="Task{TResult}"/> encapsulating the provided <see cref="Result{T}"/> object, containing a value of type <typeparamref name="TValue"/>.</returns>
+		public static Task<Result<TValue?>> ToTask<TValue>(this Result<TValue?> result) => Task.FromResult(result);
 	}
 }
