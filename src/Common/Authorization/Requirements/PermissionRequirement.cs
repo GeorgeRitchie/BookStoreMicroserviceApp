@@ -15,23 +15,24 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Errors;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Shared.Results
+namespace Authorization.Requirements
 {
 	/// <summary>
-	/// Represents the validation result containing an array of errors.
+	/// Represents the permission authorization requirement.
 	/// </summary>
-	public interface IValidationResult
+	internal sealed class PermissionRequirement : IAuthorizationRequirement
 	{
 		/// <summary>
-		/// The validation failed error instance.
+		/// Initializes a new instance of the <see cref="PermissionRequirement"/> class.
 		/// </summary>
-		public static readonly Error ValidationError = new("ValidationError", "A validation problem occurred.");
+		/// <param name="permission">The permission.</param>
+		internal PermissionRequirement(string permission) => Permission = permission;
 
 		/// <summary>
-		/// Gets validation errors.
+		/// Gets the permission.
 		/// </summary>
-		public IReadOnlyCollection<Error> Errors { get; }
+		internal string Permission { get; }
 	}
 }

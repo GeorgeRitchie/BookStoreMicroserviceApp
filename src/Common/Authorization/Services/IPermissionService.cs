@@ -15,23 +15,19 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Errors;
-
-namespace Shared.Results
+namespace Authorization.Services
 {
 	/// <summary>
-	/// Represents the validation result containing an array of errors.
+	/// Represents the permission service interface.
 	/// </summary>
-	public interface IValidationResult
+	internal interface IPermissionService
 	{
 		/// <summary>
-		/// The validation failed error instance.
+		/// Gets the permissions for the user with the specified user identifier.
 		/// </summary>
-		public static readonly Error ValidationError = new("ValidationError", "A validation problem occurred.");
-
-		/// <summary>
-		/// Gets validation errors.
-		/// </summary>
-		public IReadOnlyCollection<Error> Errors { get; }
+		/// <param name="identityProviderId">The identity provider identifier.</param>
+		/// <param name="cancellationToken">The cancellation token.</param>
+		/// <returns>The permission for the user with the specified identifier.</returns>
+		Task<HashSet<string>> GetPermissionsAsync(string identityProviderId, CancellationToken cancellationToken = default);
 	}
 }

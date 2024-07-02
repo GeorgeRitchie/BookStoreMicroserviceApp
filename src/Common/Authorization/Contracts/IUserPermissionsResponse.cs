@@ -15,23 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Errors;
-
-namespace Shared.Results
+namespace Authorization.Contracts
 {
 	/// <summary>
-	/// Represents the validation result containing an array of errors.
+	/// Represents the user permissions response interface.
 	/// </summary>
-	public interface IValidationResult
+	public interface IUserPermissionsResponse
 	{
 		/// <summary>
-		/// The validation failed error instance.
+		/// Gets the permissions.
 		/// </summary>
-		public static readonly Error ValidationError = new("ValidationError", "A validation problem occurred.");
+		HashSet<string> Permissions { get; }
 
 		/// <summary>
-		/// Gets validation errors.
+		/// Gets the cache time in seconds.
 		/// </summary>
-		public IReadOnlyCollection<Error> Errors { get; }
+		public int CacheTimeInSeconds { get; }
 	}
 }

@@ -15,23 +15,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Errors;
+using Authorization.Contracts;
+using MassTransit;
 
-namespace Shared.Results
+namespace Authorization.RequestClients
 {
 	/// <summary>
-	/// Represents the validation result containing an array of errors.
+	/// Represents the request client configuration.
 	/// </summary>
-	public interface IValidationResult
+	internal sealed class RequestClientConfiguration : IRequestClientConfiguration
 	{
-		/// <summary>
-		/// The validation failed error instance.
-		/// </summary>
-		public static readonly Error ValidationError = new("ValidationError", "A validation problem occurred.");
-
-		/// <summary>
-		/// Gets validation errors.
-		/// </summary>
-		public IReadOnlyCollection<Error> Errors { get; }
+		/// <inheritdoc />
+		public void AddRequestClients(IRegistrationConfigurator registrationConfigurator) =>
+			registrationConfigurator.AddRequestClient<IUserPermissionsRequest>();
 	}
 }

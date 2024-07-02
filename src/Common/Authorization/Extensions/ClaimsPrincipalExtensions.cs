@@ -15,23 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Errors;
+using System.Security.Claims;
 
-namespace Shared.Results
+namespace Authorization.Extensions
 {
 	/// <summary>
-	/// Represents the validation result containing an array of errors.
+	/// Contains extension methods for the <see cref="ClaimsPrincipal"/> class.
 	/// </summary>
-	public interface IValidationResult
+	internal static class ClaimsPrincipalExtensions
 	{
 		/// <summary>
-		/// The validation failed error instance.
+		/// Gets the identity provider identifier of the currently authenticated user.
 		/// </summary>
-		public static readonly Error ValidationError = new("ValidationError", "A validation problem occurred.");
-
-		/// <summary>
-		/// Gets validation errors.
-		/// </summary>
-		public IReadOnlyCollection<Error> Errors { get; }
+		/// <param name="claimsPrincipal">The claims principal.</param>
+		/// <returns>The identity provider identifier of the currently authenticated user if it exists, or an empty string.</returns>
+		internal static string GetIdentityProviderId(this ClaimsPrincipal claimsPrincipal) =>
+			claimsPrincipal.Claims.SingleOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
 	}
 }

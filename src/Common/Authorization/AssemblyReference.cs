@@ -15,23 +15,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Errors;
+using System.Reflection;
 
-namespace Shared.Results
+namespace Authorization
 {
 	/// <summary>
-	/// Represents the validation result containing an array of errors.
+	/// Represents the authorization assembly reference.
 	/// </summary>
-	public interface IValidationResult
+	public static class AssemblyReference
 	{
 		/// <summary>
-		/// The validation failed error instance.
+		/// The assembly.
 		/// </summary>
-		public static readonly Error ValidationError = new("ValidationError", "A validation problem occurred.");
-
-		/// <summary>
-		/// Gets validation errors.
-		/// </summary>
-		public IReadOnlyCollection<Error> Errors { get; }
+		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
 	}
 }
