@@ -106,6 +106,12 @@ namespace Domain.Primitives
 		/// <inheritdoc/>
 		public virtual void MarkAsDeleted()
 		{
+			IsDeleted = true;
+		}
+
+		/// <inheritdoc/>
+		public virtual void RestoreDeleted()
+		{
 			IsDeleted = false;
 		}
 	}

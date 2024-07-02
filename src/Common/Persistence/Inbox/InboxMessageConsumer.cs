@@ -15,32 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Domain.Primitives
+namespace Persistence.Inbox
 {
 	/// <summary>
-	/// Base interface for any entity type.
+	/// Represents the inbox message consumer.
 	/// </summary>
-	/// <typeparam name="TEntityId">The type of id of entity.</typeparam>
-	public interface IBaseClass<TEntityId> where TEntityId : IEntityId
+	public sealed class InboxMessageConsumer
 	{
 		/// <summary>
 		/// Gets the identifier.
 		/// </summary>
-		TEntityId Id { get; }
+		public Guid Id { get; private set; }
 
 		/// <summary>
-		/// Gets the deleted status (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).
+		/// Gets the name.
 		/// </summary>
-		bool IsDeleted { get; }
-
-		/// <summary>
-		/// Marks entity as deleted by setting <see langword="true"/> to <see cref="IsDeleted"/>.
-		/// </summary>
-		void MarkAsDeleted();
-
-		/// <summary>
-		/// Marks deleted entity to not-deleted state, by setting <see langword="false"/> to <see cref="IsDeleted"/>.
-		/// </summary>
-		void RestoreDeleted();
+		public string Name { get; private set; } = string.Empty;
 	}
 }
