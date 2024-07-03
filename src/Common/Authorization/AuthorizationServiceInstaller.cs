@@ -18,6 +18,7 @@
 using Authorization.AuthorizationHandlers;
 using Authorization.AuthorizationPolicyProviders;
 using Authorization.Services;
+using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

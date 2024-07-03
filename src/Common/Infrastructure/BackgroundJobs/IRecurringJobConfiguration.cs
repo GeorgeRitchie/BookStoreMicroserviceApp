@@ -15,19 +15,26 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Authorization.Contracts;
-using Infrastructure.EventBus;
-using MassTransit;
-
-namespace Authorization.RequestClients
+namespace Infrastructure.BackgroundJobs
 {
 	/// <summary>
-	/// Represents the request client configuration.
+	/// Represents the interface for defining a recurring background job configuration.
 	/// </summary>
-	internal sealed class RequestClientConfiguration : IRequestClientConfiguration
+	public interface IRecurringJobConfiguration
 	{
-		/// <inheritdoc />
-		public void AddRequestClients(IRegistrationConfigurator registrationConfigurator) =>
-			registrationConfigurator.AddRequestClient<IUserPermissionsRequest>();
+		/// <summary>
+		/// Gets the name.
+		/// </summary>
+		string Name { get; }
+
+		/// <summary>
+		/// Gets the type.
+		/// </summary>
+		Type Type { get; }
+
+		/// <summary>
+		/// Gets the interval in seconds.
+		/// </summary>
+		int IntervalInSeconds { get; }
 	}
 }

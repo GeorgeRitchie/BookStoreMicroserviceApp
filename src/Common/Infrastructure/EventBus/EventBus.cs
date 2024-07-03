@@ -15,19 +15,24 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Authorization.Contracts;
-using Infrastructure.EventBus;
+using Application.EventBus;
+using Application.ServiceLifetimes;
 using MassTransit;
 
-namespace Authorization.RequestClients
+namespace Infrastructure.EventBus
 {
 	/// <summary>
-	/// Represents the request client configuration.
+	/// Represents the event bus.
 	/// </summary>
-	internal sealed class RequestClientConfiguration : IRequestClientConfiguration
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="EventBus"/> class.
+	/// </remarks>
+	/// <param name="bus">The bus.</param>
+	public sealed class EventBus(IBus bus) : IEventBus, ITransient
 	{
 		/// <inheritdoc />
-		public void AddRequestClients(IRegistrationConfigurator registrationConfigurator) =>
-			registrationConfigurator.AddRequestClient<IUserPermissionsRequest>();
+		public async Task PublishAsync<TIntegrationEvent>(TIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
+			where TIntegrationEvent : IIntegrationEvent =>
+			await bus.Publish(integrationEvent, cancellationToken);
 	}
 }

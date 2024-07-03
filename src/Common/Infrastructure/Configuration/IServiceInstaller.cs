@@ -15,19 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Authorization.Contracts;
-using Infrastructure.EventBus;
-using MassTransit;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Authorization.RequestClients
+namespace Infrastructure.Configuration
 {
 	/// <summary>
-	/// Represents the request client configuration.
+	/// Represents the interface for installing services.
 	/// </summary>
-	internal sealed class RequestClientConfiguration : IRequestClientConfiguration
+	public interface IServiceInstaller
 	{
-		/// <inheritdoc />
-		public void AddRequestClients(IRegistrationConfigurator registrationConfigurator) =>
-			registrationConfigurator.AddRequestClient<IUserPermissionsRequest>();
+		/// <summary>
+		/// Installs the required services using the specified service collection.
+		/// </summary>
+		/// <param name="services">The service collection.</param>
+		/// <param name="configuration">The configuration.</param>
+		void Install(IServiceCollection services, IConfiguration configuration);
 	}
 }

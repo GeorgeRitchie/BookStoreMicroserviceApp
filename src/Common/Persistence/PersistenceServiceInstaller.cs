@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Options;
@@ -30,8 +31,6 @@ namespace Persistence
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
 				.AddMemoryCache()
-				.ConfigureOptions<ConnectionStringSetup>()
-				.AddTransientAsMatchingInterfaces(AssemblyReference.Assembly)
-				.Tap(() => Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true);
+				.ConfigureOptions<ConnectionStringSetup>();
 	}
 }

@@ -15,19 +15,19 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Authorization.Contracts;
-using Infrastructure.EventBus;
 using MassTransit;
 
-namespace Authorization.RequestClients
+namespace Infrastructure.EventBus
 {
 	/// <summary>
-	/// Represents the request client configuration.
+	/// Represents the event bus request client configuration interface.
 	/// </summary>
-	internal sealed class RequestClientConfiguration : IRequestClientConfiguration
+	public interface IRequestClientConfiguration
 	{
-		/// <inheritdoc />
-		public void AddRequestClients(IRegistrationConfigurator registrationConfigurator) =>
-			registrationConfigurator.AddRequestClient<IUserPermissionsRequest>();
+		/// <summary>
+		/// Adds the request client definitions using the specified registration configurator.
+		/// </summary>
+		/// <param name="registrationConfigurator">The registration configurator.</param>
+		void AddRequestClients(IRegistrationConfigurator registrationConfigurator);
 	}
 }
