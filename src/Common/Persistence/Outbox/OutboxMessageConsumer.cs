@@ -20,16 +20,18 @@ namespace Persistence.Outbox
 	/// <summary>
 	/// Represents the outbox message consumer.
 	/// </summary>
-	public sealed class OutboxMessageConsumer
+	/// <param name="id">Message Id.</param>
+	/// <param name="name">Consumer name.</param>
+	public sealed class OutboxMessageConsumer(Guid id, string name)
 	{
 		/// <summary>
 		/// Gets the identifier.
 		/// </summary>
-		public Guid Id { get; private set; }
+		public Guid Id { get; private set; } = id;
 
 		/// <summary>
 		/// Gets the name.
 		/// </summary>
-		public string Name { get; private set; } = string.Empty;
+		public string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
 	}
 }

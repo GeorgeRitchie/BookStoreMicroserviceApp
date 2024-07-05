@@ -15,23 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Persistence.Inbox
+using Infrastructure.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the inbox message consumer.
+	/// Represents the CatalogWrite service endpoints service installer.
 	/// </summary>
-	/// <param name="id">Message Id.</param>
-	/// <param name="name">Consumer name.</param>
-	public sealed class InboxMessageConsumer(Guid id, string name)
+	internal sealed class EndpointsServiceInstaller : IServiceInstaller
 	{
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		public Guid Id { get; private set; } = id;
-
-		/// <summary>
-		/// Gets the name.
-		/// </summary>
-		public string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
+		/// <inheritdoc />
+		public void Install(IServiceCollection services, IConfiguration configuration) =>
+			services
+				.AddControllers()
+				.AddApplicationPart(Endpoints.AssemblyReference.Assembly);
 	}
 }

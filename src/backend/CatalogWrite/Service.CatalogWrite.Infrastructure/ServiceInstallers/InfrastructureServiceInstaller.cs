@@ -15,23 +15,23 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Persistence.Inbox
+using Application.EventBus;
+using Infrastructure.Configuration;
+using Infrastructure.EventBus;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the inbox message consumer.
+	/// Represents the CategoryWrite service infrastructure service installer.
 	/// </summary>
-	/// <param name="id">Message Id.</param>
-	/// <param name="name">Consumer name.</param>
-	public sealed class InboxMessageConsumer(Guid id, string name)
+	internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 	{
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		public Guid Id { get; private set; } = id;
-
-		/// <summary>
-		/// Gets the name.
-		/// </summary>
-		public string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
+		/// <inheritdoc />
+		public void Install(IServiceCollection services, IConfiguration configuration) =>
+			services
+				.Tap(services.TryAddTransient<IEventBus, EventBus>);
 	}
 }

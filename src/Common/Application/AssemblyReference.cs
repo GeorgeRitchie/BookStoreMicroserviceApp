@@ -15,23 +15,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Persistence.Inbox
+using System.Reflection;
+
+namespace Application
 {
 	/// <summary>
-	/// Represents the inbox message consumer.
+	/// Represents the base application layer assembly reference.
 	/// </summary>
-	/// <param name="id">Message Id.</param>
-	/// <param name="name">Consumer name.</param>
-	public sealed class InboxMessageConsumer(Guid id, string name)
+	public static class AssemblyReference
 	{
 		/// <summary>
-		/// Gets the identifier.
+		/// The assembly.
 		/// </summary>
-		public Guid Id { get; private set; } = id;
-
-		/// <summary>
-		/// Gets the name.
-		/// </summary>
-		public string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
+		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
 	}
 }

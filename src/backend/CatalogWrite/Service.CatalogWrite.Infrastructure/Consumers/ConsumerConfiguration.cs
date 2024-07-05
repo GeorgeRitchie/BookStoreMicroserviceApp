@@ -15,23 +15,20 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Persistence.Inbox
+using Infrastructure.EventBus;
+using MassTransit;
+
+namespace Service.CatalogWrite.Infrastructure.Consumers
 {
 	/// <summary>
-	/// Represents the inbox message consumer.
+	/// Represents the consumer configuration for the CatalogWrite service.
 	/// </summary>
-	/// <param name="id">Message Id.</param>
-	/// <param name="name">Consumer name.</param>
-	public sealed class InboxMessageConsumer(Guid id, string name)
+	internal sealed class ConsumerConfiguration : IConsumerConfiguration
 	{
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		public Guid Id { get; private set; } = id;
-
-		/// <summary>
-		/// Gets the name.
-		/// </summary>
-		public string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
+		/// <inheritdoc />
+		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
+		{
+			// TODO ## Add here message-broker message consumers
+		}
 	}
 }
