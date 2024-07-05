@@ -59,12 +59,14 @@ namespace Persistence.Outbox
 
 		/// <summary>
 		/// Gets the processed on date and time, if it exists.
+		/// Sets the processed on date and time.
 		/// </summary>
-		public DateTime? ProcessedOnUtc { get; private set; }
+		public DateTime? ProcessedOnUtc { get; set; }
 
 		/// <summary>
 		/// Gets the error, if it exists.
+		/// Sets an error.
 		/// </summary>
-		public string? Error { get; private set; }
+		public string? Error { get; set; }
 	}
 }
