@@ -15,4 +15,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Authorization\Authorization.csproj" />
+    <ProjectReference Include="..\..\..\Common\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Common\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.Infrastructure\Service.CatalogWrite.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

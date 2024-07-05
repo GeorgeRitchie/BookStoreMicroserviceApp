@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Application\Application.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.IntegrationEvents\Service.CatalogWrite.IntegrationEvents.csproj" />
+  </ItemGroup>
+
 </Project>

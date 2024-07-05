@@ -33,7 +33,7 @@ namespace Persistence.Interceptors
 		{
 			TypeNameHandling = TypeNameHandling.All
 		};
-
+		// TODO there are other SavingChanges method overloads, implement them too, because if code calls different SaveChanges method overload, it will call specific SavingChanges overload too
 		/// <inheritdoc />
 		public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
 			DbContextEventData eventData,

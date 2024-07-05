@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Endpoints\Endpoints.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.Application\Service.CatalogWrite.Application.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Polly" Version="8.4.1" />
+    <PackageReference Include="Quartz" Version="3.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Authorization\Authorization.csproj" />
+    <ProjectReference Include="..\..\..\Common\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.Application\Service.CatalogWrite.Application.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.Endpoints\Service.CatalogWrite.Endpoints.csproj" />
+    <ProjectReference Include="..\Service.CatalogWrite.Persistence\Service.CatalogWrite.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
