@@ -38,10 +38,12 @@ namespace Domain.Primitives
 		/// Initializes a new instance of the <see cref="Entity{TEntityId}"/> class.
 		/// </summary>
 		/// <param name="id">The entity identifier.</param>
+		/// <param name="isDeleted">The entity deleted status marker (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).</param>
+		/// <exception cref="ArgumentNullException">Throw if <paramref name="id"/> is <see langword="null"/>.</exception>
 		protected Entity(TEntityId id, bool isDeleted = false)
 			: this()
 		{
-			Id = id ?? throw new ArgumentException("The entity identifier is required.", nameof(id));
+			Id = id ?? throw new ArgumentNullException(nameof(id), "The entity identifier is required.");
 			IsDeleted = isDeleted;
 		}
 

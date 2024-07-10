@@ -30,7 +30,7 @@ namespace Domain.Primitives
 		/// Gets the atomic values that compose the value object.
 		/// </summary>
 		/// <returns>An enumerable of atomic values that make up the value object.</returns>
-		public abstract IEnumerable<object> GetAtomicValues();
+		protected abstract IEnumerable<object> GetAtomicValues();
 
 		/// <summary>
 		/// Determines whether two value objects are equal by comparing their atomic values.
