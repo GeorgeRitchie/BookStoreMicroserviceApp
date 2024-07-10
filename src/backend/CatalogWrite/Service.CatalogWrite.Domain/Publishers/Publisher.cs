@@ -75,8 +75,8 @@ namespace Service.CatalogWrite.Domain.Publishers
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Publisher"/> class.
 		/// </summary>
-		/// <param name="id">The author identifier.</param>
-		/// <param name="isDeleted">The author deleted status marker (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).</param>
+		/// <param name="id">The publisher identifier.</param>
+		/// <param name="isDeleted">The publisher deleted status marker (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).</param>
 		private Publisher(PublisherId id, bool isDeleted = false) : base(id, isDeleted)
 		{
 		}

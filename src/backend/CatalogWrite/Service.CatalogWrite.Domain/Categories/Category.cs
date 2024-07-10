@@ -49,8 +49,8 @@ namespace Service.CatalogWrite.Domain.Categories
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Category"/> class.
 		/// </summary>
-		/// <param name="id">The author identifier.</param>
-		/// <param name="isDeleted">The author deleted status marker (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).</param>
+		/// <param name="id">The category identifier.</param>
+		/// <param name="isDeleted">The category deleted status marker (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).</param>
 		private Category(CategoryId id, bool isDeleted = false) : base(id, isDeleted)
 		{
 		}
