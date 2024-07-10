@@ -59,5 +59,24 @@ namespace Service.CatalogWrite.Domain.ValueObjects
 			public static Func<string, Error> InvalidUrlAddress =>
 				url => new("VO.Website.InvalidUrlAddress", $"The specified value is not valid url address: {url}.");
 		}
+
+		/// <summary>
+		/// Contains Phone number errors.
+		/// </summary>
+		public static class PhoneNumber
+		{
+			/// <summary>
+			/// Gets phone number <see langword="null"/>, <see cref="string.Empty"/> or white-space string error.
+			/// </summary>
+			public static Error EmptyPhoneNumber => new(
+				"VO.PhoneNumber.EmptyPhoneNumber",
+				"Phone number cannot be null, empty or white-space string.");
+
+			/// <summary>
+			/// Gets invalid phone number error.
+			/// </summary>
+			public static Func<string, Error> InvalidPhoneNumber =>
+				number => new("VO.PhoneNumber.InvalidPhoneNumber", $"The specified value is not valid phone number: {number}.");
+		}
 	}
 }

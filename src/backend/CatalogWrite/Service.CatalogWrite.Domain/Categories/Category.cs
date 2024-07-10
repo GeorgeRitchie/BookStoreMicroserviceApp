@@ -108,11 +108,11 @@ namespace Service.CatalogWrite.Domain.Categories
 				{
 					string _description = description ?? string.Empty;
 
-					bool authorInfoChanged = Title != title
+					bool categoryInfoChanged = Title != title
 											|| Icon != icon
 											|| Description != _description;
 
-					if (authorInfoChanged)
+					if (categoryInfoChanged)
 					{
 						c.Title = title;
 						c.Icon = icon;
