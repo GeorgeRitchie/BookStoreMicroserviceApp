@@ -54,7 +54,7 @@ namespace Service.CatalogWrite.Domain.ValueObjects
 		public static Result<PhoneNumber> Crete(string number)
 			=> Result.Success(number)
 				.Ensure(n => string.IsNullOrWhiteSpace(n) == false, ValueObjectsErrors.PhoneNumber.EmptyPhoneNumber)
-				.Ensure(n => Regex.IsMatch(n, pattern, RegexOptions.IgnoreCase), ValueObjectsErrors.PhoneNumber.InvalidPhoneNumber(number))
+				.EnsureOnSuccess(n => Regex.IsMatch(n, pattern, RegexOptions.IgnoreCase), ValueObjectsErrors.PhoneNumber.InvalidPhoneNumber(number))
 				.Bind(e => Result.Success(new PhoneNumber(e)));
 	}
 }

@@ -170,7 +170,7 @@ namespace Shared.Results
 		/// <typeparam name="TValue">The result type.</typeparam>
 		/// <param name="value">The result value.</param>
 		/// <returns>A new instance of <see cref="Result{TValue}"/> with the specified value or an error.</returns>
-		public static Result<TValue> Create<TValue>(TValue? value) => value is not null 
+		public static Result<TValue> Create<TValue>(TValue? value) => value is not null
 																				? Success(value)
 																				: Failure<TValue>(Error.NullValue);
 
@@ -193,6 +193,22 @@ namespace Shared.Results
 			}
 
 			return this;
+		}
+
+		/// <summary>
+		/// Ensures that the successful operation satisfies a given predicate, and if not, adds the specified error and makes result status failed.
+		/// Skips predicate for failure operation.
+		/// </summary>
+		/// <param name="predicate">The predicate to be satisfied for the operation to be considered successful.</param>
+		/// <param name="error">The error message to add if the predicate is not satisfied.</param>
+		/// <returns>The current instance of <see cref="Result"/> with status satisfied to predicate result.</returns>
+		/// <exception cref="ArgumentNullException">Thrown when <paramref name="predicate"/> or <paramref name="error"/> is <see langword="null"/>.</exception>
+		public Result EnsureOnSuccess(Func<bool> predicate, Error error)
+		{
+			if (IsSuccess)
+				return Ensure(predicate, error);
+			else
+				return this;
 		}
 
 		/// <summary>

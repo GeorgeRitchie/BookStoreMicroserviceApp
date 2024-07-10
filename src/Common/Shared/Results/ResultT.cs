@@ -90,6 +90,22 @@ namespace Shared.Results
 		}
 
 		/// <summary>
+		/// Ensures that the successful result satisfies a given predicate, and if not, adds the specified error and makes result status failed.
+		/// Skips predicate for failure result.
+		/// </summary>
+		/// <param name="predicate">The predicate to be satisfied for the result to be considered successful.</param>
+		/// <param name="error">The error message to add if the predicate is not satisfied.</param>
+		/// <returns>The current instance of <see cref="Result{TValue}"/> with status satisfied to predicate result.</returns>
+		/// <exception cref="ArgumentNullException">Thrown when <paramref name="predicate"/> or <paramref name="error"/> is <see langword="null"/>.</exception>
+		public Result<TValue> EnsureOnSuccess(Func<TValue?, bool> predicate, Error error)
+		{
+			if (IsSuccess)
+				return Ensure(predicate, error);
+			else
+				return this;
+		}
+
+		/// <summary>
 		/// Returns the first failure from the specified <paramref name="results"/>.
 		/// If there is no failure, a success is returned.
 		/// </summary>

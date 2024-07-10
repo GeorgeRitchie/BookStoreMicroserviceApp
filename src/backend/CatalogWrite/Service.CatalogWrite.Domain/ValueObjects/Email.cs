@@ -56,7 +56,7 @@ namespace Service.CatalogWrite.Domain.ValueObjects
 		public static Result<Email> Create(string email)
 			=> Result.Success(email)
 				.Ensure(e => string.IsNullOrWhiteSpace(e) == false, ValueObjectsErrors.Email.EmptyEmailAddress)
-				.Ensure(e => Regex.IsMatch(e, pattern, RegexOptions.IgnoreCase), ValueObjectsErrors.Email.InvalidEmailAddress(email))
+				.EnsureOnSuccess(e => Regex.IsMatch(e, pattern, RegexOptions.IgnoreCase), ValueObjectsErrors.Email.InvalidEmailAddress(email))
 				.Bind(e => Result.Success(new Email(e)));
 	}
 }
