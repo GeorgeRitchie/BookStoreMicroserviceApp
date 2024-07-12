@@ -15,23 +15,32 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-
-namespace Service.CatalogWrite.Application
+namespace Application.Models
 {
 	/// <summary>
-	/// Represents the CatalogWrite service application assembly reference.
+	/// Represents file abstraction.
 	/// </summary>
-	public static class AssemblyReference
+	public interface IFile
 	{
 		/// <summary>
-		/// The assembly.
+		/// Gets unique key of current instance.
 		/// </summary>
-		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
+		Guid UniqueKey { get; }
 
 		/// <summary>
-		/// The module name this assembly belongs to.
+		/// Gets file name.
 		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		string FileName { get; }
+
+		/// <summary>
+		/// Gets file size in bytes.
+		/// </summary>
+		long SizeInBytes { get; }
+
+		/// <summary>
+		/// Opens read stream to file content.
+		/// </summary>
+		/// <returns></returns>
+		Stream OpenReadStream();
 	}
 }

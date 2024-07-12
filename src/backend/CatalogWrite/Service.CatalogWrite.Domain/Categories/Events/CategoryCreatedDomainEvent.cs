@@ -34,6 +34,6 @@ namespace Service.CatalogWrite.Domain.Categories.Events
 		CategoryId CategoryId,
 		string Title,
 		string Description,
-		ImageSource<CategoryImageType, int> Icon)
+		ImageSource<CategoryImageType> Icon)
 		: DomainEvent(Id, OccurredOnUtc);
 }

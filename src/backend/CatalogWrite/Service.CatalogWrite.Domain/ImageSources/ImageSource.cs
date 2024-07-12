@@ -22,8 +22,8 @@ namespace Service.CatalogWrite.Domain.ImageSources
 	/// </summary>
 	/// <typeparam name="TEnum">The enumeration type used to define image type.</typeparam>
 	/// <typeparam name="TValue">The enumeration value (<see cref="Enumeration{TEnum, TEnumValue}"/>).</typeparam>
-	public sealed class ImageSource<TEnum, TValue>
-		: Entity<ImageSourceId> where TEnum : Enumeration<TEnum, TValue>
+	public sealed class ImageSource<TEnum>
+		: Entity<ImageSourceId> where TEnum : Enumeration<TEnum>
 	{
 		/// <summary>
 		/// Gets the image source.
@@ -36,7 +36,7 @@ namespace Service.CatalogWrite.Domain.ImageSources
 		public TEnum Type { get; private set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ImageSource{TEnum, TValue}"/> class.
+		/// Initializes a new instance of the <see cref="ImageSource{TEnum}"/> class.
 		/// </summary>
 		/// <remarks>
 		/// Required for deserialization.
@@ -48,7 +48,7 @@ namespace Service.CatalogWrite.Domain.ImageSources
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ImageSource{TEnum, TValue}"/> class.
+		/// Initializes a new instance of the <see cref="ImageSource{TEnum}"/> class.
 		/// </summary>
 		/// <param name="id">The image identifier.</param>
 		/// <param name="source">The image source. Must not be <see langword="null"/> value.</param>
@@ -64,10 +64,24 @@ namespace Service.CatalogWrite.Domain.ImageSources
 		/// <inheritdoc/>
 		public override bool Equals(Entity<ImageSourceId>? other)
 		{
-			if (other is ImageSource<TEnum, TValue> _other)
+			if (other is ImageSource<TEnum> _other)
 				return base.Equals(other) || Source == _other.Source && Type == _other.Type;
 			else
 				return base.Equals(other);
 		}
+
+		/// <summary>
+		/// Creates new instance of <see cref="ImageSource{TEnum}"/> based on parameters and validation result.
+		/// </summary>
+		/// <typeparam name="T">The enumeration type used to define image type.</typeparam>
+		/// <param name="source">The image source.</param>
+		/// <param name="type">The image type.</param>
+		/// <returns>The new <see cref="ImageSource{TEnum}"/> instance or <see cref="Result{TValue}"/> with validation errors.</returns>
+		public static Result<ImageSource<T>> Create<T>(string source, T type)
+			where T : Enumeration<T>
+			=> Result.Success()
+				.Ensure(() => source != null, ImageSourceErrors.NullImageSource)
+				.Ensure(() => type != null, ImageSourceErrors.NullImageType)
+				.Map(() => new ImageSource<T>(new ImageSourceId(Guid.NewGuid()), source, type, false));
 	}
 }

@@ -15,23 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-
-namespace Service.CatalogWrite.Application
-{
-	/// <summary>
-	/// Represents the CatalogWrite service application assembly reference.
-	/// </summary>
-	public static class AssemblyReference
-	{
-		/// <summary>
-		/// The assembly.
-		/// </summary>
-		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
-
-		/// <summary>
-		/// The module name this assembly belongs to.
-		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
-	}
-}
+global using Application.Extensions;
+global using Application.Messaging;
+global using FluentValidation;
+global using Shared.Errors;
+global using Shared.Extensions;
+global using Shared.Repositories;
+global using Shared.Results;

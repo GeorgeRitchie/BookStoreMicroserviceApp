@@ -15,23 +15,23 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-
-namespace Service.CatalogWrite.Application
+namespace Service.CatalogWrite.Domain.ImageSources
 {
 	/// <summary>
-	/// Represents the CatalogWrite service application assembly reference.
+	/// Contains the Image source errors.
 	/// </summary>
-	public static class AssemblyReference
+	public static class ImageSourceErrors
 	{
 		/// <summary>
-		/// The assembly.
+		/// Gets null source error.
 		/// </summary>
-		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
+		public static Error NullImageSource
+			=> new("ImageSource.NullImageSource", "The image source is required.");
 
 		/// <summary>
-		/// The module name this assembly belongs to.
+		/// Gets null image type error.
 		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		public static Error NullImageType
+			=> new("ImageSource.NullImageType", "The image type is required");
 	}
 }

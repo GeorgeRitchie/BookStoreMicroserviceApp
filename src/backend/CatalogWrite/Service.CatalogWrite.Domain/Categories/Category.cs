@@ -44,7 +44,7 @@ namespace Service.CatalogWrite.Domain.Categories
 		/// <summary>
 		/// Gets the category image.
 		/// </summary>
-		public ImageSource<CategoryImageType, int> Icon { get; private set; }
+		public ImageSource<CategoryImageType> Icon { get; private set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Category"/> class.
@@ -74,7 +74,7 @@ namespace Service.CatalogWrite.Domain.Categories
 		/// <param name="icon">Category icon.</param>
 		/// <param name="description">Category description.</param>
 		/// <returns>The new <see cref="Category"/> instance or <see cref="Result{TValue}"/> with validation errors.</returns>
-		public static Result<Category> Create(string title, ImageSource<CategoryImageType, int> icon, string? description = null)
+		public static Result<Category> Create(string title, ImageSource<CategoryImageType> icon, string? description = null)
 			=> Result.Success(
 				new Category(new CategoryId(Guid.NewGuid()), false)
 				{
@@ -100,7 +100,7 @@ namespace Service.CatalogWrite.Domain.Categories
 		/// <param name="icon">Category icon.</param>
 		/// <param name="description">Category description.</param>
 		/// <returns>The updated category.</returns>
-		public Result<Category> Change(string title, ImageSource<CategoryImageType, int> icon, string? description = null)
+		public Result<Category> Change(string title, ImageSource<CategoryImageType> icon, string? description = null)
 			=> Result.Success(this)
 				.Ensure(c => string.IsNullOrWhiteSpace(title) == false, CategoryErrors.TitleIsRequired)
 				.Ensure(c => icon is not null, CategoryErrors.IconIsRequired)

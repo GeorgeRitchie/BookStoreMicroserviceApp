@@ -15,23 +15,28 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
+using Application.Models;
 
-namespace Service.CatalogWrite.Application
+namespace Service.CatalogWrite.Application.Categories.Commands
 {
 	/// <summary>
-	/// Represents the CatalogWrite service application assembly reference.
+	/// Represents the command for creating a new category.
 	/// </summary>
-	public static class AssemblyReference
+	public sealed class CreateCategoryCommand : ICommand<Guid>
 	{
 		/// <summary>
-		/// The assembly.
+		/// Category title.
 		/// </summary>
-		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
+		public string Title { get; set; }
 
 		/// <summary>
-		/// The module name this assembly belongs to.
+		/// Category description.
 		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		public string Description { get; set; } = string.Empty;
+
+		/// <summary>
+		/// Category icon.
+		/// </summary>
+		public IFile Icon { get; set; }
 	}
 }
