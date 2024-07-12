@@ -31,6 +31,7 @@ namespace Service.CatalogWrite.Infrastructure
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
 				.InstallServicesFromAssemblies(configuration, AssemblyReference.Assembly)
+				.InstallServicesFromAssemblies(configuration, Persistence.AssemblyReference.Assembly)
 				.AddTransientAsMatchingInterfaces(AssemblyReference.Assembly)
 				.AddTransientAsMatchingInterfaces(Persistence.AssemblyReference.Assembly)
 				.AddScopedAsMatchingInterfaces(AssemblyReference.Assembly)

@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj" />
   </ItemGroup>
