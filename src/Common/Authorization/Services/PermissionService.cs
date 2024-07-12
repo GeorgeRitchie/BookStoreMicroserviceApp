@@ -19,6 +19,7 @@ using Authorization.Contracts;
 using Authorization.Options;
 using MassTransit;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 
 namespace Authorization.Services
 {
@@ -37,7 +38,7 @@ namespace Authorization.Services
 		// TODO use here IDistributedCache and add code that listen to specific even across microservices,
 		// for example UserPermissionsChanged, which should trigger updating user permissions on cache,
 		// this will allow to keep data up to date immediately on each specific period (cache time), and also when data is updated in that specific period
-		IPermissionAuthorizationOptions options) : IPermissionService
+		IOptions<PermissionAuthorizationOptions> options) : IPermissionService
 	{
 		/// <inheritdoc />
 		public async Task<HashSet<string>> GetPermissionsAsync(
@@ -54,7 +55,7 @@ namespace Authorization.Services
 					return userPermissionResponse.Permissions;
 				}))!;
 
-		private string CreateCacheKey(string identityProviderId) => $"{options.CacheKeyPrefix}{identityProviderId}";
+		private string CreateCacheKey(string identityProviderId) => $"{options.Value.CacheKeyPrefix}{identityProviderId}";
 
 		private async Task<IUserPermissionsResponse> GetPermissionsInternalAsync(string identityProviderId,
 																		   CancellationToken cancellationToken)

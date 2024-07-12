@@ -15,16 +15,22 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Authorization.Options
+using Microsoft.Extensions.Options;
+
+namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 {
 	/// <summary>
-	/// Represents the permission authorization options.
+	/// Represents the <see cref="RabbitMqOptions"/> setup.
 	/// </summary>
-	public interface IPermissionAuthorizationOptions
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="RabbitMqOptionsSetup"/> class.
+	/// </remarks>
+	/// <param name="configuration">The configuration.</param>
+	internal sealed class RabbitMqOptionsSetup(IConfiguration configuration) : IConfigureOptions<RabbitMqOptions>
 	{
-		/// <summary>
-		/// Gets the cache key prefix.
-		/// </summary>
-		public string CacheKeyPrefix { get; }
+		private const string ConfigurationSectionName = "RabbitMQ";
+
+		/// <inheritdoc />
+		public void Configure(RabbitMqOptions options) => configuration.GetSection(ConfigurationSectionName).Bind(options);
 	}
 }

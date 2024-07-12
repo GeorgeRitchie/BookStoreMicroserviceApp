@@ -15,23 +15,25 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Application.EventBus;
-using Infrastructure.Configuration;
-using Infrastructure.EventBus;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Authorization.Options
 {
 	/// <summary>
-	/// Represents the CategoryWrite service infrastructure service installer.
+	/// Represents the <see cref="PermissionAuthorizationOptions"/> setup.
 	/// </summary>
-	internal sealed class InfrastructureServiceInstaller : IServiceInstaller
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="PermissionAuthorizationOptionsSetup"/> class.
+	/// </remarks>
+	/// <param name="configuration">The configuration.</param>
+	internal sealed class PermissionAuthorizationOptionsSetup(IConfiguration configuration)
+		: IConfigureOptions<PermissionAuthorizationOptions>
 	{
+		private const string ConfigurationSectionName = "Authorization:Permissions";
+
 		/// <inheritdoc />
-		public void Install(IServiceCollection services, IConfiguration configuration) =>
-			services
-				.TryAddTransient<IEventBus, EventBus>();
+		public void Configure(PermissionAuthorizationOptions options)
+			=> configuration.GetSection(ConfigurationSectionName).Bind(options);
 	}
 }

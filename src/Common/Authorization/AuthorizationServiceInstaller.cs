@@ -17,6 +17,7 @@
 
 using Authorization.AuthorizationHandlers;
 using Authorization.AuthorizationPolicyProviders;
+using Authorization.Options;
 using Authorization.Services;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
@@ -34,6 +35,7 @@ namespace Authorization
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
 				.AddAuthorization()
+				.ConfigureOptions<PermissionAuthorizationOptionsSetup>()
 				.AddScoped<IPermissionService, PermissionService>()
 				.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
 				.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();

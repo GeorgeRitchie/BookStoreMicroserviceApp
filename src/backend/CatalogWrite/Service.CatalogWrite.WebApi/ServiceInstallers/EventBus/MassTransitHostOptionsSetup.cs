@@ -15,23 +15,17 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Application.EventBus;
-using Infrastructure.Configuration;
-using Infrastructure.EventBus;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using MassTransit;
+using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 {
 	/// <summary>
-	/// Represents the CategoryWrite service infrastructure service installer.
+	/// Represents the <see cref="MassTransitHostOptions"/> setup.
 	/// </summary>
-	internal sealed class InfrastructureServiceInstaller : IServiceInstaller
+	internal sealed class MassTransitHostOptionsSetup : IConfigureOptions<MassTransitHostOptions>
 	{
 		/// <inheritdoc />
-		public void Install(IServiceCollection services, IConfiguration configuration) =>
-			services
-				.TryAddTransient<IEventBus, EventBus>();
+		public void Configure(MassTransitHostOptions options) => options.WaitUntilStarted = true;
 	}
 }

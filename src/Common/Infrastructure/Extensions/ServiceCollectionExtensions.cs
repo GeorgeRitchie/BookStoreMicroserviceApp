@@ -92,6 +92,6 @@ namespace Infrastructure.Extensions
 					.AddClasses(filter => filter.AssignableTo<IScoped>(), false)
 					.UsingRegistrationStrategy(RegistrationStrategy.Throw)
 					.AsMatchingInterface()// TODO check will this register one class that implements several interfaces with each interface? example is Repository and ExtendedRepository in Persistence project
-					.WithTransientLifetime());
+					.WithScopedLifetime());
 	}
 }

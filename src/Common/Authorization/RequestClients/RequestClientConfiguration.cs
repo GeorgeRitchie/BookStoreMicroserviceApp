@@ -29,5 +29,7 @@ namespace Authorization.RequestClients
 		/// <inheritdoc />
 		public void AddRequestClients(IRegistrationConfigurator registrationConfigurator) =>
 			registrationConfigurator.AddRequestClient<IUserPermissionsRequest>();
+
+		// TODO ## Don't forget to setup MassTransit to configure request clients by calling: bussConfigurator.AddRequestClientsFromAssemblies(Authorization.AssemblyReference.Assembly);
 	}
 }

@@ -64,8 +64,8 @@ namespace Service.CatalogWrite.Persistence
 				.AddScoped<BookRepository>()
 				.AddScoped<IRepository<Book>>(provider => provider.GetRequiredService<BookRepository>())
 				.AddScoped<IBookRepository>(provider => provider.GetRequiredService<BookRepository>())
-				.AddScoped<IRepository<Category>, Repository<Category, CategoryId>>()
-				.AddScoped<IRepository<Author>, Repository<Author, AuthorId>>()
-				.AddScoped<IRepository<Publisher>, Repository<Publisher, PublisherId>>();
+				.AddScoped<IRepository<Category>, Repository<Category, CategoryId, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<Author>, Repository<Author, AuthorId, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<Publisher>, Repository<Publisher, PublisherId, CatalogWriteDbContext>>();
 	}
 }

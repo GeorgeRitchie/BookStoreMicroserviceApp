@@ -26,15 +26,17 @@ namespace Persistence.Repositories
 	/// </summary>
 	/// <typeparam name="TEntity">The entity type this repository manages.</typeparam>
 	/// <typeparam name="TEntityId">The type of id of entity.</typeparam>
+	/// <typeparam name="TDbContext">The db context this repository belongs to.</typeparam>
 	/// <param name="context">The DbContext that manages this entity.</param>
 	/// <remarks>
 	/// This implementation supports soft deletion, which means entities are not removed from the database but marked as deleted.
 	/// </remarks>
-	public class Repository<TEntity, TEntityId>(DbContext context) : IRepository<TEntity>,
+	public class Repository<TEntity, TEntityId, TDbContext>(TDbContext context) : IRepository<TEntity>,
 															IWriteOnlyRepository<TEntity>,
 															IReadOnlyRepository<TEntity>
 															where TEntity : class, IBaseClass<TEntityId>
 															where TEntityId : IEntityId
+															where TDbContext : DbContext
 	{
 		protected readonly DbSet<TEntity> dbSet = context?.Set<TEntity>() ?? throw new ArgumentNullException(nameof(context));
 

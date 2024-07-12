@@ -15,23 +15,27 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Application.EventBus;
 using Infrastructure.Configuration;
-using Infrastructure.EventBus;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.CatalogWrite.WebApi.ServiceInstallers.Authentication
 {
 	/// <summary>
-	/// Represents the CategoryWrite service infrastructure service installer.
+	/// Represents the authentication service installer.
 	/// </summary>
-	internal sealed class InfrastructureServiceInstaller : IServiceInstaller
+	internal sealed class AuthenticationServiceInstaller : IServiceInstaller
 	{
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
-				.TryAddTransient<IEventBus, EventBus>();
+				.ConfigureOptions<AuthenticationOptionsSetup>()
+				.ConfigureOptions<JwtBearerOptionsSetup>()
+				.AddAuthentication()
+				.AddJwtBearer()
+				.Tap(ReplaceSubClaimWithName);
+
+		private static void ReplaceSubClaimWithName() =>
+			JwtSecurityTokenHandler.DefaultInboundClaimTypeMap[JwtRegisteredClaimNames.Sub] = ClaimTypes.NameIdentifier;
 	}
 }

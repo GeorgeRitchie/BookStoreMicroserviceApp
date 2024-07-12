@@ -28,7 +28,8 @@ namespace Service.CatalogWrite.Persistence.Repositories
 	/// Initializes a new instance of the <see cref="BookRepository"/> class.
 	/// </remarks>
 	/// <param name="dbContext">The database context.</param>
-	internal sealed class BookRepository(CatalogWriteDbContext context) : Repository<Book, BookId>(context), IBookRepository
+	internal sealed class BookRepository(CatalogWriteDbContext context)
+		: Repository<Book, BookId, CatalogWriteDbContext>(context), IBookRepository
 	{
 		/// <inheritdoc/>
 		public async Task<bool> IsISBNUniqueAsync(string isbn, CancellationToken cancellationToken = default)
