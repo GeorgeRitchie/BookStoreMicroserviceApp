@@ -70,7 +70,7 @@ namespace Service.CatalogWrite.Domain.Publishers
 		/// <summary>
 		/// Gets the publisher photos.
 		/// </summary>
-		public IReadOnlyCollection<ImageSource<PublisherImageType, int>> Images { get; private set; } = [];
+		public IReadOnlyCollection<ImageSource<PublisherImageType>> Images { get; private set; } = [];
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Publisher"/> class.
@@ -113,7 +113,7 @@ namespace Service.CatalogWrite.Domain.Publishers
 			PhoneNumber? phoneNumber = null,
 			Email? email = null,
 			Website? website = null,
-			IEnumerable<ImageSource<PublisherImageType, int>>? images = null)
+			IEnumerable<ImageSource<PublisherImageType>>? images = null)
 			=> Result.Success(
 					new Publisher(new PublisherId(Guid.NewGuid()), false)
 					{

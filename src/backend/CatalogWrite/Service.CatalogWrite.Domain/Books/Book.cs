@@ -86,7 +86,7 @@ namespace Service.CatalogWrite.Domain.Books
 		/// <summary>
 		/// Gets the book images.
 		/// </summary>
-		public IReadOnlyCollection<ImageSource<BookImageType, int>> Images { get; private set; } = [];
+		public IReadOnlyCollection<ImageSource<BookImageType>> Images { get; private set; } = [];
 
 		/// <summary>
 		/// Gets the book source information to access (e. g. format & url to download).
@@ -139,7 +139,7 @@ namespace Service.CatalogWrite.Domain.Books
 			IEnumerable<Author> authors,
 			IEnumerable<Category> categories,
 			IEnumerable<BookSource> sources,
-			IEnumerable<ImageSource<BookImageType, int>> images,
+			IEnumerable<ImageSource<BookImageType>> images,
 			IBookRepository bookRepository,
 			string? description = null,
 			Publisher? publisher = null,

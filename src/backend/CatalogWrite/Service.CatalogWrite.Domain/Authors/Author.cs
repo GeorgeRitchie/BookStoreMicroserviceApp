@@ -60,7 +60,7 @@ namespace Service.CatalogWrite.Domain.Authors
 		/// <summary>
 		/// Gets the author images.
 		/// </summary>
-		public IReadOnlyCollection<ImageSource<AuthorImageType, int>> Images { get; private set; } = [];
+		public IReadOnlyCollection<ImageSource<AuthorImageType>> Images { get; private set; } = [];
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Author"/> class.
@@ -99,7 +99,7 @@ namespace Service.CatalogWrite.Domain.Authors
 			string? description = null,
 			Email? email = null,
 			Website? website = null,
-			IEnumerable<ImageSource<AuthorImageType, int>>? images = null)
+			IEnumerable<ImageSource<AuthorImageType>>? images = null)
 			=> Result.Success(
 				new Author(new AuthorId(Guid.NewGuid()), false)
 				{
