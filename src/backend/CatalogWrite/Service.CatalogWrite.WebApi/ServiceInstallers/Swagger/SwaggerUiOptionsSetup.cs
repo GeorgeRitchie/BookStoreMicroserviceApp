@@ -16,22 +16,16 @@
 */
 
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Service.CatalogWrite.WebApi.Options
+namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
-	/// Represents the <see cref="WebApiOptions"/> setup.
+	/// Represents the <see cref="SwaggerUIOptions"/> setup.
 	/// </summary>
-	/// <remarks>
-	/// Initializes a new instance of the <see cref="WebApiOptionsSetup"/> class.
-	/// </remarks>
-	/// <param name="configuration">The configuration.</param>
-	internal sealed class WebApiOptionsSetup(IConfiguration configuration) : IConfigureOptions<WebApiOptions>
+	internal sealed class SwaggerUiOptionsSetup : IConfigureOptions<SwaggerUIOptions>
 	{
-		private const string ConfigurationSectionName = "Service:CatalogWrite:WebApiOptions";
-
 		/// <inheritdoc />
-		public void Configure(WebApiOptions options)
-			=> configuration.GetSection(ConfigurationSectionName).Bind(options);
+		public void Configure(SwaggerUIOptions options) => options.DisplayRequestDuration();
 	}
 }

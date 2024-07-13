@@ -19,12 +19,16 @@ using Serilog;
 using Service.CatalogWrite.WebApi.Extensions;
 using Service.CatalogWrite.WebApi.Utility;
 using Infrastructure.Extensions;
+using Microsoft.Extensions.Options;
+using Service.CatalogWrite.WebApi.Options;
+using Asp.Versioning.ApiExplorer;
 
 LoggingUtility.Run(() =>
 {
 	WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 	builder.Services
+		.ConfigureOptions<WebApiOptionsSetup>()
 		.InstallServicesFromAssemblies(
 			builder.Configuration,
 			Service.CatalogWrite.WebApi.AssemblyReference.Assembly,
@@ -36,28 +40,49 @@ LoggingUtility.Run(() =>
 
 	builder.Host.UseSerilogWithConfiguration();
 
-
-	// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-	builder.Services.AddEndpointsApiExplorer();
-	builder.Services.AddSwaggerGen();
-
 	WebApplication webApplication = builder.Build();
 
-	webApplication
-		// TODO make swagger switchable (like add/not add) by appsettings.json, by default not add
-		.UseSwagger()
-		.UseSwaggerUI()
-		.UseCors(corsPolicyBuilder =>
-			corsPolicyBuilder
-				.AllowAnyHeader()
-				.AllowAnyMethod()
-				.AllowAnyOrigin());
+	var webApiOptions = webApplication.Services.GetRequiredService<IOptions<WebApiOptions>>().Value;
 
-	webApplication
-		.UseSerilogRequestLogging() // Adding Http request logging behavior via Serilog.
-		.UseHttpsRedirection()
-		.UseAuthentication()
-		.UseAuthorization();
+	if (webApiOptions.EnableSwaggerUI)
+	{
+		var apiVersionDescriptionProvider = webApplication.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+		webApplication.UseSwagger();
+		webApplication.UseSwaggerUI(opt =>
+		{
+			// build a swagger endpoint for each discovered API version
+			foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+			{
+				opt.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+
+				// Use this if you use OAUTH2 (OIDC)
+				// TODO __##__ set swagger client credentials of OIDC
+				opt.OAuth2RedirectUrl("https://localhost:1501/swagger/index.html");
+				opt.OAuthClientId("swagger-ui-4206B798-EE73-4CEB-B0F1-7A5B827EDA61");
+				opt.OAuthAppName("Swagger UI");
+				opt.OAuthClientSecret("swagger-ui-secret-string");
+				opt.OAuthUsePkce();
+			}
+			opt.InjectStylesheet("/swagger-ui/SwaggerDark.css");
+		});
+	}
+
+	webApplication.UseCors(corsPolicyBuilder =>
+								corsPolicyBuilder
+									.AllowAnyHeader()
+									.AllowAnyMethod()
+									.AllowAnyOrigin());
+
+	// Adding Http request logging behavior via Serilog.
+	webApplication.UseSerilogRequestLogging();
+
+	webApplication.UseHttpsRedirection();
+
+	webApplication.UseStaticFiles();
+
+	webApplication.UseAuthentication();
+	webApplication.UseAuthorization();
 
 	webApplication.MapControllers();
 

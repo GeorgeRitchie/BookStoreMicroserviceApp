@@ -15,23 +15,22 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Microsoft.Extensions.Options;
+using Infrastructure.Configuration;
 
-namespace Service.CatalogWrite.WebApi.Options
+namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
-	/// Represents the <see cref="WebApiOptions"/> setup.
+	/// Represents the swagger service installer.
 	/// </summary>
-	/// <remarks>
-	/// Initializes a new instance of the <see cref="WebApiOptionsSetup"/> class.
-	/// </remarks>
-	/// <param name="configuration">The configuration.</param>
-	internal sealed class WebApiOptionsSetup(IConfiguration configuration) : IConfigureOptions<WebApiOptions>
+	internal sealed class SwaggerServiceInstaller : IServiceInstaller
 	{
-		private const string ConfigurationSectionName = "Service:CatalogWrite:WebApiOptions";
-
 		/// <inheritdoc />
-		public void Configure(WebApiOptions options)
-			=> configuration.GetSection(ConfigurationSectionName).Bind(options);
+		void IServiceInstaller.Install(IServiceCollection services, IConfiguration configuration) =>
+			services
+				.ConfigureOptions<SwaggerGenOptionsSetup>()
+				.ConfigureOptions<SwaggerUiOptionsSetup>()
+				// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+				.AddEndpointsApiExplorer()
+				.AddSwaggerGen();
 	}
 }
