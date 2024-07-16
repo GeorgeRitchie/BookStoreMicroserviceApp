@@ -28,8 +28,8 @@ namespace Persistence.Repositories
 	/// <typeparam name="TEntityId">The type of id of entity.</typeparam>
 	/// <typeparam name="TDbContext">The db context this repository belongs to.</typeparam>
 	/// <param name="context">The DbContext that manages this entity.</param>
-	public class ExtendedRepository<TEntity, TEntityId, TDbContext>(TDbContext context)
-		: Repository<TEntity, TEntityId, TDbContext>(context),
+	public class ExtendedSoftDeletableRepository<TEntity, TEntityId, TDbContext>(TDbContext context)
+		: SoftDeletableRepository<TEntity, TEntityId, TDbContext>(context),
 		IExtendedWriteOnlyRepository<TEntity, TEntityId>
 			where TEntity : class, ISoftDeletable<TEntityId>
 			where TEntityId : IEntityId

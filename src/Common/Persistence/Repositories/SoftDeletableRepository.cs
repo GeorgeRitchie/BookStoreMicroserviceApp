@@ -31,7 +31,7 @@ namespace Persistence.Repositories
 	/// <remarks>
 	/// This implementation supports soft deletion, which means entities are not removed from the database but marked as deleted.
 	/// </remarks>
-	public class Repository<TEntity, TEntityId, TDbContext>(TDbContext context) : IRepository<TEntity, TEntityId>,
+	public class SoftDeletableRepository<TEntity, TEntityId, TDbContext>(TDbContext context) : IRepository<TEntity, TEntityId>,
 															IWriteOnlyRepository<TEntity, TEntityId>,
 															IReadOnlyRepository<TEntity>
 															where TEntity : class, ISoftDeletable<TEntityId>

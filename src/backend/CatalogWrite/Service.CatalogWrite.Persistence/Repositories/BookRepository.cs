@@ -29,7 +29,7 @@ namespace Service.CatalogWrite.Persistence.Repositories
 	/// </remarks>
 	/// <param name="dbContext">The database context.</param>
 	internal sealed class BookRepository(CatalogWriteDbContext context)
-		: Repository<Book, BookId, CatalogWriteDbContext>(context), IBookRepository
+		: SoftDeletableRepository<Book, BookId, CatalogWriteDbContext>(context), IBookRepository
 	{
 		/// <inheritdoc/>
 		public async Task<bool> IsISBNUniqueAsync(string isbn, CancellationToken cancellationToken = default)
