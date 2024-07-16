@@ -19,6 +19,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Outbox;
 using Service.CatalogWrite.Persistence.Contracts;
+using Persistence.Converters;
 
 namespace Service.CatalogWrite.Persistence.Configurations
 {
@@ -43,7 +44,9 @@ namespace Service.CatalogWrite.Persistence.Configurations
 			builder.Property(outboxMessage => outboxMessage.Type).IsRequired();
 
 			// TODO ## use ObjectJsonConverter if db provider does not support json column type
-			builder.Property(outboxMessage => outboxMessage.Content).HasColumnType("json").IsRequired();
+			builder.Property(outboxMessage => outboxMessage.Content)
+				.IsRequired();
+			// .HasColumnType("json");
 
 			builder.Property(outboxMessage => outboxMessage.ProcessedOnUtc).IsRequired(false);
 

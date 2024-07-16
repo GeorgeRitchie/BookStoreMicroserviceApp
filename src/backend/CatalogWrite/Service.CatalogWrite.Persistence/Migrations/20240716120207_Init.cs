@@ -72,7 +72,7 @@ namespace Service.CatalogWrite.Persistence.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     occurred_on_utc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    content = table.Column<string>(type: "json", nullable: false),
+                    content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     processed_on_utc = table.Column<DateTime>(type: "datetime2", nullable: true),
                     error = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -102,7 +102,7 @@ namespace Service.CatalogWrite.Persistence.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     occurred_on_utc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    content = table.Column<string>(type: "json", nullable: false),
+                    content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     processed_on_utc = table.Column<DateTime>(type: "datetime2", nullable: true),
                     error = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

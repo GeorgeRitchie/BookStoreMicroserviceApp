@@ -43,7 +43,9 @@ namespace Service.CatalogWrite.Persistence.Configurations
 			builder.Property(inboxMessage => inboxMessage.Type).IsRequired();
 
 			// TODO ## use ObjectJsonConverter if db provider does not support json column type
-			builder.Property(inboxMessage => inboxMessage.Content).HasColumnType("json").IsRequired();
+			builder.Property(inboxMessage => inboxMessage.Content)
+				.IsRequired();
+			// .HasColumnType("json");
 
 			builder.Property(inboxMessage => inboxMessage.ProcessedOnUtc).IsRequired(false);
 

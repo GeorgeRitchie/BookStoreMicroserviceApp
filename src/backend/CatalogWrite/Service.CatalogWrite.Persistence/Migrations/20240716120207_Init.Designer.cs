@@ -12,7 +12,7 @@ using Service.CatalogWrite.Persistence;
 namespace Service.CatalogWrite.Persistence.Migrations
 {
     [DbContext(typeof(CatalogWriteDbContext))]
-    [Migration("20240716111607_Init")]
+    [Migration("20240716120207_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace Service.CatalogWrite.Persistence.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("json")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("content");
 
                     b.Property<string>("Error")
@@ -112,7 +112,7 @@ namespace Service.CatalogWrite.Persistence.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("json")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("content");
 
                     b.Property<string>("Error")
