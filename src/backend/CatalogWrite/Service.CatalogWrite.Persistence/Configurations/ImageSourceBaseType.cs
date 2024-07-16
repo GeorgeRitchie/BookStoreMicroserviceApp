@@ -18,31 +18,31 @@
 using Domain.Primitives;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Persistence.Converters;
 using Service.CatalogWrite.Domain.ImageSources;
+using Service.CatalogWrite.Persistence.Contracts;
 using Shared.Extensions;
 
 namespace Service.CatalogWrite.Persistence.Configurations
 {
 	/// <summary>
-	/// Represents the <see cref="ImageSource{TEnum}"/> entity configuration.
+	/// Represents the base class for TPH strategy of EF Core for <see cref="ImageSource{TEnum}"/> generic entity configuration.
 	/// </summary>
-	internal sealed class ImageSourceConfigurations<T> : IEntityTypeConfiguration<ImageSource<T>> where T : Enumeration<T>
+	internal sealed class ImageSourceBaseType : IEntityTypeConfiguration<Entity<ImageSourceId>>
 	{
-		/// <inheritdoc />
-		public void Configure(EntityTypeBuilder<ImageSource<T>> builder) =>
-			 builder
-				.Tap(ConfigureDataStructure);
+		/// <inheritdoc/>
+		public void Configure(EntityTypeBuilder<Entity<ImageSourceId>> builder) =>
+			builder.Tap(ConfigureDataStructure);
 
-		private static void ConfigureDataStructure(EntityTypeBuilder<ImageSource<T>> builder)
+		private static void ConfigureDataStructure(EntityTypeBuilder<Entity<ImageSourceId>> builder)
 		{
-			builder.Property(img => img.Source).IsRequired().HasColumnName(nameof(ImageSource<T>.Source));
+			builder.ToTable(TableNames.ImageSources);
 
-			builder.Property(img => img.Type).IsRequired()
-				.HasColumnName(nameof(ImageSource<T>.Type))
-				.HasConversion<EnumerationConverter<T, int>>();
+			builder.HasKey(img => img.Id);
 
-			builder.HasBaseType<Entity<ImageSourceId>>().UseTphMappingStrategy();
+			builder.Property(img => img.Id).ValueGeneratedNever()
+											.HasConversion(userId => userId.Value, value => new ImageSourceId(value));
+
+			builder.Property(img => img.IsDeleted).IsRequired().HasDefaultValue(false);
 		}
 	}
 }

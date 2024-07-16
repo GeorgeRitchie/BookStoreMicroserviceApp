@@ -16,6 +16,9 @@
 */
 
 using Microsoft.EntityFrameworkCore;
+using Service.CatalogWrite.Domain.Authors;
+using Service.CatalogWrite.Domain.Categories;
+using Service.CatalogWrite.Persistence.Configurations;
 using Service.CatalogWrite.Persistence.Contracts;
 
 namespace Service.CatalogWrite.Persistence
@@ -36,12 +39,14 @@ namespace Service.CatalogWrite.Persistence
 	public sealed class CatalogWriteDbContext(DbContextOptions<CatalogWriteDbContext> options) : DbContext(options)
 	{
 		/// <inheritdoc />
-		protected override void OnModelCreating(
-			ModelBuilder modelBuilder)
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.HasDefaultSchema(Schemas.CatalogWrite);
 
 			modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
+
+			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<AuthorImageType>());
+			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<CategoryImageType>());
 
 			// TODO ## For any entity to be added to db schema add property with DbSet<T> to this class, or create IEntityTypeConfiguration<T>, or have relation with already added entity.
 		}

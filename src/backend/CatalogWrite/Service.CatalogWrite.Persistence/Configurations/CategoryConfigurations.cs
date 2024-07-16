@@ -18,6 +18,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Service.CatalogWrite.Domain.Categories;
+using Service.CatalogWrite.Domain.ImageSources;
 using Service.CatalogWrite.Persistence.Contracts;
 using Shared.Extensions;
 
@@ -50,8 +51,6 @@ namespace Service.CatalogWrite.Persistence.Configurations
 
 			builder.Property(category => category.Description).IsRequired().HasDefaultValue(string.Empty);
 
-			builder.Property(category => category.IconId).IsRequired();
-
 			builder.Property(category => category.CreatedOnUtc).IsRequired();
 
 			builder.Property(category => category.ModifiedOnUtc).IsRequired(false);
@@ -60,7 +59,7 @@ namespace Service.CatalogWrite.Persistence.Configurations
 		private static void ConfigureRelationships(EntityTypeBuilder<Category> builder) =>
 			builder.HasOne(category => category.Icon)
 				.WithOne()
-				.HasForeignKey<Category>(category => category.IconId)
+				.HasForeignKey<ImageSource<CategoryImageType>>()
 				.OnDelete(DeleteBehavior.Cascade);
 
 		private static void ConfigureIndexes(EntityTypeBuilder<Category> builder)

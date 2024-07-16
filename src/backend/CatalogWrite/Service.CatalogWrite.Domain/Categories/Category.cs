@@ -41,8 +41,6 @@ namespace Service.CatalogWrite.Domain.Categories
 		/// </summary>
 		public string Description { get; private set; } = string.Empty;
 
-		public ImageSourceId IconId { get; private set; }
-
 		/// <summary>
 		/// Gets the category image.
 		/// </summary>
@@ -83,7 +81,6 @@ namespace Service.CatalogWrite.Domain.Categories
 					Title = title,
 					Description = description ?? string.Empty,
 					Icon = icon,
-					IconId = icon?.Id!,
 				})
 				.Ensure(c => string.IsNullOrWhiteSpace(c.Title) == false, CategoryErrors.TitleIsRequired)
 				.Ensure(c => c.Icon is not null, CategoryErrors.IconIsRequired)
@@ -119,7 +116,6 @@ namespace Service.CatalogWrite.Domain.Categories
 					{
 						c.Title = title;
 						c.Icon = icon;
-						c.IconId = icon.Id;
 						c.Description = _description;
 
 						c.RaiseDomainEvent(new CategoryUpdatedDomainEvent(
