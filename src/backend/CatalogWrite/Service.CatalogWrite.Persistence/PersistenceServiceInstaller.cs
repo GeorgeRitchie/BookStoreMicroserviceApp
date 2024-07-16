@@ -25,6 +25,7 @@ using Persistence.Extensions;
 using Persistence.Inbox;
 using Persistence.Interceptors;
 using Persistence.Options;
+using Persistence.Outbox;
 using Persistence.Repositories;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.Authors;
@@ -66,6 +67,10 @@ namespace Service.CatalogWrite.Persistence
 				.AddScoped<IBookRepository>(provider => provider.GetRequiredService<BookRepository>())
 				.AddScoped<IRepository<Category, CategoryId>, SoftDeletableRepository<Category, CategoryId, CatalogWriteDbContext>>()
 				.AddScoped<IRepository<Author, AuthorId>, SoftDeletableRepository<Author, AuthorId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<Publisher, PublisherId>, SoftDeletableRepository<Publisher, PublisherId, CatalogWriteDbContext>>();
+				.AddScoped<IRepository<Publisher, PublisherId>, SoftDeletableRepository<Publisher, PublisherId, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<InboxMessageConsumer, Guid>, Repository<InboxMessageConsumer, Guid, CatalogWriteDbContext>>();
 	}
 }

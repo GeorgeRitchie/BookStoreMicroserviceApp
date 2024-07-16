@@ -51,5 +51,25 @@ namespace Service.CatalogWrite.Persistence.Contracts
 		/// The image sources table.
 		/// </summary>
 		internal const string ImageSources = "image_sources";
+
+		/// <summary>
+		/// The inbox messages table.
+		/// </summary>
+		internal const string InboxMessages = "inbox_messages";
+
+		/// <summary>
+		/// The inbox message consumers table.
+		/// </summary>
+		internal const string InboxMessageConsumers = "inbox_message_consumers";
+
+		/// <summary>
+		/// The outbox messages table.
+		/// </summary>
+		internal const string OutboxMessages = "outbox_messages";
+
+		/// <summary>
+		/// The outbox message consumers table.
+		/// </summary>
+		internal const string OutboxMessageConsumers = "outbox_message_consumers";
 	}
 }
