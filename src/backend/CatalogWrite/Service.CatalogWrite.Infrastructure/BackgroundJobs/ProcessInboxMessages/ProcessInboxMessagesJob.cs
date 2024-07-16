@@ -62,8 +62,8 @@ namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessInboxMessage
 		public async Task Execute(IJobExecutionContext context)
 		{
 			using var scope = _serviceProvider.CreateScope();
-			IRepository<InboxMessage> inboxRepository = scope.ServiceProvider
-																	.GetRequiredService<IRepository<InboxMessage>>();
+			IRepository<InboxMessage, Guid> inboxRepository = scope.ServiceProvider
+																	.GetRequiredService<IRepository<InboxMessage, Guid>>();
 			ICatalogDb db = scope.ServiceProvider.GetRequiredService<ICatalogDb>();
 
 			List<InboxMessage> inboxMessagesList = await inboxRepository.GetAll()

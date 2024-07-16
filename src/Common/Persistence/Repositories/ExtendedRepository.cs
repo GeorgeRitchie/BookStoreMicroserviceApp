@@ -30,13 +30,13 @@ namespace Persistence.Repositories
 	/// <param name="context">The DbContext that manages this entity.</param>
 	public class ExtendedRepository<TEntity, TEntityId, TDbContext>(TDbContext context)
 		: Repository<TEntity, TEntityId, TDbContext>(context),
-		IExtendedWriteOnlyRepository<TEntity>
-			where TEntity : class, IBaseClass<TEntityId>
+		IExtendedWriteOnlyRepository<TEntity, TEntityId>
+			where TEntity : class, ISoftDeletable<TEntityId>
 			where TEntityId : IEntityId
 			where TDbContext : DbContext
 	{
 		/// <inheritdoc/>
-		public void HardDelete(IEntityId id)
+		public void HardDelete(TEntityId id)
 		{
 			HardDelete(dbSet.Find(id)!);
 		}

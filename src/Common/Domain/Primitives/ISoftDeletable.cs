@@ -15,25 +15,27 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Domain.Primitives;
-
-namespace Persistence.Inbox
+namespace Domain.Primitives
 {
 	/// <summary>
-	/// Represents the inbox message consumer.
+	/// Base interface for any entity type that supports soft deletion.
 	/// </summary>
-	/// <param name="id">Message Id.</param>
-	/// <param name="name">Consumer name.</param>
-	public sealed class InboxMessageConsumer(Guid id, string name) : IBaseClass<Guid>
+	/// <typeparam name="TEntityId">The type of id of entity.</typeparam>
+	public interface ISoftDeletable<TEntityId> : IBaseClass<TEntityId> where TEntityId : IEntityId
 	{
 		/// <summary>
-		/// Gets the identifier.
+		/// Gets the deleted status (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).
 		/// </summary>
-		public Guid Id { get; private set; } = id;
+		bool IsDeleted { get; }
 
 		/// <summary>
-		/// Gets the name.
+		/// Marks entity as deleted by setting <see langword="true"/> to <see cref="IsDeleted"/>.
 		/// </summary>
-		public string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
+		void MarkAsDeleted();
+
+		/// <summary>
+		/// Marks deleted entity to not-deleted state, by setting <see langword="false"/> to <see cref="IsDeleted"/>.
+		/// </summary>
+		void RestoreDeleted();
 	}
 }

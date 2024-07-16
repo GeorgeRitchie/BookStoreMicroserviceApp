@@ -23,7 +23,7 @@ namespace Shared.Repositories
 	/// Represents repository interface with write only methods.
 	/// </summary>
 	/// <typeparam name="TEntity">The entity type this repository manages.</typeparam>
-	public interface IWriteOnlyRepository<TEntity> where TEntity : class
+	public interface IWriteOnlyRepository<TEntity, TEntityId> where TEntity : class, IBaseClass<TEntityId>
 	{
 		/// <summary>
 		/// Creates a new entity in database.
@@ -54,7 +54,7 @@ namespace Shared.Repositories
 		/// Deletes an entity by its identifier from database.
 		/// </summary>
 		/// <param name="id">The identifier of the entity to delete.</param>
-		void Delete(IEntityId id);
+		void Delete(TEntityId id);
 
 		/// <summary>
 		/// Deletes an entity from database.

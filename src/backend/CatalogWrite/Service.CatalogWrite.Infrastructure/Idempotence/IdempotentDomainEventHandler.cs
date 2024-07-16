@@ -36,7 +36,7 @@ namespace Service.CatalogWrite.Infrastructure.Idempotence
 	/// <param name="db">The database <see cref="ICatalogDb"/>.</param>
 	internal sealed class IdempotentDomainEventHandler<TEvent>(
 		IDomainEventHandler<TEvent> decorated,
-		IRepository<OutboxMessageConsumer> repository,
+		IRepository<OutboxMessageConsumer, Guid> repository,
 		ICatalogDb db) 
 		: IDomainEventHandler<TEvent>
 		where TEvent : IDomainEvent

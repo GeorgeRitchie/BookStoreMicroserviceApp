@@ -21,7 +21,7 @@ namespace Domain.Primitives
 	/// Represents the abstract entity primitive.
 	/// </summary>
 	/// <typeparam name="TEntityId">The entity identifier type.</typeparam>
-	public abstract class Entity<TEntityId> : IEquatable<Entity<TEntityId>>, IEntity, IBaseClass<TEntityId>
+	public abstract class Entity<TEntityId> : IEquatable<Entity<TEntityId>>, IEntity, IBaseClass<TEntityId>, ISoftDeletable<TEntityId>
 		where TEntityId : class, IEntityId
 	{
 		private readonly List<IDomainEvent> _domainEvents = [];

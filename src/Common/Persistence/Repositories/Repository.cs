@@ -22,7 +22,7 @@ using Shared.Repositories;
 namespace Persistence.Repositories
 {
 	/// <summary>
-	/// Represents repository interface.
+	/// Represents repository interface with soft deletion support.
 	/// </summary>
 	/// <typeparam name="TEntity">The entity type this repository manages.</typeparam>
 	/// <typeparam name="TEntityId">The type of id of entity.</typeparam>
@@ -31,10 +31,10 @@ namespace Persistence.Repositories
 	/// <remarks>
 	/// This implementation supports soft deletion, which means entities are not removed from the database but marked as deleted.
 	/// </remarks>
-	public class Repository<TEntity, TEntityId, TDbContext>(TDbContext context) : IRepository<TEntity>,
-															IWriteOnlyRepository<TEntity>,
+	public class Repository<TEntity, TEntityId, TDbContext>(TDbContext context) : IRepository<TEntity, TEntityId>,
+															IWriteOnlyRepository<TEntity, TEntityId>,
 															IReadOnlyRepository<TEntity>
-															where TEntity : class, IBaseClass<TEntityId>
+															where TEntity : class, ISoftDeletable<TEntityId>
 															where TEntityId : IEntityId
 															where TDbContext : DbContext
 	{
@@ -65,7 +65,7 @@ namespace Persistence.Repositories
 		}
 
 		/// <inheritdoc/>
-		public virtual void Delete(IEntityId id)
+		public virtual void Delete(TEntityId id)
 		{
 			// TODO test whether this will work when providing specific implementation of IEntityId
 			Delete(dbSet.Find(id)!);

@@ -35,7 +35,7 @@ namespace Service.CatalogWrite.Infrastructure.Idempotence
 	/// <param name="db">The database <see cref="ICatalogDb"/>.</param>
 	internal sealed class IdempotentIntegrationEventHandler<TIntegrationEvent>(
 		IIntegrationEventHandler<TIntegrationEvent> decorated,
-		IRepository<InboxMessageConsumer> repository,
+		IRepository<InboxMessageConsumer, Guid> repository,
 		ICatalogDb db)
 		: IntegrationEventHandler<TIntegrationEvent>
 		where TIntegrationEvent : IIntegrationEvent

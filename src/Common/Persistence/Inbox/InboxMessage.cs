@@ -15,12 +15,14 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Domain.Primitives;
+
 namespace Persistence.Inbox
 {
 	/// <summary>
 	/// Represents the inbox message.
 	/// </summary>
-	public sealed class InboxMessage
+	public sealed class InboxMessage : IBaseClass<Guid>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="InboxMessage"/> class.

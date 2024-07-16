@@ -21,26 +21,11 @@ namespace Domain.Primitives
 	/// Base interface for any entity type.
 	/// </summary>
 	/// <typeparam name="TEntityId">The type of id of entity.</typeparam>
-	public interface IBaseClass<TEntityId> where TEntityId : IEntityId
+	public interface IBaseClass<TEntityId>
 	{
 		/// <summary>
 		/// Gets the identifier.
 		/// </summary>
 		TEntityId Id { get; }
-
-		/// <summary>
-		/// Gets the deleted status (<see langword="true"/> - deleted, <see langword="false"/> - not deleted).
-		/// </summary>
-		bool IsDeleted { get; }
-
-		/// <summary>
-		/// Marks entity as deleted by setting <see langword="true"/> to <see cref="IsDeleted"/>.
-		/// </summary>
-		void MarkAsDeleted();
-
-		/// <summary>
-		/// Marks deleted entity to not-deleted state, by setting <see langword="false"/> to <see cref="IsDeleted"/>.
-		/// </summary>
-		void RestoreDeleted();
 	}
 }

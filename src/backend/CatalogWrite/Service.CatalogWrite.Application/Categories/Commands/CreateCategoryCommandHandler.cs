@@ -34,7 +34,7 @@ namespace Service.CatalogWrite.Application.Categories.Commands
 	/// <param name="logger">The logger.</param>
 	internal sealed class CreateCategoryCommandHandler(
 		ICatalogDb db,
-		IRepository<Category> repository,
+		IRepository<Category, CategoryId> repository,
 		IFileManager fileManager,
 		ILogger<CreateCategoryCommandHandler> logger)
 		: ICommandHandler<CreateCategoryCommand, Guid>

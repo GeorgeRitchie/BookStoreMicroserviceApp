@@ -15,14 +15,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Domain.Primitives;
+
 namespace Shared.Repositories
 {
 	/// <summary>
 	/// Represents repository interface.
 	/// </summary>
 	/// <typeparam name="TEntity">The entity type this repository manages.</typeparam>
-	public interface IRepository<TEntity> : IReadOnlyRepository<TEntity>,
-											IWriteOnlyRepository<TEntity> where TEntity : class
+	public interface IRepository<TEntity, TEntityId>
+		: IReadOnlyRepository<TEntity>,
+		IWriteOnlyRepository<TEntity, TEntityId>
+		where TEntity : class, IBaseClass<TEntityId>
 	{
 	}
 }

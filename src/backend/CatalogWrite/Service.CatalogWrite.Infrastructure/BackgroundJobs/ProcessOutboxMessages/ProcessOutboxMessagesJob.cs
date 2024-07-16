@@ -67,8 +67,8 @@ namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessOutboxMessag
 		public async Task Execute(IJobExecutionContext context)
 		{
 			using var scope = _serviceProvider.CreateScope();
-			IRepository<OutboxMessage> outboxRepository = scope.ServiceProvider
-																	.GetRequiredService<IRepository<OutboxMessage>>();
+			IRepository<OutboxMessage, Guid> outboxRepository = scope.ServiceProvider
+																	.GetRequiredService<IRepository<OutboxMessage, Guid>>();
 			ICatalogDb db = scope.ServiceProvider.GetRequiredService<ICatalogDb>();
 
 			List<OutboxMessage> outboxMessagesList = await outboxRepository.GetAll()

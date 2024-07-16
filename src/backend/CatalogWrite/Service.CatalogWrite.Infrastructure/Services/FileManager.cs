@@ -29,6 +29,7 @@ namespace Service.CatalogWrite.Infrastructure.Services
 		/// <inheritdoc/>
 		public Task<bool> DeleteAsync(string source, CancellationToken cancellationToken = default)
 		{
+			// TODO implement this class
 			throw new NotImplementedException();
 		}
 

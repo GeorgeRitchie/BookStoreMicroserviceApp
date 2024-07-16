@@ -23,13 +23,14 @@ namespace Shared.Repositories
 	/// Represents extended repository interface with write only methods.
 	/// </summary>
 	/// <typeparam name="TEntity">The entity type this repository manages.</typeparam>
-	public interface IExtendedWriteOnlyRepository<TEntity> : IWriteOnlyRepository<TEntity> where TEntity : class
+	public interface IExtendedWriteOnlyRepository<TEntity, TEntityId>
+		: IWriteOnlyRepository<TEntity, TEntityId> where TEntity : class, IBaseClass<TEntityId>
 	{
 		/// <summary>
 		/// Deletes an entity by its identifier from database (Hard deletion).
 		/// </summary>
 		/// <param name="id">The identifier of the entity to delete.</param>
-		void HardDelete(IEntityId id);
+		void HardDelete(TEntityId id);
 
 		/// <summary>
 		/// Deletes an entity from database (Hard deletion).

@@ -15,12 +15,14 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Domain.Primitives;
+
 namespace Persistence.Outbox
 {
 	/// <summary>
 	/// Represents the outbox message.
 	/// </summary>
-	public sealed class OutboxMessage
+	public sealed class OutboxMessage : IBaseClass<Guid>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OutboxMessage"/> class.

@@ -15,6 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Domain.Primitives;
+
 namespace Persistence.Outbox
 {
 	/// <summary>
@@ -22,7 +24,7 @@ namespace Persistence.Outbox
 	/// </summary>
 	/// <param name="id">Message Id.</param>
 	/// <param name="name">Consumer name.</param>
-	public sealed class OutboxMessageConsumer(Guid id, string name)
+	public sealed class OutboxMessageConsumer(Guid id, string name) : IBaseClass<Guid>
 	{
 		/// <summary>
 		/// Gets the identifier.

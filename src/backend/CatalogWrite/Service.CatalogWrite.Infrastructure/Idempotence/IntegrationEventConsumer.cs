@@ -32,7 +32,7 @@ namespace Service.CatalogWrite.Infrastructure.Idempotence
 	/// </remarks>
 	/// <param name="repository">The Repository of <see cref="InboxMessage"/>.</param>
 	/// <param name="db">The database.</param>
-	internal sealed class IntegrationEventConsumer<TIntegrationEvent, IDb>(IRepository<InboxMessage> repository, IDb db)
+	internal sealed class IntegrationEventConsumer<TIntegrationEvent, IDb>(IRepository<InboxMessage, Guid> repository, IDb db)
 		: IConsumer<TIntegrationEvent>
 		where TIntegrationEvent : class, IIntegrationEvent
 		where IDb : IDataBase<IDb>
