@@ -17,6 +17,7 @@
 
 using Domain.Primitives;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Reflection;
 
 namespace Persistence.Converters
 {
@@ -30,8 +31,11 @@ namespace Persistence.Converters
 		/// <summary>
 		/// Initializes a new instance of the <see cref="EnumerationConverter{T, K}"/>.
 		/// </summary>
-		public EnumerationConverter() : base(v => v.ToString(),
-											 v => (T)typeof(T).GetMethod("FromName")!.Invoke(null, new object[] { v })!)
+		public EnumerationConverter()
+			: base(v => v.ToString(),
+				   v => (T)typeof(T)
+						.GetMethod("FromName", BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy)!
+						.Invoke(null, new object[] { v })!)
 		{
 		}
 	}
