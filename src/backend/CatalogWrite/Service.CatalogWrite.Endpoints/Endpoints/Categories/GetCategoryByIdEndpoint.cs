@@ -20,11 +20,17 @@ using Service.CatalogWrite.Domain.Categories;
 
 namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
 {
+	/// <summary>
+	/// Represents get category by identifier endpoint.
+	/// </summary>
+	/// <remarks>
+	/// Initiates a new instance of the <see cref="GetCategoryByIdEndpoint"/> class.
+	/// </remarks>
+	/// <param name="sender">Mediator request sender.</param>
 	public sealed class GetCategoryByIdEndpoint(ISender sender) : EndpointBaseAsync
 		.WithRequest<Guid>
 		.WithActionResult<CategoryDto>
 	{
-		// TODO implement this class after CQRS done
 		[AllowAnonymous]
 		[HttpGet(CategoryRoutes.GetById, Name = nameof(GetCategoryByIdEndpoint))]
 		[ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]

@@ -18,7 +18,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.ImageSources;
 
 namespace Service.CatalogWrite.Application.Categories.Queries.GetCategoryById
 {
@@ -30,20 +29,15 @@ namespace Service.CatalogWrite.Application.Categories.Queries.GetCategoryById
 	/// </remarks>
 	/// <param name="repository">The category repository.</param>
 	/// <param name="mapper">The auto mapper.</param>
-	internal sealed class GetCategoryByIdQueryHandler(IRepository<Category, CategoryId> repository, IMapper mapper, IRepository<ImageSource<CategoryImageType>, ImageSourceId> imr)
+	internal sealed class GetCategoryByIdQueryHandler(IRepository<Category, CategoryId> repository, IMapper mapper)
 		: IQueryHandler<GetCategoryByIdQuery, CategoryDto>
 	{
-		public async Task<Result<CategoryDto>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
-		{
-			// TODO fix it
-			var icon = imr.GetAll()?.FirstOrDefault();
-
-			return Result.Create(
+		public async Task<Result<CategoryDto>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken) =>
+			Result.Create(
 					await repository.GetAll()
 									.Include(c => c.Icon)
 									.FirstOrDefaultAsync(i => i.Id == request.CategoryId, cancellationToken))
 				.Map(mapper.Map<CategoryDto>)
 				.MapFailure(() => CategoryErrors.NotFound(request.CategoryId));
-		}
 	}
 }

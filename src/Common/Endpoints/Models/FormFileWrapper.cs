@@ -16,8 +16,9 @@
 */
 
 using Application.Models;
+using Microsoft.AspNetCore.Http;
 
-namespace Service.CatalogWrite.Endpoints.Contracts
+namespace Endpoints.Models
 {
 	/// <summary>
 	/// Represents a wrapper class for <see cref="IFormFile"/>.
@@ -26,7 +27,7 @@ namespace Service.CatalogWrite.Endpoints.Contracts
 	/// <remarks>
 	/// Initializes a new instance of the <see cref="FormFileWrapper"/> class.
 	/// </remarks>
-	internal sealed class FormFileWrapper(IFormFile formFile) : IFile
+	public sealed class FormFileWrapper(IFormFile formFile) : IFile
 	{
 		private readonly IFormFile formFile = formFile ?? throw new ArgumentNullException(nameof(formFile));
 

@@ -16,7 +16,7 @@
 */
 
 using Service.CatalogWrite.Application.Categories.Commands.CreateCategory;
-using Service.CatalogWrite.Endpoints.Contracts;
+using Endpoints.Models;
 using Service.CatalogWrite.Endpoints.Contracts.Categories;
 
 namespace Service.CatalogWrite.Endpoints.Endpoints.Categories

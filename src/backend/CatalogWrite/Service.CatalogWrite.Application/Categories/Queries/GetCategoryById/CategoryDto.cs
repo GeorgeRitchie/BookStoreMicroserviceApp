@@ -18,7 +18,6 @@
 using Application.Mapper;
 using AutoMapper;
 using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.ImageSources;
 
 namespace Service.CatalogWrite.Application.Categories.Queries.GetCategoryById
 {
@@ -45,10 +44,11 @@ namespace Service.CatalogWrite.Application.Categories.Queries.GetCategoryById
 		/// <summary>
 		/// Category icon.
 		/// </summary>
-		public ImageSource<CategoryImageType> Icon { get; set; }
+		public string Icon { get; set; }
 
 		public void Mapping(Profile profile)
 			=> profile.CreateMap<Category, CategoryDto>()
-						.ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id.Value));
+						.ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id.Value))
+						.ForMember(dto => dto.Icon, opt => opt.MapFrom(c => c.Icon.Source));
 	}
 }

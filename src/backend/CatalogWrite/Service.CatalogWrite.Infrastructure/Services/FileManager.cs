@@ -19,9 +19,9 @@ using Application.Extensions;
 using Application.Models;
 using Application.ServiceLifetimes;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Service.CatalogWrite.Application;
-using System;
 
 namespace Service.CatalogWrite.Infrastructure.Services
 {
@@ -36,9 +36,15 @@ namespace Service.CatalogWrite.Infrastructure.Services
 	/// </remarks>
 	/// <param name="logger">The logger.</param>
 	/// <param name="environment">The application environment.</param>
-	internal sealed class FileManager(ILogger<FileManager> logger, IWebHostEnvironment environment)
+	/// <param name="httpContextAccessor">The HttpContext accessor.</param>
+	internal sealed class FileManager(
+		ILogger<FileManager> logger,
+		IWebHostEnvironment environment,
+		IHttpContextAccessor httpContextAccessor)
 		: IFileManager, IScoped
 	{
+		// TODO ## Assuming for real production deployment, this implementation will be replaced with one that stores files in cloud based storages
+
 		private readonly HashSet<string> _validImageExtensions = new(StringComparer.OrdinalIgnoreCase)
 		{
 			".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".ico", ".svg", ".webp"
@@ -47,18 +53,22 @@ namespace Service.CatalogWrite.Infrastructure.Services
 		/// <inheritdoc/>
 		public Task<bool> DeleteAsync(string source, CancellationToken cancellationToken = default)
 		{
-			if (string.IsNullOrWhiteSpace(source) || File.Exists(source) == false)
+			if (string.IsNullOrWhiteSpace(source))
 				return Task.FromResult(true);
+
+			var absolutePath = Path.Combine(environment.WebRootPath, GetPathFromUrl(source) ?? "");
 
 			try
 			{
-				File.Delete(source);
+				if (File.Exists(absolutePath) == true)
+					File.Delete(absolutePath);
+
 				return Task.FromResult(true);
 			}
 			catch (Exception ex)
 			{
 				logger.LogFormattedDebug(AssemblyReference.ModuleName,
-										$"Something went wrong while removing file with path {source}",
+										$"Something went wrong while removing file with path {absolutePath}",
 										ex);
 
 				return Task.FromResult(false);
@@ -81,22 +91,54 @@ namespace Service.CatalogWrite.Infrastructure.Services
 			ArgumentNullException.ThrowIfNull(file);
 
 			string baseDirectory = environment.WebRootPath;
-			if (subfolder != null)
-				baseDirectory = Path.Combine(baseDirectory, subfolder);
 
 			var extension = Path.GetExtension(file.FileName);
+			var relativePath = Path.Combine(subfolder ?? string.Empty, $"{prefix}{file.UniqueKey}{extension}");
+			var absolutePath = Path.Combine(baseDirectory, relativePath);
 
-			var absolutePath = Path.Combine(baseDirectory, $"{prefix}{file.UniqueKey}{extension}");
-
-			if (Directory.Exists(baseDirectory) == false)
-				Directory.CreateDirectory(baseDirectory);
+			if (Directory.Exists(Path.GetDirectoryName(absolutePath)) == false)
+				Directory.CreateDirectory(Path.GetDirectoryName(absolutePath)!);
 
 			using (var fileStream = new FileStream(absolutePath, FileMode.Create, FileAccess.Write))
 			{
 				await file.OpenReadStream().CopyToAsync(fileStream, cancellationToken);
 			}
 
-			return absolutePath;
+			return GetUrlFromPath(relativePath);
+		}
+
+		private string GetUrlFromPath(string relativePath)
+		{
+			var request = (httpContextAccessor.HttpContext?.Request) ?? throw new InvalidOperationException("No active HTTP request.");
+			var scheme = request.Scheme;
+			var host = request.Host.Value;
+
+			if (request.Headers.TryGetValue("X-Forwarded-Proto", out var schemeHeader))
+				scheme = schemeHeader;
+
+			if (request.Headers.TryGetValue("X-Forwarded-Host", out var hostHeader))
+				host = hostHeader;
+
+			var baseUri = $"{scheme}://{host}/";
+			var url = $"{baseUri}{relativePath.Replace("\\", "/")}";
+
+			return url;
+		}
+
+		private static string? GetPathFromUrl(string? url)
+		{
+			if (string.IsNullOrWhiteSpace(url))
+				return url;
+
+			if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
+			{
+				throw new ArgumentException("Invalid URL");
+			}
+
+			// Extract the path portion of the URL
+			var relativePath = uri.AbsolutePath.TrimStart('/');
+
+			return relativePath.Replace("/", "\\");
 		}
 	}
 }
