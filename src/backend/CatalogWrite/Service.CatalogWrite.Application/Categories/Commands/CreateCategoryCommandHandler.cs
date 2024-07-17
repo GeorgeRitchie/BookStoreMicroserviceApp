@@ -46,7 +46,10 @@ namespace Service.CatalogWrite.Application.Categories.Commands
 
 			try
 			{
-				fileSource = await fileManager.SaveAsync(request.Icon, CategoryImageType.Icon.Name, cancellationToken);
+				fileSource = await fileManager.SaveAsync(request.Icon,
+														 ConstantValues.ImagesSubFolder,
+														 CategoryImageType.Icon.Name,
+														 cancellationToken);
 
 				return await ImageSource<CategoryImageType>.Create(fileSource, CategoryImageType.Icon)
 								.Bind(imageSource => Category.Create(request.Title, imageSource, request.Description))

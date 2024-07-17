@@ -15,34 +15,88 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Application.Extensions;
 using Application.Models;
 using Application.ServiceLifetimes;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Service.CatalogWrite.Application;
+using System;
 
 namespace Service.CatalogWrite.Infrastructure.Services
 {
 	/// <summary>
 	/// Represents <see cref="IFileManager"/> implementation for file storing.
 	/// </summary>
-	internal sealed class FileManager : IFileManager, IScoped
+	/// <remarks>
+	/// Current implementation is for local file system storing.
+	/// </remarks>
+	/// <remarks>
+	/// Initializes new instance of the <see cref="FileManager"/> class.
+	/// </remarks>
+	/// <param name="logger">The logger.</param>
+	/// <param name="environment">The application environment.</param>
+	internal sealed class FileManager(ILogger<FileManager> logger, IWebHostEnvironment environment)
+		: IFileManager, IScoped
 	{
+		private readonly HashSet<string> _validImageExtensions = new(StringComparer.OrdinalIgnoreCase)
+		{
+			".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".ico", ".svg", ".webp"
+		};
+
 		/// <inheritdoc/>
 		public Task<bool> DeleteAsync(string source, CancellationToken cancellationToken = default)
 		{
-			// TODO implement this class
-			throw new NotImplementedException();
+			if (string.IsNullOrWhiteSpace(source) || File.Exists(source) == false)
+				return Task.FromResult(true);
+
+			try
+			{
+				File.Delete(source);
+				return Task.FromResult(true);
+			}
+			catch (Exception ex)
+			{
+				logger.LogFormattedDebug(AssemblyReference.ModuleName,
+										$"Something went wrong while removing file with path {source}",
+										ex);
+
+				return Task.FromResult(false);
+			}
 		}
 
 		/// <inheritdoc/>
 		public bool IsPhoto(IFile? file)
 		{
-			throw new NotImplementedException();
+			if (file == null || string.IsNullOrWhiteSpace(file.FileName))
+				return false;
+
+			string extension = Path.GetExtension(file.FileName);
+			return _validImageExtensions.Contains(extension);
 		}
 
 		/// <inheritdoc/>
-		public Task<string> SaveAsync(IFile file, string prefix = "", CancellationToken cancellationToken = default)
+		public async Task<string> SaveAsync(IFile file, string? subfolder = null, string prefix = "", CancellationToken cancellationToken = default)
 		{
-			throw new NotImplementedException();
+			ArgumentNullException.ThrowIfNull(file);
+
+			string baseDirectory = environment.WebRootPath;
+			if (subfolder != null)
+				baseDirectory = Path.Combine(baseDirectory, subfolder);
+
+			var extension = Path.GetExtension(file.FileName);
+
+			var absolutePath = Path.Combine(baseDirectory, $"{prefix}{file.UniqueKey}{extension}");
+
+			if (Directory.Exists(baseDirectory) == false)
+				Directory.CreateDirectory(baseDirectory);
+
+			using (var fileStream = new FileStream(absolutePath, FileMode.Create, FileAccess.Write))
+			{
+				await file.OpenReadStream().CopyToAsync(fileStream, cancellationToken);
+			}
+
+			return absolutePath;
 		}
 	}
 }

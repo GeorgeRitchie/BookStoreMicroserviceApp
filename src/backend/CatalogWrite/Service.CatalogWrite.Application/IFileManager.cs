@@ -35,10 +35,11 @@ namespace Service.CatalogWrite.Application
 		/// Saves the file and returns the string source to get to file (e. g. url, full or relative path).
 		/// </summary>
 		/// <param name="file">The file to save.</param>
+		/// <param name="subfolder">The subfolder used in directory hierarchy.</param>
 		/// <param name="prefix">The prefix to add to file name.</param>
 		/// <param name="cancellationToken">The cancelation token.</param>
 		/// <returns>The source to saved file.</returns>
-		Task<string> SaveAsync(IFile file, string prefix = "", CancellationToken cancellationToken = default);
+		Task<string> SaveAsync(IFile file, string? subfolder = null, string prefix = "", CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Deletes the file by provided source.

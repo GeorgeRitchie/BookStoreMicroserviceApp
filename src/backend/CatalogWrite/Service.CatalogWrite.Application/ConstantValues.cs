@@ -15,23 +15,16 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-
-namespace Service.CatalogWrite.Infrastructure
+namespace Service.CatalogWrite.Application
 {
 	/// <summary>
-	/// Represents the CatalogWrite service infrastructure assembly reference.
+	/// Contains const values used in application.
 	/// </summary>
-	public static class AssemblyReference
+	public static class ConstantValues
 	{
 		/// <summary>
-		/// The assembly.
+		/// Gets the subfolder name where images are stored.
 		/// </summary>
-		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
-
-		/// <summary>
-		/// The module name this assembly belongs to.
-		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		public const string ImagesSubFolder = "Images";
 	}
 }
