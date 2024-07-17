@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Application\Application.csproj" />
     <ProjectReference Include="..\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj" />
     <ProjectReference Include="..\Service.CatalogWrite.IntegrationEvents\Service.CatalogWrite.IntegrationEvents.csproj" />

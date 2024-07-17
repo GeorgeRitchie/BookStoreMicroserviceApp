@@ -15,6 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Domain.Categories;
+
 namespace Service.CatalogWrite.Application.Categories
 {
 	/// <summary>
@@ -43,5 +45,11 @@ namespace Service.CatalogWrite.Application.Categories
 		/// </summary>
 		internal static Error CreateOperationFailed
 			=> new("Category.CreateOperationFailed", "Category create operation failed.");
+
+		/// <summary>
+		/// Gets category not found error.
+		/// </summary>
+		internal static Func<CategoryId, Error> NotFound
+			=> categoryId => new("Category.NotFound", $"Category with the identifier {categoryId.Value} was not found.");
 	}
 }

@@ -153,9 +153,10 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 				//	}
 				//});
 
+				// Allows Swagger to manage methods representing specific endpoints from each other (for two methods having same name the code methodInfo.DeclaringType?.Name + methodInfo.Name ensures to include class name into method name)
 				options.CustomOperationIds(apiDescription =>
 					apiDescription.TryGetMethodInfo(out MethodInfo methodInfo)
-						? methodInfo.Name
+						? methodInfo.DeclaringType?.Name + methodInfo.Name
 						: null);
 
 				// Resolve schemaId conflict for classes with the same name in different namespaces

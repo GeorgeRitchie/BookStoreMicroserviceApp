@@ -15,25 +15,27 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Application.Categories.Queries.GetCategoryById;
+using Service.CatalogWrite.Domain.Categories;
+
 namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
 {
-	public sealed class GetCategoryByIdEndpoint : EndpointBaseAsync
+	public sealed class GetCategoryByIdEndpoint(ISender sender) : EndpointBaseAsync
 		.WithRequest<Guid>
-		.WithActionResult
+		.WithActionResult<CategoryDto>
 	{
 		// TODO implement this class after CQRS done
 		[AllowAnonymous]
 		[HttpGet(CategoryRoutes.GetById, Name = nameof(GetCategoryByIdEndpoint))]
-		//[ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(CategoryDto), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ApiVersion("1.0")]
 		[SwaggerOperation(
 			Summary = "Gets the category by id.",
 			Description = "Gets the category with the specified identifier.",
 			Tags = new[] { CategoryRoutes.Tag })]
-		public override Task<ActionResult> HandleAsync([FromQuery] Guid categoryId, CancellationToken cancellationToken = default)
-		{
-			throw new NotImplementedException();
-		}
+		public override async Task<ActionResult<CategoryDto>> HandleAsync([FromQuery] Guid categoryId, CancellationToken cancellationToken = default)
+		=> await sender.Send(new GetCategoryByIdQuery(new CategoryId(categoryId)), cancellationToken)
+			.Match(Ok, this.HandleFailure);
 	}
 }
