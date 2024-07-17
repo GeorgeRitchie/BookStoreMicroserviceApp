@@ -15,21 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.Configuration;
-
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.ApiVersioning
-{
-	/// <summary>
-	/// Represents the Api Versioning service installer.
-	/// </summary>
-	internal sealed class ApiVersioningServiceInstaller : IServiceInstaller
-	{
-		/// <inheritdoc />
-		public void Install(IServiceCollection services, IConfiguration configuration) =>
-			services
-			.ConfigureOptions<ApiVersioningOptionsSetup>()
-			.ConfigureOptions<ApiExplorerOptionsSetup>()
-			.AddApiVersioning()
-			.AddApiExplorer();
-	}
-}
+global using Ardalis.ApiEndpoints;
+global using Asp.Versioning;
+global using Endpoints.Extensions;
+global using MediatR;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Service.CatalogWrite.Endpoints.Routes;
+global using Shared.Results;
+global using Swashbuckle.AspNetCore.Annotations;

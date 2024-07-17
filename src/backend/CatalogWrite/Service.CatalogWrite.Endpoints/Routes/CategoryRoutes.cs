@@ -15,21 +15,19 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.Configuration;
-
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.ApiVersioning
+namespace Service.CatalogWrite.Endpoints.Routes
 {
 	/// <summary>
-	/// Represents the Api Versioning service installer.
+	/// Contains values used for category endpoints routing stuff.
 	/// </summary>
-	internal sealed class ApiVersioningServiceInstaller : IServiceInstaller
+	internal static class CategoryRoutes
 	{
-		/// <inheritdoc />
-		public void Install(IServiceCollection services, IConfiguration configuration) =>
-			services
-			.ConfigureOptions<ApiVersioningOptionsSetup>()
-			.ConfigureOptions<ApiExplorerOptionsSetup>()
-			.AddApiVersioning()
-			.AddApiExplorer();
+		internal const string Tag = "Categories";
+
+		internal const string BaseUri = "api/v{version:apiVersion}/categories";
+
+		internal const string Create = $"{BaseUri}/create";
+
+		internal const string GetById = $"{BaseUri}/getbyid";
 	}
 }

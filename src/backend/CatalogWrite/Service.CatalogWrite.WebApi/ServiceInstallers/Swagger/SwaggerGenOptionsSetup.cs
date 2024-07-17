@@ -163,6 +163,12 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 
 				// Adding Authentication requirement to Swagger Docs
 				options.OperationFilter<AuthorizeOperationFilter>();
+
+				// Makes Swagger get information (like summary, tag, etc) about endpoint from attribute SwaggerOperation of Swashbuckle.AspNetCore.Annotations package
+				options.EnableAnnotations();
+
+				// Makes Swagger correctly handle endpoints defined by Ardalis.ApiEndpoints package
+				options.UseApiEndpoints();
 			}
 		}
 	}

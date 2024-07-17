@@ -15,21 +15,26 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.Configuration;
-
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.ApiVersioning
+namespace Service.CatalogWrite.Endpoints.Contracts.Categories
 {
 	/// <summary>
-	/// Represents the Api Versioning service installer.
+	/// Represents the request to create a new category.
 	/// </summary>
-	internal sealed class ApiVersioningServiceInstaller : IServiceInstaller
+	public sealed class CreateCategoryRequest
 	{
-		/// <inheritdoc />
-		public void Install(IServiceCollection services, IConfiguration configuration) =>
-			services
-			.ConfigureOptions<ApiVersioningOptionsSetup>()
-			.ConfigureOptions<ApiExplorerOptionsSetup>()
-			.AddApiVersioning()
-			.AddApiExplorer();
+		/// <summary>
+		/// Category title.
+		/// </summary>
+		public string Title { get; set; }
+
+		/// <summary>
+		/// Category description.
+		/// </summary>
+		public string? Description { get; set; } = string.Empty;
+
+		/// <summary>
+		/// Category icon image file.
+		/// </summary>
+		public IFormFile Icon { get; set; }
 	}
 }
