@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Categories.Commands;
+using Service.CatalogWrite.Application.Categories.Commands.CreateCategory;
 using Service.CatalogWrite.Endpoints.Contracts;
 using Service.CatalogWrite.Endpoints.Contracts.Categories;
 

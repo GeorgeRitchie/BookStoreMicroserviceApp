@@ -25,7 +25,7 @@ namespace Shared.Helpers
 	/// <summary>
 	/// Класс шифровки и дешифровки с использованием асимметричного метода шифрования (RSA - Rivest–Shamir–Adleman). Класс создает публичный и частный ключи используемые для шифровки и дешифровки. А также поддерживает шифрование на основе стороннего публичного ключа.
 	/// </summary>
-	public static class RSAEncryptor// TODO write tests to this
+	public static class RSAEncryptor
 	{
 		private enum KeySizes
 		{
