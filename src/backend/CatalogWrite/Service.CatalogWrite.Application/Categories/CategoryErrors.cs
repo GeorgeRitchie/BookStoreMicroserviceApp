@@ -51,5 +51,11 @@ namespace Service.CatalogWrite.Application.Categories
 		/// </summary>
 		internal static Func<CategoryId, Error> NotFound
 			=> categoryId => new("Category.NotFound", $"Category with the identifier {categoryId.Value} was not found.");
+
+		/// <summary>
+		/// Gets category title not unique error.
+		/// </summary>
+		internal static Func<string, Error> TitleIsNotUnique
+			=> title => new("Category.TitleNotUnique", $"The specified title '{title}' is already in use.");
 	}
 }

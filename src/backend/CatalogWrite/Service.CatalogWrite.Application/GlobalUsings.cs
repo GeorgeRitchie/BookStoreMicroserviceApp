@@ -18,6 +18,8 @@
 global using Application.Extensions;
 global using Application.Messaging;
 global using FluentValidation;
+global using FluentValidation.Results;
+global using Microsoft.EntityFrameworkCore;
 global using Shared.Errors;
 global using Shared.Extensions;
 global using Shared.Repositories;
