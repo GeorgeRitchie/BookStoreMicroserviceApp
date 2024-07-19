@@ -15,57 +15,62 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Microsoft.Extensions.Logging;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.ImageSources;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.CreateCategory
 {
-    /// <summary>
-    /// Represents the <see cref="CreateCategoryCommand"/> handler.
-    /// </summary>
-    /// <remarks>
-    /// Initializes a new instance of the <see cref="CreateCategoryCommandHandler"/> class.
-    /// </remarks>
-    /// <param name="db">The database.</param>
-    /// <param name="repository">The category repository.</param>
-    /// <param name="fileManager">The file manager.</param>
-    /// <param name="logger">The logger.</param>
-    internal sealed class CreateCategoryCommandHandler(
-        ICatalogDb db,
-        IRepository<Category, CategoryId> repository,
-        IFileManager fileManager,
-        ILogger<CreateCategoryCommandHandler> logger)
-        : ICommandHandler<CreateCategoryCommand, Guid>
-    {
-        /// <inheritdoc/>
-        public async Task<Result<Guid>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
-        {
-            string? fileSource = null;
+	/// <summary>
+	/// Represents the <see cref="CreateCategoryCommand"/> handler.
+	/// </summary>
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="CreateCategoryCommandHandler"/> class.
+	/// </remarks>
+	/// <param name="db">The database.</param>
+	/// <param name="repository">The category repository.</param>
+	/// <param name="fileManager">The file manager.</param>
+	/// <param name="logger">The logger.</param>
+	internal sealed class CreateCategoryCommandHandler(
+		ICatalogDb db,
+		IRepository<Category, CategoryId> repository,
+		IFileManager fileManager,
+		ILogger<CreateCategoryCommandHandler> logger)
+		: ICommandHandler<CreateCategoryCommand, Guid>
+	{
+		/// <inheritdoc/>
+		public async Task<Result<Guid>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+		{
+			string? fileSource = null;
 
-            try
-            {
-                fileSource = await fileManager.SaveAsync(request.Icon,
-                                                         ConstantValues.ImagesSubFolder,
-                                                         CategoryImageType.Icon.Name,
-                                                         cancellationToken);
+			try
+			{
+				fileSource = await fileManager.SaveAsync(request.Icon,
+														 ConstantValues.ImagesSubFolder,
+														 CategoryImageType.Icon.Name,
+														 cancellationToken);
 
-                return await ImageSource<CategoryImageType>.Create(fileSource, CategoryImageType.Icon)
-                                .Bind(imageSource => Category.Create(request.Title, imageSource, request.Description))
-                                .Tap<Category>(category => repository.Create(category))
-                                .Tap(() => db.SaveChangesAsync(cancellationToken))
-                                .Map(category => category.Id.Value);
-            }
-            catch (Exception ex)
-            {
-                logger.LogFormattedError(AssemblyReference.ModuleName, "Failed to create new category.", ex);
+				return await ImageSource<CategoryImageType>.Create(fileSource, CategoryImageType.Icon)
+								.Bind(imageSource => Category.Create(request.Title, imageSource, request.Description))
+								.Tap<Category>(category => repository.Create(category))
+								.Tap(() => db.SaveChangesAsync(cancellationToken))
+								.Map(category => category.Id.Value)
+								.OnFailure(e => RemoveFiles(fileSource, cancellationToken));
+			}
+			catch (Exception ex)
+			{
+				logger.LogFormattedError(AssemblyReference.ModuleName, "Failed to create new category.", ex);
 
-                if (fileSource is not null)
-                    await fileManager.DeleteAsync(fileSource, cancellationToken);
+				await RemoveFiles(fileSource, cancellationToken);
 
-                return Result.Failure<Guid>(CategoryErrors.CreateOperationFailed);
-            }
-        }
-    }
+				return Result.Failure<Guid>(CategoryErrors.CreateOperationFailed);
+			}
+		}
+
+		private async Task RemoveFiles(string? icon, CancellationToken cancellationToken = default)
+		{
+			if (icon is not null)
+				await fileManager.DeleteAsync(icon, cancellationToken);
+		}
+	}
 }

@@ -151,6 +151,16 @@ namespace Shared.Results
 		/// <summary>
 		/// Binds the success result based on the specified binding function, otherwise returns a failure result.
 		/// </summary>
+		/// <typeparam name="TOut">The output type.</typeparam>
+		/// <param name="result">The result.</param>
+		/// <param name="func">The binding function.</param>
+		/// <returns>The bound result.</returns>
+		public static Result<TOut> Bind<TOut>(this Result result, Func<Result<TOut>> func) =>
+			result.IsSuccess ? func() : Result.Failure<TOut>(result.Errors);
+
+		/// <summary>
+		/// Binds the success result based on the specified binding function, otherwise returns a failure result.
+		/// </summary>
 		/// <typeparam name="TIn">The input type.</typeparam>
 		/// <typeparam name="TOut">The output type.</typeparam>
 		/// <param name="resultTask">The result task.</param>
@@ -285,6 +295,26 @@ namespace Shared.Results
 			if (result.IsFailure)
 			{
 				action(result.Errors);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// On failure will execute the provided action if the result is a failure.
+		/// </summary>
+		/// <typeparam name="TIn">The input type.</typeparam>
+		/// <param name="resultTask">The result task.</param>
+		/// <param name="action">The action.</param>
+		/// <returns>The same result.</returns>
+		public static async Task<Result<TIn>> OnFailure<TIn>(this Task<Result<TIn>> resultTask,
+															Func<IEnumerable<Error>, Task> action)
+		{
+			Result<TIn> result = await resultTask;
+
+			if (result.IsFailure)
+			{
+				await action(result.Errors);
 			}
 
 			return result;

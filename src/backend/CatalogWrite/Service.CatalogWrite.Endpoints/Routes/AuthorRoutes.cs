@@ -15,16 +15,27 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-global using Application.Extensions;
-global using Application.Mapper;
-global using Application.Messaging;
-global using Application.Models;
-global using AutoMapper;
-global using FluentValidation;
-global using FluentValidation.Results;
-global using Microsoft.EntityFrameworkCore;
-global using Microsoft.Extensions.Logging;
-global using Shared.Errors;
-global using Shared.Extensions;
-global using Shared.Repositories;
-global using Shared.Results;
+namespace Service.CatalogWrite.Endpoints.Routes
+{
+	/// <summary>
+	/// Contains values used for author endpoints routing stuff.
+	/// </summary>
+	internal static class AuthorRoutes
+	{
+		internal const string Tag = "Authors";
+
+		internal const string BaseUri = "api/v{version:apiVersion}/authors";
+
+		internal const string Create = $"{BaseUri}/create";
+
+		internal const string Update = $"{BaseUri}/update";
+
+		internal const string GetById = $"{BaseUri}/getbyid";
+
+		internal const string GetAll = $"{BaseUri}/getall";
+
+		internal const string Delete = $"{BaseUri}/delete";
+
+		internal const string Restore = $"{BaseUri}/restore";
+	}
+}

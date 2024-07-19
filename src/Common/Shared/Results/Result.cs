@@ -233,5 +233,45 @@ namespace Shared.Results
 
 			return Success();
 		}
+
+		/// <summary>
+		/// Returns the first failure from the specified <paramref name="results"/>.
+		/// If there is no failure, a success is returned.
+		/// </summary>
+		/// <param name="results">The results array.</param>
+		/// <returns>
+		/// The first failure from the specified <paramref name="results"/> array,or a success if it does not exist.
+		/// </returns>
+		public static Result FirstFailureOrSuccess(params Func<Result>[] results)
+		{
+			foreach (Func<Result> resultTask in results)
+			{
+				Result result = resultTask();
+
+				if (result.IsFailure)
+				{
+					return result;
+				}
+			}
+
+			return Success();
+		}
+
+		/// <summary>
+		/// Combines multiple <see cref="Result"/> instances into a single result.
+		/// </summary>
+		/// <param name="results">An array of results to combine.</param>
+		/// <returns>An new instance <see cref="Result"/> representing the combined result with successful status if all results are successful, otherwise, with failure status and corresponding errors from all failure results.</returns>
+		/// <exception cref="ArgumentNullException">Thrown when <paramref name="results"/> is <see langword="null"/> or empty.</exception>
+		public static Result Combine(params Result[] results)
+		{
+			if (results == null || results.Length == 0)
+				throw new ArgumentNullException(nameof(results));
+
+			if (results.Any(i => i.IsFailure))
+				return Failure(results.SelectMany(r => r.Errors).Distinct());
+
+			return Success();
+		}
 	}
 }

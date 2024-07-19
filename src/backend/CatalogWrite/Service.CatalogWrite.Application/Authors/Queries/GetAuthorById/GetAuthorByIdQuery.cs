@@ -15,16 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-global using Application.Extensions;
-global using Application.Mapper;
-global using Application.Messaging;
-global using Application.Models;
-global using AutoMapper;
-global using FluentValidation;
-global using FluentValidation.Results;
-global using Microsoft.EntityFrameworkCore;
-global using Microsoft.Extensions.Logging;
-global using Shared.Errors;
-global using Shared.Extensions;
-global using Shared.Repositories;
-global using Shared.Results;
+using Service.CatalogWrite.Domain.Authors;
+
+namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthorById
+{
+	/// <summary>
+	/// Represents a query to get author by identifier.
+	/// </summary>
+	/// <param name="AuthorId">The author identifier.</param>
+	public sealed record GetAuthorByIdQuery(AuthorId AuthorId) : IQuery<AuthorDto>;
+}
