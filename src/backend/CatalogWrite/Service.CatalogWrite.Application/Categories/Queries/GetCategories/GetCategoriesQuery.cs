@@ -15,27 +15,16 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Routes
+namespace Service.CatalogWrite.Application.Categories.Queries.GetCategories
 {
 	/// <summary>
-	/// Contains values used for category endpoints routing stuff.
+	/// Represents a query to get categories.
 	/// </summary>
-	internal static class CategoryRoutes
+	public sealed class GetCategoriesQuery : IQuery<IEnumerable<CategoryDto>>
 	{
-		internal const string Tag = "Categories";
-
-		internal const string BaseUri = "api/v{version:apiVersion}/categories";
-
-		internal const string Create = $"{BaseUri}/create";
-
-		internal const string Update = $"{BaseUri}/update";
-
-		internal const string GetById = $"{BaseUri}/getbyid";
-
-		internal const string GetAll = $"{BaseUri}/getall";
-
-		internal const string Delete = $"{BaseUri}/delete";
-
-		internal const string Restore = $"{BaseUri}/restore";
+		/// <summary>
+		/// A flag indicating whether include categories marked as deleted or not.
+		/// </summary>
+		public bool IncludeDeleted { get; set; } = false;
 	}
 }

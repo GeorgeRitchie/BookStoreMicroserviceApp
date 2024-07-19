@@ -16,27 +16,29 @@
 */
 
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Service.CatalogWrite.Domain.Categories;
 
-namespace Service.CatalogWrite.Application.Categories.Queries.GetCategoryById
+namespace Service.CatalogWrite.Application.Categories.Queries.GetCategories
 {
 	/// <summary>
-	/// Represents the <see cref="GetCategoryByIdQuery"/> handler.
+	/// Represents the <see cref="GetCategoriesQuery"/> handler.
 	/// </summary>
 	/// <remarks>
-	/// Initializes new instance of the <see cref="GetCategoryByIdQueryHandler"/> class.
+	/// Initializes new instance of the <see cref="GetCategoriesQueryHandler"/> class.
 	/// </remarks>
 	/// <param name="repository">The category repository.</param>
 	/// <param name="mapper">The auto mapper.</param>
-	internal sealed class GetCategoryByIdQueryHandler(IRepository<Category, CategoryId> repository, IMapper mapper)
-		: IQueryHandler<GetCategoryByIdQuery, CategoryDto>
+	internal sealed class GetCategoriesQueryHandler(IRepository<Category, CategoryId> repository, IMapper mapper)
+		: IQueryHandler<GetCategoriesQuery, IEnumerable<CategoryDto>>
 	{
-		public async Task<Result<CategoryDto>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken) =>
-			Result.Create(
-					await repository.GetAll()
-									.Include(c => c.Icon)
-									.FirstOrDefaultAsync(i => i.Id == request.CategoryId, cancellationToken))
-				.Map(mapper.Map<CategoryDto>)
-				.MapFailure(() => CategoryErrors.NotFound(request.CategoryId));
+		public async Task<Result<IEnumerable<CategoryDto>>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
+		{
+			var query = request.IncludeDeleted ?
+							repository.GetAllIgnoringQueryFiltersAsNoTracking() :
+							repository.GetAllAsNoTracking();
+
+			return await query.ProjectTo<CategoryDto>(mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+		}
 	}
 }
