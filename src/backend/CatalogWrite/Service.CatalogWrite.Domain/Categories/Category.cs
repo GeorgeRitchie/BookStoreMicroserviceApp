@@ -91,7 +91,7 @@ namespace Service.CatalogWrite.Domain.Categories
 						c.Id,
 						c.Title,
 						c.Description,
-						c.Icon)));
+						KeyValuePair.Create(c.Icon.Type.Name, c.Icon.Source))));
 
 		/// <summary>
 		/// Changes category information.
@@ -124,7 +124,7 @@ namespace Service.CatalogWrite.Domain.Categories
 							c.Id,
 							c.Title,
 							c.Description,
-							c.Icon));
+							KeyValuePair.Create(c.Icon.Type.Name, c.Icon.Source)));
 					}
 				});
 	}
