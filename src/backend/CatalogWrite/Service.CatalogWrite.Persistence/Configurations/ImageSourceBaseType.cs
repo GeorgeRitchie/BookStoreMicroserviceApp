@@ -43,6 +43,8 @@ namespace Service.CatalogWrite.Persistence.Configurations
 											.HasConversion(userId => userId.Value, value => new ImageSourceId(value));
 
 			builder.Property(img => img.IsDeleted).IsRequired().HasDefaultValue(false);
+
+			builder.HasQueryFilter(img => img.IsDeleted == false);
 		}
 	}
 }

@@ -45,6 +45,8 @@ namespace Service.CatalogWrite.Persistence.Configurations
 
 			builder.Property(author => author.IsDeleted).IsRequired().HasDefaultValue(false);
 
+			builder.HasQueryFilter(author => author.IsDeleted == false);
+
 			builder.Property(author => author.FirstName).IsRequired().HasMaxLength(100);
 
 			builder.Property(author => author.LastName).IsRequired().HasMaxLength(100);

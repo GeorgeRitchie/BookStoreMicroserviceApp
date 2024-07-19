@@ -31,6 +31,7 @@ using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.Authors;
 using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.Categories;
+using Service.CatalogWrite.Domain.ImageSources;
 using Service.CatalogWrite.Domain.Publishers;
 using Service.CatalogWrite.Persistence.Contracts;
 using Service.CatalogWrite.Persistence.Repositories;
@@ -66,6 +67,7 @@ namespace Service.CatalogWrite.Persistence
 				.AddScoped<IRepository<Book, BookId>>(provider => provider.GetRequiredService<BookRepository>())
 				.AddScoped<IBookRepository>(provider => provider.GetRequiredService<BookRepository>())
 				.AddScoped<IRepository<Category, CategoryId>, SoftDeletableRepository<Category, CategoryId, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<ImageSource<CategoryImageType>, ImageSourceId>, Repository<ImageSource<CategoryImageType>, ImageSourceId, CatalogWriteDbContext>>()
 				.AddScoped<IRepository<Author, AuthorId>, SoftDeletableRepository<Author, AuthorId, CatalogWriteDbContext>>()
 				.AddScoped<IRepository<Publisher, PublisherId>, SoftDeletableRepository<Publisher, PublisherId, CatalogWriteDbContext>>()
 				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, CatalogWriteDbContext>>()

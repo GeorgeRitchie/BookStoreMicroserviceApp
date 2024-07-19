@@ -29,12 +29,14 @@ namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 	/// Initializes a new instance of the <see cref="UpdateCategoryCommandHandler"/> class.
 	/// </remarks>
 	/// <param name="db">The database.</param>
-	/// <param name="repository">The category repository.</param>
+	/// <param name="catalogRepository">The category repository.</param>
+	/// <param name="imgRepository">The image repository.</param>
 	/// <param name="fileManager">The file manager.</param>
 	/// <param name="logger">The logger.</param>
 	internal sealed class UpdateCategoryCommandHandler(
 		ICatalogDb db,
-		IRepository<Category, CategoryId> repository,
+		IRepository<Category, CategoryId> catalogRepository,
+		IRepository<ImageSource<CategoryImageType>, ImageSourceId> imgRepository,
 		IFileManager fileManager,
 		ILogger<UpdateCategoryCommandHandler> logger)
 		: ICommandHandler<UpdateCategoryCommand>
@@ -42,8 +44,8 @@ namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 		/// <inheritdoc/>
 		public async Task<Result> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
 		{
-			var category = await repository.GetAll()
-											.Include(c=>c.Icon)
+			var category = await catalogRepository.GetAll()
+											.Include(c => c.Icon)
 											.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 
 			if (category == null)
@@ -64,18 +66,11 @@ namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 			}
 
 			var result = await category.Change(title, icon, description)
-				.Tap<Category>(repository.Update)
+				.Tap<Category>(catalogRepository.Update)
+				.Tap(() => oldIcon?.Tap(() => imgRepository.Delete(oldIcon)))
 				.Tap(() => db.SaveChangesAsync(cancellationToken))
-				.Tap(() =>
-				{
-					if (oldIcon is not null) 
-						fileManager.DeleteAsync(oldIcon.Source).FireAndForget();
-				})
-				.OnFailure(e =>
-				{
-					if (oldIcon is not null)
-						fileManager.DeleteAsync(icon.Source).FireAndForget();
-				});
+				.Tap(() => oldIcon?.Tap(() => fileManager.DeleteAsync(oldIcon.Source).FireAndForget()))
+				.OnFailure(e => oldIcon?.Tap(() => fileManager.DeleteAsync(icon.Source).FireAndForget()));
 
 			return result;
 		}

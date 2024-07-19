@@ -47,6 +47,8 @@ namespace Service.CatalogWrite.Persistence.Configurations
 
 			builder.Property(category => category.IsDeleted).IsRequired().HasDefaultValue(false);
 
+			builder.HasQueryFilter(category => category.IsDeleted == false);
+
 			builder.Property(category => category.Title).IsRequired().HasMaxLength(100);
 
 			builder.Property(category => category.Description).IsRequired().HasDefaultValue(string.Empty);
