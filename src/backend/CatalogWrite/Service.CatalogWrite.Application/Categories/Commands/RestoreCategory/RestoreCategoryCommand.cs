@@ -15,25 +15,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Routes
+using Service.CatalogWrite.Domain.Categories;
+
+namespace Service.CatalogWrite.Application.Categories.Commands.RestoreCategory
 {
 	/// <summary>
-	/// Contains values used for category endpoints routing stuff.
+	/// Represents the command for restoring the specified category.
 	/// </summary>
-	internal static class CategoryRoutes
+	public sealed class RestoreCategoryCommand : ICommand
 	{
-		internal const string Tag = "Categories";
-
-		internal const string BaseUri = "api/v{version:apiVersion}/categories";
-
-		internal const string Create = $"{BaseUri}/create";
-
-		internal const string Update = $"{BaseUri}/update";
-
-		internal const string GetById = $"{BaseUri}/getbyid";
-
-		internal const string Delete = $"{BaseUri}/delete";
-
-		internal const string Restore = $"{BaseUri}/restore";
+		/// <summary>
+		/// Category identifier.
+		/// </summary>
+		public CategoryId CategoryId { get; set; }
 	}
 }
