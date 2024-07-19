@@ -17,6 +17,7 @@
 
 global using Application.Extensions;
 global using Application.Messaging;
+global using Application.Models;
 global using FluentValidation;
 global using FluentValidation.Results;
 global using Microsoft.EntityFrameworkCore;

@@ -28,6 +28,8 @@ namespace Service.CatalogWrite.Endpoints.Routes
 
 		internal const string Create = $"{BaseUri}/create";
 
+		internal const string Update = $"{BaseUri}/update";
+
 		internal const string GetById = $"{BaseUri}/getbyid";
 	}
 }

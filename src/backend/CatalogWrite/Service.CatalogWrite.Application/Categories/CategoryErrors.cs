@@ -47,6 +47,12 @@ namespace Service.CatalogWrite.Application.Categories
 			=> new("Category.CreateOperationFailed", "Category create operation failed.");
 
 		/// <summary>
+		/// Gets category update operation failed error.
+		/// </summary>
+		internal static Error UpdateOperationFailed
+			=> new("Category.UpdateOperationFailed", "Category update operation failed.");
+
+		/// <summary>
 		/// Gets category not found error.
 		/// </summary>
 		internal static Func<CategoryId, Error> NotFound
