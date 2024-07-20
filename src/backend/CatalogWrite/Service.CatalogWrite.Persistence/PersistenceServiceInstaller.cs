@@ -19,6 +19,8 @@ using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Persistence;
 using Persistence.Extensions;
@@ -59,6 +61,14 @@ namespace Service.CatalogWrite.Persistence
 						.AddInterceptors(
 							new ConvertDomainEventsToOutboxMessagesInterceptor(),
 							new UpdateAuditableEntitiesInterceptor());
+
+					// TODO ## Enabling EF Core Sql logging for development environment.
+					var environment = serviceProvider.GetService<IHostEnvironment>();
+					if (environment.IsDevelopment())
+					{
+						var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+						options.UseLoggerFactory(loggerFactory);
+					}
 				})
 				// TODO ## For additional Unit Of Work implementations add here.
 				.AddScoped<ICatalogDb, CatalogWriteDataBase>()
