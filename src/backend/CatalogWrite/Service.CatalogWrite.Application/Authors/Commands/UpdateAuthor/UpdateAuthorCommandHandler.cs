@@ -29,17 +29,14 @@ namespace Service.CatalogWrite.Application.Authors.Commands.UpdateAuthor
 	/// </remarks>
 	/// <param name="db">The database.</param>
 	/// <param name="authorRepository">The author repository.</param>
-	/// <param name="logger">The logger.</param>
 	internal sealed class UpdateAuthorCommandHandler(
 		ICatalogDb db,
-		IRepository<Author, AuthorId> authorRepository,
-		ILogger<UpdateAuthorCommandHandler> logger)
+		IRepository<Author, AuthorId> authorRepository)
 		: ICommandHandler<UpdateAuthorCommand>
 	{
 		/// <inheritdoc/>
 		public async Task<Result> Handle(UpdateAuthorCommand request, CancellationToken cancellationToken)
 		{
-			// TODO you have to make adding photos optional in create command, then add commands to set & delete images from specific author
 			var author = await authorRepository.GetAll()
 											.FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 

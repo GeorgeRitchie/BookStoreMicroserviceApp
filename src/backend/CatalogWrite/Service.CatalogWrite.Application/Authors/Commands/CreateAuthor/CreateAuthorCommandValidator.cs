@@ -22,7 +22,7 @@ namespace Service.CatalogWrite.Application.Authors.Commands.CreateAuthor
     /// </summary>
     internal sealed class CreateAuthorCommandValidator : AbstractValidator<CreateAuthorCommand>
     {
-        public CreateAuthorCommandValidator(IFileManager fileManager)
+        public CreateAuthorCommandValidator()
         {
             RuleFor(a => a.FirstName)
                 .NotEmpty()
@@ -31,36 +31,6 @@ namespace Service.CatalogWrite.Application.Authors.Commands.CreateAuthor
             RuleFor(a => a.LastName)
                 .NotEmpty()
                 .WithError(AuthorErrors.PropertyIsRequired(nameof(CreateAuthorCommand.LastName)));
-
-            RuleFor(c => c.Icon)
-                .NotEmpty()
-                    .WithError(AuthorErrors.PropertyIsRequired(nameof(CreateAuthorCommand.Icon)))
-                .Custom((icon, context) =>
-                {
-                    if (fileManager.IsPhoto(icon) == false)
-                    {
-                        var error = AuthorErrors.OnlyPhotoFileIsAllowed(icon.FileName);
-                        context.AddFailure(new ValidationFailure(context.PropertyName, error.Message)
-                        {
-                            ErrorCode = error.Code,
-                        });
-                    }
-                });
-
-            RuleFor(c => c.Photo)
-                .NotEmpty()
-                    .WithError(AuthorErrors.PropertyIsRequired(nameof(CreateAuthorCommand.Photo)))
-                .Custom((photo, context) =>
-                {
-                    if (fileManager.IsPhoto(photo) == false)
-                    {
-                        var error = AuthorErrors.OnlyPhotoFileIsAllowed(photo.FileName);
-                        context.AddFailure(new ValidationFailure(context.PropertyName, error.Message)
-                        {
-                            ErrorCode = error.Code,
-                        });
-                    }
-                });
         }
     }
 }

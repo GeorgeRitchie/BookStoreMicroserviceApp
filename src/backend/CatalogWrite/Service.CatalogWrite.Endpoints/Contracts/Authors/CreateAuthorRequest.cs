@@ -46,15 +46,5 @@ namespace Service.CatalogWrite.Endpoints.Contracts.Authors
 		/// Author web site.
 		/// </summary>
 		public string? Site { get; set; }
-
-		/// <summary>
-		/// Author photo.
-		/// </summary>
-		public IFormFile Photo { get; set; }
-
-		/// <summary>
-		/// Author photo as icon.
-		/// </summary>
-		public IFormFile Icon { get; set; }
 	}
 }

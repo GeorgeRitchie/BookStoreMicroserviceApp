@@ -30,69 +30,28 @@ namespace Service.CatalogWrite.Application.Authors.Commands.CreateAuthor
 	/// </remarks>
 	/// <param name="db">The database.</param>
 	/// <param name="repository">The author repository.</param>
-	/// <param name="fileManager">The file manager.</param>
-	/// <param name="logger">The logger.</param>
 	internal sealed class CreateAuthorCommandHandler(
 		ICatalogDb db,
-		IRepository<Author, AuthorId> repository,
-		IFileManager fileManager,
-		ILogger<CreateAuthorCommandHandler> logger)
+		IRepository<Author, AuthorId> repository)
 		: ICommandHandler<CreateAuthorCommand, Guid>
 	{
 		/// <inheritdoc/>
 		public async Task<Result<Guid>> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
 		{
-			string? iconFileSource = null;
-			string? photoFileSource = null;
+			var email = request.Email is null ? null : Email.Create(request.Email);
+			var website = request.Site is null ? null : Website.Create(request.Site);
 
-			try
-			{
-				iconFileSource = await fileManager.SaveAsync(request.Icon,
-														 ConstantValues.ImagesSubFolder,
-														 AuthorImageType.ProfileIcon.Name,
-														 cancellationToken);
-				photoFileSource = await fileManager.SaveAsync(request.Photo,
-														 ConstantValues.ImagesSubFolder,
-														 AuthorImageType.AuthorPhoto.Name,
-														 cancellationToken);
-
-				var icon = ImageSource<AuthorImageType>.Create(iconFileSource, AuthorImageType.ProfileIcon);
-				var photo = ImageSource<AuthorImageType>.Create(photoFileSource, AuthorImageType.AuthorPhoto);
-				var email = request.Email is null ? null : Email.Create(request.Email);
-				var website = request.Site is null ? null : Website.Create(request.Site);
-
-				return await Result.Combine(
-								icon,
-								photo,
-								email ?? Result.Success(),
-								website ?? Result.Success())
-							.Bind(() => Author.Create(request.FirstName,
-													request.LastName,
-													request.Description,
-													email?.Value,
-													website?.Value,
-													[icon.Value!, photo.Value!]))
-							.Tap<Author>(author => repository.Create(author))
-							.Tap(() => db.SaveChangesAsync(cancellationToken))
-							.Map(author => author.Id.Value)
-							.OnFailure(e => RemoveFiles(iconFileSource, photoFileSource, cancellationToken));
-			}
-			catch (Exception ex)
-			{
-				logger.LogFormattedError(AssemblyReference.ModuleName, "Failed to create new author.", ex);
-
-				await RemoveFiles(iconFileSource, photoFileSource, cancellationToken);
-
-				return Result.Failure<Guid>(AuthorErrors.CreateOperationFailed);
-			}
-		}
-
-		private async Task RemoveFiles(string? icon, string? photo, CancellationToken cancellationToken = default)
-		{
-			if (icon is not null)
-				await fileManager.DeleteAsync(icon, cancellationToken);
-			if (photo is not null)
-				await fileManager.DeleteAsync(photo, cancellationToken);
+			return await Result.Combine(
+							email ?? Result.Success(),
+							website ?? Result.Success())
+						.Bind(() => Author.Create(request.FirstName,
+												request.LastName,
+												request.Description,
+												email?.Value,
+												website?.Value))
+						.Tap<Author>(author => repository.Create(author))
+						.Tap(() => db.SaveChangesAsync(cancellationToken))
+						.Map(author => author.Id.Value);
 		}
 	}
 }

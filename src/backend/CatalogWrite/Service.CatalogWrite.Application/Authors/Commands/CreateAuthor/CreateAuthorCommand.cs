@@ -46,15 +46,5 @@ namespace Service.CatalogWrite.Application.Authors.Commands.CreateAuthor
         /// Author web site.
         /// </summary>
         public string? Site { get; set; }
-
-        /// <summary>
-        /// Author photo.
-        /// </summary>
-        public IFile Photo { get; set; }
-
-        /// <summary>
-        /// Author photo as icon.
-        /// </summary>
-        public IFile Icon { get; set; }
     }
 }

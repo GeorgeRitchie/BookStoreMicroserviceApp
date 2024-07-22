@@ -52,8 +52,6 @@ namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
 					Description = r.Description,
 					Email = r.Email,
 					Site = r.Site,
-					Photo = r.Photo != null ? new FormFileWrapper(r.Photo) : null,
-					Icon = r.Icon != null ? new FormFileWrapper(r.Icon) : null,
 				})
 				.Bind(command => sender.Send(command, cancellationToken))
 				.Match(authorId => CreatedAtRoute(nameof(GetAuthorByIdEndpoint), new { authorId }, authorId),
