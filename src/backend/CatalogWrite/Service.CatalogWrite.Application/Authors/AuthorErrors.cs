@@ -16,6 +16,7 @@
 */
 
 using Service.CatalogWrite.Domain.Authors;
+using Service.CatalogWrite.Domain.ImageSources;
 
 namespace Service.CatalogWrite.Application.Authors
 {
@@ -63,5 +64,13 @@ namespace Service.CatalogWrite.Application.Authors
 		/// </summary>
 		internal static Func<AuthorId, Error> NotFound
 			=> authorId => new("Author.NotFound", $"Author with the identifier {authorId.Value} was not found.");
+
+		/// <summary>
+		/// Gets author image not found error.
+		/// </summary>
+		internal static Func<AuthorId, ImageSourceId, Error> AuthorImageNotFound
+			=> (authorId, imageId) => new(
+				"Author.AuthorImageNotFound",
+				$"Author with the identifier {authorId.Value} does not have image with identifier '{imageId.Value}'.");
 	}
 }

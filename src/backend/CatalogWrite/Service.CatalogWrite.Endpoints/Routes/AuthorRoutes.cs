@@ -39,5 +39,7 @@ namespace Service.CatalogWrite.Endpoints.Routes
 		internal const string Restore = $"{BaseUri}/restore";
 
 		internal const string SetImage = $"{BaseUri}/setimage";
+
+		internal const string RemoveImage = $"{BaseUri}/removeimage";
 	}
 }

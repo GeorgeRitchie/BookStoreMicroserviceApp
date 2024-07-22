@@ -32,7 +32,7 @@ namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 	/// <param name="imgRepository">The image repository.</param>
 	/// <param name="fileManager">The file manager.</param>
 	/// <param name="logger">The logger.</param>
-	internal class SetAuthorImageCommandHandler(
+	internal sealed class SetAuthorImageCommandHandler(
 		ICatalogDb db,
 		IRepository<Author, AuthorId> authorRepository,
 		IRepository<ImageSource<AuthorImageType>, ImageSourceId> imgRepository,
