@@ -55,27 +55,14 @@ namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthorById
 		public string? Website { get; set; }
 
 		/// <summary>
-		/// Author photo as icon.
+		/// Author images.
 		/// </summary>
-		public string? Icon { get; set; }
-
-		/// <summary>
-		/// Author photo.
-		/// </summary>
-		public string? Photo { get; set; }
+		public List<AuthorImageSourceDto> Images { get; set; }
 
 		public void Mapping(Profile profile)
 			=> profile.CreateMap<Author, AuthorDto>()
 				.ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id.Value))
 				.ForMember(dto => dto.Email, opt => opt.MapFrom(c => c.Email == null ? null : c.Email.EmailAddress))
-				.ForMember(dto => dto.Website, opt => opt.MapFrom(c => c.Website == null ? null : c.Website.Url))
-				.ForMember(dto => dto.Icon, opt => opt.MapFrom(c =>
-										c.Images.Any(i => i.Type == AuthorImageType.ProfileIcon)
-										? c.Images.First(i => i.Type == AuthorImageType.ProfileIcon).Source
-										: null))
-				.ForMember(dto => dto.Photo, opt => opt.MapFrom(c =>
-										c.Images.Any(i => i.Type == AuthorImageType.AuthorPhoto)
-										? c.Images.First(i => i.Type == AuthorImageType.AuthorPhoto).Source
-										: null));
+				.ForMember(dto => dto.Website, opt => opt.MapFrom(c => c.Website == null ? null : c.Website.Url));
 	}
 }
