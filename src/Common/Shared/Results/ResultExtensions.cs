@@ -283,6 +283,24 @@ namespace Shared.Results
 		/// <summary>
 		/// On failure will execute the provided action if the result is a failure.
 		/// </summary>
+		/// <param name="resultTask">The result task.</param>
+		/// <param name="action">The action.</param>
+		/// <returns>The same result.</returns>
+		public static async Task<Result> OnFailure(this Task<Result> resultTask, Func<IEnumerable<Error>, Task> action)
+		{
+			Result result = await resultTask;
+
+			if (result.IsFailure)
+			{
+				await action(result.Errors);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// On failure will execute the provided action if the result is a failure.
+		/// </summary>
 		/// <typeparam name="TIn">The input type.</typeparam>
 		/// <param name="resultTask">The result task.</param>
 		/// <param name="action">The action.</param>

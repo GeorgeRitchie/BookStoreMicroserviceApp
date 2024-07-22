@@ -44,7 +44,7 @@ namespace Infrastructure.Extensions
 			services.Tap(
 				() => InstanceFactory
 					.CreateFromAssemblies<IServiceInstaller>(assemblies)
-					.ForEach(serviceInstaller => serviceInstaller.Install(services, configuration)));
+					.ForEachElement(serviceInstaller => serviceInstaller.Install(services, configuration)));
 
 		/// <summary>
 		/// Installs the modules using the <see cref="IModuleInstaller"/> implementations defined in the specified assemblies.
@@ -60,7 +60,7 @@ namespace Infrastructure.Extensions
 			services.Tap(
 				() => InstanceFactory
 					.CreateFromAssemblies<IModuleInstaller>(assemblies)
-					.ForEach(moduleInstaller => moduleInstaller.Install(services, configuration)));
+					.ForEachElement(moduleInstaller => moduleInstaller.Install(services, configuration)));
 
 		/// <summary>
 		/// Adds all of the implementations of <see cref="ITransient"/> inside the specified assembly as transient.

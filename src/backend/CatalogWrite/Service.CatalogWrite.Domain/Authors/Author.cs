@@ -26,8 +26,6 @@ namespace Service.CatalogWrite.Domain.Authors
 	/// </summary>
 	public sealed class Author : Entity<AuthorId>, IAuditable
 	{
-		private List<ImageSource<AuthorImageType>> images = [];
-
 		/// <inheritdoc/>
 		public DateTime CreatedOnUtc { get; private set; }
 
@@ -62,7 +60,7 @@ namespace Service.CatalogWrite.Domain.Authors
 		/// <summary>
 		/// Gets the author images.
 		/// </summary>
-		public IReadOnlyCollection<ImageSource<AuthorImageType>> Images => images;
+		public List<ImageSource<AuthorImageType>> Images { get; private set; } = [];
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Author"/> class.
@@ -110,7 +108,7 @@ namespace Service.CatalogWrite.Domain.Authors
 					Description = description ?? string.Empty,
 					Email = email,
 					Website = website,
-					images = images?.ToList() ?? [],
+					Images = images?.ToList() ?? [],
 				})
 				.Ensure(a => string.IsNullOrWhiteSpace(firstName) == false, AuthorErrors.FirstNameIsRequired)
 				.Ensure(a => string.IsNullOrWhiteSpace(lastName) == false, AuthorErrors.LastNameIsRequired)

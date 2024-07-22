@@ -51,7 +51,7 @@ namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessInboxMessage
 			Application.AssemblyReference.Assembly
 				.GetTypes()
 				.Where(EventHandlersUtility.ImplementsIntegrationEventHandler)
-				.ForEach(integrationEventHandlerType =>
+				.ForEachElement(integrationEventHandlerType =>
 				{
 					Type closedIntegrationEventHandler = integrationEventHandlerType
 						.GetInterfaces()

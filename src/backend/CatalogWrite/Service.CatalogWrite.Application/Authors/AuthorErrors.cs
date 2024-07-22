@@ -53,6 +53,12 @@ namespace Service.CatalogWrite.Application.Authors
 			=> new("Author.UpdateOperationFailed", "Author update operation failed.");
 
 		/// <summary>
+		/// Gets author set image operation failed error. Requires file name.
+		/// </summary>
+		internal static Func<string, Error> SetAuthorImageOperationFailed
+			=> fileName => new("Author.SetAuthorImageOperationFailed", $"Setting file '{fileName}' to author failed.");
+
+		/// <summary>
 		/// Gets author not found error.
 		/// </summary>
 		internal static Func<AuthorId, Error> NotFound

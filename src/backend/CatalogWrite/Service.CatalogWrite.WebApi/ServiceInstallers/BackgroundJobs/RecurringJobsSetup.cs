@@ -33,7 +33,7 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.BackgroundJobs
 	{
 		/// <inheritdoc />
 		public void Configure(QuartzOptions options) =>
-			recurringJobConfigurations.ForEach(configuration =>
+			recurringJobConfigurations.ForEachElement(configuration =>
 				options
 					.AddJob(
 						configuration.Type,

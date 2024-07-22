@@ -36,7 +36,7 @@ namespace Infrastructure.Extensions
 		public static void AddConsumersFromAssemblies(this IRegistrationConfigurator registrationConfigurator, params Assembly[] assemblies) =>
 			InstanceFactory
 				.CreateFromAssemblies<IConsumerConfiguration>(assemblies)
-				.ForEach(consumerInstaller => consumerInstaller.AddConsumers(registrationConfigurator));
+				.ForEachElement(consumerInstaller => consumerInstaller.AddConsumers(registrationConfigurator));
 
 		/// <summary>
 		/// Adds the request clients defined in the specified assemblies.
@@ -46,6 +46,6 @@ namespace Infrastructure.Extensions
 		public static void AddRequestClientsFromAssemblies(this IRegistrationConfigurator registrationConfigurator, params Assembly[] assemblies) =>
 			InstanceFactory
 				.CreateFromAssemblies<IRequestClientConfiguration>(assemblies)
-				.ForEach(consumerInstaller => consumerInstaller.AddRequestClients(registrationConfigurator));
+				.ForEachElement(consumerInstaller => consumerInstaller.AddRequestClients(registrationConfigurator));
 	}
 }

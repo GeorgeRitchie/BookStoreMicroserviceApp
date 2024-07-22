@@ -37,6 +37,20 @@ namespace Shared.Extensions
 		}
 
 		/// <summary>
+		/// Performs the specified action and returns the same instance.
+		/// </summary>
+		/// <typeparam name="T">The instance type.</typeparam>
+		/// <param name="instance">The instance.</param>
+		/// <param name="action">The action to perform.</param>
+		/// <returns>The same instance.</returns>
+		public static async Task<T> Tap<T>(this T instance, Func<Task> action)
+		{
+			await action();
+
+			return instance;
+		}
+
+		/// <summary>
 		/// Performs the specified action with the current instance and returns the same instance.
 		/// </summary>
 		/// <typeparam name="T">The instance type.</typeparam>
@@ -51,16 +65,45 @@ namespace Shared.Extensions
 		}
 
 		/// <summary>
+		/// Performs the specified action with the current instance and returns the same instance.
+		/// </summary>
+		/// <typeparam name="T">The instance type.</typeparam>
+		/// <param name="instance">The instance.</param>
+		/// <param name="action">The action to perform.</param>
+		/// <returns>The same instance.</returns>
+		public static async Task<T> Tap<T>(this T instance, Func<T, Task> action)
+		{
+			await action(instance);
+
+			return instance;
+		}
+
+		/// <summary>
 		/// Invokes the specified action for each element in the collection.
 		/// </summary>
 		/// <typeparam name="T">The collection type.</typeparam>
 		/// <param name="collection">The collection.</param>
 		/// <param name="action">The action to invoke for each element.</param>
-		public static void ForEach<T>(this IEnumerable<T> collection, Action<T> action)
+		public static void ForEachElement<T>(this IEnumerable<T> collection, Action<T> action)
 		{
 			foreach (T element in collection)
 			{
 				action(element);
+			}
+		}
+
+		/// <summary>
+		/// Invokes the specified action for each element in the collection.
+		/// </summary>
+		/// <typeparam name="T">The collection type.</typeparam>
+		/// <param name="collection">The collection.</param>
+		/// <param name="action">The action to invoke for each element.</param>
+		/// <returns>The <see cref="Task"/>.</returns>
+		public static async Task ForEachElement<T>(this IEnumerable<T> collection, Func<T, Task> action)
+		{
+			foreach (T element in collection)
+			{
+				await action(element);
 			}
 		}
 

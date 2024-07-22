@@ -23,6 +23,7 @@ using Infrastructure.Utilities;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Service.CatalogWrite.Application.Validators;
 using Service.CatalogWrite.Infrastructure.Idempotence;
 using BaseApplication = Application;
 using CatalogApplication = Service.CatalogWrite.Application;
@@ -41,7 +42,10 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 				// TODO ## Add here your Mediator pipeline behaviors
 				.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>))
 				// TODO ## Add here your FluentValidation validators, or assemblies that contain such validators
-				.AddValidatorsFromAssembly(CatalogApplication.AssemblyReference.Assembly, includeInternalTypes: true)
+				.AddValidatorsFromAssembly(
+					CatalogApplication.AssemblyReference.Assembly,
+					filter: r => r.ValidatorType != typeof(PhotoFileValidator),
+					includeInternalTypes: true)
 				.AddValidatorsFromAssembly(BaseApplication.AssemblyReference.Assembly, includeInternalTypes: true)
 				// TODO ## Add here your AutoMapper mappers, or assemblies that contain such mappers
 				.AddAutoMapper(config => config.AddProfile(new AssemblyMappingProfile(CatalogApplication.AssemblyReference.Assembly)))
@@ -53,7 +57,7 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 			CatalogApplication.AssemblyReference.Assembly
 				.GetTypes()
 				.Where(EventHandlersUtility.ImplementsDomainEventHandler)
-				.ForEach(type =>
+				.ForEachElement(type =>
 				{
 					Type closedNotificationHandler = type.GetInterfaces().First(EventHandlersUtility.IsNotificationHandler);
 
@@ -69,7 +73,7 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 			CatalogApplication.AssemblyReference.Assembly
 				.GetTypes()
 				.Where(EventHandlersUtility.ImplementsIntegrationEventHandler)
-				.ForEach(integrationEventHandlerType =>
+				.ForEachElement(integrationEventHandlerType =>
 				{
 					Type closedIntegrationEventHandler = integrationEventHandlerType
 						.GetInterfaces()
