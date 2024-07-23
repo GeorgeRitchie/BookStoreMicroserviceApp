@@ -52,9 +52,9 @@ namespace Service.CatalogWrite.Application.Publishers.Commands.CreatePublisher
 												phoneNumber?.Value,
 												email?.Value,
 												website?.Value))
-						.Tap<Publisher>(author => repository.Create(author))
+						.Tap<Publisher>(publisher => repository.Create(publisher))
 						.Tap(() => db.SaveChangesAsync(cancellationToken))
-						.Map(author => author.Id.Value);
+						.Map(publisher => publisher.Id.Value);
 		}
 	}
 }

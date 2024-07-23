@@ -163,10 +163,10 @@ namespace Service.CatalogWrite.Domain.Publishers
 			Email? email = null,
 			Website? website = null)
 			=> Result.Success(this)
-				.Ensure(p => string.IsNullOrWhiteSpace(p.Name) == false, PublisherErrors.EmptyName)
-				.Ensure(p => string.IsNullOrWhiteSpace(p.Address) == false, PublisherErrors.EmptyAddress)
-				.Ensure(p => string.IsNullOrWhiteSpace(p.City) == false, PublisherErrors.EmptyCity)
-				.Ensure(p => string.IsNullOrWhiteSpace(p.Country) == false, PublisherErrors.EmptyCountry)
+				.Ensure(p => string.IsNullOrWhiteSpace(name) == false, PublisherErrors.EmptyName)
+				.Ensure(p => string.IsNullOrWhiteSpace(address) == false, PublisherErrors.EmptyAddress)
+				.Ensure(p => string.IsNullOrWhiteSpace(city) == false, PublisherErrors.EmptyCity)
+				.Ensure(p => string.IsNullOrWhiteSpace(country) == false, PublisherErrors.EmptyCountry)
 				.Tap(p =>
 				{
 					bool publisherInfoChanged = Name != name

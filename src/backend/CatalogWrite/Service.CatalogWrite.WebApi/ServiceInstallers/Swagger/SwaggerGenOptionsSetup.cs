@@ -30,7 +30,7 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 	/// Initializes a new instance of the <see cref="SwaggerGenOptionsSetup"/> class.
 	/// </remarks>
 	/// <param name="provider">The Api Versioning provider.</param>
-	internal sealed class SwaggerGenOptionsSetup(IApiVersionDescriptionProvider provider) 
+	internal sealed class SwaggerGenOptionsSetup(IApiVersionDescriptionProvider provider)
 		: IConfigureOptions<SwaggerGenOptions>
 	{
 		/// <inheritdoc />
@@ -40,10 +40,11 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 			{
 				var apiVersion = description.ApiVersion.ToString();
 
-				// configure to add xml commets into swagger documentation
-				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-				options.IncludeXmlComments(xmlPath);
+				// configure to add xml comments into swagger documentation from required assemblies
+				// Do not forget to add <GenerateDocumentationFile>true</GenerateDocumentationFile> to all these assemblies
+				options.IncludeXmlComments(GetXmlDocumentationFileFor(AssemblyReference.Assembly));
+				options.IncludeXmlComments(GetXmlDocumentationFileFor(Endpoints.AssemblyReference.Assembly));
+				options.IncludeXmlComments(GetXmlDocumentationFileFor(Application.AssemblyReference.Assembly));
 
 				// configure to add general info about program in swagger UI
 				options.SwaggerDoc(description.GroupName,
@@ -171,6 +172,14 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
 				// Makes Swagger correctly handle endpoints defined by Ardalis.ApiEndpoints package
 				options.UseApiEndpoints();
 			}
+		}
+
+		private static string GetXmlDocumentationFileFor(Assembly assembly)
+		{
+			var xmlFile = $"{assembly.GetName().Name}.xml";
+			var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+			return xmlPath;
 		}
 	}
 }
