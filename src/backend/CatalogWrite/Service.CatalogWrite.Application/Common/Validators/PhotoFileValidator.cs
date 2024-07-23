@@ -15,7 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Validators
+using Service.CatalogWrite.Application.Common.Services;
+
+namespace Service.CatalogWrite.Application.Common.Validators
 {
     /// <summary>
     /// Represents valid image file validation rule for classes implementing <see cref="IFile"/>.

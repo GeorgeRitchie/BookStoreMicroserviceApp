@@ -15,25 +15,26 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Microsoft.Extensions.Logging;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.ImageSources;
+using Service.CatalogWrite.Application.Common.Helpers;
+using Service.CatalogWrite.Application.Common.Services;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 {
-	/// <summary>
-	/// Represents the <see cref="UpdateCategoryCommand"/> handler.
-	/// </summary>
-	/// <remarks>
-	/// Initializes a new instance of the <see cref="UpdateCategoryCommandHandler"/> class.
-	/// </remarks>
-	/// <param name="db">The database.</param>
-	/// <param name="catalogRepository">The category repository.</param>
-	/// <param name="imgRepository">The image repository.</param>
-	/// <param name="fileManager">The file manager.</param>
-	/// <param name="logger">The logger.</param>
-	internal sealed class UpdateCategoryCommandHandler(
+    /// <summary>
+    /// Represents the <see cref="UpdateCategoryCommand"/> handler.
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="UpdateCategoryCommandHandler"/> class.
+    /// </remarks>
+    /// <param name="db">The database.</param>
+    /// <param name="catalogRepository">The category repository.</param>
+    /// <param name="imgRepository">The image repository.</param>
+    /// <param name="fileManager">The file manager.</param>
+    /// <param name="logger">The logger.</param>
+    internal sealed class UpdateCategoryCommandHandler(
 		ICatalogDb db,
 		IRepository<Category, CategoryId> catalogRepository,
 		IRepository<ImageSource<CategoryImageType>, ImageSourceId> imgRepository,

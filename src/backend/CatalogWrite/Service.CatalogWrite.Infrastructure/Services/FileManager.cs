@@ -21,23 +21,23 @@ using Application.ServiceLifetimes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Service.CatalogWrite.Application;
+using Service.CatalogWrite.Application.Common.Services;
 
 namespace Service.CatalogWrite.Infrastructure.Services
 {
-	/// <summary>
-	/// Represents <see cref="IFileManager"/> implementation for file storing.
-	/// </summary>
-	/// <remarks>
-	/// Current implementation is for local file system storing.
-	/// </remarks>
-	/// <remarks>
-	/// Initializes new instance of the <see cref="FileManager"/> class.
-	/// </remarks>
-	/// <param name="logger">The logger.</param>
-	/// <param name="environment">The application environment.</param>
-	/// <param name="httpContextAccessor">The HttpContext accessor.</param>
-	internal sealed class FileManager(
+    /// <summary>
+    /// Represents <see cref="IFileManager"/> implementation for file storing.
+    /// </summary>
+    /// <remarks>
+    /// Current implementation is for local file system storing.
+    /// </remarks>
+    /// <remarks>
+    /// Initializes new instance of the <see cref="FileManager"/> class.
+    /// </remarks>
+    /// <param name="logger">The logger.</param>
+    /// <param name="environment">The application environment.</param>
+    /// <param name="httpContextAccessor">The HttpContext accessor.</param>
+    internal sealed class FileManager(
 		ILogger<FileManager> logger,
 		IWebHostEnvironment environment,
 		IHttpContextAccessor httpContextAccessor)

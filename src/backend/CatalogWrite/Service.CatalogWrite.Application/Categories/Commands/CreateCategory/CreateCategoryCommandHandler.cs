@@ -15,23 +15,25 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Application.Common.Helpers;
+using Service.CatalogWrite.Application.Common.Services;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.ImageSources;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.CreateCategory
 {
-	/// <summary>
-	/// Represents the <see cref="CreateCategoryCommand"/> handler.
-	/// </summary>
-	/// <remarks>
-	/// Initializes a new instance of the <see cref="CreateCategoryCommandHandler"/> class.
-	/// </remarks>
-	/// <param name="db">The database.</param>
-	/// <param name="repository">The category repository.</param>
-	/// <param name="fileManager">The file manager.</param>
-	/// <param name="logger">The logger.</param>
-	internal sealed class CreateCategoryCommandHandler(
+    /// <summary>
+    /// Represents the <see cref="CreateCategoryCommand"/> handler.
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="CreateCategoryCommandHandler"/> class.
+    /// </remarks>
+    /// <param name="db">The database.</param>
+    /// <param name="repository">The category repository.</param>
+    /// <param name="fileManager">The file manager.</param>
+    /// <param name="logger">The logger.</param>
+    internal sealed class CreateCategoryCommandHandler(
 		ICatalogDb db,
 		IRepository<Category, CategoryId> repository,
 		IFileManager fileManager,

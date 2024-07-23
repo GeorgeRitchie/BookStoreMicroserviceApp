@@ -16,14 +16,15 @@
 */
 
 using Service.CatalogWrite.Application.Categories.Commands.CreateCategory;
+using Service.CatalogWrite.Application.Common.Services;
 using Service.CatalogWrite.Domain.Categories;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 {
-	/// <summary>
-	/// Represents the <see cref="UpdateCategoryCommand"/> validator.
-	/// </summary>
-	internal sealed class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
+    /// <summary>
+    /// Represents the <see cref="UpdateCategoryCommand"/> validator.
+    /// </summary>
+    internal sealed class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UpdateCategoryCommandValidator"/> class.

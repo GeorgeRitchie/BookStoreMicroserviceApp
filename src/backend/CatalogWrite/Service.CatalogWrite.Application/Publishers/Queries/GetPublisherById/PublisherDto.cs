@@ -15,14 +15,15 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Application.Common.Models;
 using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Publishers.Queries.GetPublisherById
 {
-	/// <summary>
-	/// Represents the dto for <see cref="Publisher"/> entity.
-	/// </summary>
-	public sealed class PublisherDto : IMapWith<Publisher>
+    /// <summary>
+    /// Represents the dto for <see cref="Publisher"/> entity.
+    /// </summary>
+    public sealed class PublisherDto : IMapWith<Publisher>
 	{
 		/// <summary>
 		/// Publisher identifier.

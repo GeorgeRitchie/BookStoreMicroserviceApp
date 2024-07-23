@@ -19,20 +19,21 @@
 using Service.CatalogWrite.Domain.Authors;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.ImageSources;
+using Service.CatalogWrite.Application.Common.Services;
 
 namespace Service.CatalogWrite.Application.Authors.Commands.RemoveAuthorImage
 {
-	/// <summary>
-	/// Represents the <see cref="RemoveAuthorImageCommand"/> handler.
-	/// </summary>
-	/// <remarks>
-	/// Initializes a new instance of the <see cref="RemoveAuthorImageCommandHandler"/> class.
-	/// </remarks>
-	/// <param name="db">The database.</param>
-	/// <param name="authorRepository">The author repository.</param>
-	/// <param name="imgRepository">The image repository.</param>
-	/// <param name="fileManager">The file manager.</param>
-	internal sealed class RemoveAuthorImageCommandHandler(
+    /// <summary>
+    /// Represents the <see cref="RemoveAuthorImageCommand"/> handler.
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="RemoveAuthorImageCommandHandler"/> class.
+    /// </remarks>
+    /// <param name="db">The database.</param>
+    /// <param name="authorRepository">The author repository.</param>
+    /// <param name="imgRepository">The image repository.</param>
+    /// <param name="fileManager">The file manager.</param>
+    internal sealed class RemoveAuthorImageCommandHandler(
 		ICatalogDb db,
 		IRepository<Author, AuthorId> authorRepository,
 		IRepository<ImageSource<AuthorImageType>, ImageSourceId> imgRepository,

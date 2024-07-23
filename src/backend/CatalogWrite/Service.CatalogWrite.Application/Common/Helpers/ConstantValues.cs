@@ -15,16 +15,16 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application
+namespace Service.CatalogWrite.Application.Common.Helpers
 {
-	/// <summary>
-	/// Contains const values used in application.
-	/// </summary>
-	public static class ConstantValues
-	{
-		/// <summary>
-		/// Gets the subfolder name where images are stored.
-		/// </summary>
-		public const string ImagesSubFolder = "Images";
-	}
+    /// <summary>
+    /// Contains const values used in application.
+    /// </summary>
+    public static class ConstantValues
+    {
+        /// <summary>
+        /// Gets the subfolder name where images are stored.
+        /// </summary>
+        public const string ImagesSubFolder = "Images";
+    }
 }

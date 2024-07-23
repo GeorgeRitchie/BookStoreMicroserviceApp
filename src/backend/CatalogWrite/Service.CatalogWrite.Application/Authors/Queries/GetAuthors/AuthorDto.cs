@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Application.Common.Models;
 using Service.CatalogWrite.Domain.Authors;
 
 namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthors
@@ -57,7 +58,7 @@ namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthors
 		/// <summary>
 		/// Author images.
 		/// </summary>
-		public List<AuthorImageSourceDto> Images { get; set; }
+		public List<ImageSourceDto> Images { get; set; }
 
 		public void Mapping(Profile profile)
 			=> profile.CreateMap<Author, AuthorDto>()
