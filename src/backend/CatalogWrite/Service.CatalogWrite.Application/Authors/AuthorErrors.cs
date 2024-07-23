@@ -26,16 +26,6 @@ namespace Service.CatalogWrite.Application.Authors
 	internal static class AuthorErrors
 	{
 		/// <summary>
-		/// Gets property required error.
-		/// </summary>
-		/// <remarks>
-		/// Property name is serialized to error with key 'Author.{PropName}IsRequired'
-		/// and value 'The author {PropName} is required.'
-		/// </remarks>
-		internal static Func<string, Error> PropertyIsRequired
-			=> propName => new($"Author.{propName}IsRequired", $"The author {propName} is required.");
-
-		/// <summary>
 		/// Gets invalid photo file error. Requires file name.
 		/// </summary>
 		internal static Func<string, Error> OnlyPhotoFileIsAllowed

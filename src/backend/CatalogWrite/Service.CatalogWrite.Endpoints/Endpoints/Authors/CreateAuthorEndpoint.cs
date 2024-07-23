@@ -42,7 +42,7 @@ namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
 			Summary = "Creates a new author.",
 			Description = "Creates a new author based on the specified request.",
 			Tags = [AuthorRoutes.Tag])]
-		public override async Task<ActionResult<Guid>> HandleAsync([FromForm] CreateAuthorRequest request,
+		public override async Task<ActionResult<Guid>> HandleAsync([FromBody] CreateAuthorRequest request,
 																	CancellationToken cancellationToken = default) =>
 			await Result.Create(request)
 				.Map(r => new CreateAuthorCommand
