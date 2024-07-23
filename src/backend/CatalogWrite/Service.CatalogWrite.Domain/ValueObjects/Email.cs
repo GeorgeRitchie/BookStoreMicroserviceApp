@@ -36,6 +36,18 @@ namespace Service.CatalogWrite.Domain.ValueObjects
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Email"/> class.
 		/// </summary>
+		/// <remarks>
+		/// Required for deserialization.
+		/// </remarks>
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+		private Email()
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Email"/> class.
+		/// </summary>
 		/// <param name="emailAddress">The email address.</param>
 		private Email(string emailAddress)
 		{
