@@ -16,6 +16,7 @@
 */
 
 using Service.CatalogWrite.Domain.Authors.Events;
+using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.ImageSources;
 using Service.CatalogWrite.Domain.ValueObjects;
 
@@ -26,6 +27,8 @@ namespace Service.CatalogWrite.Domain.Authors
 	/// </summary>
 	public sealed class Author : Entity<AuthorId>, IAuditable
 	{
+		private List<Book> books = [];
+
 		/// <inheritdoc/>
 		public DateTime CreatedOnUtc { get; private set; }
 
@@ -61,6 +64,11 @@ namespace Service.CatalogWrite.Domain.Authors
 		/// Gets the author images.
 		/// </summary>
 		public List<ImageSource<AuthorImageType>> Images { get; private set; } = [];
+
+		/// <summary>
+		/// Gets author's books.
+		/// </summary>
+		public IReadOnlyList<Book> Books => books;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Author"/> class.

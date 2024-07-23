@@ -20,8 +20,14 @@ namespace Service.CatalogWrite.Domain.Books
 	/// <summary>
 	/// Represents the book source entity.
 	/// </summary>
-	public sealed class BookSource : Entity<BookSourceId>
+	public sealed class BookSource : Entity<BookSourceId>, IAuditable
 	{
+		/// <inheritdoc/>
+		public DateTime CreatedOnUtc { get; private set; }
+
+		/// <inheritdoc/>
+		public DateTime? ModifiedOnUtc { get; private set; }
+
 		/// <summary>
 		/// Gets book format (e. g. paper, pdf, txt).
 		/// </summary>
@@ -36,6 +42,16 @@ namespace Service.CatalogWrite.Domain.Books
 		/// Gets book's preview source url of if available.
 		/// </summary>
 		public string? PreviewUrl { get; private set; }
+
+		/// <summary>
+		/// Gets related book entity's identifier.
+		/// </summary>
+		public BookId BookId { get; private set; }
+
+		/// <summary>
+		/// Gets related book entity.
+		/// </summary>
+		public Book Book { get; private set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BookSource"/> class.
@@ -67,6 +83,7 @@ namespace Service.CatalogWrite.Domain.Books
 		/// <returns>The new <see cref="BookSource"/> instance or <see cref="Result{TValue}"/> with validation errors.</returns>
 		public static Result<BookSource> Create(BookFormat format, string? url, string? previewUrl = null)
 			=> Result.Success(
+				// TODO require book entity while creating new book source
 					new BookSource(new BookSourceId(Guid.NewGuid()), false)
 					{
 						Format = format,

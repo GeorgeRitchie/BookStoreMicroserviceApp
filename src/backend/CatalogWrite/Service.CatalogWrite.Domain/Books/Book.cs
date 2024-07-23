@@ -15,7 +15,6 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 using Service.CatalogWrite.Domain.Authors;
 using Service.CatalogWrite.Domain.Books.Events;
 using Service.CatalogWrite.Domain.Categories;
@@ -72,6 +71,11 @@ namespace Service.CatalogWrite.Domain.Books
 		/// Gets the book categories.
 		/// </summary>
 		public IReadOnlyCollection<Category> Categories { get; private set; }
+
+		/// <summary>
+		/// Gets the book publisher identifier if available.
+		/// </summary>
+		public PublisherId? PublisherId { get; private set; }
 
 		/// <summary>
 		/// Gets the book publisher information if available.
@@ -147,7 +151,7 @@ namespace Service.CatalogWrite.Domain.Books
 			CancellationToken cancellationToken = default)
 		{
 			var result = Result.Success();
-
+			// TODO make setting related entities better
 			result
 				.Ensure(() => string.IsNullOrWhiteSpace(title) == false, BookErrors.EmptyTitle)
 				.Ensure(() => language != null
@@ -172,6 +176,7 @@ namespace Service.CatalogWrite.Domain.Books
 					Language = language,
 					Authors = authors.ToList(),
 					Categories = categories.ToList(),
+					PublisherId = publisher?.Id,
 					Publisher = publisher,
 					PublishedDate = publishedDate,
 					Images = images?.ToList() ?? [],
@@ -224,7 +229,7 @@ namespace Service.CatalogWrite.Domain.Books
 			CancellationToken cancellationToken = default)
 		{
 			var result = Result.Success(this);
-
+			// TODO make setting related entities better
 			result
 				.Ensure(() => string.IsNullOrWhiteSpace(title) == false, BookErrors.EmptyTitle)
 				.Ensure(() => language != null

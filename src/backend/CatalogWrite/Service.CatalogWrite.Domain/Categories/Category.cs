@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.Categories.Events;
 using Service.CatalogWrite.Domain.ImageSources;
 
@@ -25,6 +26,8 @@ namespace Service.CatalogWrite.Domain.Categories
 	/// </summary>
 	public sealed class Category : Entity<CategoryId>, IAuditable
 	{
+		private List<Book> books = [];
+
 		/// <inheritdoc/>
 		public DateTime CreatedOnUtc { get; private set; }
 
@@ -45,6 +48,11 @@ namespace Service.CatalogWrite.Domain.Categories
 		/// Gets the category image.
 		/// </summary>
 		public ImageSource<CategoryImageType> Icon { get; private set; }
+
+		/// <summary>
+		/// Gets books within the category.
+		/// </summary>
+		public IReadOnlyList<Book> Books => books;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Category"/> class.

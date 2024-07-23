@@ -43,7 +43,7 @@ namespace Service.CatalogWrite.Persistence.Configurations
 			builder.HasKey(category => category.Id);
 
 			builder.Property(category => category.Id).ValueGeneratedNever()
-													 .HasConversion(userId => userId.Value, value => new CategoryId(value));
+							.HasConversion(categoryId => categoryId.Value, value => new CategoryId(value));
 
 			builder.Property(category => category.IsDeleted).IsRequired().HasDefaultValue(false);
 

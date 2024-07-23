@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Service.CatalogWrite.Persistence;
 
@@ -11,9 +12,11 @@ using Service.CatalogWrite.Persistence;
 namespace Service.CatalogWrite.Persistence.Migrations
 {
     [DbContext(typeof(CatalogWriteDbContext))]
-    partial class CatalogWriteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240723081148_OtherEntitiesConfigurations")]
+    partial class OtherEntitiesConfigurations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

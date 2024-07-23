@@ -41,7 +41,7 @@ namespace Service.CatalogWrite.Persistence.Configurations
 			builder.HasKey(author => author.Id);
 
 			builder.Property(author => author.Id).ValueGeneratedNever()
-													 .HasConversion(userId => userId.Value, value => new AuthorId(value));
+							.HasConversion(authorId => authorId.Value, value => new AuthorId(value));
 
 			builder.Property(author => author.IsDeleted).IsRequired().HasDefaultValue(false);
 

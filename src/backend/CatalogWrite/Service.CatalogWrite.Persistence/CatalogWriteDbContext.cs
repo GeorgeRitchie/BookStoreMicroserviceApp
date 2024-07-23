@@ -17,7 +17,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using Service.CatalogWrite.Domain.Authors;
+using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.Categories;
+using Service.CatalogWrite.Domain.Publishers;
 using Service.CatalogWrite.Persistence.Configurations;
 using Service.CatalogWrite.Persistence.Contracts;
 
@@ -47,6 +49,8 @@ namespace Service.CatalogWrite.Persistence
 
 			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<AuthorImageType>());
 			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<CategoryImageType>());
+			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<PublisherImageType>());
+			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<BookImageType>());
 
 			// TODO ## For any entity to be added to db schema add property with DbSet<T> to this class, or create IEntityTypeConfiguration<T>, or have relation with already added entity.
 		}
