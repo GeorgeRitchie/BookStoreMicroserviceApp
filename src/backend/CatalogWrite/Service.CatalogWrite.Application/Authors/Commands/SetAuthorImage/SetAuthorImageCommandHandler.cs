@@ -130,7 +130,7 @@ namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 							.Tap<ImageSource<AuthorImageType>>(c => imgRepository.Create(c))
 							.Tap<ImageSource<AuthorImageType>>(author.Images.Add);
 
-				return (oldAuthorIcon?.Source, newAuthorIcon.Value?.Source, newAuthorIcon);
+				return (oldAuthorIcon?.Source, fileSource, newAuthorIcon);
 			}
 			catch (Exception ex)
 			{
@@ -169,7 +169,7 @@ namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 							.Tap<ImageSource<AuthorImageType>>(c => imgRepository.Create(c))
 							.Tap<ImageSource<AuthorImageType>>(author.Images.Add);
 
-				return (oldAuthorPhoto?.Source, newAuthorPhoto.Value?.Source, newAuthorPhoto);
+				return (oldAuthorPhoto?.Source, fileSource, newAuthorPhoto);
 			}
 			catch (Exception ex)
 			{
@@ -202,7 +202,7 @@ namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 							.Tap<ImageSource<AuthorImageType>>(c => imgRepository.Create(c))
 							.Tap<ImageSource<AuthorImageType>>(author.Images.Add);
 
-				return (newOtherAuthorPhoto.Value?.Source, newOtherAuthorPhoto);
+				return (fileSource, newOtherAuthorPhoto);
 			}
 			catch (Exception ex)
 			{

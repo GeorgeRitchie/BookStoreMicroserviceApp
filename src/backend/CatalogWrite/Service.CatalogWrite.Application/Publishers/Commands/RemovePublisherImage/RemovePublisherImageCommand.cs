@@ -15,23 +15,24 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Publishers
+using Service.CatalogWrite.Domain.ImageSources;
+using Service.CatalogWrite.Domain.Publishers;
+
+namespace Service.CatalogWrite.Application.Publishers.Commands.RemovePublisherImage
 {
 	/// <summary>
-	/// Represents the Publisher image type enumeration.
+	/// Represents command to remove specified images from specified publisher.
 	/// </summary>
-	public sealed class PublisherImageType : Enumeration<PublisherImageType>
+	public sealed class RemovePublisherImageCommand : ICommand
 	{
-		public static readonly PublisherImageType Icon = new("PublisherIcon", 0);
-		public static readonly PublisherImageType Photo = new("PublisherPhoto", 1);
-		public static readonly PublisherImageType Other = new("PublisherOther", 2);
+		/// <summary>
+		/// Publisher identifier.
+		/// </summary>
+		public PublisherId PublisherId { get; set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="PublisherImageType"/> class.
+		/// List of images' ids to remove from publisher.
 		/// </summary>
-		/// <inheritdoc/>
-		private PublisherImageType(string name, int value) : base(name, value)
-		{
-		}
+		public List<ImageSourceId>? ImageIds { get; set; }
 	}
 }
