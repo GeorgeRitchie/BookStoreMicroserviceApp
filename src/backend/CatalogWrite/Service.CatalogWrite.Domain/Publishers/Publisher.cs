@@ -70,7 +70,7 @@ namespace Service.CatalogWrite.Domain.Publishers
 		/// <summary>
 		/// Gets the publisher photos.
 		/// </summary>
-		public IReadOnlyCollection<ImageSource<PublisherImageType>> Images { get; private set; } = [];
+		public List<ImageSource<PublisherImageType>> Images { get; private set; } = [];
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Publisher"/> class.

@@ -24,7 +24,7 @@ namespace Service.CatalogWrite.Domain.ValueObjects
 	/// </summary>
 	public sealed class PhoneNumber : ValueObject
 	{
-		private const string pattern = @"^(\+[0-9]{9})$";
+		private const string pattern = @"^(\+[0-9]{12})$";
 
 		/// <summary>
 		/// Gets the phone number.
@@ -51,7 +51,7 @@ namespace Service.CatalogWrite.Domain.ValueObjects
 		/// </summary>
 		/// <param name="number">The phone number.</param>
 		/// <returns>The new <see cref="PhoneNumber"/> instance or <see cref="Result{TValue}"/> with validation errors.</returns>
-		public static Result<PhoneNumber> Crete(string number)
+		public static Result<PhoneNumber> Create(string number)
 			=> Result.Success(number)
 				.Ensure(n => string.IsNullOrWhiteSpace(n) == false, ValueObjectsErrors.PhoneNumber.EmptyPhoneNumber)
 				.EnsureOnSuccess(n => Regex.IsMatch(n, pattern, RegexOptions.IgnoreCase), ValueObjectsErrors.PhoneNumber.InvalidPhoneNumber(number))
