@@ -15,30 +15,29 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using AutoMapper.QueryableExtensions;
 using Service.CatalogWrite.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Queries.GetBookById
+namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
 {
 	/// <summary>
-	/// Represents the <see cref="GetBookByIdQuery"/> handler.
+	/// Represents the <see cref="GetBooksQuery"/> handler.
 	/// </summary>
 	/// <remarks>
-	/// Initializes new instance of the <see cref="GetBookByIdQueryHandler"/> class.
+	/// Initializes new instance of the <see cref="GetBooksQueryHandler"/> class.
 	/// </remarks>
 	/// <param name="repository">The book repository.</param>
 	/// <param name="mapper">The auto mapper.</param>
-	internal sealed class GetBookByIdQueryHandler(IBookRepository repository, IMapper mapper)
-		: IQueryHandler<GetBookByIdQuery, BookDto>
+	internal sealed class GetBooksQueryHandler(IBookRepository repository, IMapper mapper)
+		: IQueryHandler<GetBooksQuery, IEnumerable<BookDto>>
 	{
-		public async Task<Result<BookDto>> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
-			=> Result.Create(
-					await repository.GetAll()
-									.Include(i => i.Images)
-									.Include(i => i.Publisher)
-									.Include(i => i.Authors)
-									.Include(i => i.Categories)
-									.FirstOrDefaultAsync(i => i.Id == request.BookId, cancellationToken))
-				.Map(mapper.Map<BookDto>)
-				.MapFailure(() => BookErrors.NotFound(request.BookId));
+		public async Task<Result<IEnumerable<BookDto>>> Handle(GetBooksQuery request, CancellationToken cancellationToken)
+		{
+			var query = request.IncludeDeleted ?
+							repository.GetAllIgnoringQueryFiltersAsNoTracking() :
+							repository.GetAllAsNoTracking();
+
+			return await query.ProjectTo<BookDto>(mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+		}
 	}
 }

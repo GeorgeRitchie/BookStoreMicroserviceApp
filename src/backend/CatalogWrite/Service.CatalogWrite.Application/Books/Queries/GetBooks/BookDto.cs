@@ -21,7 +21,7 @@ using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.Publishers;
 
-namespace Service.CatalogWrite.Application.Books.Queries.GetBookById
+namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
 {
 	/// <summary>
 	/// Represents the dto for <see cref="Book"/> entity.
@@ -184,3 +184,4 @@ namespace Service.CatalogWrite.Application.Books.Queries.GetBookById
 				.ForMember(dto => dto.Id, opt => opt.MapFrom(c => c.Id.Value));
 	}
 }
+

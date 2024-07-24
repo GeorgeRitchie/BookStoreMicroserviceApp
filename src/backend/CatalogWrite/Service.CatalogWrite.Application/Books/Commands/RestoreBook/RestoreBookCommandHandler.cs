@@ -15,30 +15,30 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Queries.GetBookById
+namespace Service.CatalogWrite.Application.Books.Commands.RestoreBook
 {
 	/// <summary>
-	/// Represents the <see cref="GetBookByIdQuery"/> handler.
+	/// Represents the <see cref="RestoreBookCommand"/> handler.
 	/// </summary>
 	/// <remarks>
-	/// Initializes new instance of the <see cref="GetBookByIdQueryHandler"/> class.
+	/// Initializes a new instance of the <see cref="RestoreBookCommandHandler"/> class.
 	/// </remarks>
+	/// <param name="db">The database.</param>
 	/// <param name="repository">The book repository.</param>
-	/// <param name="mapper">The auto mapper.</param>
-	internal sealed class GetBookByIdQueryHandler(IBookRepository repository, IMapper mapper)
-		: IQueryHandler<GetBookByIdQuery, BookDto>
+	internal sealed class RestoreBookCommandHandler(
+		ICatalogDb db,
+		IBookRepository repository)
+		: ICommandHandler<RestoreBookCommand>
 	{
-		public async Task<Result<BookDto>> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
-			=> Result.Create(
-					await repository.GetAll()
-									.Include(i => i.Images)
-									.Include(i => i.Publisher)
-									.Include(i => i.Authors)
-									.Include(i => i.Categories)
+		public async Task<Result> Handle(RestoreBookCommand request, CancellationToken cancellationToken) =>
+			await Result.Create(
+					await repository.GetAllIgnoringQueryFilters()
 									.FirstOrDefaultAsync(i => i.Id == request.BookId, cancellationToken))
-				.Map(mapper.Map<BookDto>)
-				.MapFailure(() => BookErrors.NotFound(request.BookId));
+				.MapFailure(() => BookErrors.NotFound(request.BookId))
+				.Tap(c => c.RestoreDeleted())
+				.Tap(() => db.SaveChangesAsync(cancellationToken));
 	}
 }
