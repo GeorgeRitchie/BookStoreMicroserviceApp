@@ -15,8 +15,6 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Domain.Books.Events
@@ -32,11 +30,8 @@ namespace Service.CatalogWrite.Domain.Books.Events
 	/// <param name="ISBN">Then new book ISBN.</param>
 	/// <param name="Language">A book language.</param>
 	/// <param name="AgeRating">A book age rating.</param>
-	/// <param name="Authors">A book authors information.</param>
-	/// <param name="Categories">A book categories.</param>
-	/// <param name="Publisher">A book publisher information.</param>
+	/// <param name="PublisherId">A book publisher's identifier.</param>
 	/// <param name="PublishedDate">A book published date.</param>
-	/// <param name="Sources">A book sources.</param>
 	public sealed record BookUpdatedDomainEvent(
 		Guid Id,
 		DateTime OccurredOnUtc,
@@ -46,10 +41,7 @@ namespace Service.CatalogWrite.Domain.Books.Events
 		string? ISBN,
 		string Language,
 		uint AgeRating,
-		IEnumerable<Author> Authors,
-		IEnumerable<Category> Categories,
-		Publisher? Publisher,
-		DateOnly? PublishedDate,
-		IEnumerable<BookSource> Sources)
+		PublisherId? PublisherId,
+		DateOnly? PublishedDate)
 		: DomainEvent(Id, OccurredOnUtc);
 }

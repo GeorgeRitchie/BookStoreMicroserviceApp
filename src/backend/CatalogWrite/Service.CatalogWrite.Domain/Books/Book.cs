@@ -30,6 +30,11 @@ namespace Service.CatalogWrite.Domain.Books
 	public sealed class Book : Entity<BookId>, IAuditable
 	{
 		private const string pattern_ISO169_1_LangCode = "^[a-z]{2}$";
+		private const string isbnPattern = @"^(?:\d[\ |-]?){9}[\d|X]$|^(?:97[89][\ |-]?\d{1,5}[\ |-]?\d{1,7}[\ |-]?\d{1,7}[\ |-]?\d)$";
+
+		private List<Author> authors = [];
+		private List<Category> categories = [];
+		private List<BookSource> sources = [];
 
 		/// <inheritdoc/>
 		public DateTime CreatedOnUtc { get; private set; }
@@ -63,16 +68,6 @@ namespace Service.CatalogWrite.Domain.Books
 		public uint AgeRating { get; private set; }
 
 		/// <summary>
-		/// Gets the book authors information.
-		/// </summary>
-		public IReadOnlyCollection<Author> Authors { get; private set; }
-
-		/// <summary>
-		/// Gets the book categories.
-		/// </summary>
-		public IReadOnlyCollection<Category> Categories { get; private set; }
-
-		/// <summary>
 		/// Gets the book publisher identifier if available.
 		/// </summary>
 		public PublisherId? PublisherId { get; private set; }
@@ -83,19 +78,29 @@ namespace Service.CatalogWrite.Domain.Books
 		public Publisher? Publisher { get; private set; }
 
 		/// <summary>
-		/// Gets the book published information if available.
+		/// Gets the book published date if available.
 		/// </summary>
 		public DateOnly? PublishedDate { get; private set; }
 
 		/// <summary>
 		/// Gets the book images.
 		/// </summary>
-		public IReadOnlyCollection<ImageSource<BookImageType>> Images { get; private set; } = [];
+		public List<ImageSource<BookImageType>> Images { get; private set; } = [];
+
+		/// <summary>
+		/// Gets the book authors information.
+		/// </summary>
+		public IReadOnlyCollection<Author> Authors => authors;
+
+		/// <summary>
+		/// Gets the book categories.
+		/// </summary>
+		public IReadOnlyCollection<Category> Categories => categories;
 
 		/// <summary>
 		/// Gets the book source information to access (e. g. format & url to download).
 		/// </summary>
-		public IReadOnlyCollection<BookSource> Sources { get; private set; } = [];
+		public IReadOnlyCollection<BookSource> Sources => sources;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Book"/> class.
@@ -127,8 +132,6 @@ namespace Service.CatalogWrite.Domain.Books
 		/// <param name="ageRating">Book age rating.</param>
 		/// <param name="authors">Book authors.</param>
 		/// <param name="categories">Book categories.</param>
-		/// <param name="sources">Book sources.</param>
-		/// <param name="images">Book images.</param>
 		/// <param name="bookRepository">Book repository.</param>
 		/// <param name="description">Book description.</param>
 		/// <param name="publisher">Book publisher.</param>
@@ -142,8 +145,6 @@ namespace Service.CatalogWrite.Domain.Books
 			uint ageRating,
 			IEnumerable<Author> authors,
 			IEnumerable<Category> categories,
-			IEnumerable<BookSource> sources,
-			IEnumerable<ImageSource<BookImageType>> images,
 			IBookRepository bookRepository,
 			string? description = null,
 			Publisher? publisher = null,
@@ -151,7 +152,7 @@ namespace Service.CatalogWrite.Domain.Books
 			CancellationToken cancellationToken = default)
 		{
 			var result = Result.Success();
-			// TODO make setting related entities better
+
 			result
 				.Ensure(() => string.IsNullOrWhiteSpace(title) == false, BookErrors.EmptyTitle)
 				.Ensure(() => language != null
@@ -160,9 +161,12 @@ namespace Service.CatalogWrite.Domain.Books
 				.Ensure(() => authors?.Any() == true, BookErrors.AuthorIsRequired)
 				.Ensure(() => categories?.Any() == true, BookErrors.CategoryIsRequired);
 
-			if (isbn != null && await bookRepository.IsISBNUniqueAsync(isbn, cancellationToken) == false)
+			if (isbn != null)
 			{
-				result.Ensure(() => false, BookErrors.ISBNIsNotUnique(isbn));
+				result.Ensure(() => Regex.IsMatch(isbn, isbnPattern), BookErrors.InvalidISBN(isbn));
+
+				if (result.IsSuccess && await bookRepository.IsISBNUniqueAsync(isbn, cancellationToken) == false)
+					result.Ensure(() => false, BookErrors.ISBNIsNotUnique(isbn));
 			}
 
 			if (result.IsSuccess)
@@ -174,13 +178,11 @@ namespace Service.CatalogWrite.Domain.Books
 					ISBN = isbn,
 					AgeRating = ageRating,
 					Language = language,
-					Authors = authors.ToList(),
-					Categories = categories.ToList(),
+					authors = authors.ToList(),
+					categories = categories.ToList(),
 					PublisherId = publisher?.Id,
 					Publisher = publisher,
 					PublishedDate = publishedDate,
-					Images = images?.ToList() ?? [],
-					Sources = sources?.ToList() ?? [],
 				};
 
 				book.RaiseDomainEvent(new BookCreatedDomainEvent(
@@ -194,9 +196,8 @@ namespace Service.CatalogWrite.Domain.Books
 								book.AgeRating,
 								book.Authors,
 								book.Categories,
-								book.Publisher,
-								book.PublishedDate,
-								book.Sources));
+								book.PublisherId,
+								book.PublishedDate));
 
 				return Result.Success(book);
 			}
@@ -229,7 +230,7 @@ namespace Service.CatalogWrite.Domain.Books
 			CancellationToken cancellationToken = default)
 		{
 			var result = Result.Success(this);
-			// TODO make setting related entities better
+
 			result
 				.Ensure(() => string.IsNullOrWhiteSpace(title) == false, BookErrors.EmptyTitle)
 				.Ensure(() => language != null
@@ -251,7 +252,7 @@ namespace Service.CatalogWrite.Domain.Books
 									|| AgeRating != ageRating
 									|| Language != language
 									|| PublishedDate != publishedDate
-									|| Publisher != publisher;
+									|| PublisherId != publisher?.Id;
 
 				if (bookInfoChanged)
 				{
@@ -261,6 +262,7 @@ namespace Service.CatalogWrite.Domain.Books
 					AgeRating = ageRating;
 					Language = language;
 					PublishedDate = publishedDate;
+					PublisherId = publisher?.Id;
 					Publisher = publisher;
 
 					RaiseDomainEvent(new BookUpdatedDomainEvent(
@@ -272,11 +274,8 @@ namespace Service.CatalogWrite.Domain.Books
 									ISBN,
 									Language,
 									AgeRating,
-									Authors,
-									Categories,
-									Publisher,
-									PublishedDate,
-									Sources));
+									PublisherId,
+									PublishedDate));
 				}
 			}
 

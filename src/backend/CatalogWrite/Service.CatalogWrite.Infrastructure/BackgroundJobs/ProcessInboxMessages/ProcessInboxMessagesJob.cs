@@ -37,7 +37,8 @@ namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessInboxMessage
 	{
 		private static readonly JsonSerializerSettings JsonSerializerSettings = new()
 		{
-			TypeNameHandling = TypeNameHandling.All
+			TypeNameHandling = TypeNameHandling.All,
+			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 		};
 
 		private readonly IServiceProvider _serviceProvider;

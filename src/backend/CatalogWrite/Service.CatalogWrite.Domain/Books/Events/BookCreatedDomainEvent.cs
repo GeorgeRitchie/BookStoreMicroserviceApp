@@ -34,9 +34,8 @@ namespace Service.CatalogWrite.Domain.Books.Events
 	/// <param name="AgeRating">The new book age rating.</param>
 	/// <param name="Authors">The new book authors information.</param>
 	/// <param name="Categories">The new book categories.</param>
-	/// <param name="Publisher">The new book publisher information.</param>
+	/// <param name="PublisherId">The new book publisher's identifier.</param>
 	/// <param name="PublishedDate">The new book published date.</param>
-	/// <param name="Sources">The new book sources.</param>
 	public sealed record BookCreatedDomainEvent(
 		Guid Id,
 		DateTime OccurredOnUtc,
@@ -48,8 +47,7 @@ namespace Service.CatalogWrite.Domain.Books.Events
 		uint AgeRating,
 		IEnumerable<Author> Authors,
 		IEnumerable<Category> Categories,
-		Publisher? Publisher,
-		DateOnly? PublishedDate,
-		IEnumerable<BookSource> Sources)
+		PublisherId? PublisherId,
+		DateOnly? PublishedDate)
 		: DomainEvent(Id, OccurredOnUtc);
 }

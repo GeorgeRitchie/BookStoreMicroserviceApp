@@ -31,7 +31,8 @@ namespace Persistence.Interceptors
 	{
 		private static readonly JsonSerializerSettings JsonSerializerSettings = new()
 		{
-			TypeNameHandling = TypeNameHandling.All
+			TypeNameHandling = TypeNameHandling.All,
+			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 		};
 		// TODO there are other SavingChanges method overloads, implement them too, because if code calls different SaveChanges method overload, it will call specific SavingChanges overload too
 		/// <inheritdoc />

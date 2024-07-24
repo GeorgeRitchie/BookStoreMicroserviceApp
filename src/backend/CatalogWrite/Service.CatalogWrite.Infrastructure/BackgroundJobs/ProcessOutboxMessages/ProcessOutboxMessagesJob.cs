@@ -38,7 +38,8 @@ namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessOutboxMessag
 	{
 		private static readonly JsonSerializerSettings JsonSerializerSettings = new()
 		{
-			TypeNameHandling = TypeNameHandling.All
+			TypeNameHandling = TypeNameHandling.All,
+			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 		};
 
 		private readonly IPublisher _publisher;

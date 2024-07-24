@@ -15,12 +15,14 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Shared.Repositories;
+
 namespace Service.CatalogWrite.Domain.Books
 {
 	/// <summary>
 	/// Represents the Book repository interface.
 	/// </summary>
-	public interface IBookRepository
+	public interface IBookRepository : IRepository<Book, BookId>
 	{
 		/// <summary>
 		/// Checks if the specified ISBN is unique.

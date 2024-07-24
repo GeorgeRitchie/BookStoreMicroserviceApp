@@ -29,6 +29,12 @@ namespace Service.CatalogWrite.Domain.Books
 			=> isbn => new("Book.ISBNIsNotUnique", $"The specified ISBN '{isbn}' is already in use.");
 
 		/// <summary>
+		/// Gets invalid ISBN error.
+		/// </summary>
+		public static Func<string, Error> InvalidISBN
+			=> isbn => new("Book.InvalidISBN", $"The passed ISBN '{isbn}' is not valid.");
+
+		/// <summary>
 		/// Gets author required error used for books with no author.
 		/// </summary>
 		public static Error AuthorIsRequired
