@@ -237,7 +237,7 @@ namespace Service.CatalogWrite.Domain.Books
 								&& Regex.IsMatch(language, pattern_ISO169_1_LangCode, RegexOptions.IgnoreCase),
 						BookErrors.InvalidLanguageCode(language));
 
-			if (isbn != null && await bookRepository.IsISBNUniqueAsync(isbn, cancellationToken) == false)
+			if (isbn != null && isbn != ISBN && await bookRepository.IsISBNUniqueAsync(isbn, cancellationToken) == false)
 			{
 				result.Ensure(() => false, BookErrors.ISBNIsNotUnique(isbn));
 			}
