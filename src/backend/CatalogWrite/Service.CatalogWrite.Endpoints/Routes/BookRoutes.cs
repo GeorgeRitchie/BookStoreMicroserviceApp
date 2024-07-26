@@ -41,5 +41,13 @@ namespace Service.CatalogWrite.Endpoints.Routes
 		internal const string SetImage = $"{BaseUri}/setimage";
 
 		internal const string RemoveImage = $"{BaseUri}/removeimage";
+
+		internal const string AddAuthor = $"{BaseUri}/addauthor";
+
+		internal const string RemoveAuthor = $"{BaseUri}/removeauthor";
+
+		internal const string AddCategory = $"{BaseUri}/addcategory";
+
+		internal const string RemoveCategory = $"{BaseUri}/removecategory";
 	}
 }

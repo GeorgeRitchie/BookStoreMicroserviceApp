@@ -281,5 +281,79 @@ namespace Service.CatalogWrite.Domain.Books
 
 			return result;
 		}
+
+		/// <summary>
+		/// Adds author to current book's authors list.
+		/// </summary>
+		/// <param name="author">The author to add.</param>
+		/// <returns>The updated book.</returns>
+		public Result<Book> AddAuthor(Author author)
+		{
+			if (authors.Any(a => a.Id == author.Id) == false)
+			{
+				authors.Add(author);
+				RaiseDomainEvent(new AuthorAddedToBookDomainEvent(
+									Guid.NewGuid(),
+									DateTime.UtcNow,
+									Id,
+									author.Id));
+			}
+
+			return Result.Success(this);
+		}
+
+		/// <summary>
+		/// Removes author from current book's authors list.
+		/// </summary>
+		/// <param name="authorId">The author to remove.</param>
+		/// <returns>The updated book, or failure result if author not found or there is only one in list.</returns>
+		public Result<Book> RemoveAuthor(AuthorId authorId)
+			=> Result.Create(authors.FirstOrDefault(i => i.Id == authorId))
+				.MapFailure(() => BookErrors.BookDoesNotHaveAuthor(Id, authorId))
+				.EnsureOnSuccess(author => authors.Count > 1, BookErrors.AuthorIsRequired)
+				.Tap<Author>(author => authors.Remove(author))
+				.Tap(() => RaiseDomainEvent(new AuthorRemovedFromBookDomainEvent(
+											Guid.NewGuid(),
+											DateTime.UtcNow,
+											Id,
+											authorId)))
+				.Map(() => this);
+
+		/// <summary>
+		/// Adds category to current book's categories list.
+		/// </summary>
+		/// <param name="category">The category to add.</param>
+		/// <returns>The updated book.</returns>
+		public Result<Book> AddCategory(Category category)
+		{
+			if (categories.Any(a => a.Id == category.Id) == false)
+			{
+				categories.Add(category);
+				RaiseDomainEvent(new CategoryAddedToBookDomainEvent(
+									Guid.NewGuid(),
+									DateTime.UtcNow,
+									Id,
+									category.Id));
+			}
+
+			return Result.Success(this);
+		}
+
+		/// <summary>
+		/// Removes category from current book's categories list.
+		/// </summary>
+		/// <param name="categoryId">The category to remove.</param>
+		/// <returns>The updated book, or failure result if category not found or there is only one in list.</returns>
+		public Result<Book> RemoveCategory(CategoryId categoryId)
+			=> Result.Create(categories.FirstOrDefault(i => i.Id == categoryId))
+				.MapFailure(() => BookErrors.BookDoesNotHaveCategory(Id, categoryId))
+				.EnsureOnSuccess(category => categories.Count > 1, BookErrors.CategoryIsRequired)
+				.Tap<Category>(category => categories.Remove(category))
+				.Tap(() => RaiseDomainEvent(new CategoryRemovedFromBookDomainEvent(
+											Guid.NewGuid(),
+											DateTime.UtcNow,
+											Id,
+											categoryId)))
+				.Map(() => this);
 	}
 }

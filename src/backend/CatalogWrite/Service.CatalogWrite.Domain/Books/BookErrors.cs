@@ -15,6 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Domain.Authors;
+using Service.CatalogWrite.Domain.Categories;
+
 namespace Service.CatalogWrite.Domain.Books
 {
 	/// <summary>
@@ -59,5 +62,21 @@ namespace Service.CatalogWrite.Domain.Books
 			=> lang => new(
 				"Book.InvalidLanguageCode",
 				$"The provided language code is not valid ISO 639-1 formatted language code: {lang}.");
+
+		/// <summary>
+		/// Gets error to indicate that specified book does not have specified author.
+		/// </summary>
+		public static Func<BookId, AuthorId, Error> BookDoesNotHaveAuthor
+			=> (bookId, authorId) => new(
+				"Book.NotRelatedAuthor",
+				$"Book with id '{bookId.Value}' does not have author with id '{authorId.Value}'.");
+
+		/// <summary>
+		/// Gets error to indicate that specified book does not have specified category.
+		/// </summary>
+		public static Func<BookId, CategoryId, Error> BookDoesNotHaveCategory
+			=> (bookId, categoryId) => new(
+				"Book.NotRelatedCategory",
+				$"Book with id '{bookId.Value}' does not have category with id '{categoryId.Value}'.");
 	}
 }
