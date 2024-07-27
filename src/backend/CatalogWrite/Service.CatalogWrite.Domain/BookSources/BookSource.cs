@@ -16,6 +16,7 @@
 */
 
 using Service.CatalogWrite.Domain.Books;
+using Service.CatalogWrite.Domain.BookSources.Events;
 
 namespace Service.CatalogWrite.Domain.BookSources
 {
@@ -85,8 +86,7 @@ namespace Service.CatalogWrite.Domain.BookSources
 #pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
 		{
 		}
-		// TODO add events for created, updated and deleted
-		// TODO we can update preview url & price for all, stocquantity only for paper type, and url only for non-papar type
+
 		/// <summary>
 		/// Creates a new <see cref="BookSource"/> instance based on the specified parameters by applying validations.
 		/// </summary>
@@ -126,7 +126,73 @@ namespace Service.CatalogWrite.Domain.BookSources
 						s.Url = null;
 					else
 						s.StockQuantity = null;
+				})
+				.Tap(s => s.RaiseDomainEvent(new BookSourceCreatedDomainEvent(
+											Guid.NewGuid(),
+											DateTime.UtcNow,
+											s.Id,
+											s.Format.Name,
+											s.StockQuantity,
+											s.Price,
+											s.Url,
+											s.PreviewUrl,
+											s.BookId)));
+
+		/// <summary>
+		/// Changes the book source information.
+		/// </summary>
+		/// <param name="url">The source url.</param>
+		/// <param name="quantity">The book quantity.</param>
+		/// <param name="price">The book price.</param>
+		/// <param name="previewUrl">The book preview url.</param>
+		/// <returns>The updated book source.</returns>
+		public Result<BookSource> Update(
+			string? url,
+			uint quantity,
+			decimal price,
+			string? previewUrl = null)
+			=> Result.Success(this)
+				.Ensure(s => s.Format == BookFormat.Paper
+							|| s.Format != BookFormat.Paper && IsValidUrl(url), BookSourceErrors.InvalidSourceUrl)
+				.Ensure(s => previewUrl is null
+							|| previewUrl is not null && IsValidUrl(previewUrl), BookSourceErrors.InvalidPreviewUrl)
+				.Tap(s =>
+				{
+					uint? _quantity = s.Format == BookFormat.Paper ? quantity : null;
+					string? _url = s.Format != BookFormat.Paper ? url : null;
+					bool infoChanged = s.StockQuantity != _quantity
+										|| s.Price != price
+										|| s.PreviewUrl != previewUrl
+										|| s.Url != _url;
+
+					if (infoChanged)
+					{
+						s.Url = _url;
+						s.StockQuantity = _quantity;
+						s.PreviewUrl = previewUrl;
+						s.Price = price;
+
+						s.RaiseDomainEvent(new BookSourceUpdatedDomainEvent(
+											Guid.NewGuid(),
+											DateTime.UtcNow,
+											s.Id,
+											s.StockQuantity,
+											s.Price,
+											s.Url,
+											s.PreviewUrl));
+					}
 				});
+
+		/// <inheritdoc/>
+		public override void MarkAsDeleted()
+		{
+			base.MarkAsDeleted();
+
+			RaiseDomainEvent(new BookSourceDeletedDomainEvent(
+							Guid.NewGuid(),
+							DateTime.UtcNow,
+							Id));
+		}
 
 		private static bool IsValidUrl(string? url)
 			=> Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out Uri? resultUri)
