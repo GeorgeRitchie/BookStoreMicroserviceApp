@@ -15,11 +15,14 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Books
+using Shared.Repositories;
+
+namespace Service.CatalogWrite.Domain.BookSources
 {
 	/// <summary>
-	/// Represents the book source identifier.
+	/// Represents the BookSource repository interface.
 	/// </summary>
-	/// <param name="Value">The identifier value.</param>
-	public sealed record BookSourceId(Guid Value) : IEntityId;
+	public interface IBookSourceRepository : IRepository<BookSource, BookSourceId>
+	{
+	}
 }

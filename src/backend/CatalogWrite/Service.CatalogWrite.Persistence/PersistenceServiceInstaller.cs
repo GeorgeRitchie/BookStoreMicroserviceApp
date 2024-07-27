@@ -32,6 +32,7 @@ using Persistence.Repositories;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.Authors;
 using Service.CatalogWrite.Domain.Books;
+using Service.CatalogWrite.Domain.BookSources;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.ImageSources;
 using Service.CatalogWrite.Domain.Publishers;
@@ -41,10 +42,10 @@ using Shared.Repositories;
 
 namespace Service.CatalogWrite.Persistence
 {
-	/// <summary>
-	/// Represents the CatalogWrite module persistence service installer.
-	/// </summary>
-	internal sealed class PersistenceServiceInstaller : IServiceInstaller
+    /// <summary>
+    /// Represents the CatalogWrite module persistence service installer.
+    /// </summary>
+    internal sealed class PersistenceServiceInstaller : IServiceInstaller
 	{
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration)

@@ -18,7 +18,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
-using Service.CatalogWrite.Domain.Books;
+using Service.CatalogWrite.Domain.BookSources;
 using Service.CatalogWrite.Persistence.Contracts;
 using Shared.Extensions;
 
@@ -43,7 +43,7 @@ namespace Service.CatalogWrite.Persistence.Configurations
 			builder.Property(bs => bs.Id).ValueGeneratedNever()
 							.HasConversion(bsId => bsId.Value, value => new BookSourceId(value));
 
-			builder.HasQueryFilter(bs => bs.IsDeleted == false);
+			builder.Property(book => book.IsDeleted).IsRequired().HasDefaultValue(false);
 
 			builder.Property(bs => bs.Format)
 					.IsRequired()
@@ -52,6 +52,10 @@ namespace Service.CatalogWrite.Persistence.Configurations
 			builder.Property(bs => bs.Url).IsRequired(false);
 
 			builder.Property(bs => bs.PreviewUrl).IsRequired(false);
+
+			builder.Property(bs => bs.StockQuantity).IsRequired(false);
+
+			builder.Property(bs => bs.Price).IsRequired(true);
 
 			builder.Property(bs => bs.CreatedOnUtc).IsRequired();
 

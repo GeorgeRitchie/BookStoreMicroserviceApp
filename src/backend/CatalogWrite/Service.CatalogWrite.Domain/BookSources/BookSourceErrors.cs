@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Books
+namespace Service.CatalogWrite.Domain.BookSources
 {
 	/// <summary>
 	/// Contains the book source errors.
@@ -33,5 +33,11 @@ namespace Service.CatalogWrite.Domain.Books
 		/// </summary>
 		public static Error InvalidPreviewUrl
 			=> new("BookSource.InvalidPreviewUrl", "Invalid url for book preview source.");
+
+		/// <summary>
+		/// Gets book required for book source error.
+		/// </summary>
+		public static Error BookIsRequired
+			=> new("BookSource.BookIsRequired", "For book source it is mandatory to have book.");
 	}
 }

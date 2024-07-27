@@ -18,15 +18,16 @@
 using Service.CatalogWrite.Application.Common.Models;
 using Service.CatalogWrite.Domain.Authors;
 using Service.CatalogWrite.Domain.Books;
+using Service.CatalogWrite.Domain.BookSources;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
 {
-	/// <summary>
-	/// Represents the dto for <see cref="Book"/> entity.
-	/// </summary>
-	public sealed class BookDto : IMapWith<Book>
+    /// <summary>
+    /// Represents the dto for <see cref="Book"/> entity.
+    /// </summary>
+    public sealed class BookDto : IMapWith<Book>
 	{
 		/// <summary>
 		/// Book identifier.

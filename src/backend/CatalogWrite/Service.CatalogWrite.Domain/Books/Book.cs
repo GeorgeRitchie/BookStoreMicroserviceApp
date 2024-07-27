@@ -17,6 +17,7 @@
 
 using Service.CatalogWrite.Domain.Authors;
 using Service.CatalogWrite.Domain.Books.Events;
+using Service.CatalogWrite.Domain.BookSources;
 using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain.ImageSources;
 using Service.CatalogWrite.Domain.Publishers;
@@ -24,10 +25,10 @@ using System.Text.RegularExpressions;
 
 namespace Service.CatalogWrite.Domain.Books
 {
-	/// <summary>
-	/// Represents the Book entity.
-	/// </summary>
-	public sealed class Book : Entity<BookId>, IAuditable
+    /// <summary>
+    /// Represents the Book entity.
+    /// </summary>
+    public sealed class Book : Entity<BookId>, IAuditable
 	{
 		private const string pattern_ISO169_1_LangCode = "^[a-z]{2}$";
 		private const string isbnPattern = @"^(?:\d[\ |-]?){9}[\d|X]$|^(?:97[89][\ |-]?\d{1,5}[\ |-]?\d{1,7}[\ |-]?\d{1,7}[\ |-]?\d)$";

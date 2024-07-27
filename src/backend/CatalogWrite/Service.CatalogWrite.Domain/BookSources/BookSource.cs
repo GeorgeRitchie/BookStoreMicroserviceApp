@@ -15,7 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Books
+using Service.CatalogWrite.Domain.Books;
+
+namespace Service.CatalogWrite.Domain.BookSources
 {
 	/// <summary>
 	/// Represents the book source entity.
@@ -32,6 +34,16 @@ namespace Service.CatalogWrite.Domain.Books
 		/// Gets book format (e. g. paper, pdf, txt).
 		/// </summary>
 		public BookFormat Format { get; private set; }
+
+		/// <summary>
+		/// Gets books quantity in storage. (Used only for paper format book sources).
+		/// </summary>
+		public uint? StockQuantity { get; private set; }
+
+		/// <summary>
+		/// Gets book price.
+		/// </summary>
+		public decimal Price { get; private set; }
 
 		/// <summary>
 		/// Gets book source url. For paper format book source url is <see langword="null"/>.
@@ -73,37 +85,53 @@ namespace Service.CatalogWrite.Domain.Books
 #pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
 		{
 		}
-
+		// TODO add events for created, updated and deleted
+		// TODO we can update preview url & price for all, stocquantity only for paper type, and url only for non-papar type
 		/// <summary>
 		/// Creates a new <see cref="BookSource"/> instance based on the specified parameters by applying validations.
 		/// </summary>
+		/// <param name="book">The book entity this source belongs to.</param>
 		/// <param name="format">The book source format.</param>
 		/// <param name="url">The book source url.</param>
+		/// <param name="quantity">The paper formatted book source quantity.</param>
+		/// <param name="price">The book source price.</param>
 		/// <param name="previewUrl">The book preview source url.</param>
 		/// <returns>The new <see cref="BookSource"/> instance or <see cref="Result{TValue}"/> with validation errors.</returns>
-		public static Result<BookSource> Create(BookFormat format, string? url, string? previewUrl = null)
+		public static Result<BookSource> Create(
+			Book book,
+			BookFormat format,
+			string? url,
+			uint quantity,
+			decimal price,
+			string? previewUrl = null)
 			=> Result.Success(
-				// TODO require book entity while creating new book source
 					new BookSource(new BookSourceId(Guid.NewGuid()), false)
 					{
+						Book = book,
+						BookId = book?.Id!,
+						Price = price,
+						StockQuantity = quantity,
 						Format = format,
 						Url = url,
 						PreviewUrl = previewUrl
 					})
 				.Ensure(s => s.Format == BookFormat.Paper
-							|| (s.Format != BookFormat.Paper && IsValidUrl(s.Url)), BookSourceErrors.InvalidSourceUrl)
+							|| s.Format != BookFormat.Paper && IsValidUrl(s.Url), BookSourceErrors.InvalidSourceUrl)
 				.Ensure(s => s.PreviewUrl is null
-							|| (s.PreviewUrl is not null && IsValidUrl(s.PreviewUrl)), BookSourceErrors.InvalidPreviewUrl)
+							|| s.PreviewUrl is not null && IsValidUrl(s.PreviewUrl), BookSourceErrors.InvalidPreviewUrl)
+				.Ensure(s => s.Book is not null, BookSourceErrors.BookIsRequired)
 				.Tap(s =>
 				{
 					if (s.Format == BookFormat.Paper)
 						s.Url = null;
+					else
+						s.StockQuantity = null;
 				});
 
 		private static bool IsValidUrl(string? url)
 			=> Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out Uri? resultUri)
 				&& (resultUri.IsAbsoluteUri == false
-					|| (resultUri.IsAbsoluteUri == true
-						&& (resultUri.Scheme == Uri.UriSchemeHttp || resultUri.Scheme == Uri.UriSchemeHttps)));
+					|| resultUri.IsAbsoluteUri == true
+						&& (resultUri.Scheme == Uri.UriSchemeHttp || resultUri.Scheme == Uri.UriSchemeHttps));
 	}
 }
