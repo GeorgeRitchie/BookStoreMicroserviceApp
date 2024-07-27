@@ -15,18 +15,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.BooSources.CreateBookSource;
+using Service.CatalogWrite.Application.BooSources.Commands.CreateBookSource;
 
 namespace Service.CatalogWrite.Endpoints.Endpoints.BookSources
 {
-	/// <summary>
-	/// Represents create book source endpoint.
-	/// </summary>
-	/// <remarks>
-	/// Initiates a new instance of the <see cref="CreateBookSourceEndpoint"/> class.
-	/// </remarks>
-	/// <param name="sender">Mediator request sender.</param>
-	public sealed class CreateBookSourceEndpoint(ISender sender) : EndpointBaseAsync
+    /// <summary>
+    /// Represents create book source endpoint.
+    /// </summary>
+    /// <remarks>
+    /// Initiates a new instance of the <see cref="CreateBookSourceEndpoint"/> class.
+    /// </remarks>
+    /// <param name="sender">Mediator request sender.</param>
+    public sealed class CreateBookSourceEndpoint(ISender sender) : EndpointBaseAsync
 		.WithRequest<CreateBookSourceCommand>
 		.WithActionResult<Guid>
 	{
