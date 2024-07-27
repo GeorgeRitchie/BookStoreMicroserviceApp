@@ -110,6 +110,16 @@ namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
 		public string Format { get; set; }
 
 		/// <summary>
+		/// Books quantity in storage. (Used only for paper format book sources).
+		/// </summary>
+		public uint? StockQuantity { get; set; }
+
+		/// <summary>
+		/// Book price.
+		/// </summary>
+		public decimal Price { get; set; }
+
+		/// <summary>
 		/// Book's preview source url of if available.
 		/// </summary>
 		public string? PreviewUrl { get; set; }
