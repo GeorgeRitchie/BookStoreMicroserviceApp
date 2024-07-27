@@ -17,31 +17,31 @@
 
 namespace Service.CatalogWrite.Domain.BookSources
 {
-    /// <summary>
-    /// Represents the book source format enumeration.
-    /// Enumeration value can be used as file extension.
-    /// </summary>
-    public sealed class BookFormat : Enumeration<BookFormat, string>
-    {
-        public static readonly BookFormat Paper = new("Paper", "");
-        public static readonly BookFormat Pdf = new("PDF", ".pdf");
-        public static readonly BookFormat Txt = new("TXT", ".txt");
-        public static readonly BookFormat Epub = new("EPUB", ".epub");
-        public static readonly BookFormat Fb2 = new("FB2", ".fb2");
-        public static readonly BookFormat Djvu = new("DJVU", ".djvu");
+	/// <summary>
+	/// Represents the book source format enumeration.
+	/// Enumeration value can be used as file extension.
+	/// </summary>
+	public sealed class BookFormat : Enumeration<BookFormat, string>
+	{
+		public static readonly BookFormat Paper = new("Paper", "");
+		public static readonly BookFormat Pdf = new("PDF", ".pdf");
+		public static readonly BookFormat Txt = new("TXT", ".txt");
+		public static readonly BookFormat Epub = new("EPUB", ".epub");
+		public static readonly BookFormat Fb2 = new("FB2", ".fb2");
+		public static readonly BookFormat Djvu = new("DJVU", ".djvu");
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BookFormat"/> class.
-        /// </summary>
-        /// <inheritdoc/>
-        private BookFormat(string name, string value) : base(name, value)
-        {
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="BookFormat"/> class.
+		/// </summary>
+		/// <inheritdoc/>
+		private BookFormat(string name, string value) : base(name, value)
+		{
+		}
 
-        /// <inheritdoc/>
-        protected override bool IsValueEqual(string? first, string? second)
-        {
-            return first == second;
-        }
-    }
+		/// <inheritdoc/>
+		protected override bool IsValueEqual(string? first, string? second)
+		{
+			return first == second;
+		}
+	}
 }

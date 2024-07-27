@@ -20,10 +20,10 @@ using Service.CatalogWrite.Application.Common.Validators;
 
 namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 {
-    /// <summary>
-    /// Represents the <see cref="SetAuthorImageCommand"/> validator.
-    /// </summary>
-    internal sealed class SetAuthorImageCommandValidator : AbstractValidator<SetAuthorImageCommand>
+	/// <summary>
+	/// Represents the <see cref="SetAuthorImageCommand"/> validator.
+	/// </summary>
+	internal sealed class SetAuthorImageCommandValidator : AbstractValidator<SetAuthorImageCommand>
 	{
 		public SetAuthorImageCommandValidator(IFileManager fileManager)
 		{

@@ -24,10 +24,10 @@ using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
 {
-    /// <summary>
-    /// Represents the dto for <see cref="Book"/> entity.
-    /// </summary>
-    public sealed class BookDto : IMapWith<Book>
+	/// <summary>
+	/// Represents the dto for <see cref="Book"/> entity.
+	/// </summary>
+	public sealed class BookDto : IMapWith<Book>
 	{
 		/// <summary>
 		/// Book identifier.

@@ -17,29 +17,29 @@
 
 namespace Service.CatalogWrite.Endpoints.Contracts.Authors
 {
-    /// <summary>
-    /// Represents the request to set images to the specified author.
-    /// </summary>
-    public sealed class SetAuthorImageRequest
-    {
-        /// <summary>
-        /// Author identifier.
-        /// </summary>
-        public Guid Id { get; set; }
+	/// <summary>
+	/// Represents the request to set images to the specified author.
+	/// </summary>
+	public sealed class SetAuthorImageRequest
+	{
+		/// <summary>
+		/// Author identifier.
+		/// </summary>
+		public Guid Id { get; set; }
 
-        /// <summary>
-        /// Author profile icon or <see langword="null"/> if no change required.
-        /// </summary>
-        public IFormFile? Icon { get; set; }
+		/// <summary>
+		/// Author profile icon or <see langword="null"/> if no change required.
+		/// </summary>
+		public IFormFile? Icon { get; set; }
 
-        /// <summary>
-        /// Author profile photo or <see langword="null"/> if no change required.
-        /// </summary>
-        public IFormFile? Photo { get; set; }
+		/// <summary>
+		/// Author profile photo or <see langword="null"/> if no change required.
+		/// </summary>
+		public IFormFile? Photo { get; set; }
 
-        /// <summary>
-        /// Author other images or <see langword="null"/> if no change required.
-        /// </summary>
-        public IEnumerable<IFormFile>? OtherImages { get; set; }
-    }
+		/// <summary>
+		/// Author other images or <see langword="null"/> if no change required.
+		/// </summary>
+		public IEnumerable<IFormFile>? OtherImages { get; set; }
+	}
 }

@@ -19,25 +19,25 @@ using Service.CatalogWrite.Application.Common.Services;
 
 namespace Service.CatalogWrite.Application.Common.Validators
 {
-    /// <summary>
-    /// Represents valid image file validation rule for classes implementing <see cref="IFile"/>.
-    /// </summary>
-    public sealed class PhotoFileValidator : AbstractValidator<IFile>
-    {
-        public PhotoFileValidator(IFileManager fileManager, Func<string, Error>? invalidFileErrorFactory)
-        {
-            RuleFor(file => file)
-                .Custom((file, context) =>
-                {
-                    if (fileManager.IsPhoto(file) == false)
-                    {
-                        var error = invalidFileErrorFactory(file.FileName);
-                        context.AddFailure(new ValidationFailure(context.PropertyPath, error.Message)
-                        {
-                            ErrorCode = error.Code,
-                        });
-                    }
-                });
-        }
-    }
+	/// <summary>
+	/// Represents valid image file validation rule for classes implementing <see cref="IFile"/>.
+	/// </summary>
+	public sealed class PhotoFileValidator : AbstractValidator<IFile>
+	{
+		public PhotoFileValidator(IFileManager fileManager, Func<string, Error>? invalidFileErrorFactory)
+		{
+			RuleFor(file => file)
+				.Custom((file, context) =>
+				{
+					if (fileManager.IsPhoto(file) == false)
+					{
+						var error = invalidFileErrorFactory(file.FileName);
+						context.AddFailure(new ValidationFailure(context.PropertyPath, error.Message)
+						{
+							ErrorCode = error.Code,
+						});
+					}
+				});
+		}
+	}
 }

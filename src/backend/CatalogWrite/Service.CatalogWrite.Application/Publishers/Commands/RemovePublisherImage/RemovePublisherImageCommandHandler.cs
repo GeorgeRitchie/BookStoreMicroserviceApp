@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Service.CatalogWrite.Application.Common.Services;
 using Service.CatalogWrite.Domain;
 using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Application.Common.Services;
 using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Publishers.Commands.RemovePublisherImage

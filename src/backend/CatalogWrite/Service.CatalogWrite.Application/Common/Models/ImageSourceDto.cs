@@ -23,51 +23,51 @@ using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Common.Models
 {
-    /// <summary>
-    /// Represents dto for <see cref="ImageSource{TEnum}"/>.
-    /// </summary>
-    public sealed class ImageSourceDto
-        : IMapWith<ImageSource<PublisherImageType>>,
-        IMapWith<ImageSource<AuthorImageType>>,
-        IMapWith<ImageSource<BookImageType>>,
-        IMapWith<ImageSource<CategoryImageType>>
-    {
-        /// <summary>
-        /// The image source identifier.
-        /// </summary>
-        public Guid Id { get; set; }
+	/// <summary>
+	/// Represents dto for <see cref="ImageSource{TEnum}"/>.
+	/// </summary>
+	public sealed class ImageSourceDto
+		: IMapWith<ImageSource<PublisherImageType>>,
+		IMapWith<ImageSource<AuthorImageType>>,
+		IMapWith<ImageSource<BookImageType>>,
+		IMapWith<ImageSource<CategoryImageType>>
+	{
+		/// <summary>
+		/// The image source identifier.
+		/// </summary>
+		public Guid Id { get; set; }
 
-        /// <summary>
-        /// The image file source.
-        /// </summary>
-        public string Source { get; set; }
+		/// <summary>
+		/// The image file source.
+		/// </summary>
+		public string Source { get; set; }
 
-        /// <summary>
-        /// The image type name.
-        /// </summary>
-        public string Type { get; set; }
+		/// <summary>
+		/// The image type name.
+		/// </summary>
+		public string Type { get; set; }
 
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<ImageSource<PublisherImageType>, ImageSourceDto>()
-                .ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
-                .ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
-                .ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
+		public void Mapping(Profile profile)
+		{
+			profile.CreateMap<ImageSource<PublisherImageType>, ImageSourceDto>()
+				.ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
+				.ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
+				.ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
 
-            profile.CreateMap<ImageSource<AuthorImageType>, ImageSourceDto>()
-                .ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
-                .ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
-                .ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
+			profile.CreateMap<ImageSource<AuthorImageType>, ImageSourceDto>()
+				.ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
+				.ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
+				.ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
 
-            profile.CreateMap<ImageSource<BookImageType>, ImageSourceDto>()
-                .ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
-                .ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
-                .ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
+			profile.CreateMap<ImageSource<BookImageType>, ImageSourceDto>()
+				.ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
+				.ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
+				.ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
 
-            profile.CreateMap<ImageSource<CategoryImageType>, ImageSourceDto>()
-                .ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
-                .ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
-                .ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
-        }
-    }
+			profile.CreateMap<ImageSource<CategoryImageType>, ImageSourceDto>()
+				.ForMember(dto => dto.Id, opt => opt.MapFrom(i => i.Id.Value))
+				.ForMember(dto => dto.Source, opt => opt.MapFrom(i => i.Source))
+				.ForMember(dto => dto.Type, opt => opt.MapFrom(i => i.Type.Name));
+		}
+	}
 }

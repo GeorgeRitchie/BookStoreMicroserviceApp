@@ -17,9 +17,9 @@
 
 namespace Service.CatalogWrite.Domain.BookSources
 {
-    /// <summary>
-    /// Represents the book source identifier.
-    /// </summary>
-    /// <param name="Value">The identifier value.</param>
-    public sealed record BookSourceId(Guid Value) : IEntityId;
+	/// <summary>
+	/// Represents the book source identifier.
+	/// </summary>
+	/// <param name="Value">The identifier value.</param>
+	public sealed record BookSourceId(Guid Value) : IEntityId;
 }

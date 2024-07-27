@@ -20,10 +20,10 @@ using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Publishers.Queries.GetPublisherById
 {
-    /// <summary>
-    /// Represents the dto for <see cref="Publisher"/> entity.
-    /// </summary>
-    public sealed class PublisherDto : IMapWith<Publisher>
+	/// <summary>
+	/// Represents the dto for <see cref="Publisher"/> entity.
+	/// </summary>
+	public sealed class PublisherDto : IMapWith<Publisher>
 	{
 		/// <summary>
 		/// Publisher identifier.

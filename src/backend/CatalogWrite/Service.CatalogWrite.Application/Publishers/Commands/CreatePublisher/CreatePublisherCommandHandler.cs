@@ -16,8 +16,8 @@
 */
 
 using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.ValueObjects;
 using Service.CatalogWrite.Domain.Publishers;
+using Service.CatalogWrite.Domain.ValueObjects;
 
 namespace Service.CatalogWrite.Application.Publishers.Commands.CreatePublisher
 {

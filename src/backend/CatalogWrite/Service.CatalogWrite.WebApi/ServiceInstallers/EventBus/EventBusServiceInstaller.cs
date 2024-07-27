@@ -18,7 +18,6 @@
 using Infrastructure.Configuration;
 using Infrastructure.Extensions;
 using MassTransit;
-using Microsoft.Extensions.Options;
 
 namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 {

@@ -42,10 +42,10 @@ using Shared.Repositories;
 
 namespace Service.CatalogWrite.Persistence
 {
-    /// <summary>
-    /// Represents the CatalogWrite module persistence service installer.
-    /// </summary>
-    internal sealed class PersistenceServiceInstaller : IServiceInstaller
+	/// <summary>
+	/// Represents the CatalogWrite module persistence service installer.
+	/// </summary>
+	internal sealed class PersistenceServiceInstaller : IServiceInstaller
 	{
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration)

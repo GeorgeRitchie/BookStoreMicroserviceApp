@@ -16,10 +16,10 @@
 */
 
 using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Publishers;
-using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.Authors;
+using Service.CatalogWrite.Domain.Books;
 using Service.CatalogWrite.Domain.Categories;
+using Service.CatalogWrite.Domain.Publishers;
 
 namespace Service.CatalogWrite.Application.Books.Commands.CreateBook
 {

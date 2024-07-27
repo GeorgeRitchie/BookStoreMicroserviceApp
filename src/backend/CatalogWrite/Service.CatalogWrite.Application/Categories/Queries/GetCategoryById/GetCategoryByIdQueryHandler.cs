@@ -15,7 +15,6 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using AutoMapper;
 using Service.CatalogWrite.Domain.Categories;
 
 namespace Service.CatalogWrite.Application.Categories.Queries.GetCategoryById

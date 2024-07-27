@@ -20,10 +20,10 @@ using Service.CatalogWrite.Domain.Categories;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.CreateCategory
 {
-    /// <summary>
-    /// Represents the <see cref="CreateCategoryCommand"/> validator.
-    /// </summary>
-    internal sealed class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
+	/// <summary>
+	/// Represents the <see cref="CreateCategoryCommand"/> validator.
+	/// </summary>
+	internal sealed class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CreateCategoryCommandValidator"/> class.

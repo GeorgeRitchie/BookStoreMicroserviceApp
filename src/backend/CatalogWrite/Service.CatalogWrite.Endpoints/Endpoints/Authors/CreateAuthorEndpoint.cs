@@ -15,7 +15,6 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Endpoints.Models;
 using Service.CatalogWrite.Application.Authors.Commands.CreateAuthor;
 using Service.CatalogWrite.Endpoints.Contracts.Authors;
 

@@ -15,12 +15,12 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Domain.Primitives;
-using Shared.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Newtonsoft.Json;
 using Persistence.Outbox;
+using Shared.Extensions;
 
 namespace Persistence.Interceptors
 {

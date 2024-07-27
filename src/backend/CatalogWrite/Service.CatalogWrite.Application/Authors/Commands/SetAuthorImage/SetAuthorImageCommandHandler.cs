@@ -23,18 +23,18 @@ using Service.CatalogWrite.Domain.ImageSources;
 
 namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 {
-    /// <summary>
-    /// Represents the <see cref="SetAuthorImageCommand"/> handler.
-    /// </summary>
-    /// <remarks>
-    /// Initializes a new instance of the <see cref="SetAuthorImageCommandHandler"/> class.
-    /// </remarks>
-    /// <param name="db">The database.</param>
-    /// <param name="authorRepository">The author repository.</param>
-    /// <param name="imgRepository">The image repository.</param>
-    /// <param name="fileManager">The file manager.</param>
-    /// <param name="logger">The logger.</param>
-    internal sealed class SetAuthorImageCommandHandler(
+	/// <summary>
+	/// Represents the <see cref="SetAuthorImageCommand"/> handler.
+	/// </summary>
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="SetAuthorImageCommandHandler"/> class.
+	/// </remarks>
+	/// <param name="db">The database.</param>
+	/// <param name="authorRepository">The author repository.</param>
+	/// <param name="imgRepository">The image repository.</param>
+	/// <param name="fileManager">The file manager.</param>
+	/// <param name="logger">The logger.</param>
+	internal sealed class SetAuthorImageCommandHandler(
 		ICatalogDb db,
 		IRepository<Author, AuthorId> authorRepository,
 		IRepository<ImageSource<AuthorImageType>, ImageSourceId> imgRepository,
@@ -56,7 +56,7 @@ namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
 
 			try
 			{
-				List<Result<ImageSource<AuthorImageType>>> actionResults = [ Result.Success<ImageSource<AuthorImageType>>(null) ];
+				List<Result<ImageSource<AuthorImageType>>> actionResults = [Result.Success<ImageSource<AuthorImageType>>(null)];
 				List<string?> oldFilesSources = [];
 
 				if (request.Icon is not null)

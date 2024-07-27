@@ -21,10 +21,10 @@ using Service.CatalogWrite.Domain.Categories;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 {
-    /// <summary>
-    /// Represents the <see cref="UpdateCategoryCommand"/> validator.
-    /// </summary>
-    internal sealed class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
+	/// <summary>
+	/// Represents the <see cref="UpdateCategoryCommand"/> validator.
+	/// </summary>
+	internal sealed class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UpdateCategoryCommandValidator"/> class.
@@ -33,7 +33,7 @@ namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
 		/// <param name="repository">The category repository.</param>
 		public UpdateCategoryCommandValidator(IFileManager fileManager, IRepository<Category, CategoryId> repository)
 		{
-			When(c=>c.Title is not null, () => 
+			When(c => c.Title is not null, () =>
 				RuleFor(c => c.Title)
 					.NotEmpty()
 						.WithError(CategoryErrors.PropertyIsRequired(nameof(CreateCategoryCommand.Title)))

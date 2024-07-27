@@ -15,8 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Categories;
 using Service.CatalogWrite.Domain;
+using Service.CatalogWrite.Domain.Categories;
 
 namespace Service.CatalogWrite.Application.Categories.Commands.RestoreCategory
 {

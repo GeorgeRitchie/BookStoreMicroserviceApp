@@ -15,13 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Serilog;
-using Service.CatalogWrite.WebApi.Extensions;
-using Service.CatalogWrite.WebApi.Utility;
+using Asp.Versioning.ApiExplorer;
 using Infrastructure.Extensions;
 using Microsoft.Extensions.Options;
+using Serilog;
+using Service.CatalogWrite.WebApi.Extensions;
 using Service.CatalogWrite.WebApi.Options;
-using Asp.Versioning.ApiExplorer;
+using Service.CatalogWrite.WebApi.Utility;
 
 LoggingUtility.Run(() =>
 {

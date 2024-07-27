@@ -15,28 +15,26 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Application.Models;
-
 namespace Service.CatalogWrite.Application.Categories.Commands.CreateCategory
 {
-    /// <summary>
-    /// Represents the command for creating a new category.
-    /// </summary>
-    public sealed class CreateCategoryCommand : ICommand<Guid>
-    {
-        /// <summary>
-        /// Category title.
-        /// </summary>
-        public string Title { get; set; }
+	/// <summary>
+	/// Represents the command for creating a new category.
+	/// </summary>
+	public sealed class CreateCategoryCommand : ICommand<Guid>
+	{
+		/// <summary>
+		/// Category title.
+		/// </summary>
+		public string Title { get; set; }
 
-        /// <summary>
-        /// Category description.
-        /// </summary>
-        public string Description { get; set; } = string.Empty;
+		/// <summary>
+		/// Category description.
+		/// </summary>
+		public string Description { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Category icon.
-        /// </summary>
-        public IFile Icon { get; set; }
-    }
+		/// <summary>
+		/// Category icon.
+		/// </summary>
+		public IFile Icon { get; set; }
+	}
 }

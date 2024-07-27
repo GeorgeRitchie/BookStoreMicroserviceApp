@@ -15,8 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Categories.Commands.CreateCategory;
 using Endpoints.Models;
+using Service.CatalogWrite.Application.Categories.Commands.CreateCategory;
 using Service.CatalogWrite.Endpoints.Contracts.Categories;
 
 namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
@@ -41,7 +41,7 @@ namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
 		[SwaggerOperation(
 			Summary = "Creates a new category.",
 			Description = "Creates a new category based on the specified request.",
-			Tags =[CategoryRoutes.Tag] )]
+			Tags = [CategoryRoutes.Tag])]
 		public override async Task<ActionResult<Guid>> HandleAsync([FromForm] CreateCategoryRequest request,
 																	CancellationToken cancellationToken = default) =>
 			await Result.Create(request)

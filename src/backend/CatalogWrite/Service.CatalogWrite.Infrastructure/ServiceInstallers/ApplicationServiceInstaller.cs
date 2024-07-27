@@ -30,10 +30,10 @@ using CatalogApplication = Service.CatalogWrite.Application;
 
 namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 {
-    /// <summary>
-    /// Represents the CategoryWrite service application layer service installer.
-    /// </summary>
-    internal sealed class ApplicationServiceInstaller : IServiceInstaller
+	/// <summary>
+	/// Represents the CategoryWrite service application layer service installer.
+	/// </summary>
+	internal sealed class ApplicationServiceInstaller : IServiceInstaller
 	{
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
