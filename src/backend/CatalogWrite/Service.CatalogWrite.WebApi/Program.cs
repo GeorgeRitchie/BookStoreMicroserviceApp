@@ -20,6 +20,7 @@ using Infrastructure.Extensions;
 using Microsoft.Extensions.Options;
 using Serilog;
 using Service.CatalogWrite.WebApi.Extensions;
+using Service.CatalogWrite.WebApi.Middlewares;
 using Service.CatalogWrite.WebApi.Options;
 using Service.CatalogWrite.WebApi.Utility;
 
@@ -74,8 +75,10 @@ LoggingUtility.Run(() =>
 									.AllowAnyMethod()
 									.AllowAnyOrigin());
 
-	// Adding Http request logging behavior via Serilog.
-	webApplication.UseSerilogRequestLogging();
+	webApplication.UseGlobalExceptionHandlerMiddleware()
+					.UseCorrelationTokenMiddleware()
+					.UseSerilogRequestLogging()
+					.UsePerformanceLoggingMiddleware();
 
 	webApplication.UseHttpsRedirection();
 

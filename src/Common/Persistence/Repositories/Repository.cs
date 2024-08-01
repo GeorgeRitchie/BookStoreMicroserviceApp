@@ -64,7 +64,6 @@ namespace Persistence.Repositories
 		/// <inheritdoc/>
 		public virtual void Delete(TEntityId id)
 		{
-			// TODO test whether this will work when providing specific implementation of IEntityId
 			Delete(dbSet.Find(id)!);
 		}
 

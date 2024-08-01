@@ -26,5 +26,10 @@ namespace Service.CatalogWrite.WebApi.Options
 		/// Gets the flag to enable or disable Swagger UI.
 		/// </summary>
 		public bool EnableSwaggerUI { get; init; } = false;
+
+		/// <summary>
+		/// Gets the max http request handling time in milliseconds that can be used for performance validation.
+		/// </summary>
+		public long MaxRequestHandlingTimeMilliseconds { get; init; } = 500;
 	}
 }

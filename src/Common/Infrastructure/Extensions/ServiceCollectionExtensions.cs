@@ -75,7 +75,7 @@ namespace Infrastructure.Extensions
 				scan.FromAssemblies(assembly)
 					.AddClasses(filter => filter.AssignableTo<ITransient>(), false)
 					.UsingRegistrationStrategy(RegistrationStrategy.Throw)
-					.AsMatchingInterface()// TODO check will this register one class that implements several interfaces with each interface? example is Repository and ExtendedRepository in Persistence project
+					.AsMatchingInterface()
 					.WithTransientLifetime());
 
 		/// <summary>
@@ -91,7 +91,7 @@ namespace Infrastructure.Extensions
 				scan.FromAssemblies(assembly)
 					.AddClasses(filter => filter.AssignableTo<IScoped>(), false)
 					.UsingRegistrationStrategy(RegistrationStrategy.Throw)
-					.AsMatchingInterface()// TODO check will this register one class that implements several interfaces with each interface? example is Repository and ExtendedRepository in Persistence project
+					.AsMatchingInterface()
 					.WithScopedLifetime());
 	}
 }

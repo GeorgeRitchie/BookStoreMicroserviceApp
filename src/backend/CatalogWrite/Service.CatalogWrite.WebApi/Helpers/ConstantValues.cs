@@ -15,23 +15,17 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System.Reflection;
-
-namespace Service.CatalogWrite.WebApi
+namespace Service.CatalogWrite.WebApi.Helpers
 {
 	/// <summary>
-	/// Represents the CatalogWrite service WebApi assembly reference.
+	/// Contains const values used in web api.
 	/// </summary>
-	public static class AssemblyReference
+	public static class ConstantValues
 	{
 		/// <summary>
-		/// The assembly.
+		/// Gets the correlation token header name.
 		/// </summary>
-		public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
-
-		/// <summary>
-		/// The module name this assembly belongs to.
-		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		// !!! WARNING !!! While changing this constant value, ensure that logger output formatter contains same placeholder name (for serilog see appsettings.json or serilog configurator) !!!
+		public const string CorrelationTokenHeaderName = "CorrelationToken";
 	}
 }
