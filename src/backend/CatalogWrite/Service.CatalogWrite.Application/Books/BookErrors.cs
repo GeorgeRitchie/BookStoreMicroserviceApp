@@ -48,15 +48,15 @@ namespace Service.CatalogWrite.Application.Books
 		/// <summary>
 		/// Gets book not found error.
 		/// </summary>
-		internal static Func<BookId, Error> NotFound
-			=> bookId => new("Book.NotFound",
+		internal static Func<BookId, NotFoundError> NotFound
+			=> bookId => new NotFoundError("Book.NotFound",
 								$"Book with the identifier {bookId.Value} was not found.");
 
 		/// <summary>
 		/// Gets book image not found error.
 		/// </summary>
-		internal static Func<BookId, ImageSourceId, Error> BookImageNotFound
-			=> (bookId, imageId) => new(
+		internal static Func<BookId, ImageSourceId, NotFoundError> BookImageNotFound
+			=> (bookId, imageId) => new NotFoundError(
 				"Book.ImageNotFound",
 				$"Book with the identifier {bookId.Value} does not have image with identifier '{imageId.Value}'.");
 	}

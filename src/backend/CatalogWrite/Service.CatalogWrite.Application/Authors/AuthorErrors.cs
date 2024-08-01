@@ -52,14 +52,14 @@ namespace Service.CatalogWrite.Application.Authors
 		/// <summary>
 		/// Gets author not found error.
 		/// </summary>
-		internal static Func<AuthorId, Error> NotFound
-			=> authorId => new("Author.NotFound", $"Author with the identifier {authorId.Value} was not found.");
+		internal static Func<AuthorId, NotFoundError> NotFound
+			=> authorId => new NotFoundError("Author.NotFound", $"Author with the identifier {authorId.Value} was not found.");
 
 		/// <summary>
 		/// Gets author image not found error.
 		/// </summary>
-		internal static Func<AuthorId, ImageSourceId, Error> AuthorImageNotFound
-			=> (authorId, imageId) => new(
+		internal static Func<AuthorId, ImageSourceId, NotFoundError> AuthorImageNotFound
+			=> (authorId, imageId) => new NotFoundError(
 				"Author.AuthorImageNotFound",
 				$"Author with the identifier {authorId.Value} does not have image with identifier '{imageId.Value}'.");
 	}

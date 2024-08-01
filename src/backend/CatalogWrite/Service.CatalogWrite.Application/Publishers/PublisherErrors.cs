@@ -48,15 +48,15 @@ namespace Service.CatalogWrite.Application.Publishers
 		/// <summary>
 		/// Gets publisher not found error.
 		/// </summary>
-		internal static Func<PublisherId, Error> NotFound
-			=> publisherId => new("Publisher.NotFound",
+		internal static Func<PublisherId, NotFoundError> NotFound
+			=> publisherId => new NotFoundError("Publisher.NotFound",
 								$"Publisher with the identifier {publisherId.Value} was not found.");
 
 		/// <summary>
 		/// Gets publisher image not found error.
 		/// </summary>
-		internal static Func<PublisherId, ImageSourceId, Error> PublisherImageNotFound
-			=> (publisherId, imageId) => new(
+		internal static Func<PublisherId, ImageSourceId, NotFoundError> PublisherImageNotFound
+			=> (publisherId, imageId) => new NotFoundError(
 				"Publisher.ImageNotFound",
 				$"Publisher with the identifier {publisherId.Value} does not have image with identifier '{imageId.Value}'.");
 	}

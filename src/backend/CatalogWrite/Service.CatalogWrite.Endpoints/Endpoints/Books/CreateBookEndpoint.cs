@@ -38,6 +38,7 @@ namespace Service.CatalogWrite.Endpoints.Endpoints.Books
 		[HttpPost(BookRoutes.Create)]
 		[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status409Conflict)]
 		[ApiVersion("1.0")]
 		[SwaggerOperation(

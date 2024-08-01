@@ -37,6 +37,7 @@ namespace Service.CatalogWrite.Endpoints.Endpoints.Publishers
 		[HttpPut(PublisherRoutes.RemoveImage)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status409Conflict)]
 		[ApiVersion("1.0")]
 		[SwaggerOperation(
