@@ -39,21 +39,21 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
 				.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(CatalogApplication.AssemblyReference.Assembly))
-				// TODO ## Add here your Mediator pipeline behaviors
+				// TODO __##__ Add here your Mediator pipeline behaviors
 				.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>))
-				// TODO ## Add here your FluentValidation validators, or assemblies that contain such validators
+				// TODO __##__ Add here your FluentValidation validators, or assemblies that contain such validators
 				.AddValidatorsFromAssembly(
 					CatalogApplication.AssemblyReference.Assembly,
 					filter: r => r.ValidatorType != typeof(PhotoFileValidator),
 					includeInternalTypes: true)
 				.AddValidatorsFromAssembly(BaseApplication.AssemblyReference.Assembly, includeInternalTypes: true)
-				// TODO ## Add here your AutoMapper mappers, or assemblies that contain such mappers
+				// TODO __##__ Add here your AutoMapper mappers, or assemblies that contain such mappers
 				.AddAutoMapper(config => config.AddProfile(new AssemblyMappingProfile(CatalogApplication.AssemblyReference.Assembly)))
 				.Tap(DecorateDomainEventHandlersWithIdempotency)
 				.Tap(AddAndDecorateIntegrationEventHandlersWithIdempotency);
 
 		private static void DecorateDomainEventHandlersWithIdempotency(IServiceCollection services) =>
-			// TODO ## Use here assembly with Domain event handlers that you want decorate with IdempotentDomainEventHandler
+			// TODO __##__ Use here assembly with Domain event handlers that you want decorate with IdempotentDomainEventHandler
 			CatalogApplication.AssemblyReference.Assembly
 				.GetTypes()
 				.Where(EventHandlersUtility.ImplementsDomainEventHandler)
@@ -69,7 +69,7 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 				});
 
 		private static void AddAndDecorateIntegrationEventHandlersWithIdempotency(IServiceCollection services) =>
-			// TODO ## Use here assembly with Integration event handlers that you want decorate with IdempotentIntegrationEventHandler
+			// TODO __##__ Use here assembly with Integration event handlers that you want decorate with IdempotentIntegrationEventHandler
 			CatalogApplication.AssemblyReference.Assembly
 				.GetTypes()
 				.Where(EventHandlersUtility.ImplementsIntegrationEventHandler)

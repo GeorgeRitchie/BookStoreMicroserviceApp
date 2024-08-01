@@ -43,7 +43,7 @@ namespace Service.CatalogWrite.Infrastructure.Services
 		IHttpContextAccessor httpContextAccessor)
 		: IFileManager, IScoped
 	{
-		// TODO ## Assuming for real production deployment, this implementation will be replaced with one that stores files in cloud based storages
+		// TODO __##__ Assuming for real production deployment, this implementation will be replaced with one that stores files in cloud based storages
 
 		private readonly HashSet<string> _validImageExtensions = new(StringComparer.OrdinalIgnoreCase)
 		{

@@ -42,7 +42,7 @@ namespace Service.CatalogWrite.Persistence.Configurations
 
 			builder.Property(outboxMessage => outboxMessage.Type).IsRequired();
 
-			// TODO ## use ObjectJsonConverter if db provider does not support json column type
+			// TODO __##__ use ObjectJsonConverter if db provider does not support json column type
 			builder.Property(outboxMessage => outboxMessage.Content)
 				.IsRequired();
 			// .HasColumnType("json");

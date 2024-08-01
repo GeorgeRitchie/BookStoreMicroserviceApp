@@ -28,7 +28,7 @@ namespace Service.CatalogWrite.Infrastructure.Consumers
 		/// <inheritdoc />
 		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
 		{
-			// TODO ## Add here message-broker message consumers
+			// TODO __##__ Add here message-broker message consumers
 		}
 	}
 }

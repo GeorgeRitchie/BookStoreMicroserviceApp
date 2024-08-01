@@ -30,7 +30,7 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
 				.ConfigureOptions<MassTransitHostOptionsSetup>()
-				// TODO ## Use for RabbitMQ Message Broker implementation.
+				// TODO __##__ Use for RabbitMQ Message Broker implementation.
 				.ConfigureOptions<RabbitMqOptionsSetup>()
 				.AddMassTransit(busConfigurator =>
 				{
@@ -40,10 +40,10 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 
 					busConfigurator.AddRequestClientsFromAssemblies(Authorization.AssemblyReference.Assembly);
 
-					// TODO ## Use for In Memory Message Broker implementation.
+					// TODO __##__ Use for In Memory Message Broker implementation.
 					busConfigurator.UsingInMemory((context, configurator) => configurator.ConfigureEndpoints(context));
 
-					// TODO ## Use for RabbitMQ Message Broker implementation.
+					// TODO __##__ Use for RabbitMQ Message Broker implementation.
 					//busConfigurator.UsingRabbitMq((context, configurator) =>
 					//{
 					//	var rabbitMqOptions = context.GetRequiredService<IOptions<RabbitMqOptions>>().Value;

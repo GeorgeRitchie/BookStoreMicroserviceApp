@@ -63,7 +63,7 @@ namespace Service.CatalogWrite.Persistence
 							new ConvertDomainEventsToOutboxMessagesInterceptor(),
 							new UpdateAuditableEntitiesInterceptor());
 
-					// TODO ## Enabling EF Core Sql logging for development environment.
+					// TODO __##__ Enabling EF Core Sql logging for development environment.
 					var environment = serviceProvider.GetService<IHostEnvironment>();
 					if (environment.IsDevelopment())
 					{
@@ -71,9 +71,9 @@ namespace Service.CatalogWrite.Persistence
 						options.UseLoggerFactory(loggerFactory);
 					}
 				})
-				// TODO ## For additional Unit Of Work implementations add here.
+				// TODO __##__ For additional Unit Of Work implementations add here.
 				.AddScoped<ICatalogDb, CatalogWriteDataBase>()
-				// TODO ## IRepository implementations add here.
+				// TODO __##__ IRepository implementations add here.
 				.AddScoped<BookRepository>()
 				.AddScoped<IRepository<Book, BookId>>(provider => provider.GetRequiredService<BookRepository>())
 				.AddScoped<IBookRepository>(provider => provider.GetRequiredService<BookRepository>())

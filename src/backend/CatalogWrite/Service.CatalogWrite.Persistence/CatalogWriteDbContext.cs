@@ -52,7 +52,7 @@ namespace Service.CatalogWrite.Persistence
 			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<PublisherImageType>());
 			modelBuilder.ApplyConfiguration(new ImageSourceConfigurations<BookImageType>());
 
-			// TODO ## For any entity to be added to db schema add property with DbSet<T> to this class, or create IEntityTypeConfiguration<T>, or have relation with already added entity.
+			// TODO __##__ For any entity to be added to db schema add property with DbSet<T> to this class, or create IEntityTypeConfiguration<T>, or have relation with already added entity.
 		}
 	}
 }
