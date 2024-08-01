@@ -34,7 +34,7 @@ namespace Persistence.Interceptors
 			TypeNameHandling = TypeNameHandling.All,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 		};
-		// TODO there are other SavingChanges method overloads, implement them too, because if code calls different SaveChanges method overload, it will call specific SavingChanges overload too
+		
 		/// <inheritdoc />
 		public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
 			DbContextEventData eventData,
@@ -51,6 +51,23 @@ namespace Persistence.Interceptors
 			eventData.Context.Set<OutboxMessage>().AddRange(outboxMessages);
 
 			return base.SavingChangesAsync(eventData, result, cancellationToken);
+		}
+
+		/// <inheritdoc />
+		public override InterceptionResult<int> SavingChanges(
+			DbContextEventData eventData, 
+			InterceptionResult<int> result)
+		{
+			if (eventData.Context is null)
+			{
+				return base.SavingChanges(eventData, result);
+			}
+
+			IEnumerable<OutboxMessage> outboxMessages = CreateOutboxMessages(eventData.Context);
+
+			eventData.Context.Set<OutboxMessage>().AddRange(outboxMessages);
+
+			return base.SavingChanges(eventData, result);
 		}
 
 		private static List<OutboxMessage> CreateOutboxMessages(DbContext dbContext) =>
