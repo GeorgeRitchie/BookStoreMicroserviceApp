@@ -26,10 +26,5 @@ namespace Authorization.Contracts
 		/// Gets the permissions.
 		/// </summary>
 		HashSet<string> Permissions { get; }
-
-		/// <summary>
-		/// Gets the cache time in seconds.
-		/// </summary>
-		public int CacheTimeInSeconds { get; }
 	}
 }

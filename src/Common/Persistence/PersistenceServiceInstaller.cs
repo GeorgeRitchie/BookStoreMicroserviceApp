@@ -30,7 +30,6 @@ namespace Persistence
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
-				.AddMemoryCache()
 				.ConfigureOptions<ConnectionStringSetup>();
 	}
 }

@@ -18,11 +18,14 @@
 using Authorization.Contracts;
 using Authorization.Options;
 using MassTransit;
-using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
+using Shared.Extensions;
 
 namespace Authorization.Services
 {
+	// TODO __##__ Don't forget to setup Distributed cache. For in memory distributed cache implementation setup call: builder.Services.AddDistributedMemoryCache();
+
 	/// <summary>
 	/// Represents the permission service.
 	/// </summary>
@@ -30,35 +33,29 @@ namespace Authorization.Services
 	/// Initializes a new instance of the <see cref="PermissionService"/> class.
 	/// </remarks>
 	/// <param name="userPermissionsRequestClient">The user permissions request client.</param>
-	/// <param name="memoryCache">The memory cache.</param>
+	/// <param name="distributedCache">The distributed cache.</param>
 	/// <param name="options">The options.</param>
 	internal sealed class PermissionService(
 		IRequestClient<IUserPermissionsRequest> userPermissionsRequestClient,
-		IMemoryCache memoryCache,
-		// TODO use here IDistributedCache and add code that listen to specific even across microservices,
-		// for example UserPermissionsChanged, which should trigger updating user permissions on cache,
-		// this will allow to keep data up to date immediately on each specific period (cache time), and also when data is updated in that specific period
+		IDistributedCache distributedCache,
 		IOptions<PermissionAuthorizationOptions> options) : IPermissionService
 	{
 		/// <inheritdoc />
 		public async Task<HashSet<string>> GetPermissionsAsync(
 			string identityProviderId,
-			CancellationToken cancellationToken = default) =>
-			(await memoryCache.GetOrCreateAsync(
-				CreateCacheKey(identityProviderId),
-				async cacheEntry =>
+			CancellationToken cancellationToken = default)
+			=> await distributedCache.GetOrCreateAsync(CreateCacheKey(identityProviderId),
+				async token => (await GetPermissionsInternalAsync(identityProviderId, cancellationToken)).Permissions,
+				new DistributedCacheEntryOptions()
 				{
-					IUserPermissionsResponse userPermissionResponse =
-													await GetPermissionsInternalAsync(identityProviderId, cancellationToken);
-					cacheEntry.AbsoluteExpirationRelativeToNow =
-													TimeSpan.FromSeconds(userPermissionResponse.CacheTimeInSeconds);
-					return userPermissionResponse.Permissions;
-				}))!;
+					AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(options.Value.CacheTimeInSeconds)
+				},
+				cancellationToken) ?? [];
 
 		private string CreateCacheKey(string identityProviderId) => $"{options.Value.CacheKeyPrefix}{identityProviderId}";
 
 		private async Task<IUserPermissionsResponse> GetPermissionsInternalAsync(string identityProviderId,
-																		   CancellationToken cancellationToken)
+																		CancellationToken cancellationToken)
 		{
 			if (string.IsNullOrWhiteSpace(identityProviderId))
 			{
@@ -84,7 +81,6 @@ namespace Authorization.Services
 		private sealed class UserPermissionsResponse : IUserPermissionsResponse
 		{
 			public HashSet<string> Permissions { get; set; } = [];
-			public int CacheTimeInSeconds { get; set; } = 0;
 		}
 	}
 }

@@ -15,21 +15,16 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Authorization.Options
+namespace Shared.Helpers
 {
 	/// <summary>
-	/// Represents the permission authorization options.
+	/// Contains const values used in shared project.
 	/// </summary>
-	internal sealed class PermissionAuthorizationOptions
+	public static class ConstantValues
 	{
 		/// <summary>
-		/// Gets the cache key prefix.
+		/// Gets timeout for semaphore in milliseconds.
 		/// </summary>
-		public string CacheKeyPrefix { get; init; }
-
-		/// <summary>
-		/// Gets the cache time in seconds.
-		/// </summary>
-		public int CacheTimeInSeconds { get; init; } = 180;
+		internal const int SemaphoreMillisecondsTimeOut = 1000 * 5;
 	}
 }
