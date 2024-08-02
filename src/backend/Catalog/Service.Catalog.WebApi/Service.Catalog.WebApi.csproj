@@ -38,7 +38,7 @@
     <ProjectReference Include="..\..\..\Common\Authorization\Authorization.csproj" />
     <ProjectReference Include="..\..\..\Common\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Common\Shared\Shared.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.Infrastructure\Service.CatalogWrite.Infrastructure.csproj" />
+    <ProjectReference Include="..\Service.Catalog.Infrastructure\Service.Catalog.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

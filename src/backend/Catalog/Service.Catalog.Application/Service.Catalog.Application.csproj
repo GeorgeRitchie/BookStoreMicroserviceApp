@@ -14,8 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Application\Application.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.IntegrationEvents\Service.CatalogWrite.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\Service.Catalog.Domain\Service.Catalog.Domain.csproj" />
+    <ProjectReference Include="..\Service.Catalog.IntegrationEvents\Service.Catalog.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

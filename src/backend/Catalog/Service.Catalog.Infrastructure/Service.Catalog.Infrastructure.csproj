@@ -15,9 +15,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Authorization\Authorization.csproj" />
     <ProjectReference Include="..\..\..\Common\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.Application\Service.CatalogWrite.Application.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.Endpoints\Service.CatalogWrite.Endpoints.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.Persistence\Service.CatalogWrite.Persistence.csproj" />
+    <ProjectReference Include="..\Service.Catalog.Application\Service.Catalog.Application.csproj" />
+    <ProjectReference Include="..\Service.Catalog.Endpoints\Service.Catalog.Endpoints.csproj" />
+    <ProjectReference Include="..\Service.Catalog.Persistence\Service.Catalog.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

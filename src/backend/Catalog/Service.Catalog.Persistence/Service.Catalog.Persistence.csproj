@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Persistence\Persistence.csproj" />
-    <ProjectReference Include="..\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj" />
+    <ProjectReference Include="..\Service.Catalog.Domain\Service.Catalog.Domain.csproj" />
   </ItemGroup>
 
 </Project>
