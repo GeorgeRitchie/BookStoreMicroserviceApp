@@ -30,9 +30,8 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.DistributedCaching
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration)
 		{
-			if (configuration.GetValue<bool>(RedisEnablePropPath))
+			if (IsRedisEnabled(configuration))
 			{
-				// TODO __##__ Use for Redis distributed cache.
 				services.AddStackExchangeRedisCache(options =>
 						{
 							configuration.GetSection(ConfigurationSectionName).Bind(options);
@@ -43,5 +42,13 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.DistributedCaching
 				services.AddDistributedMemoryCache();
 			}
 		}
+
+		/// <summary>
+		/// Determines whether Redis is enabled based on the configuration settings.
+		/// </summary>
+		/// <param name="configuration">The application configuration instance.</param>
+		/// <returns>True if Redis is enabled; otherwise, false.</returns>
+		public static bool IsRedisEnabled(IConfiguration configuration)
+			=> configuration.GetValue<bool>(RedisEnablePropPath);
 	}
 }

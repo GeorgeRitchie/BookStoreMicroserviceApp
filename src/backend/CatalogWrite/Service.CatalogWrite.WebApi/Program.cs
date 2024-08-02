@@ -16,7 +16,9 @@
 */
 
 using Asp.Versioning.ApiExplorer;
+using HealthChecks.UI.Client;
 using Infrastructure.Extensions;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using Serilog;
 using Service.CatalogWrite.WebApi.Extensions;
@@ -80,6 +82,13 @@ LoggingUtility.Run(() =>
 					.UseSerilogRequestLogging()
 					.UsePerformanceLoggingMiddleware();
 
+	webApplication.MapHealthChecks("/health", new HealthCheckOptions()
+	{
+		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+	});
+	// TODO add authorization and also add health check policy that allows access to specific type of users
+	//.RequireAuthorization();
+
 	webApplication.UseHttpsRedirection();
 
 	webApplication.UseStaticFiles();
@@ -88,6 +97,6 @@ LoggingUtility.Run(() =>
 	webApplication.UseAuthorization();
 
 	webApplication.MapControllers();
-
+	
 	webApplication.Run();
 });

@@ -29,8 +29,18 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 	internal sealed class RabbitMqOptionsSetup(IConfiguration configuration) : IConfigureOptions<RabbitMqOptions>
 	{
 		private const string ConfigurationSectionName = "RabbitMQ";
+		private const string RabbitMqEnablePropPath = ConfigurationSectionName + ":EnableRabbitMQ";
 
 		/// <inheritdoc />
-		public void Configure(RabbitMqOptions options) => configuration.GetSection(ConfigurationSectionName).Bind(options);
+		public void Configure(RabbitMqOptions options) 
+			=> configuration.GetSection(ConfigurationSectionName).Bind(options);
+
+		/// <summary>
+		/// Determines whether RabbitMQ is enabled based on the configuration settings.
+		/// </summary>
+		/// <param name="configuration">The application configuration instance.</param>
+		/// <returns>True if RabbitMQ is enabled; otherwise, false.</returns>
+		public static bool IsRabbitMqEnabled(IConfiguration configuration)
+			=> configuration.GetValue<bool>(RabbitMqEnablePropPath);
 	}
 }

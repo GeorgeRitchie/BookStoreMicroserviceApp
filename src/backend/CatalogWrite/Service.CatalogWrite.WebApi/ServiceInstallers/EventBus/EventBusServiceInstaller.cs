@@ -18,6 +18,7 @@
 using Infrastructure.Configuration;
 using Infrastructure.Extensions;
 using MassTransit;
+using Microsoft.Extensions.Options;
 
 namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 {
@@ -30,7 +31,6 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
 				.ConfigureOptions<MassTransitHostOptionsSetup>()
-				// TODO __##__ Use for RabbitMQ Message Broker implementation.
 				.ConfigureOptions<RabbitMqOptionsSetup>()
 				.AddMassTransit(busConfigurator =>
 				{
@@ -40,22 +40,25 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
 
 					busConfigurator.AddRequestClientsFromAssemblies(Authorization.AssemblyReference.Assembly);
 
-					// TODO __##__ Use for In Memory Message Broker implementation.
-					busConfigurator.UsingInMemory((context, configurator) => configurator.ConfigureEndpoints(context));
+					if (RabbitMqOptionsSetup.IsRabbitMqEnabled(configuration))
+					{
+						busConfigurator.UsingRabbitMq((context, configurator) =>
+						{
+							var rabbitMqOptions = context.GetRequiredService<IOptions<RabbitMqOptions>>().Value;
 
-					// TODO __##__ Use for RabbitMQ Message Broker implementation.
-					//busConfigurator.UsingRabbitMq((context, configurator) =>
-					//{
-					//	var rabbitMqOptions = context.GetRequiredService<IOptions<RabbitMqOptions>>().Value;
+							configurator.Host(rabbitMqOptions.Host, rabbitMqOptions.VirtualHost, h =>
+						 {
+							 h.Username(rabbitMqOptions.Username);
+							 h.Password(rabbitMqOptions.Password);
+						 });
 
-					//	configurator.Host(rabbitMqOptions.Host, rabbitMqOptions.VirtualHost, h =>
-					//	{
-					//		h.Username(rabbitMqOptions.Username);
-					//		h.Password(rabbitMqOptions.Password);
-					//	});
-
-					//	configurator.ConfigureEndpoints(context);
-					//});
+							configurator.ConfigureEndpoints(context);
+						});
+					}
+					else
+					{
+						busConfigurator.UsingInMemory((context, configurator) => configurator.ConfigureEndpoints(context));
+					}
 				});
 	}
 }
