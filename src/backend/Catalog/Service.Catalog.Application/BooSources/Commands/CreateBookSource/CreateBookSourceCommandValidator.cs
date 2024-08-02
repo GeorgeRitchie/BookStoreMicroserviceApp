@@ -19,18 +19,18 @@ using Service.Catalog.Domain.BookSources;
 
 namespace Service.Catalog.Application.BooSources.Commands.CreateBookSource
 {
-    /// <summary>
-    /// Represents the <see cref="CreateBookSourceCommand"/> validator.
-    /// </summary>
-    internal sealed class CreateBookSourceCommandValidator : AbstractValidator<CreateBookSourceCommand>
-    {
-        public CreateBookSourceCommandValidator()
-        {
-            RuleFor(i => i.Format)
-                .NotNull()
-                    .WithError(BookSourceErrors.InvalidBookFormat)
-                .Must(BookFormat.Contains)
-                    .WithError(BookSourceErrors.InvalidBookFormat);
-        }
-    }
+	/// <summary>
+	/// Represents the <see cref="CreateBookSourceCommand"/> validator.
+	/// </summary>
+	internal sealed class CreateBookSourceCommandValidator : AbstractValidator<CreateBookSourceCommand>
+	{
+		public CreateBookSourceCommandValidator()
+		{
+			RuleFor(i => i.Format)
+				.NotNull()
+					.WithError(BookSourceErrors.InvalidBookFormat)
+				.Must(BookFormat.Contains)
+					.WithError(BookSourceErrors.InvalidBookFormat);
+		}
+	}
 }

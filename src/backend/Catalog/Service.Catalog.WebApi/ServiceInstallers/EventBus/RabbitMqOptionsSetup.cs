@@ -32,7 +32,7 @@ namespace Service.Catalog.WebApi.ServiceInstallers.EventBus
 		private const string RabbitMqEnablePropPath = ConfigurationSectionName + ":EnableRabbitMQ";
 
 		/// <inheritdoc />
-		public void Configure(RabbitMqOptions options) 
+		public void Configure(RabbitMqOptions options)
 			=> configuration.GetSection(ConfigurationSectionName).Bind(options);
 
 		/// <summary>

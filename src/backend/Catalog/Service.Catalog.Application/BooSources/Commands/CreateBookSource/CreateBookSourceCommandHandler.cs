@@ -21,35 +21,35 @@ using Service.Catalog.Domain.BookSources;
 
 namespace Service.Catalog.Application.BooSources.Commands.CreateBookSource
 {
-    /// <summary>
-    /// Represents the <see cref="CreateBookSourceCommand"/> handler.
-    /// </summary>
-    /// <remarks>
-    /// Initializes a new instance of the <see cref="CreateBookSourceCommandHandler"/> class.
-    /// </remarks>
-    /// <param name="db">The database.</param>
-    /// <param name="bookRepository">The book repository.</param>
-    /// <param name="sourceRepository">The book source repository.</param>
-    internal sealed class CreateBookSourceCommandHandler(
-        ICatalogDb db,
-        IBookRepository bookRepository,
-        IBookSourceRepository sourceRepository)
-        : ICommandHandler<CreateBookSourceCommand, Guid>
-    {
-        /// <inheritdoc/>
-        public async Task<Result<Guid>> Handle(CreateBookSourceCommand request, CancellationToken cancellationToken)
-            => await Result.Create(await bookRepository.GetAll()
-                                                    .FirstOrDefaultAsync(i => i.Id == new BookId(request.BookId),
-                                                                        cancellationToken))
-                        .MapFailure(() => BookSourceErrors.BookNotFound(new BookId(request.BookId)))
-                        .Bind(book => BookSource.Create(book,
-                                                        BookFormat.FromName(request.Format)!,
-                                                        request.Url,
-                                                        request.Quantity,
-                                                        request.Price,
-                                                        request.PreviewUrl))
-                        .Tap<BookSource>(bs => sourceRepository.Create(bs))
-                        .Tap(() => db.SaveChangesAsync(cancellationToken))
-                        .Map(bs => bs.Id.Value);
-    }
+	/// <summary>
+	/// Represents the <see cref="CreateBookSourceCommand"/> handler.
+	/// </summary>
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="CreateBookSourceCommandHandler"/> class.
+	/// </remarks>
+	/// <param name="db">The database.</param>
+	/// <param name="bookRepository">The book repository.</param>
+	/// <param name="sourceRepository">The book source repository.</param>
+	internal sealed class CreateBookSourceCommandHandler(
+		ICatalogDb db,
+		IBookRepository bookRepository,
+		IBookSourceRepository sourceRepository)
+		: ICommandHandler<CreateBookSourceCommand, Guid>
+	{
+		/// <inheritdoc/>
+		public async Task<Result<Guid>> Handle(CreateBookSourceCommand request, CancellationToken cancellationToken)
+			=> await Result.Create(await bookRepository.GetAll()
+													.FirstOrDefaultAsync(i => i.Id == new BookId(request.BookId),
+																		cancellationToken))
+						.MapFailure(() => BookSourceErrors.BookNotFound(new BookId(request.BookId)))
+						.Bind(book => BookSource.Create(book,
+														BookFormat.FromName(request.Format)!,
+														request.Url,
+														request.Quantity,
+														request.Price,
+														request.PreviewUrl))
+						.Tap<BookSource>(bs => sourceRepository.Create(bs))
+						.Tap(() => db.SaveChangesAsync(cancellationToken))
+						.Map(bs => bs.Id.Value);
+	}
 }

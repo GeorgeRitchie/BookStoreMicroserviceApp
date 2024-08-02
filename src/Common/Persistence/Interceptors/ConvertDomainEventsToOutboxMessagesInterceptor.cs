@@ -34,7 +34,7 @@ namespace Persistence.Interceptors
 			TypeNameHandling = TypeNameHandling.All,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 		};
-		
+
 		/// <inheritdoc />
 		public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
 			DbContextEventData eventData,
@@ -55,7 +55,7 @@ namespace Persistence.Interceptors
 
 		/// <inheritdoc />
 		public override InterceptionResult<int> SavingChanges(
-			DbContextEventData eventData, 
+			DbContextEventData eventData,
 			InterceptionResult<int> result)
 		{
 			if (eventData.Context is null)

@@ -17,39 +17,39 @@
 
 namespace Service.Catalog.Application.BooSources.Commands.CreateBookSource
 {
-    /// <summary>
-    /// Represents the command to create a new book source.
-    /// </summary>
-    public sealed class CreateBookSourceCommand : ICommand<Guid>
-    {
-        /// <summary>
-        /// Book format.
-        /// </summary>
-        public string Format { get; set; }
+	/// <summary>
+	/// Represents the command to create a new book source.
+	/// </summary>
+	public sealed class CreateBookSourceCommand : ICommand<Guid>
+	{
+		/// <summary>
+		/// Book format.
+		/// </summary>
+		public string Format { get; set; }
 
-        /// <summary>
-        /// Books quantity in storage. (Used only for paper format book sources).
-        /// </summary>
-        public uint Quantity { get; set; }
+		/// <summary>
+		/// Books quantity in storage. (Used only for paper format book sources).
+		/// </summary>
+		public uint Quantity { get; set; }
 
-        /// <summary>
-        /// Book price.
-        /// </summary>
-        public decimal Price { get; set; }
+		/// <summary>
+		/// Book price.
+		/// </summary>
+		public decimal Price { get; set; }
 
-        /// <summary>
-        /// Book source url. For paper format book source url is <see langword="null"/>.
-        /// </summary>
-        public string? Url { get; set; }
+		/// <summary>
+		/// Book source url. For paper format book source url is <see langword="null"/>.
+		/// </summary>
+		public string? Url { get; set; }
 
-        /// <summary>
-        /// Book's preview source url of if available.
-        /// </summary>
-        public string? PreviewUrl { get; set; }
+		/// <summary>
+		/// Book's preview source url of if available.
+		/// </summary>
+		public string? PreviewUrl { get; set; }
 
-        /// <summary>
-        /// Related book entity's identifier.
-        /// </summary>
-        public Guid BookId { get; set; }
-    }
+		/// <summary>
+		/// Related book entity's identifier.
+		/// </summary>
+		public Guid BookId { get; set; }
+	}
 }

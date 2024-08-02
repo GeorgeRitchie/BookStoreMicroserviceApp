@@ -57,7 +57,7 @@ namespace Service.Catalog.Application.Categories
 		/// </summary>
 		internal static Func<CategoryId, NotFoundError> NotFound
 			=> categoryId => new NotFoundError(
-				"Category.NotFound", 
+				"Category.NotFound",
 				$"Category with the identifier {categoryId.Value} was not found.");
 
 		/// <summary>

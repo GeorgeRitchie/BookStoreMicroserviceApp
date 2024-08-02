@@ -97,6 +97,6 @@ LoggingUtility.Run(() =>
 	webApplication.UseAuthorization();
 
 	webApplication.MapControllers();
-	
+
 	webApplication.Run();
 });

@@ -19,14 +19,14 @@ using Service.Catalog.Application.BooSources.Commands.CreateBookSource;
 
 namespace Service.Catalog.Endpoints.Endpoints.BookSources
 {
-    /// <summary>
-    /// Represents create book source endpoint.
-    /// </summary>
-    /// <remarks>
-    /// Initiates a new instance of the <see cref="CreateBookSourceEndpoint"/> class.
-    /// </remarks>
-    /// <param name="sender">Mediator request sender.</param>
-    public sealed class CreateBookSourceEndpoint(ISender sender) : EndpointBaseAsync
+	/// <summary>
+	/// Represents create book source endpoint.
+	/// </summary>
+	/// <remarks>
+	/// Initiates a new instance of the <see cref="CreateBookSourceEndpoint"/> class.
+	/// </remarks>
+	/// <param name="sender">Mediator request sender.</param>
+	public sealed class CreateBookSourceEndpoint(ISender sender) : EndpointBaseAsync
 		.WithRequest<CreateBookSourceCommand>
 		.WithActionResult<Guid>
 	{
