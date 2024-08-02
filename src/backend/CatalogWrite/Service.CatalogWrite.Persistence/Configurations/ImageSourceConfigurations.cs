@@ -19,10 +19,10 @@ using Domain.Primitives;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Domain.ImageSources;
 using Shared.Extensions;
 
-namespace Service.CatalogWrite.Persistence.Configurations
+namespace Service.Catalog.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="ImageSource{TEnum}"/> entity configuration.

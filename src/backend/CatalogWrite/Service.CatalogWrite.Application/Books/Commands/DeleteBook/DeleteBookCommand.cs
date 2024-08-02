@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Commands.DeleteBook
+namespace Service.Catalog.Application.Books.Commands.DeleteBook
 {
 	/// <summary>
 	/// Represents the command for deleting the specified book.

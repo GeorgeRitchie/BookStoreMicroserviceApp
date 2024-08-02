@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Categories.Queries.GetCategories;
+using Service.Catalog.Application.Categories.Queries.GetCategories;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
+namespace Service.Catalog.Endpoints.Endpoints.Categories
 {
 	/// <summary>
 	/// Represents get categories endpoint.

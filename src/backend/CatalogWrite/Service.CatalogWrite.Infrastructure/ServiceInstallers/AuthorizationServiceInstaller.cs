@@ -19,7 +19,7 @@ using Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the CategoryWrite service authorization service installer.

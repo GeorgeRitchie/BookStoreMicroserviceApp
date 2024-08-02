@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthors
+namespace Service.Catalog.Application.Authors.Queries.GetAuthors
 {
 	/// <summary>
 	/// Represents a query to get authors.

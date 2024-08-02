@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.ImageSources
+namespace Service.Catalog.Domain.ImageSources
 {
 	/// <summary>
 	/// Represents the Image source identifier.

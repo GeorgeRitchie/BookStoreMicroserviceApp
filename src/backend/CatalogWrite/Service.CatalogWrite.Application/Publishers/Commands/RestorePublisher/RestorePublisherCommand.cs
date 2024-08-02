@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Application.Publishers.Commands.RestorePublisher
+namespace Service.Catalog.Application.Publishers.Commands.RestorePublisher
 {
 	/// <summary>
 	/// Represents the command for restoring the specified publisher.

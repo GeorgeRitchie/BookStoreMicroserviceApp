@@ -16,34 +16,34 @@
 */
 
 using Microsoft.EntityFrameworkCore;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.Publishers;
-using Service.CatalogWrite.Persistence.Configurations;
-using Service.CatalogWrite.Persistence.Contracts;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.Publishers;
+using Service.Catalog.Persistence.Configurations;
+using Service.Catalog.Persistence.Contracts;
 
-namespace Service.CatalogWrite.Persistence
+namespace Service.Catalog.Persistence
 {
-	// add-migration Init -context CatalogWriteDbContext -o Migrations
-	// update-database -context CatalogWriteDbContext
-	// migration -context CatalogWriteDbContext
-	// remove-migration -context CatalogWriteDbContext
-	// drop-database -context CatalogWriteDbContext
+	// add-migration Init -context CatalogDbContext -o Migrations
+	// update-database -context CatalogDbContext
+	// migration -context CatalogDbContext
+	// remove-migration -context CatalogDbContext
+	// drop-database -context CatalogDbContext
 
 	/// <summary>
-	/// Represents the CatalogWrite module database context.
+	/// Represents the Catalog module database context.
 	/// </summary>
 	/// <remarks>
-	/// Initializes a new instance of the <see cref="CatalogWriteDbContext"/> class.
+	/// Initializes a new instance of the <see cref="CatalogDbContext"/> class.
 	/// </remarks>
 	/// <param name="options">The database context options.</param>
-	public sealed class CatalogWriteDbContext(DbContextOptions<CatalogWriteDbContext> options) : DbContext(options)
+	public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options) : DbContext(options)
 	{
 		/// <inheritdoc />
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.HasDefaultSchema(Schemas.CatalogWrite);
+			modelBuilder.HasDefaultSchema(Schemas.Catalog);
 
 			modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
 

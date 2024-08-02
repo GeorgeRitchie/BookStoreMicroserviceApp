@@ -16,9 +16,9 @@
 */
 
 using Serilog.Context;
-using Service.CatalogWrite.WebApi.Helpers;
+using Service.Catalog.WebApi.Helpers;
 
-namespace Service.CatalogWrite.WebApi.Middlewares
+namespace Service.Catalog.WebApi.Middlewares
 {
 	/// <summary>
 	/// Contains extension methods for <see cref="CorrelationTokenMiddlewareExtensions"/>.

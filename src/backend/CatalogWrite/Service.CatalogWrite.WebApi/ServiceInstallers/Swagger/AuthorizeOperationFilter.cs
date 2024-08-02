@@ -21,7 +21,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Globalization;
 using System.Net;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
+namespace Service.Catalog.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
 	/// Represents the authorize operation filter.

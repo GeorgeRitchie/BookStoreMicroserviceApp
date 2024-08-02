@@ -20,7 +20,7 @@ using Infrastructure.Extensions;
 using MassTransit;
 using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
+namespace Service.Catalog.WebApi.ServiceInstallers.EventBus
 {
 	/// <summary>
 	/// Represents the event bus service installer.

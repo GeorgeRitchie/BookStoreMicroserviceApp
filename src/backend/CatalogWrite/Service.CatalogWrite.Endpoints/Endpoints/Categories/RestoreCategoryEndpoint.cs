@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Categories.Commands.RestoreCategory;
-using Service.CatalogWrite.Domain.Categories;
+using Service.Catalog.Application.Categories.Commands.RestoreCategory;
+using Service.Catalog.Domain.Categories;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
+namespace Service.Catalog.Endpoints.Endpoints.Categories
 {
 	/// <summary>
 	/// Represents category restore endpoint.

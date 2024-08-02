@@ -17,10 +17,10 @@
 
 using System.Reflection;
 
-namespace Service.CatalogWrite.IntegrationEvents
+namespace Service.Catalog.IntegrationEvents
 {
 	/// <summary>
-	/// Represents the CatalogWrite service integration events assembly reference.
+	/// Represents the Catalog service integration events assembly reference.
 	/// </summary>
 	public static class AssemblyReference
 	{

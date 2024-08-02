@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
+namespace Service.Catalog.WebApi.ServiceInstallers.EventBus
 {
 	/// <summary>
 	/// Represents the RabbitMq options.

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 using Persistence.Inbox;
 using Shared.Repositories;
 
-namespace Service.CatalogWrite.Infrastructure.Idempotence
+namespace Service.Catalog.Infrastructure.Idempotence
 {
 	/// <summary>
 	/// Represents the integration event consumer.

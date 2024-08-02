@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors;
+using Service.Catalog.Domain.Authors;
 
-namespace Service.CatalogWrite.Application.Authors.Commands.UpdateAuthor
+namespace Service.Catalog.Application.Authors.Commands.UpdateAuthor
 {
 	/// <summary>
 	/// Represents the command for updating the specified author.

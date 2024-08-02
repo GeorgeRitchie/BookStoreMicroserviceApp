@@ -17,7 +17,7 @@
 
 using Shared.Repositories;
 
-namespace Service.CatalogWrite.Domain
+namespace Service.Catalog.Domain
 {
 	/// <summary>
 	/// Marker interface to specific database context used for Unit of work pattern.

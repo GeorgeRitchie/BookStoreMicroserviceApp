@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Authors.Queries.GetAuthors;
+using Service.Catalog.Application.Authors.Queries.GetAuthors;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
+namespace Service.Catalog.Endpoints.Endpoints.Authors
 {
 	/// <summary>
 	/// Represents get authors endpoint.

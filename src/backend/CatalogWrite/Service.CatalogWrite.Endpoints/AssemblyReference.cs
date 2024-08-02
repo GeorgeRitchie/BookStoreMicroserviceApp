@@ -17,10 +17,10 @@
 
 using System.Reflection;
 
-namespace Service.CatalogWrite.Endpoints
+namespace Service.Catalog.Endpoints
 {
 	/// <summary>
-	/// Represents the CatalogWrite service endpoints assembly reference.
+	/// Represents the Catalog service endpoints assembly reference.
 	/// </summary>
 	public static class AssemblyReference
 	{

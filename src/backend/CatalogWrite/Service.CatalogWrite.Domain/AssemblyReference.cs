@@ -17,10 +17,10 @@
 
 using System.Reflection;
 
-namespace Service.CatalogWrite.Domain
+namespace Service.Catalog.Domain
 {
 	/// <summary>
-	/// Represents the CatalogWrite service domain assembly reference.
+	/// Represents the Catalog service domain assembly reference.
 	/// </summary>
 	public static class AssemblyReference
 	{

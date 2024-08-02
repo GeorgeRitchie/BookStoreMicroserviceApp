@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
+namespace Service.Catalog.Application.Books.Queries.GetBooks
 {
 	/// <summary>
 	/// Represents a query to get books.

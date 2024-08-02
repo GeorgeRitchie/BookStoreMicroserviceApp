@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Commands.RemoveAuthor
+namespace Service.Catalog.Application.Books.Commands.RemoveAuthor
 {
 	/// <summary>
 	/// Represents the <see cref="RemoveAuthorCommand"/> handler.

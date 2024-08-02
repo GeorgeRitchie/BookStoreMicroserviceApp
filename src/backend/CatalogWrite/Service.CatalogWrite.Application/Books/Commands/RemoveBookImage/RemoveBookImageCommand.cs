@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.ImageSources;
 
-namespace Service.CatalogWrite.Application.Books.Commands.RemoveBookImage
+namespace Service.Catalog.Application.Books.Commands.RemoveBookImage
 {
 	/// <summary>
 	/// Represents command to remove specified images from specified book.

@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Common.Services;
-using Service.CatalogWrite.Domain.Categories;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Domain.Categories;
 
-namespace Service.CatalogWrite.Application.Categories.Commands.CreateCategory
+namespace Service.Catalog.Application.Categories.Commands.CreateCategory
 {
 	/// <summary>
 	/// Represents the <see cref="CreateCategoryCommand"/> validator.

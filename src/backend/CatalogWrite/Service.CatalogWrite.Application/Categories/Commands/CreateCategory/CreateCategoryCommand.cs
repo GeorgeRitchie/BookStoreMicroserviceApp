@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Categories.Commands.CreateCategory
+namespace Service.Catalog.Application.Categories.Commands.CreateCategory
 {
 	/// <summary>
 	/// Represents the command for creating a new category.

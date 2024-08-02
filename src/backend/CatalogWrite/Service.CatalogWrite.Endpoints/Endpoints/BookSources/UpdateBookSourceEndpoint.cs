@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.BooSources.Commands.UpdateBookSource;
+using Service.Catalog.Application.BooSources.Commands.UpdateBookSource;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.BookSources
+namespace Service.Catalog.Endpoints.Endpoints.BookSources
 {
 	/// <summary>
 	/// Represents book source update endpoint.

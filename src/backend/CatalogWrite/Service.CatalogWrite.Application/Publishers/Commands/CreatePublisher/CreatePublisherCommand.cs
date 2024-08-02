@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Publishers.Commands.CreatePublisher
+namespace Service.Catalog.Application.Publishers.Commands.CreatePublisher
 {
 	/// <summary>
 	/// Represents the command to create a new publisher.

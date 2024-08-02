@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Application.Publishers.Queries.GetPublisherById
+namespace Service.Catalog.Application.Publishers.Queries.GetPublisherById
 {
 	/// <summary>
 	/// Represents the <see cref="GetPublisherByIdQuery"/> handler.

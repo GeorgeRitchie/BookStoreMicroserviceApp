@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Common.Services
+namespace Service.Catalog.Application.Common.Services
 {
 	/// <summary>
 	/// Represents the abstraction to manage files.

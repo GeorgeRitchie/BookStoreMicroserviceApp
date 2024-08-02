@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.WebApi.Helpers
+namespace Service.Catalog.WebApi.Helpers
 {
 	/// <summary>
 	/// Contains const values used in web api.

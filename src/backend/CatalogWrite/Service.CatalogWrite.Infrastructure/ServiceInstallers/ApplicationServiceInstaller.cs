@@ -23,12 +23,12 @@ using Infrastructure.Utilities;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Service.CatalogWrite.Application.Common.Validators;
-using Service.CatalogWrite.Infrastructure.Idempotence;
+using Service.Catalog.Application.Common.Validators;
+using Service.Catalog.Infrastructure.Idempotence;
 using BaseApplication = Application;
-using CatalogApplication = Service.CatalogWrite.Application;
+using CatalogApplication = Service.Catalog.Application;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the CategoryWrite service application layer service installer.

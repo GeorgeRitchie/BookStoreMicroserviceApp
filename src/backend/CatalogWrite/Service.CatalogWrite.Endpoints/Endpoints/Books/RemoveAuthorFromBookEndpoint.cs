@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Books.Commands.RemoveAuthor;
+using Service.Catalog.Application.Books.Commands.RemoveAuthor;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Books
+namespace Service.Catalog.Endpoints.Endpoints.Books
 {
 	/// <summary>
 	/// Represents remove author from book endpoint.

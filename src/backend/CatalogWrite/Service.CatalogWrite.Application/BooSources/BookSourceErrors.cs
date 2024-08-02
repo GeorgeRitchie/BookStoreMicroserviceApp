@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.BookSources;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.BookSources;
 
-namespace Service.CatalogWrite.Application.BooSources
+namespace Service.Catalog.Application.BooSources
 {
 	/// <summary>
 	/// Contains the book source errors.

@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Queries.GetBookById
+namespace Service.Catalog.Application.Books.Queries.GetBookById
 {
 	/// <summary>
 	/// Represents the <see cref="GetBookByIdQuery"/> handler.

@@ -15,12 +15,12 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors.Events;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Domain.ValueObjects;
+using Service.Catalog.Domain.Authors.Events;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.ImageSources;
+using Service.Catalog.Domain.ValueObjects;
 
-namespace Service.CatalogWrite.Domain.Authors
+namespace Service.Catalog.Domain.Authors
 {
 	/// <summary>
 	/// Represents the Author entity.

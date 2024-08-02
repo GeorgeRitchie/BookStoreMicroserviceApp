@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Books.Commands.RemoveCategory
+namespace Service.Catalog.Application.Books.Commands.RemoveCategory
 {
 	/// <summary>
 	/// Represents the command for removing the specified category from the specified book.

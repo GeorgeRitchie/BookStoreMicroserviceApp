@@ -19,10 +19,10 @@ using Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the CatalogWrite service endpoints service installer.
+	/// Represents the Catalog service endpoints service installer.
 	/// </summary>
 	internal sealed class EndpointsServiceInstaller : IServiceInstaller
 	{

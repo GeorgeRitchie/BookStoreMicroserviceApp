@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Routes
+namespace Service.Catalog.Endpoints.Routes
 {
 	/// <summary>
 	/// Contains values used for book endpoints routing stuff.

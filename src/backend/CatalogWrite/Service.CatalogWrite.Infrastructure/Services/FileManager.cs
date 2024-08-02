@@ -21,9 +21,9 @@ using Application.ServiceLifetimes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Service.CatalogWrite.Application.Common.Services;
+using Service.Catalog.Application.Common.Services;
 
-namespace Service.CatalogWrite.Infrastructure.Services
+namespace Service.Catalog.Infrastructure.Services
 {
 	/// <summary>
 	/// Represents <see cref="IFileManager"/> implementation for file storing.

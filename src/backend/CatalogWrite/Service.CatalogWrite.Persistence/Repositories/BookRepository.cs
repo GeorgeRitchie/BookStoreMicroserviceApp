@@ -17,9 +17,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using Persistence.Repositories;
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Persistence.Repositories
+namespace Service.Catalog.Persistence.Repositories
 {
 	/// <summary>
 	/// Represents repository implementation for <see cref="Book"/> entity.
@@ -28,8 +28,8 @@ namespace Service.CatalogWrite.Persistence.Repositories
 	/// Initializes a new instance of the <see cref="BookRepository"/> class.
 	/// </remarks>
 	/// <param name="dbContext">The database context.</param>
-	internal sealed class BookRepository(CatalogWriteDbContext context)
-		: SoftDeletableRepository<Book, BookId, CatalogWriteDbContext>(context), IBookRepository
+	internal sealed class BookRepository(CatalogDbContext context)
+		: SoftDeletableRepository<Book, BookId, CatalogDbContext>(context), IBookRepository
 	{
 		/// <inheritdoc/>
 		public async Task<bool> IsISBNUniqueAsync(string isbn, CancellationToken cancellationToken = default)

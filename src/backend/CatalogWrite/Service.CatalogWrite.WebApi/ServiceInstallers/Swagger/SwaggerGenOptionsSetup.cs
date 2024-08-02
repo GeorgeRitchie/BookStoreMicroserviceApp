@@ -21,7 +21,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
+namespace Service.Catalog.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
 	/// Represents the <see cref="SwaggerGenOptions"/> setup.

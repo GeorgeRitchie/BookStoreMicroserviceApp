@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.WebApi.Options
+namespace Service.Catalog.WebApi.Options
 {
 	/// <summary>
 	/// Represents the web api option.

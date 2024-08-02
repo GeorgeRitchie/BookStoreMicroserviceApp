@@ -18,10 +18,10 @@
 using Infrastructure.EventBus;
 using MassTransit;
 
-namespace Service.CatalogWrite.Infrastructure.Consumers
+namespace Service.Catalog.Infrastructure.Consumers
 {
 	/// <summary>
-	/// Represents the consumer configuration for the CatalogWrite service.
+	/// Represents the consumer configuration for the Catalog service.
 	/// </summary>
 	internal sealed class ConsumerConfiguration : IConsumerConfiguration
 	{

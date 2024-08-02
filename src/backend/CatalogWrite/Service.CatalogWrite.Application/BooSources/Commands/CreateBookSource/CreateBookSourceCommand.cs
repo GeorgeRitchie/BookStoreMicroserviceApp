@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.BooSources.Commands.CreateBookSource
+namespace Service.Catalog.Application.BooSources.Commands.CreateBookSource
 {
     /// <summary>
     /// Represents the command to create a new book source.

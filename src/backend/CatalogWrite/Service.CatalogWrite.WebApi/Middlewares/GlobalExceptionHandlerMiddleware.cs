@@ -18,7 +18,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shared.ExceptionAbstractions;
 
-namespace Service.CatalogWrite.WebApi.Middlewares
+namespace Service.Catalog.WebApi.Middlewares
 {
 	/// <summary>
 	/// Contains extension methods for <see cref="GlobalExceptionHandlerMiddleware"/>.

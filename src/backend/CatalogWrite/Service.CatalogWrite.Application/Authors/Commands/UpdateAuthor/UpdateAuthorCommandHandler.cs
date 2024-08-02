@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.ValueObjects;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.ValueObjects;
 
-namespace Service.CatalogWrite.Application.Authors.Commands.UpdateAuthor
+namespace Service.Catalog.Application.Authors.Commands.UpdateAuthor
 {
 	/// <summary>
 	/// Represents the <see cref="UpdateAuthorCommand"/> handler.

@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Domain.Publishers.Events;
-using Service.CatalogWrite.Domain.ValueObjects;
+using Service.Catalog.Domain.ImageSources;
+using Service.Catalog.Domain.Publishers.Events;
+using Service.Catalog.Domain.ValueObjects;
 
-namespace Service.CatalogWrite.Domain.Publishers
+namespace Service.Catalog.Domain.Publishers
 {
 	/// <summary>
 	/// Represents the Publisher entity.

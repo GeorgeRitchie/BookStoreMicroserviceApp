@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Publishers.Commands.RestorePublisher;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Application.Publishers.Commands.RestorePublisher;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Publishers
+namespace Service.Catalog.Endpoints.Endpoints.Publishers
 {
 	/// <summary>
 	/// Represents publisher restore endpoint.

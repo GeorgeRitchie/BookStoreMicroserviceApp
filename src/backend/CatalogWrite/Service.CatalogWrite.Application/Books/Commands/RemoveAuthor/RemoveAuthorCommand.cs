@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Books.Commands.RemoveAuthor
+namespace Service.Catalog.Application.Books.Commands.RemoveAuthor
 {
 	/// <summary>
 	/// Represents the command for removing the specified author from the specified book.

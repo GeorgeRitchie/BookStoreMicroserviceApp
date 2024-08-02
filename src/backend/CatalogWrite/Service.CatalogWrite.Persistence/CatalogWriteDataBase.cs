@@ -16,8 +16,8 @@
 */
 
 using Persistence.Repositories;
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Persistence;
+using Service.Catalog.Domain;
+using Service.Catalog.Persistence;
 
 namespace Persistence
 {
@@ -25,8 +25,8 @@ namespace Persistence
 	/// Represents database interface implementation for <see cref="ICatalogDb"/>.
 	/// </summary>
 	/// <inheritdoc cref="DataBase{TDb}"/>
-	internal sealed class CatalogWriteDataBase(CatalogWriteDbContext context)
-		: DataBase<CatalogWriteDataBase>(context), ICatalogDb
+	internal sealed class CatalogDataBase(CatalogDbContext context)
+		: DataBase<CatalogDataBase>(context), ICatalogDb
 	{
 	}
 }

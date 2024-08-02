@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors;
+using Service.Catalog.Domain.Authors;
 
-namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthorById
+namespace Service.Catalog.Application.Authors.Queries.GetAuthorById
 {
 	/// <summary>
 	/// Represents a query to get author by identifier.

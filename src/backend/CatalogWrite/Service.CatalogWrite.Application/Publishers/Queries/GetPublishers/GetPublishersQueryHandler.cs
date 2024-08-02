@@ -16,9 +16,9 @@
 */
 
 using AutoMapper.QueryableExtensions;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Application.Publishers.Queries.GetPublishers
+namespace Service.Catalog.Application.Publishers.Queries.GetPublishers
 {
 	/// <summary>
 	/// Represents the <see cref="GetPublishersQuery"/> handler.

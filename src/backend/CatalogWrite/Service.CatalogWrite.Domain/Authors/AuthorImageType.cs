@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Authors
+namespace Service.Catalog.Domain.Authors
 {
 	/// <summary>
 	/// Represents the Author image type enumeration.

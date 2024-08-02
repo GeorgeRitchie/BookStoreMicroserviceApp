@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Categories;
+using Service.Catalog.Domain.Categories;
 
-namespace Service.CatalogWrite.Domain.Books
+namespace Service.Catalog.Domain.Books
 {
 	/// <summary>
 	/// Represents the book-category join entity.

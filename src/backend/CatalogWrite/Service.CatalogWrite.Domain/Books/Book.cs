@@ -15,15 +15,15 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Books.Events;
-using Service.CatalogWrite.Domain.BookSources;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Books.Events;
+using Service.Catalog.Domain.BookSources;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.ImageSources;
+using Service.Catalog.Domain.Publishers;
 using System.Text.RegularExpressions;
 
-namespace Service.CatalogWrite.Domain.Books
+namespace Service.Catalog.Domain.Books
 {
 	/// <summary>
 	/// Represents the Book entity.

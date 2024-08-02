@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Publishers.Queries.GetPublishers;
+using Service.Catalog.Application.Publishers.Queries.GetPublishers;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Publishers
+namespace Service.Catalog.Endpoints.Endpoints.Publishers
 {
 	/// <summary>
 	/// Represents get publishers endpoint.

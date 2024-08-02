@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Common.Helpers
+namespace Service.Catalog.Application.Common.Helpers
 {
 	/// <summary>
 	/// Contains const values used in application.

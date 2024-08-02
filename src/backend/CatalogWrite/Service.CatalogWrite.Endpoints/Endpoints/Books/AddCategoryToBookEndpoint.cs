@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Books.Commands.AddCategory;
+using Service.Catalog.Application.Books.Commands.AddCategory;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Books
+namespace Service.Catalog.Endpoints.Endpoints.Books
 {
 	/// <summary>
 	/// Represents add category to book endpoint.

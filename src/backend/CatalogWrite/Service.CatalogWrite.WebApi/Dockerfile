@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/backend/CatalogWrite/Service.CatalogWrite.WebApi/Service.CatalogWrite.WebApi.csproj", "src/backend/CatalogWrite/Service.CatalogWrite.WebApi/"]
-RUN dotnet restore "./src/backend/CatalogWrite/Service.CatalogWrite.WebApi/./Service.CatalogWrite.WebApi.csproj"
+COPY ["src/backend/Catalog/Service.Catalog.WebApi/Service.Catalog.WebApi.csproj", "src/backend/Catalog/Service.Catalog.WebApi/"]
+RUN dotnet restore "./src/backend/Catalog/Service.Catalog.WebApi/./Service.Catalog.WebApi.csproj"
 COPY . .
-WORKDIR "/src/src/backend/CatalogWrite/Service.CatalogWrite.WebApi"
-RUN dotnet build "./Service.CatalogWrite.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/src/backend/Catalog/Service.Catalog.WebApi"
+RUN dotnet build "./Service.Catalog.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Service.CatalogWrite.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Service.Catalog.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Service.CatalogWrite.WebApi.dll"]
+ENTRYPOINT ["dotnet", "Service.Catalog.WebApi.dll"]

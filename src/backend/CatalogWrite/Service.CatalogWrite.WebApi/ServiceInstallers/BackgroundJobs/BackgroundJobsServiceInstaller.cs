@@ -18,7 +18,7 @@
 using Infrastructure.Configuration;
 using Quartz;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.BackgroundJobs
+namespace Service.Catalog.WebApi.ServiceInstallers.BackgroundJobs
 {
 	/// <summary>
 	/// Represents the background jobs service installer.

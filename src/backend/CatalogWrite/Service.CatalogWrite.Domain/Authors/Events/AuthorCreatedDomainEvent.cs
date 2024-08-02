@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.ValueObjects;
+using Service.Catalog.Domain.ValueObjects;
 
-namespace Service.CatalogWrite.Domain.Authors.Events
+namespace Service.Catalog.Domain.Authors.Events
 {
 	/// <summary>
 	/// Represents the domain event that is raised when a new author is created.

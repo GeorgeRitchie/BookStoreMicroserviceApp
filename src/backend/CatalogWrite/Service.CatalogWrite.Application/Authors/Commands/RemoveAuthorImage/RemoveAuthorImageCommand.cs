@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.ImageSources;
 
-namespace Service.CatalogWrite.Application.Authors.Commands.RemoveAuthorImage
+namespace Service.Catalog.Application.Authors.Commands.RemoveAuthorImage
 {
 	/// <summary>
 	/// Represents command to remove specified images from specified author.

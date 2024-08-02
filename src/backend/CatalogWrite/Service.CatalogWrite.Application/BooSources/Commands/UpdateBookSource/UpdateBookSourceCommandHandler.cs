@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.BookSources;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.BookSources;
 
-namespace Service.CatalogWrite.Application.BooSources.Commands.UpdateBookSource
+namespace Service.Catalog.Application.BooSources.Commands.UpdateBookSource
 {
 	/// <summary>
 	/// Represents the <see cref="UpdateBookSourceCommand"/> handler.

@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Domain.Books.Events
+namespace Service.Catalog.Domain.Books.Events
 {
 	/// <summary>
 	/// Represents the domain event that is raised when a new Book is created.

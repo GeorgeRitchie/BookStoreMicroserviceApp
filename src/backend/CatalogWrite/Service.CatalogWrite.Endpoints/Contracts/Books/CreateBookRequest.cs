@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Contracts.Books
+namespace Service.Catalog.Endpoints.Contracts.Books
 {
 	/// <summary>
 	/// Represents the request to create a new book.

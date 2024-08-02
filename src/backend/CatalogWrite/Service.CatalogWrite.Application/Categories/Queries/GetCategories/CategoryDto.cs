@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Categories;
+using Service.Catalog.Domain.Categories;
 
-namespace Service.CatalogWrite.Application.Categories.Queries.GetCategories
+namespace Service.Catalog.Application.Categories.Queries.GetCategories
 {
 	/// <summary>
 	/// Represents the dto for <see cref="Category"/> entity.

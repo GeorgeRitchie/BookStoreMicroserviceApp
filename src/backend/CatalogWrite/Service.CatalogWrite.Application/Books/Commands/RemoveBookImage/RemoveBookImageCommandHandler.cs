@@ -15,12 +15,12 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Common.Services;
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.ImageSources;
 
-namespace Service.CatalogWrite.Application.Books.Commands.RemoveBookImage
+namespace Service.Catalog.Application.Books.Commands.RemoveBookImage
 {
 	/// <summary>
 	/// Represents the <see cref="RemoveBookImageCommand"/> handler.

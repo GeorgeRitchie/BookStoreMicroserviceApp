@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.Categories;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.Categories;
 
-namespace Service.CatalogWrite.Application.Books.Commands.RemoveCategory
+namespace Service.Catalog.Application.Books.Commands.RemoveCategory
 {
 	/// <summary>
 	/// Represents the <see cref="RemoveCategoryCommand"/> handler.

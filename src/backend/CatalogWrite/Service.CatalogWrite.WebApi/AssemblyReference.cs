@@ -17,10 +17,10 @@
 
 using System.Reflection;
 
-namespace Service.CatalogWrite.WebApi
+namespace Service.Catalog.WebApi
 {
 	/// <summary>
-	/// Represents the CatalogWrite service WebApi assembly reference.
+	/// Represents the Catalog service WebApi assembly reference.
 	/// </summary>
 	public static class AssemblyReference
 	{
@@ -32,6 +32,6 @@ namespace Service.CatalogWrite.WebApi
 		/// <summary>
 		/// The module name this assembly belongs to.
 		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		public const string ModuleName = nameof(Catalog);
 	}
 }

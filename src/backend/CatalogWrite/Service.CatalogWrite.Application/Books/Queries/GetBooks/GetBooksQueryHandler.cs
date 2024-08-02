@@ -16,9 +16,9 @@
 */
 
 using AutoMapper.QueryableExtensions;
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Queries.GetBooks
+namespace Service.Catalog.Application.Books.Queries.GetBooks
 {
 	/// <summary>
 	/// Represents the <see cref="GetBooksQuery"/> handler.

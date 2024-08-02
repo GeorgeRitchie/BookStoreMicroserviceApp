@@ -16,9 +16,9 @@
 */
 
 using AutoMapper.QueryableExtensions;
-using Service.CatalogWrite.Domain.Categories;
+using Service.Catalog.Domain.Categories;
 
-namespace Service.CatalogWrite.Application.Categories.Queries.GetCategories
+namespace Service.Catalog.Application.Categories.Queries.GetCategories
 {
 	/// <summary>
 	/// Represents the <see cref="GetCategoriesQuery"/> handler.

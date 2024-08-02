@@ -16,11 +16,11 @@
 */
 
 using Endpoints.Models;
-using Service.CatalogWrite.Application.Books.Commands.SetBookImage;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Endpoints.Contracts.Books;
+using Service.Catalog.Application.Books.Commands.SetBookImage;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Endpoints.Contracts.Books;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Books
+namespace Service.Catalog.Endpoints.Endpoints.Books
 {
 	/// <summary>
 	/// Represents book image setup endpoint.

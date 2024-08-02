@@ -17,7 +17,7 @@
 
 using System.Text.RegularExpressions;
 
-namespace Service.CatalogWrite.Domain.ValueObjects
+namespace Service.Catalog.Domain.ValueObjects
 {
 	/// <summary>
 	/// Represents the Email value object.

@@ -18,10 +18,10 @@
 using Application.EventBus;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Inbox;
-using Service.CatalogWrite.Domain;
+using Service.Catalog.Domain;
 using Shared.Repositories;
 
-namespace Service.CatalogWrite.Infrastructure.Idempotence
+namespace Service.Catalog.Infrastructure.Idempotence
 {
 	/// <summary>
 	/// Represents the idempotent integration event handler, which checks if the integration event has already been handled previously.

@@ -16,10 +16,10 @@
 */
 
 using Endpoints.Models;
-using Service.CatalogWrite.Application.Categories.Commands.CreateCategory;
-using Service.CatalogWrite.Endpoints.Contracts.Categories;
+using Service.Catalog.Application.Categories.Commands.CreateCategory;
+using Service.Catalog.Endpoints.Contracts.Categories;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
+namespace Service.Catalog.Endpoints.Endpoints.Categories
 {
 	/// <summary>
 	/// Represents create category endpoint.

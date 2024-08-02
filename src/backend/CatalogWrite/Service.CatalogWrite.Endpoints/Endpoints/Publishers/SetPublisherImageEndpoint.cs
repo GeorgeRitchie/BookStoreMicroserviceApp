@@ -16,11 +16,11 @@
 */
 
 using Endpoints.Models;
-using Service.CatalogWrite.Application.Publishers.Commands.SetPublisherImage;
-using Service.CatalogWrite.Domain.Publishers;
-using Service.CatalogWrite.Endpoints.Contracts.Publishers;
+using Service.Catalog.Application.Publishers.Commands.SetPublisherImage;
+using Service.Catalog.Domain.Publishers;
+using Service.Catalog.Endpoints.Contracts.Publishers;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Publishers
+namespace Service.Catalog.Endpoints.Endpoints.Publishers
 {
 	/// <summary>
 	/// Represents publisher image setup endpoint.

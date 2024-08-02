@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Contracts.Publishers
+namespace Service.Catalog.Endpoints.Contracts.Publishers
 {
 	/// <summary>
 	/// Represents the request to update the specified publisher.

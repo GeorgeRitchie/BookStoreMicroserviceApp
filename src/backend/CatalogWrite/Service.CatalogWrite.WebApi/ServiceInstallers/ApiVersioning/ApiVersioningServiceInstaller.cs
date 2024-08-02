@@ -17,7 +17,7 @@
 
 using Infrastructure.Configuration;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.ApiVersioning
+namespace Service.Catalog.WebApi.ServiceInstallers.ApiVersioning
 {
 	/// <summary>
 	/// Represents the Api Versioning service installer.

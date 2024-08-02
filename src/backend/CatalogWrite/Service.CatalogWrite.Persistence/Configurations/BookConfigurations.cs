@@ -17,13 +17,13 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Persistence.Contracts;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Persistence.Contracts;
 using Shared.Extensions;
 
-namespace Service.CatalogWrite.Persistence.Configurations
+namespace Service.Catalog.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="Book"/> entity configuration.

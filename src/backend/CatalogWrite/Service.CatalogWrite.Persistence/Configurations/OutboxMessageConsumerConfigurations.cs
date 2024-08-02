@@ -18,9 +18,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Outbox;
-using Service.CatalogWrite.Persistence.Contracts;
+using Service.Catalog.Persistence.Contracts;
 
-namespace Service.CatalogWrite.Persistence.Configurations
+namespace Service.Catalog.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="OutboxMessageConsumer"/> entity configuration.

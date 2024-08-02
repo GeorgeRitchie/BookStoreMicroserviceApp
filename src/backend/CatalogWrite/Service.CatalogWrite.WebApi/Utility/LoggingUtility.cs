@@ -17,7 +17,7 @@
 
 using Serilog;
 
-namespace Service.CatalogWrite.WebApi.Utility
+namespace Service.Catalog.WebApi.Utility
 {
 	/// <summary>
 	/// Contains utility methods for logging.

@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Publishers.Queries.GetPublisherById;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Application.Publishers.Queries.GetPublisherById;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Publishers
+namespace Service.Catalog.Endpoints.Endpoints.Publishers
 {
 	/// <summary>
 	/// Represents get publisher by identifier endpoint.

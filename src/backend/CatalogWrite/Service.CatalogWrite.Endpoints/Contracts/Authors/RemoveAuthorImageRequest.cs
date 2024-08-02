@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Contracts.Authors
+namespace Service.Catalog.Endpoints.Contracts.Authors
 {
 	/// <summary>
 	/// Represents the request to remove images from the specified author.

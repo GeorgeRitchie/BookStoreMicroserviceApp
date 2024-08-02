@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Common.Services;
-using Service.CatalogWrite.Application.Common.Validators;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Application.Common.Validators;
 
-namespace Service.CatalogWrite.Application.Books.Commands.SetBookImage
+namespace Service.Catalog.Application.Books.Commands.SetBookImage
 {
 	/// <summary>
 	/// Represents the <see cref="SetBookImageCommand"/> validator.

@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.BookSources.Events
+namespace Service.Catalog.Domain.BookSources.Events
 {
 	/// <summary>
 	/// Represents the domain event that is raised when a BookSource is updated.

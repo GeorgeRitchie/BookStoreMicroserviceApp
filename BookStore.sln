@@ -23,21 +23,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Commo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{E28D425B-9C6F-40AB-B252-4D296DC97852}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogWrite", "CatalogWrite", "{C9134A20-9791-47A1-9D85-0B77FC9ACCFE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{C9134A20-9791-47A1-9D85-0B77FC9ACCFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.Domain", "src\backend\CatalogWrite\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj", "{97BB6BFD-BB6E-42A1-B578-DB41647FA5BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.Domain", "src\backend\CatalogWrite\Service.CatalogWrite.Domain\Service.CatalogWrite.Domain.csproj", "{97BB6BFD-BB6E-42A1-B578-DB41647FA5BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.Application", "src\backend\CatalogWrite\Service.CatalogWrite.Application\Service.CatalogWrite.Application.csproj", "{321DA2A4-6C2D-40A5-ADCB-281273AA2E0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.Application", "src\backend\CatalogWrite\Service.CatalogWrite.Application\Service.CatalogWrite.Application.csproj", "{321DA2A4-6C2D-40A5-ADCB-281273AA2E0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.Endpoints", "src\backend\CatalogWrite\Service.CatalogWrite.Endpoints\Service.CatalogWrite.Endpoints.csproj", "{696A954D-D258-41F2-8ABD-B4806CD559EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.Endpoints", "src\backend\CatalogWrite\Service.CatalogWrite.Endpoints\Service.CatalogWrite.Endpoints.csproj", "{696A954D-D258-41F2-8ABD-B4806CD559EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.Infrastructure", "src\backend\CatalogWrite\Service.CatalogWrite.Infrastructure\Service.CatalogWrite.Infrastructure.csproj", "{8936870C-DB09-4FBC-BD3C-3CFF88AAFDF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.Infrastructure", "src\backend\CatalogWrite\Service.CatalogWrite.Infrastructure\Service.CatalogWrite.Infrastructure.csproj", "{8936870C-DB09-4FBC-BD3C-3CFF88AAFDF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.IntegrationEvents", "src\backend\CatalogWrite\Service.CatalogWrite.IntegrationEvents\Service.CatalogWrite.IntegrationEvents.csproj", "{4733927E-BCC6-4E6D-9DA0-BE2075CAF1AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.IntegrationEvents", "src\backend\CatalogWrite\Service.CatalogWrite.IntegrationEvents\Service.CatalogWrite.IntegrationEvents.csproj", "{4733927E-BCC6-4E6D-9DA0-BE2075CAF1AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.Persistence", "src\backend\CatalogWrite\Service.CatalogWrite.Persistence\Service.CatalogWrite.Persistence.csproj", "{27C1527D-E005-43AE-8EAB-AFEE2AC1A70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.Persistence", "src\backend\CatalogWrite\Service.CatalogWrite.Persistence\Service.CatalogWrite.Persistence.csproj", "{27C1527D-E005-43AE-8EAB-AFEE2AC1A70E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.CatalogWrite.WebApi", "src\backend\CatalogWrite\Service.CatalogWrite.WebApi\Service.CatalogWrite.WebApi.csproj", "{33558D73-C2E6-42BC-B9EB-835E6E20FE7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.CatalogWrite.WebApi", "src\backend\CatalogWrite\Service.CatalogWrite.WebApi\Service.CatalogWrite.WebApi.csproj", "{33558D73-C2E6-42BC-B9EB-835E6E20FE7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

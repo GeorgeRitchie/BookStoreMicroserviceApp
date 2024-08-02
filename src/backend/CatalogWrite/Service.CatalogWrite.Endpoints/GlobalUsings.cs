@@ -22,6 +22,6 @@ global using MediatR;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
-global using Service.CatalogWrite.Endpoints.Routes;
+global using Service.Catalog.Endpoints.Routes;
 global using Shared.Results;
 global using Swashbuckle.AspNetCore.Annotations;

@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.Categories.Events;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.Categories.Events;
+using Service.Catalog.Domain.ImageSources;
 
-namespace Service.CatalogWrite.Domain.Categories
+namespace Service.Catalog.Domain.Categories
 {
 	/// <summary>
 	/// Represents the Category entity.

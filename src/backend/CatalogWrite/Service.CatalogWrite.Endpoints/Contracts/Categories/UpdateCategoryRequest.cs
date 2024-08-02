@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Endpoints.Contracts.Categories
+namespace Service.Catalog.Endpoints.Contracts.Categories
 {
 	/// <summary>
 	/// Represents the request to update the specified category.

@@ -15,13 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Books.Commands.CreateBook;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.Publishers;
-using Service.CatalogWrite.Endpoints.Contracts.Books;
+using Service.Catalog.Application.Books.Commands.CreateBook;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.Publishers;
+using Service.Catalog.Endpoints.Contracts.Books;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Books
+namespace Service.Catalog.Endpoints.Endpoints.Books
 {
 	/// <summary>
 	/// Represents create book endpoint.

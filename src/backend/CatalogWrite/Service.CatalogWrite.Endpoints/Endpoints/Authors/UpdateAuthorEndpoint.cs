@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Authors.Commands.UpdateAuthor;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Endpoints.Contracts.Authors;
+using Service.Catalog.Application.Authors.Commands.UpdateAuthor;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Endpoints.Contracts.Authors;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
+namespace Service.Catalog.Endpoints.Endpoints.Authors
 {
 	/// <summary>
 	/// Represents author update endpoint.

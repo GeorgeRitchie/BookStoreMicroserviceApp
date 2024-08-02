@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Common.Services;
-using Service.CatalogWrite.Application.Common.Validators;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Application.Common.Validators;
 
-namespace Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage
+namespace Service.Catalog.Application.Authors.Commands.SetAuthorImage
 {
 	/// <summary>
 	/// Represents the <see cref="SetAuthorImageCommand"/> validator.

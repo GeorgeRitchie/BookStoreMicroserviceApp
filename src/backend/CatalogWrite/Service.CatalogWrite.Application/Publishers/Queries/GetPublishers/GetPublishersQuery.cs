@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Publishers.Queries.GetPublishers
+namespace Service.Catalog.Application.Publishers.Queries.GetPublishers
 {
 	/// <summary>
 	/// Represents a query to get publishers.

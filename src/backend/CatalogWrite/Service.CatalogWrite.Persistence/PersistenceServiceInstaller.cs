@@ -29,27 +29,27 @@ using Persistence.Interceptors;
 using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.BookSources;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Domain.Publishers;
-using Service.CatalogWrite.Persistence.Contracts;
-using Service.CatalogWrite.Persistence.Repositories;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.BookSources;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.ImageSources;
+using Service.Catalog.Domain.Publishers;
+using Service.Catalog.Persistence.Contracts;
+using Service.Catalog.Persistence.Repositories;
 using Shared.Repositories;
 
-namespace Service.CatalogWrite.Persistence
+namespace Service.Catalog.Persistence
 {
 	/// <summary>
-	/// Represents the CatalogWrite module persistence service installer.
+	/// Represents the Catalog module persistence service installer.
 	/// </summary>
 	internal sealed class PersistenceServiceInstaller : IServiceInstaller
 	{
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration)
-			=> services.AddDbContext<CatalogWriteDbContext>((serviceProvider, options) =>
+			=> services.AddDbContext<CatalogDbContext>((serviceProvider, options) =>
 				{
 					string path = Directory.GetCurrentDirectory();
 					ConnectionStringOptions connectionString = serviceProvider.GetService<IOptions<ConnectionStringOptions>>()!.Value;
@@ -57,7 +57,7 @@ namespace Service.CatalogWrite.Persistence
 					options
 						.UseSqlServer(
 							connectionString.Value.Replace("[DataDirectory]", path),
-							dbContextOptionsBuilder => dbContextOptionsBuilder.WithMigrationHistoryTableInSchema(Schemas.CatalogWrite))
+							dbContextOptionsBuilder => dbContextOptionsBuilder.WithMigrationHistoryTableInSchema(Schemas.Catalog))
 						.UseSnakeCaseNamingConvention()
 						.AddInterceptors(
 							new ConvertDomainEventsToOutboxMessagesInterceptor(),
@@ -72,22 +72,22 @@ namespace Service.CatalogWrite.Persistence
 					}
 				})
 				// TODO __##__ For additional Unit Of Work implementations add here.
-				.AddScoped<ICatalogDb, CatalogWriteDataBase>()
+				.AddScoped<ICatalogDb, CatalogDataBase>()
 				// TODO __##__ IRepository implementations add here.
 				.AddScoped<BookRepository>()
 				.AddScoped<IRepository<Book, BookId>>(provider => provider.GetRequiredService<BookRepository>())
 				.AddScoped<IBookRepository>(provider => provider.GetRequiredService<BookRepository>())
-				.AddScoped<IRepository<ImageSource<BookImageType>, ImageSourceId>, Repository<ImageSource<BookImageType>, ImageSourceId, CatalogWriteDbContext>>()
+				.AddScoped<IRepository<ImageSource<BookImageType>, ImageSourceId>, Repository<ImageSource<BookImageType>, ImageSourceId, CatalogDbContext>>()
 				.AddScoped<IBookSourceRepository, BookSourceRepository>()
-				.AddScoped<IRepository<Category, CategoryId>, SoftDeletableRepository<Category, CategoryId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<ImageSource<CategoryImageType>, ImageSourceId>, Repository<ImageSource<CategoryImageType>, ImageSourceId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<Author, AuthorId>, SoftDeletableRepository<Author, AuthorId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<ImageSource<AuthorImageType>, ImageSourceId>, Repository<ImageSource<AuthorImageType>, ImageSourceId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<Publisher, PublisherId>, SoftDeletableRepository<Publisher, PublisherId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<ImageSource<PublisherImageType>, ImageSourceId>, Repository<ImageSource<PublisherImageType>, ImageSourceId, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, CatalogWriteDbContext>>()
-				.AddScoped<IRepository<InboxMessageConsumer, Guid>, Repository<InboxMessageConsumer, Guid, CatalogWriteDbContext>>();
+				.AddScoped<IRepository<Category, CategoryId>, SoftDeletableRepository<Category, CategoryId, CatalogDbContext>>()
+				.AddScoped<IRepository<ImageSource<CategoryImageType>, ImageSourceId>, Repository<ImageSource<CategoryImageType>, ImageSourceId, CatalogDbContext>>()
+				.AddScoped<IRepository<Author, AuthorId>, SoftDeletableRepository<Author, AuthorId, CatalogDbContext>>()
+				.AddScoped<IRepository<ImageSource<AuthorImageType>, ImageSourceId>, Repository<ImageSource<AuthorImageType>, ImageSourceId, CatalogDbContext>>()
+				.AddScoped<IRepository<Publisher, PublisherId>, SoftDeletableRepository<Publisher, PublisherId, CatalogDbContext>>()
+				.AddScoped<IRepository<ImageSource<PublisherImageType>, ImageSourceId>, Repository<ImageSource<PublisherImageType>, ImageSourceId, CatalogDbContext>>()
+				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, CatalogDbContext>>()
+				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, CatalogDbContext>>()
+				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, CatalogDbContext>>()
+				.AddScoped<IRepository<InboxMessageConsumer, Guid>, Repository<InboxMessageConsumer, Guid, CatalogDbContext>>();
 	}
 }

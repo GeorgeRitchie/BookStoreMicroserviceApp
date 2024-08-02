@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Books.Commands.DeleteBook;
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Application.Books.Commands.DeleteBook;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Books
+namespace Service.Catalog.Endpoints.Endpoints.Books
 {
 	/// <summary>
 	/// Represents book delete endpoint.

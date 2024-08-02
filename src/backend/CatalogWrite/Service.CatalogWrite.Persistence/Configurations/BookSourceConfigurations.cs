@@ -18,11 +18,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
-using Service.CatalogWrite.Domain.BookSources;
-using Service.CatalogWrite.Persistence.Contracts;
+using Service.Catalog.Domain.BookSources;
+using Service.Catalog.Persistence.Contracts;
 using Shared.Extensions;
 
-namespace Service.CatalogWrite.Persistence.Configurations
+namespace Service.Catalog.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="BookSource"/> entity configuration.

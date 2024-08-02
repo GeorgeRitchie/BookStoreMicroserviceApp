@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain.ImageSources;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Application.Publishers
+namespace Service.Catalog.Application.Publishers
 {
 	/// <summary>
 	/// Contains the publisher errors.

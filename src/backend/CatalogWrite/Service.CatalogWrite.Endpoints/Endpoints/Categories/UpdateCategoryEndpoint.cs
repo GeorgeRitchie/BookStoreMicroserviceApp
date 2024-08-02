@@ -16,11 +16,11 @@
 */
 
 using Endpoints.Models;
-using Service.CatalogWrite.Application.Categories.Commands.UpdateCategory;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Endpoints.Contracts.Categories;
+using Service.Catalog.Application.Categories.Commands.UpdateCategory;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Endpoints.Contracts.Categories;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Categories
+namespace Service.Catalog.Endpoints.Endpoints.Categories
 {
 	/// <summary>
 	/// Represents category update endpoint.

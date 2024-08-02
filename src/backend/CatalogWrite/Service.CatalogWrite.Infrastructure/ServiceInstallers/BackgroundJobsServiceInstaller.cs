@@ -21,7 +21,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the CategoryWrite service background jobs service installer.

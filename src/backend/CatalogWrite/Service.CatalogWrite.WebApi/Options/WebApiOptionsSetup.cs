@@ -17,7 +17,7 @@
 
 using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.WebApi.Options
+namespace Service.Catalog.WebApi.Options
 {
 	/// <summary>
 	/// Represents the <see cref="WebApiOptions"/> setup.
@@ -28,7 +28,7 @@ namespace Service.CatalogWrite.WebApi.Options
 	/// <param name="configuration">The configuration.</param>
 	internal sealed class WebApiOptionsSetup(IConfiguration configuration) : IConfigureOptions<WebApiOptions>
 	{
-		private const string ConfigurationSectionName = "Service:CatalogWrite:WebApiOptions";
+		private const string ConfigurationSectionName = "Service:Catalog:WebApiOptions";
 
 		/// <inheritdoc />
 		public void Configure(WebApiOptions options)

@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.BooSources.Commands.UpdateBookSource
+namespace Service.Catalog.Application.BooSources.Commands.UpdateBookSource
 {
 	/// <summary>
 	/// Represents the command for updating the specified book source.

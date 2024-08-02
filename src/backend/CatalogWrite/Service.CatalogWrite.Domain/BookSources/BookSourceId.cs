@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.BookSources
+namespace Service.Catalog.Domain.BookSources
 {
 	/// <summary>
 	/// Represents the book source identifier.

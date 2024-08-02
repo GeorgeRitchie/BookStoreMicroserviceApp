@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Categories
+namespace Service.Catalog.Domain.Categories
 {
 	/// <summary>
 	/// Represents the Category image type enumeration.

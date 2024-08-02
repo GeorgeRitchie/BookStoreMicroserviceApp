@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Books.Commands.AddCategory
+namespace Service.Catalog.Application.Books.Commands.AddCategory
 {
 	/// <summary>
 	/// Represents the command for adding the specified category to the specified book.

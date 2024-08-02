@@ -20,12 +20,12 @@ using Infrastructure.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.CatalogWrite.Infrastructure
+namespace Service.Catalog.Infrastructure
 {
 	/// <summary>
 	/// Represents the CategoryWrite service installer.
 	/// </summary>
-	public sealed class CatalogWriteModuleInstaller : IModuleInstaller
+	public sealed class CatalogModuleInstaller : IModuleInstaller
 	{
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration) =>

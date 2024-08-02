@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Authors.Commands.CreateAuthor
+namespace Service.Catalog.Application.Authors.Commands.CreateAuthor
 {
 	/// <summary>
 	/// Represents the command for creating a new author.

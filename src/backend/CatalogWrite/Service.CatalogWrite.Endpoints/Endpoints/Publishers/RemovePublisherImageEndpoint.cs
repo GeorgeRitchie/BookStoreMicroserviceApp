@@ -15,12 +15,12 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Publishers.Commands.RemovePublisherImage;
-using Service.CatalogWrite.Domain.ImageSources;
-using Service.CatalogWrite.Domain.Publishers;
-using Service.CatalogWrite.Endpoints.Contracts.Publishers;
+using Service.Catalog.Application.Publishers.Commands.RemovePublisherImage;
+using Service.Catalog.Domain.ImageSources;
+using Service.Catalog.Domain.Publishers;
+using Service.Catalog.Endpoints.Contracts.Publishers;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Publishers
+namespace Service.Catalog.Endpoints.Endpoints.Publishers
 {
 	/// <summary>
 	/// Represents publisher image remove endpoint.

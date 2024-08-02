@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Common.Models;
-using Service.CatalogWrite.Domain.Authors;
+using Service.Catalog.Application.Common.Models;
+using Service.Catalog.Domain.Authors;
 
-namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthors
+namespace Service.Catalog.Application.Authors.Queries.GetAuthors
 {
 	/// <summary>
 	/// Represents the dto for <see cref="Author"/> entity.

@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Authors.Commands.RestoreAuthor;
-using Service.CatalogWrite.Domain.Authors;
+using Service.Catalog.Application.Authors.Commands.RestoreAuthor;
+using Service.Catalog.Domain.Authors;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
+namespace Service.Catalog.Endpoints.Endpoints.Authors
 {
 	/// <summary>
 	/// Represents author restore endpoint.

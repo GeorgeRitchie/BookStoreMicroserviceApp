@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Books.Commands.AddAuthor
+namespace Service.Catalog.Application.Books.Commands.AddAuthor
 {
 	/// <summary>
 	/// Represents the command for adding the specified author to the specified book.

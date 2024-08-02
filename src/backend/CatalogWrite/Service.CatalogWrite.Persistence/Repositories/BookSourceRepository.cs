@@ -16,9 +16,9 @@
 */
 
 using Persistence.Repositories;
-using Service.CatalogWrite.Domain.BookSources;
+using Service.Catalog.Domain.BookSources;
 
-namespace Service.CatalogWrite.Persistence.Repositories
+namespace Service.Catalog.Persistence.Repositories
 {
 	/// <summary>
 	/// Represents repository implementation for <see cref="BookSource"/> entity.
@@ -27,8 +27,8 @@ namespace Service.CatalogWrite.Persistence.Repositories
 	/// Initializes a new instance of the <see cref="BookSourceRepository"/> class.
 	/// </remarks>
 	/// <param name="dbContext">The database context.</param>
-	internal sealed class BookSourceRepository(CatalogWriteDbContext context)
-		: Repository<BookSource, BookSourceId, CatalogWriteDbContext>(context), IBookSourceRepository
+	internal sealed class BookSourceRepository(CatalogDbContext context)
+		: Repository<BookSource, BookSourceId, CatalogDbContext>(context), IBookSourceRepository
 	{
 	}
 }

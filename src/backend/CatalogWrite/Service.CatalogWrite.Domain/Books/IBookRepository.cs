@@ -17,7 +17,7 @@
 
 using Shared.Repositories;
 
-namespace Service.CatalogWrite.Domain.Books
+namespace Service.Catalog.Domain.Books
 {
 	/// <summary>
 	/// Represents the Book repository interface.

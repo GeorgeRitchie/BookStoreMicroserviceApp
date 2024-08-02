@@ -15,13 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Common.Helpers;
-using Service.CatalogWrite.Application.Common.Services;
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Application.Common.Helpers;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.ImageSources;
 
-namespace Service.CatalogWrite.Application.Categories.Commands.UpdateCategory
+namespace Service.Catalog.Application.Categories.Commands.UpdateCategory
 {
 	/// <summary>
 	/// Represents the <see cref="UpdateCategoryCommand"/> handler.

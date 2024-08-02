@@ -17,10 +17,10 @@
 
 using System.Reflection;
 
-namespace Service.CatalogWrite.Application
+namespace Service.Catalog.Application
 {
 	/// <summary>
-	/// Represents the CatalogWrite service application assembly reference.
+	/// Represents the Catalog service application assembly reference.
 	/// </summary>
 	public static class AssemblyReference
 	{
@@ -32,6 +32,6 @@ namespace Service.CatalogWrite.Application
 		/// <summary>
 		/// The module name this assembly belongs to.
 		/// </summary>
-		public const string ModuleName = nameof(CatalogWrite);
+		public const string ModuleName = nameof(Catalog);
 	}
 }

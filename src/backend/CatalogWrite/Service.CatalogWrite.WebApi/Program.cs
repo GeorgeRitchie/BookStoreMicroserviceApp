@@ -21,10 +21,10 @@ using Infrastructure.Extensions;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using Serilog;
-using Service.CatalogWrite.WebApi.Extensions;
-using Service.CatalogWrite.WebApi.Middlewares;
-using Service.CatalogWrite.WebApi.Options;
-using Service.CatalogWrite.WebApi.Utility;
+using Service.Catalog.WebApi.Extensions;
+using Service.Catalog.WebApi.Middlewares;
+using Service.Catalog.WebApi.Options;
+using Service.Catalog.WebApi.Utility;
 
 LoggingUtility.Run(() =>
 {
@@ -34,12 +34,12 @@ LoggingUtility.Run(() =>
 		.ConfigureOptions<WebApiOptionsSetup>()
 		.InstallServicesFromAssemblies(
 			builder.Configuration,
-			Service.CatalogWrite.WebApi.AssemblyReference.Assembly,
+			Service.Catalog.WebApi.AssemblyReference.Assembly,
 			Authorization.AssemblyReference.Assembly,
 			Persistence.AssemblyReference.Assembly)
 	.InstallModulesFromAssemblies(
 			builder.Configuration,
-			Service.CatalogWrite.Infrastructure.AssemblyReference.Assembly);
+			Service.Catalog.Infrastructure.AssemblyReference.Assembly);
 
 	builder.Host.UseSerilogWithConfiguration();
 

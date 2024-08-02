@@ -19,7 +19,7 @@ using Application.EventBus;
 using Infrastructure.Utilities;
 using System.Collections.Concurrent;
 
-namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessInboxMessages
+namespace Service.Catalog.Infrastructure.BackgroundJobs.ProcessInboxMessages
 {
 	/// <summary>
 	/// Represents the integration event handler factory.

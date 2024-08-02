@@ -17,9 +17,9 @@
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessOutboxMessages;
+using Service.Catalog.Infrastructure.BackgroundJobs.ProcessOutboxMessages;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessOutboxMessagesOptions"/> setup.
@@ -31,7 +31,7 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 	internal sealed class ProcessOutboxMessagesOptionsSetup(IConfiguration configuration)
 		: IConfigureOptions<ProcessOutboxMessagesOptions>
 	{
-		private const string ConfigurationSectionName = "Service:CatalogWrite:BackgroundJobs:ProcessOutboxMessages";
+		private const string ConfigurationSectionName = "Service:Catalog:BackgroundJobs:ProcessOutboxMessages";
 
 		/// <inheritdoc />
 		public void Configure(ProcessOutboxMessagesOptions options)

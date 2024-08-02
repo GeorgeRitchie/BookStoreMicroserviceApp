@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Persistence.Contracts
+namespace Service.Catalog.Persistence.Contracts
 {
 	/// <summary>
 	/// Contains current module db schemas.
@@ -23,8 +23,8 @@ namespace Service.CatalogWrite.Persistence.Contracts
 	public static class Schemas
 	{
 		/// <summary>
-		/// The CatalogWrite schema.
+		/// The Catalog schema.
 		/// </summary>
-		public const string CatalogWrite = "catalog_write";
+		public const string Catalog = "catalog";
 	}
 }

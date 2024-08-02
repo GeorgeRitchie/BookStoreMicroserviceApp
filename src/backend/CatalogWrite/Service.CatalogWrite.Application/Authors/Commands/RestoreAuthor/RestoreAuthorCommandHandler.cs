@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Authors;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Authors;
 
-namespace Service.CatalogWrite.Application.Authors.Commands.RestoreAuthor
+namespace Service.Catalog.Application.Authors.Commands.RestoreAuthor
 {
 	/// <summary>
 	/// Represents the <see cref="RestoreAuthorCommand"/> handler.

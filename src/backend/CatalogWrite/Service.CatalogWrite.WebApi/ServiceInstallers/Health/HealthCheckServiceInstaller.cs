@@ -18,11 +18,11 @@
 using Infrastructure.Configuration;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Options;
-using Service.CatalogWrite.Persistence;
-using Service.CatalogWrite.WebApi.ServiceInstallers.DistributedCaching;
-using Service.CatalogWrite.WebApi.ServiceInstallers.EventBus;
+using Service.Catalog.Persistence;
+using Service.Catalog.WebApi.ServiceInstallers.DistributedCaching;
+using Service.Catalog.WebApi.ServiceInstallers.EventBus;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.Health
+namespace Service.Catalog.WebApi.ServiceInstallers.Health
 {
 	/// <summary>
 	/// Represents the all health check services installer.
@@ -36,7 +36,7 @@ namespace Service.CatalogWrite.WebApi.ServiceInstallers.Health
 		{
 			var healthCheckBuilder = services.AddHealthChecks();
 
-			healthCheckBuilder.AddDbContextCheck<CatalogWriteDbContext>();
+			healthCheckBuilder.AddDbContextCheck<CatalogDbContext>();
 
 			if (DistributedCacheServiceInstaller.IsRedisEnabled(configuration))
 				healthCheckBuilder.AddRedis(serviceProvider

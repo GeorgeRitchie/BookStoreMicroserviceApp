@@ -15,9 +15,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Application.Books.Commands.SetBookImage
+namespace Service.Catalog.Application.Books.Commands.SetBookImage
 {
 	/// <summary>
 	/// Represents the command for updating the specified book's images.

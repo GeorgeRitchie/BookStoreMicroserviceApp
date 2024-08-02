@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Authors.Commands.CreateAuthor;
-using Service.CatalogWrite.Endpoints.Contracts.Authors;
+using Service.Catalog.Application.Authors.Commands.CreateAuthor;
+using Service.Catalog.Endpoints.Contracts.Authors;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
+namespace Service.Catalog.Endpoints.Endpoints.Authors
 {
 	/// <summary>
 	/// Represents create author endpoint.

@@ -16,9 +16,9 @@
 */
 
 using AutoMapper.QueryableExtensions;
-using Service.CatalogWrite.Domain.Authors;
+using Service.Catalog.Domain.Authors;
 
-namespace Service.CatalogWrite.Application.Authors.Queries.GetAuthors
+namespace Service.Catalog.Application.Authors.Queries.GetAuthors
 {
 	/// <summary>
 	/// Represents the <see cref="GetAuthorsQuery"/> handler.

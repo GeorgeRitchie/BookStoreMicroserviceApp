@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.Authentication
+namespace Service.Catalog.WebApi.ServiceInstallers.Authentication
 {
 	/// <summary>
 	/// Represents the <see cref="AuthenticationOptions"/> setup.

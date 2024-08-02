@@ -17,10 +17,10 @@
 
 using System.Reflection;
 
-namespace Service.CatalogWrite.Persistence
+namespace Service.Catalog.Persistence
 {
 	/// <summary>
-	/// Represents the CatalogWrite service persistence assembly reference.
+	/// Represents the Catalog service persistence assembly reference.
 	/// </summary>
 	public static class AssemblyReference
 	{

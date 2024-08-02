@@ -19,7 +19,7 @@ using Infrastructure.BackgroundJobs;
 using Microsoft.Extensions.Options;
 using Quartz;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.BackgroundJobs
+namespace Service.Catalog.WebApi.ServiceInstallers.BackgroundJobs
 {
 	/// <summary>
 	/// Represents the <see cref="QuartzOptions"/> setup.

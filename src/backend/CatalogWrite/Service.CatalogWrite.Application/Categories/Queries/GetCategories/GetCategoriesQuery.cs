@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Application.Categories.Queries.GetCategories
+namespace Service.Catalog.Application.Categories.Queries.GetCategories
 {
 	/// <summary>
 	/// Represents a query to get categories.

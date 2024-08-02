@@ -16,10 +16,10 @@
 */
 
 using Microsoft.Extensions.Options;
-using Service.CatalogWrite.WebApi.Options;
+using Service.Catalog.WebApi.Options;
 using System.Diagnostics;
 
-namespace Service.CatalogWrite.WebApi.Middlewares
+namespace Service.Catalog.WebApi.Middlewares
 {
 	/// <summary>
 	/// Contains extension methods for <see cref="PerformanceLoggingMiddlewareExtensions"/>.

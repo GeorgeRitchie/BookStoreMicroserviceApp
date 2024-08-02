@@ -15,13 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.Categories;
-using Service.CatalogWrite.Domain.Publishers;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.Categories;
+using Service.Catalog.Domain.Publishers;
 
-namespace Service.CatalogWrite.Application.Books.Commands.CreateBook
+namespace Service.Catalog.Application.Books.Commands.CreateBook
 {
 	/// <summary>
 	/// Represents the <see cref="CreateBookCommand"/> handler.

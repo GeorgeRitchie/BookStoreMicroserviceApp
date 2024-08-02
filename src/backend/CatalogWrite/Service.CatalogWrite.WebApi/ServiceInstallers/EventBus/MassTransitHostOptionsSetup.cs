@@ -18,7 +18,7 @@
 using MassTransit;
 using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.EventBus
+namespace Service.Catalog.WebApi.ServiceInstallers.EventBus
 {
 	/// <summary>
 	/// Represents the <see cref="MassTransitHostOptions"/> setup.

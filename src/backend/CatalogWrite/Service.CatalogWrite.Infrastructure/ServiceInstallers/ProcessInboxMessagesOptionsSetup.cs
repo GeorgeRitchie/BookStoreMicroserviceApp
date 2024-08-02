@@ -17,9 +17,9 @@
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessInboxMessages;
+using Service.Catalog.Infrastructure.BackgroundJobs.ProcessInboxMessages;
 
-namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
+namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessInboxMessagesOptions"/> setup.
@@ -31,7 +31,7 @@ namespace Service.CatalogWrite.Infrastructure.ServiceInstallers
 	internal sealed class ProcessInboxMessagesOptionsSetup(IConfiguration configuration)
 		: IConfigureOptions<ProcessInboxMessagesOptions>
 	{
-		private const string ConfigurationSectionName = "Service:CatalogWrite:BackgroundJobs:ProcessInboxMessages";
+		private const string ConfigurationSectionName = "Service:Catalog:BackgroundJobs:ProcessInboxMessages";
 
 		/// <inheritdoc />
 		public void Configure(ProcessInboxMessagesOptions options)

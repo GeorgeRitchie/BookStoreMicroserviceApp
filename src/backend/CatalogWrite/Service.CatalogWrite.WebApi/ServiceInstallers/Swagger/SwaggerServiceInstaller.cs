@@ -17,7 +17,7 @@
 
 using Infrastructure.Configuration;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
+namespace Service.Catalog.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
 	/// Represents the swagger service installer.

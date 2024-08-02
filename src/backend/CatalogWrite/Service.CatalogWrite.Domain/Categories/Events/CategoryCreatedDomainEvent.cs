@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.CatalogWrite.Domain.Categories.Events
+namespace Service.Catalog.Domain.Categories.Events
 {
 	/// <summary>
 	/// Represents the domain event that is raised when a new category is created.

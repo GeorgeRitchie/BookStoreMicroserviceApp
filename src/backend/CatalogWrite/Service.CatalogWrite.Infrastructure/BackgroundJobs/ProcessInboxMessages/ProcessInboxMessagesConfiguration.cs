@@ -18,7 +18,7 @@
 using Infrastructure.BackgroundJobs;
 using Microsoft.Extensions.Options;
 
-namespace Service.CatalogWrite.Infrastructure.BackgroundJobs.ProcessInboxMessages
+namespace Service.Catalog.Infrastructure.BackgroundJobs.ProcessInboxMessages
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessInboxMessagesJob"/> configuration.

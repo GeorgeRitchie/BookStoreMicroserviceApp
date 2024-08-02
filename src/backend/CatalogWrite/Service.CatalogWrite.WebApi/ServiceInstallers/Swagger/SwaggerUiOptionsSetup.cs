@@ -18,7 +18,7 @@
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Service.CatalogWrite.WebApi.ServiceInstallers.Swagger
+namespace Service.Catalog.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
 	/// Represents the <see cref="SwaggerUIOptions"/> setup.

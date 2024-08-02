@@ -16,11 +16,11 @@
 */
 
 using Endpoints.Models;
-using Service.CatalogWrite.Application.Authors.Commands.SetAuthorImage;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Endpoints.Contracts.Authors;
+using Service.Catalog.Application.Authors.Commands.SetAuthorImage;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Endpoints.Contracts.Authors;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Authors
+namespace Service.Catalog.Endpoints.Endpoints.Authors
 {
 	/// <summary>
 	/// Represents author image setup endpoint.

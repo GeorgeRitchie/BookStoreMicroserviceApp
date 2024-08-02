@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Domain.Books;
-using Service.CatalogWrite.Domain.BookSources.Events;
+using Service.Catalog.Domain.Books;
+using Service.Catalog.Domain.BookSources.Events;
 
-namespace Service.CatalogWrite.Domain.BookSources
+namespace Service.Catalog.Domain.BookSources
 {
 	/// <summary>
 	/// Represents the book source entity.

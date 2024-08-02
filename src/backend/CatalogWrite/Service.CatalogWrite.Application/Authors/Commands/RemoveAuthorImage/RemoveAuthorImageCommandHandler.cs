@@ -16,12 +16,12 @@
 */
 
 
-using Service.CatalogWrite.Application.Common.Services;
-using Service.CatalogWrite.Domain;
-using Service.CatalogWrite.Domain.Authors;
-using Service.CatalogWrite.Domain.ImageSources;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Domain;
+using Service.Catalog.Domain.Authors;
+using Service.Catalog.Domain.ImageSources;
 
-namespace Service.CatalogWrite.Application.Authors.Commands.RemoveAuthorImage
+namespace Service.Catalog.Application.Authors.Commands.RemoveAuthorImage
 {
 	/// <summary>
 	/// Represents the <see cref="RemoveAuthorImageCommand"/> handler.

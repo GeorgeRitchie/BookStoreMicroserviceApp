@@ -17,7 +17,7 @@
 
 using Serilog;
 
-namespace Service.CatalogWrite.WebApi.Extensions
+namespace Service.Catalog.WebApi.Extensions
 {
 	/// <summary>
 	/// Contains extensions methods for the <see cref="IHostBuilder"/> interface.

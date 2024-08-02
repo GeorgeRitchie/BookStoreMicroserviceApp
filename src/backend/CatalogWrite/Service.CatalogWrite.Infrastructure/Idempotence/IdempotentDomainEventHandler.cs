@@ -19,10 +19,10 @@ using Application.Messaging;
 using Domain.Primitives;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Outbox;
-using Service.CatalogWrite.Domain;
+using Service.Catalog.Domain;
 using Shared.Repositories;
 
-namespace Service.CatalogWrite.Infrastructure.Idempotence
+namespace Service.Catalog.Infrastructure.Idempotence
 {
 	/// <summary>
 	/// Represents the idempotent domain event handler, which checks if the domain event has already been handled previously.

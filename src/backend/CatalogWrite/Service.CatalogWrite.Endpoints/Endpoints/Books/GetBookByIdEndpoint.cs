@@ -15,10 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.CatalogWrite.Application.Books.Queries.GetBookById;
-using Service.CatalogWrite.Domain.Books;
+using Service.Catalog.Application.Books.Queries.GetBookById;
+using Service.Catalog.Domain.Books;
 
-namespace Service.CatalogWrite.Endpoints.Endpoints.Books
+namespace Service.Catalog.Endpoints.Endpoints.Books
 {
 	/// <summary>
 	/// Represents get book by identifier endpoint.
