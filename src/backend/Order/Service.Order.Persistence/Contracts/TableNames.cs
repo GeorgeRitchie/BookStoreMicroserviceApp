@@ -23,6 +23,26 @@ namespace Service.Order.Persistence.Contracts
 	internal static class TableNames
 	{
 		/// <summary>
+		/// The payments table.
+		/// </summary>
+		internal const string Payments = "payments";
+
+		/// <summary>
+		/// The shipments table.
+		/// </summary>
+		internal const string Shipments = "shipments";
+
+		/// <summary>
+		/// The order items table.
+		/// </summary>
+		internal const string OrderItems = "order_items";
+
+		/// <summary>
+		/// The orders table.
+		/// </summary>
+		internal const string Orders = "orders";
+
+		/// <summary>
 		/// The inbox messages table.
 		/// </summary>
 		internal const string InboxMessages = "inbox_messages";
