@@ -37,9 +37,9 @@ LoggingUtility.Run(() =>
 			Service.Catalog.WebApi.AssemblyReference.Assembly,
 			Authorization.AssemblyReference.Assembly,
 			Persistence.AssemblyReference.Assembly)
-	.InstallModulesFromAssemblies(
-			builder.Configuration,
-			Service.Catalog.Infrastructure.AssemblyReference.Assembly);
+		.InstallModulesFromAssemblies(
+				builder.Configuration,
+				Service.Catalog.Infrastructure.AssemblyReference.Assembly);
 
 	builder.Host.UseSerilogWithConfiguration();
 

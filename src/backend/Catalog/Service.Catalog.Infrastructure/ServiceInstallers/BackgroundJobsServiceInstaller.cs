@@ -24,7 +24,7 @@ using Scrutor;
 namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the CategoryWrite service background jobs service installer.
+	/// Represents the Catalog service background jobs service installer.
 	/// </summary>
 	internal sealed class BackgroundJobsServiceInstaller : IServiceInstaller
 	{

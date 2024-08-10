@@ -17,9 +17,8 @@
 
 using Persistence.Repositories;
 using Service.Catalog.Domain;
-using Service.Catalog.Persistence;
 
-namespace Persistence
+namespace Service.Catalog.Persistence
 {
 	/// <summary>
 	/// Represents database interface implementation for <see cref="ICatalogDb"/>.

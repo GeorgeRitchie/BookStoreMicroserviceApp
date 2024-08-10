@@ -47,7 +47,7 @@ namespace Service.Catalog.WebApi.ServiceInstallers.DistributedCaching
 		/// Determines whether Redis is enabled based on the configuration settings.
 		/// </summary>
 		/// <param name="configuration">The application configuration instance.</param>
-		/// <returns>True if Redis is enabled; otherwise, false.</returns>
+		/// <returns><see langword="true"/> if Redis is enabled; otherwise, <see langword="false"/>.</returns>
 		public static bool IsRedisEnabled(IConfiguration configuration)
 			=> configuration.GetValue<bool>(RedisEnablePropPath);
 	}

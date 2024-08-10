@@ -23,7 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Service.Catalog.Infrastructure
 {
 	/// <summary>
-	/// Represents the CategoryWrite service installer.
+	/// Represents the Catalog service installer.
 	/// </summary>
 	public sealed class CatalogModuleInstaller : IModuleInstaller
 	{

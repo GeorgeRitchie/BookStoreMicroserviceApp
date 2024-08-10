@@ -31,7 +31,7 @@ using CatalogApplication = Service.Catalog.Application;
 namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the CategoryWrite service application layer service installer.
+	/// Represents the Catalog service application layer service installer.
 	/// </summary>
 	internal sealed class ApplicationServiceInstaller : IServiceInstaller
 	{

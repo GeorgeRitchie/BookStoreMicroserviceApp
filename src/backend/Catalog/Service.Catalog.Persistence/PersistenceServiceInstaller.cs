@@ -22,7 +22,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Persistence;
 using Persistence.Extensions;
 using Persistence.Inbox;
 using Persistence.Interceptors;
