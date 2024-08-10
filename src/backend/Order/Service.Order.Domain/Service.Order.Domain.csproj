@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\..\Common\Domain\Domain.csproj" />
     <ProjectReference Include="..\..\..\Common\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Payments\Service.Payments.IntegrationEvents\Service.Payments.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Shipments\Service.Shipments.IntegrationEvents\Service.Shipments.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>
