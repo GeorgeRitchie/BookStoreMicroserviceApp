@@ -17,7 +17,7 @@
 
 using Serilog;
 
-namespace Service.Order.WebApi.Extensions
+namespace Service.Orders.WebApi.Extensions
 {
 	/// <summary>
 	/// Contains extensions methods for the <see cref="IHostBuilder"/> interface.

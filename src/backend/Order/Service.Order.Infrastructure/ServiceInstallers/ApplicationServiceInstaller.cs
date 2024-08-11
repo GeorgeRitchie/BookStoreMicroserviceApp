@@ -23,11 +23,11 @@ using Infrastructure.Utilities;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Service.Order.Infrastructure.Idempotence;
+using Service.Orders.Infrastructure.Idempotence;
 using BaseApplication = Application;
-using OrderApplication = Service.Order.Application;
+using OrderApplication = Service.Orders.Application;
 
-namespace Service.Order.Infrastructure.ServiceInstallers
+namespace Service.Orders.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the Order service application layer service installer.

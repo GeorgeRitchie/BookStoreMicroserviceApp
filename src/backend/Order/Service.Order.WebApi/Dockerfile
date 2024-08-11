@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/backend/Order/Service.Order.WebApi/Service.Order.WebApi.csproj", "src/backend/Order/Service.Order.WebApi/"]
-RUN dotnet restore "./src/backend/Order/Service.Order.WebApi/Service.Order.WebApi.csproj"
+COPY ["src/backend/Orders/Service.Orders.WebApi/Service.Orders.WebApi.csproj", "src/backend/Orders/Service.Orders.WebApi/"]
+RUN dotnet restore "./src/backend/Orders/Service.Orders.WebApi/Service.Orders.WebApi.csproj"
 COPY . .
-WORKDIR "/src/src/backend/Order/Service.Order.WebApi"
-RUN dotnet build "./Service.Order.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/src/backend/Orders/Service.Orders.WebApi"
+RUN dotnet build "./Service.Orders.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Service.Order.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Service.Orders.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Service.Order.WebApi.dll"]
+ENTRYPOINT ["dotnet", "Service.Orders.WebApi.dll"]

@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Persistence.Contracts
+namespace Service.Orders.Persistence.Contracts
 {
 	/// <summary>
 	/// Represents the table names in current module.

@@ -28,11 +28,11 @@ using Persistence.Interceptors;
 using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
-using Service.Order.Domain;
-using Service.Order.Persistence.Contracts;
+using Service.Orders.Domain;
+using Service.Orders.Persistence.Contracts;
 using Shared.Repositories;
 
-namespace Service.Order.Persistence
+namespace Service.Orders.Persistence
 {
 	/// <summary>
 	/// Represents the Order module persistence service installer.

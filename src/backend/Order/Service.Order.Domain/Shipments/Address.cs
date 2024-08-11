@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Domain.Shipments
+namespace Service.Orders.Domain.Shipments
 {
 	/// <summary>
 	/// Represents the Shipment Address value object.

@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Endpoints\Endpoints.csproj" />
-    <ProjectReference Include="..\Service.Order.Application\Service.Order.Application.csproj" />
+    <ProjectReference Include="..\Service.Order.Application\Service.Orders.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,12 +18,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
-using Service.Order.Domain.Shipments;
-using Service.Order.Persistence.Contracts;
+using Service.Orders.Domain.Shipments;
+using Service.Orders.Persistence.Contracts;
 using Service.Shipments.IntegrationEvents;
 using Shared.Extensions;
 
-namespace Service.Order.Persistence.Configurations
+namespace Service.Orders.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="Shipment"/> entity configuration.

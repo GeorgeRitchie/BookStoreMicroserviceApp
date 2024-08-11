@@ -17,7 +17,7 @@
 
 using Microsoft.Extensions.Options;
 
-namespace Service.Order.WebApi.Options
+namespace Service.Orders.WebApi.Options
 {
 	/// <summary>
 	/// Represents the <see cref="WebApiOptions"/> setup.

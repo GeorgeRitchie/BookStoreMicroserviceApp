@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.Application
+namespace Service.Orders.Application
 {
 	/// <summary>
 	/// Represents the Order service application assembly reference.

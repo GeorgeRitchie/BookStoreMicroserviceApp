@@ -18,7 +18,7 @@
 using Infrastructure.BackgroundJobs;
 using Microsoft.Extensions.Options;
 
-namespace Service.Order.Infrastructure.BackgroundJobs.ProcessOutboxMessages
+namespace Service.Orders.Infrastructure.BackgroundJobs.ProcessOutboxMessages
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessOutboxMessagesJob"/> configuration.

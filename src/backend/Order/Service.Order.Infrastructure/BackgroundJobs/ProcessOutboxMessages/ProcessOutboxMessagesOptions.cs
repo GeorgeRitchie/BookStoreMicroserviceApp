@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Infrastructure.BackgroundJobs.ProcessOutboxMessages
+namespace Service.Orders.Infrastructure.BackgroundJobs.ProcessOutboxMessages
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessOutboxMessagesJob"/> options.

@@ -16,9 +16,9 @@
 */
 
 using Microsoft.EntityFrameworkCore;
-using Service.Order.Persistence.Contracts;
+using Service.Orders.Persistence.Contracts;
 
-namespace Service.Order.Persistence
+namespace Service.Orders.Persistence
 {
 	// add-migration Init -context OrderDbContext -o Migrations
 	// update-database -context OrderDbContext

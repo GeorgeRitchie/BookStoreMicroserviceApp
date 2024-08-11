@@ -17,7 +17,7 @@
 
 using Infrastructure.Configuration;
 
-namespace Service.Order.WebApi.ServiceInstallers.ApiVersioning
+namespace Service.Orders.WebApi.ServiceInstallers.ApiVersioning
 {
 	/// <summary>
 	/// Represents the Api Versioning service installer.

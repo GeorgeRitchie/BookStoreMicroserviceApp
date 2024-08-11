@@ -22,10 +22,10 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using OpenTelemetry.Logs;
 using Serilog;
-using Service.Order.WebApi.Extensions;
-using Service.Order.WebApi.Middlewares;
-using Service.Order.WebApi.Options;
-using Service.Order.WebApi.Utility;
+using Service.Orders.WebApi.Extensions;
+using Service.Orders.WebApi.Middlewares;
+using Service.Orders.WebApi.Options;
+using Service.Orders.WebApi.Utility;
 
 LoggingUtility.Run(() =>
 {
@@ -35,12 +35,12 @@ LoggingUtility.Run(() =>
 		.ConfigureOptions<WebApiOptionsSetup>()
 		.InstallServicesFromAssemblies(
 			builder.Configuration,
-			Service.Order.WebApi.AssemblyReference.Assembly,
+			Service.Orders.WebApi.AssemblyReference.Assembly,
 			Authorization.AssemblyReference.Assembly,
 			Persistence.AssemblyReference.Assembly)
 		.InstallModulesFromAssemblies(
 				builder.Configuration,
-				Service.Order.Infrastructure.AssemblyReference.Assembly);
+				Service.Orders.Infrastructure.AssemblyReference.Assembly);
 
 	builder.Host.UseSerilogWithConfiguration();
 	builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter());

@@ -24,10 +24,10 @@ using Persistence.Inbox;
 using Polly;
 using Polly.Retry;
 using Quartz;
-using Service.Order.Domain;
+using Service.Orders.Domain;
 using Shared.Repositories;
 
-namespace Service.Order.Infrastructure.BackgroundJobs.ProcessInboxMessages
+namespace Service.Orders.Infrastructure.BackgroundJobs.ProcessInboxMessages
 {
 	/// <summary>
 	/// Represents the background job for processing inbox messages.

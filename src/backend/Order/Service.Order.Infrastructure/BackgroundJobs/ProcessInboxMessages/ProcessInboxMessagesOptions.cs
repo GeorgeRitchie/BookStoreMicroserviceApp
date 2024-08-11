@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Infrastructure.BackgroundJobs.ProcessInboxMessages
+namespace Service.Orders.Infrastructure.BackgroundJobs.ProcessInboxMessages
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessInboxMessagesJob"/> options.

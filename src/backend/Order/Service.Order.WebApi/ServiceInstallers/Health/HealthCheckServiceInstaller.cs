@@ -18,11 +18,11 @@
 using Infrastructure.Configuration;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Options;
-using Service.Order.Persistence;
-using Service.Order.WebApi.ServiceInstallers.DistributedCaching;
-using Service.Order.WebApi.ServiceInstallers.EventBus;
+using Service.Orders.Persistence;
+using Service.Orders.WebApi.ServiceInstallers.DistributedCaching;
+using Service.Orders.WebApi.ServiceInstallers.EventBus;
 
-namespace Service.Order.WebApi.ServiceInstallers.Health
+namespace Service.Orders.WebApi.ServiceInstallers.Health
 {
 	/// <summary>
 	/// Represents the all health check services installer.

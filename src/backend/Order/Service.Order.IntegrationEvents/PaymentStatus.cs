@@ -17,7 +17,7 @@
 
 using Domain.Primitives;
 
-namespace Service.Order.IntegrationEvents
+namespace Service.Orders.IntegrationEvents
 {
 	/// <summary>
 	/// Represents the Order status enumeration.

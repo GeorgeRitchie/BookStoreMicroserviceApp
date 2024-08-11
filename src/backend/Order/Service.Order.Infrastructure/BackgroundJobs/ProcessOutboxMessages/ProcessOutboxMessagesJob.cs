@@ -25,10 +25,10 @@ using Persistence.Outbox;
 using Polly;
 using Polly.Retry;
 using Quartz;
-using Service.Order.Domain;
+using Service.Orders.Domain;
 using Shared.Repositories;
 
-namespace Service.Order.Infrastructure.BackgroundJobs.ProcessOutboxMessages
+namespace Service.Orders.Infrastructure.BackgroundJobs.ProcessOutboxMessages
 {
 	/// <summary>
 	/// Represents the background job for processing outbox messages.

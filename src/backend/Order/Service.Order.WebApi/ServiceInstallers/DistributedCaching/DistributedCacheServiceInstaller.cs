@@ -17,7 +17,7 @@
 
 using Infrastructure.Configuration;
 
-namespace Service.Order.WebApi.ServiceInstallers.DistributedCaching
+namespace Service.Orders.WebApi.ServiceInstallers.DistributedCaching
 {
 	/// <summary>
 	/// Represents the distributed cache service installer.

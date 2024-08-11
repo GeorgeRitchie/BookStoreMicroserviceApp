@@ -17,7 +17,7 @@
 
 using Service.Shipments.IntegrationEvents;
 
-namespace Service.Order.Domain.Shipments
+namespace Service.Orders.Domain.Shipments
 {
 	/// <summary>
 	/// Represents the Shipment entity.

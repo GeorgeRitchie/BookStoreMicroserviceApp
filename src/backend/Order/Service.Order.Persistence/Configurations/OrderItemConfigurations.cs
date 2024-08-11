@@ -19,11 +19,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
 using Service.Catalog.IntegrationEvents;
-using Service.Order.Domain.OrderItems;
-using Service.Order.Persistence.Contracts;
+using Service.Orders.Domain.OrderItems;
+using Service.Orders.Persistence.Contracts;
 using Shared.Extensions;
 
-namespace Service.Order.Persistence.Configurations
+namespace Service.Orders.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="OrderItem"/> entity configuration.

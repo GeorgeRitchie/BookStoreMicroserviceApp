@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.Persistence
+namespace Service.Orders.Persistence
 {
 	/// <summary>
 	/// Represents the Order service persistence assembly reference.

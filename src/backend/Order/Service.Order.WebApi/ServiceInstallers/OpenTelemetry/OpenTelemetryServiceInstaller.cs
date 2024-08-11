@@ -22,7 +22,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Service.Order.WebApi.ServiceInstallers.OpenTelemetry
+namespace Service.Orders.WebApi.ServiceInstallers.OpenTelemetry
 {
 	/// <summary>
 	/// Represents the Open Telemetry service installer.

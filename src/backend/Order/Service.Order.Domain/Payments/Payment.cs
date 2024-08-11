@@ -17,7 +17,7 @@
 
 using Service.Payments.IntegrationEvents;
 
-namespace Service.Order.Domain.Payments
+namespace Service.Orders.Domain.Payments
 {
 	/// <summary>
 	/// Represents the Payment entity.

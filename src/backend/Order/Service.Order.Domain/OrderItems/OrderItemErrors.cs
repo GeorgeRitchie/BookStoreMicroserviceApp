@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Domain.OrderItems
+namespace Service.Orders.Domain.OrderItems
 {
 	/// <summary>
 	/// Contains the Order Item errors.

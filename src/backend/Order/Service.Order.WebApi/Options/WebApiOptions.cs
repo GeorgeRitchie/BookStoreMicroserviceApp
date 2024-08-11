@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.WebApi.Options
+namespace Service.Orders.WebApi.Options
 {
 	/// <summary>
 	/// Represents the web api option.

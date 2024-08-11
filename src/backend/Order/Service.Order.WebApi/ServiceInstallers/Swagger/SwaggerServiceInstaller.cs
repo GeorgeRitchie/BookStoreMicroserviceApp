@@ -17,7 +17,7 @@
 
 using Infrastructure.Configuration;
 
-namespace Service.Order.WebApi.ServiceInstallers.Swagger
+namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
 	/// Represents the swagger service installer.

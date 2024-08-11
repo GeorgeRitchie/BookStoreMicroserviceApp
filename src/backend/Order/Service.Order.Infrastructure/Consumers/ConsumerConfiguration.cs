@@ -18,7 +18,7 @@
 using Infrastructure.EventBus;
 using MassTransit;
 
-namespace Service.Order.Infrastructure.Consumers
+namespace Service.Orders.Infrastructure.Consumers
 {
 	/// <summary>
 	/// Represents the consumer configuration for the Order service.

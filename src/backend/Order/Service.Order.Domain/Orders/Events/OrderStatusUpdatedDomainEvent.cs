@@ -15,11 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.Order.Domain.OrderItems;
-using Service.Order.Domain.Shipments;
-using Service.Order.IntegrationEvents;
+using Service.Orders.Domain.OrderItems;
+using Service.Orders.Domain.Shipments;
+using Service.Orders.IntegrationEvents;
 
-namespace Service.Order.Domain.Orders.Events
+namespace Service.Orders.Domain.Orders.Events
 {
 	/// <summary>
 	/// Represents the domain event that is raised when an Order status is updated.

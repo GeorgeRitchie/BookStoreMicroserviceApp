@@ -21,7 +21,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 
-namespace Service.Order.Infrastructure.ServiceInstallers
+namespace Service.Orders.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the Order service background jobs service installer.

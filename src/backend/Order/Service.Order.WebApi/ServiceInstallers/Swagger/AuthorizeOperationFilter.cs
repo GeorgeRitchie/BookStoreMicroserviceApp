@@ -21,7 +21,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Globalization;
 using System.Net;
 
-namespace Service.Order.WebApi.ServiceInstallers.Swagger
+namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 {
 	/// <summary>
 	/// Represents the authorize operation filter.

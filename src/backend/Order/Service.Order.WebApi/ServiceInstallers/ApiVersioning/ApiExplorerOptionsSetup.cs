@@ -18,7 +18,7 @@
 using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.Options;
 
-namespace Service.Order.WebApi.ServiceInstallers.ApiVersioning
+namespace Service.Orders.WebApi.ServiceInstallers.ApiVersioning
 {
 	/// <summary>
 	/// Represents the <see cref="ApiExplorerOptions"/> setup.

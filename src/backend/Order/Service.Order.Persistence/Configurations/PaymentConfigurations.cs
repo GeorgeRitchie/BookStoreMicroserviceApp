@@ -18,12 +18,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
-using Service.Order.Domain.Payments;
-using Service.Order.Persistence.Contracts;
+using Service.Orders.Domain.Payments;
+using Service.Orders.Persistence.Contracts;
 using Service.Payments.IntegrationEvents;
 using Shared.Extensions;
 
-namespace Service.Order.Persistence.Configurations
+namespace Service.Orders.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="Payment"/> entity configuration.

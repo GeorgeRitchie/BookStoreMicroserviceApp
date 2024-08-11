@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.Infrastructure
+namespace Service.Orders.Infrastructure
 {
 	/// <summary>
 	/// Represents the Order service infrastructure assembly reference.

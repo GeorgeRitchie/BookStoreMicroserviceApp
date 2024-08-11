@@ -16,9 +16,9 @@
 */
 
 using Persistence.Repositories;
-using Service.Order.Domain;
+using Service.Orders.Domain;
 
-namespace Service.Order.Persistence
+namespace Service.Orders.Persistence
 {
 	/// <summary>
 	/// Represents database interface implementation for <see cref="IOrderDb"/>.

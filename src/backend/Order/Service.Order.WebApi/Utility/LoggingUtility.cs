@@ -17,7 +17,7 @@
 
 using Serilog;
 
-namespace Service.Order.WebApi.Utility
+namespace Service.Orders.WebApi.Utility
 {
 	/// <summary>
 	/// Contains utility methods for logging.

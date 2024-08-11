@@ -18,9 +18,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Inbox;
-using Service.Order.Persistence.Contracts;
+using Service.Orders.Persistence.Contracts;
 
-namespace Service.Order.Persistence.Configurations
+namespace Service.Orders.Persistence.Configurations
 {
 	/// <summary>
 	/// Represents the <see cref="InboxMessageConsumer"/> entity configuration.

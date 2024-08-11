@@ -15,13 +15,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.Order.Domain.OrderItems;
-using Service.Order.Domain.Orders.Events;
-using Service.Order.Domain.Payments;
-using Service.Order.Domain.Shipments;
-using Service.Order.IntegrationEvents;
+using Service.Orders.Domain.OrderItems;
+using Service.Orders.Domain.Orders.Events;
+using Service.Orders.Domain.Payments;
+using Service.Orders.Domain.Shipments;
+using Service.Orders.IntegrationEvents;
 
-namespace Service.Order.Domain.Orders
+namespace Service.Orders.Domain.Orders
 {
 	/// <summary>
 	/// Represents the Order entity.

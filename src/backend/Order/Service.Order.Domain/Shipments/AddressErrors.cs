@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Domain.Shipments
+namespace Service.Orders.Domain.Shipments
 {
 	/// <summary>
 	/// Contains the Shipment Address errors.

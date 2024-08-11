@@ -19,7 +19,7 @@ using Infrastructure.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace Service.Order.WebApi.ServiceInstallers.Authentication
+namespace Service.Orders.WebApi.ServiceInstallers.Authentication
 {
 	/// <summary>
 	/// Represents the authentication service installer.

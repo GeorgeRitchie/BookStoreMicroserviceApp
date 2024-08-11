@@ -17,9 +17,9 @@
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Service.Order.Infrastructure.BackgroundJobs.ProcessOutboxMessages;
+using Service.Orders.Infrastructure.BackgroundJobs.ProcessOutboxMessages;
 
-namespace Service.Order.Infrastructure.ServiceInstallers
+namespace Service.Orders.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the <see cref="ProcessOutboxMessagesOptions"/> setup.

@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.Domain
+namespace Service.Orders.Domain
 {
 	/// <summary>
 	/// Represents the Order service domain assembly reference.

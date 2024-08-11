@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.Endpoints
+namespace Service.Orders.Endpoints
 {
 	/// <summary>
 	/// Represents the Order service endpoints assembly reference.

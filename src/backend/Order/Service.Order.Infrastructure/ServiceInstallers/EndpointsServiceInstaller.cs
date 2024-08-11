@@ -19,7 +19,7 @@ using Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.Order.Infrastructure.ServiceInstallers
+namespace Service.Orders.Infrastructure.ServiceInstallers
 {
 	/// <summary>
 	/// Represents the Order service endpoints service installer.

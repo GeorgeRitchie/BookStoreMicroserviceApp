@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Order.Domain.Orders
+namespace Service.Orders.Domain.Orders
 {
 	/// <summary>
 	/// Represents the Customer identifier.

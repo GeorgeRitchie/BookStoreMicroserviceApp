@@ -18,7 +18,7 @@
 using Service.Catalog.IntegrationEvents;
 using System.Text.RegularExpressions;
 
-namespace Service.Order.Domain.OrderItems
+namespace Service.Orders.Domain.OrderItems
 {
 	/// <summary>
 	/// Represents the Order Item entity.

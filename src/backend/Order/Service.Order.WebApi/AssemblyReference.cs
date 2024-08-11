@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.WebApi
+namespace Service.Orders.WebApi
 {
 	/// <summary>
 	/// Represents the Order service WebApi assembly reference.
@@ -32,6 +32,6 @@ namespace Service.Order.WebApi
 		/// <summary>
 		/// The module name this assembly belongs to.
 		/// </summary>
-		public const string ModuleName = nameof(Order);
+		public const string ModuleName = nameof(Orders);
 	}
 }

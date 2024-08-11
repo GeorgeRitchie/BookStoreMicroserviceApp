@@ -20,7 +20,7 @@ using Infrastructure.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.Order.Infrastructure
+namespace Service.Orders.Infrastructure
 {
 	/// <summary>
 	/// Represents the Order service installer.

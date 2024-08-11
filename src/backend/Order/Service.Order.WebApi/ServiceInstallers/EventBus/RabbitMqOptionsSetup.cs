@@ -17,7 +17,7 @@
 
 using Microsoft.Extensions.Options;
 
-namespace Service.Order.WebApi.ServiceInstallers.EventBus
+namespace Service.Orders.WebApi.ServiceInstallers.EventBus
 {
 	/// <summary>
 	/// Represents the <see cref="RabbitMqOptions"/> setup.

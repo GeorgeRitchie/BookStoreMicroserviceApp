@@ -17,7 +17,7 @@
 
 using Shared.Repositories;
 
-namespace Service.Order.Domain
+namespace Service.Orders.Domain
 {
 	/// <summary>
 	/// Marker interface to specific database context used for Unit of work pattern.

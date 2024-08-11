@@ -18,10 +18,10 @@
 using Application.EventBus;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Inbox;
-using Service.Order.Domain;
+using Service.Orders.Domain;
 using Shared.Repositories;
 
-namespace Service.Order.Infrastructure.Idempotence
+namespace Service.Orders.Infrastructure.Idempotence
 {
 	/// <summary>
 	/// Represents the idempotent integration event handler, which checks if the integration event has already been handled previously.

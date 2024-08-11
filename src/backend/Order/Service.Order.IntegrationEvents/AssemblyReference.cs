@@ -17,7 +17,7 @@
 
 using System.Reflection;
 
-namespace Service.Order.IntegrationEvents
+namespace Service.Orders.IntegrationEvents
 {
 	/// <summary>
 	/// Represents the Order service integration events assembly reference.
