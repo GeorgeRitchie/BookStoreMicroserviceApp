@@ -14,8 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Application\Application.csproj" />
-    <ProjectReference Include="..\Service.Order.Domain\Service.Orders.Domain.csproj" />
-    <ProjectReference Include="..\Service.Order.IntegrationEvents\Service.Orders.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\Service.Orders.Domain\Service.Orders.Domain.csproj" />
+    <ProjectReference Include="..\Service.Orders.IntegrationEvents\Service.Orders.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

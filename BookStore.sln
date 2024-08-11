@@ -41,19 +41,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Catalog.WebApi", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{F844AD24-3715-40BF-A2CB-F6F52A11D8DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Domain", "src\backend\Order\Service.Order.Domain\Service.Orders.Domain.csproj", "{6B50C6BE-3338-4238-B052-4FF0D60DB836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Domain", "src\backend\Orders\Service.Orders.Domain\Service.Orders.Domain.csproj", "{6B50C6BE-3338-4238-B052-4FF0D60DB836}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Application", "src\backend\Order\Service.Order.Application\Service.Orders.Application.csproj", "{757AD67A-1589-4B29-B84E-DA7E4B0C3474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Application", "src\backend\Orders\Service.Orders.Application\Service.Orders.Application.csproj", "{757AD67A-1589-4B29-B84E-DA7E4B0C3474}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Endpoints", "src\backend\Order\Service.Order.Endpoints\Service.Orders.Endpoints.csproj", "{2E9FF4D2-859C-4C09-AF7F-E3E82F895A67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Endpoints", "src\backend\Orders\Service.Orders.Endpoints\Service.Orders.Endpoints.csproj", "{2E9FF4D2-859C-4C09-AF7F-E3E82F895A67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Infrastructure", "src\backend\Order\Service.Order.Infrastructure\Service.Orders.Infrastructure.csproj", "{05EB5B58-0AC8-438F-9B7B-FBAB36FE7F73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Infrastructure", "src\backend\Orders\Service.Orders.Infrastructure\Service.Orders.Infrastructure.csproj", "{05EB5B58-0AC8-438F-9B7B-FBAB36FE7F73}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.IntegrationEvents", "src\backend\Order\Service.Order.IntegrationEvents\Service.Orders.IntegrationEvents.csproj", "{4CD6B53B-634E-4A15-AFEA-75AF8C4540F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.IntegrationEvents", "src\backend\Orders\Service.Orders.IntegrationEvents\Service.Orders.IntegrationEvents.csproj", "{4CD6B53B-634E-4A15-AFEA-75AF8C4540F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Persistence", "src\backend\Order\Service.Order.Persistence\Service.Orders.Persistence.csproj", "{3402B279-6472-49C6-89C1-80FEA70B74A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.Persistence", "src\backend\Orders\Service.Orders.Persistence\Service.Orders.Persistence.csproj", "{3402B279-6472-49C6-89C1-80FEA70B74A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.WebApi", "src\backend\Order\Service.Order.WebApi\Service.Orders.WebApi.csproj", "{E2662F0C-85B7-4369-AB1B-4252C42EC6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Orders.WebApi", "src\backend\Orders\Service.Orders.WebApi\Service.Orders.WebApi.csproj", "{E2662F0C-85B7-4369-AB1B-4252C42EC6EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{7FC836B2-15B6-4F62-9B19-9768BA9B1C19}"
 EndProject

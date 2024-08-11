@@ -49,7 +49,7 @@
     <ProjectReference Include="..\..\..\Common\Authorization\Authorization.csproj" />
     <ProjectReference Include="..\..\..\Common\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Common\Shared\Shared.csproj" />
-    <ProjectReference Include="..\Service.Order.Infrastructure\Service.Orders.Infrastructure.csproj" />
+    <ProjectReference Include="..\Service.Orders.Infrastructure\Service.Orders.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
