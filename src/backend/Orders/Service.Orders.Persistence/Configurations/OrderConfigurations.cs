@@ -61,6 +61,8 @@ namespace Service.Orders.Persistence.Configurations
 					.HasConversion<EnumerationConverter<OrderStatus, int>>()
 					.IsRequired();
 
+			builder.Ignore(order => order.TotalPrice);
+
 			builder.Property(order => order.CreatedOnUtc).IsRequired();
 
 			builder.Property(order => order.ModifiedOnUtc).IsRequired(false);
@@ -86,7 +88,7 @@ namespace Service.Orders.Persistence.Configurations
 				.IsRequired();
 		}
 
-		private static void ConfigureIndexes(EntityTypeBuilder<Order> builder) 
+		private static void ConfigureIndexes(EntityTypeBuilder<Order> builder)
 			=> builder.HasIndex(order => order.CustomerId);
 	}
 }

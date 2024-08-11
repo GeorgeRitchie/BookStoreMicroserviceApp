@@ -31,6 +31,14 @@ namespace Service.Orders.Domain.OrderItems
 			=> new("OrderItem.InvalidISBN", $"The passed ISBN '{isbn}' is not valid.");
 
 		/// <summary>
+		/// Gets invalid format error.
+		/// </summary>
+		/// <param name="isbn">The invalid format.</param>
+		/// <returns>The error.</returns>
+		public static Error InvalidFormat(string? format)
+			=> new("OrderItem.InvalidBookFormat", $"The passed books source format '{format}' is not valid.");
+
+		/// <summary>
 		/// Gets empty title error.
 		/// </summary>
 		/// <returns>The error.</returns>

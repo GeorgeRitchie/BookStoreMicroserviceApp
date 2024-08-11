@@ -29,6 +29,7 @@ namespace Service.Orders.Domain.Orders
 	public sealed class Order : Entity<OrderId>, IAuditable
 	{
 		private List<OrderItem> items = [];
+		private decimal? totalPrice = null;
 
 		/// <inheritdoc/>
 		public DateTime CreatedOnUtc { get; private set; }
@@ -65,6 +66,11 @@ namespace Service.Orders.Domain.Orders
 		/// Gets the ordered items collection.
 		/// </summary>
 		public IReadOnlyCollection<OrderItem> Items => items;
+
+		/// <summary>
+		/// Gets total price of the order.
+		/// </summary>
+		public decimal TotalPrice => totalPrice ??= items.Sum(i => i.UnitPrice * i.Quantity);
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Order"/> class.

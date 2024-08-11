@@ -107,7 +107,7 @@ namespace Service.Orders.Domain.OrderItems
 		/// <param name="title">The ordering book title.</param>
 		/// <param name="language">The ordering book language.</param>
 		/// <param name="sourceId">The ordering book source identifier.</param>
-		/// <param name="format">The ordering book source format.</param>
+		/// <param name="formatName">The ordering book source format name.</param>
 		/// <param name="unitPrice">The ordering price.</param>
 		/// <param name="quantity">The ordering quantity.</param>
 		/// <param name="isbn">The ordering book ISBN.</param>
@@ -118,7 +118,7 @@ namespace Service.Orders.Domain.OrderItems
 			string title,
 			string language,
 			BookSourceId sourceId,
-			BookFormat format,
+			string formatName,
 			decimal unitPrice,
 			uint quantity,
 			string? isbn = null,
@@ -129,7 +129,7 @@ namespace Service.Orders.Domain.OrderItems
 				Title = title,
 				Language = language,
 				SourceId = sourceId,
-				Format = format,
+				Format = BookFormat.FromName(formatName)!,
 				UnitPrice = unitPrice,
 				Quantity = quantity,
 				ISBN = isbn,
@@ -141,6 +141,7 @@ namespace Service.Orders.Domain.OrderItems
 								OrderItemErrors.InvalidLanguageCode(language))
 				.Ensure(oi => oi.ISBN == null || Regex.IsMatch(isbn, isbnPattern),
 								OrderItemErrors.InvalidISBN(isbn))
-				.Ensure(oi => oi.Quantity > 0, OrderItemErrors.InvalidQuantity(quantity));
+				.Ensure(oi => oi.Quantity > 0, OrderItemErrors.InvalidQuantity(quantity))
+				.Ensure(oi => oi.Format != null, OrderItemErrors.InvalidFormat(formatName));
 	}
 }

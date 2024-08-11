@@ -29,7 +29,9 @@ using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
 using Service.Orders.Domain;
+using Service.Orders.Domain.Orders;
 using Service.Orders.Persistence.Contracts;
+using Service.Orders.Persistence.Repositories;
 using Shared.Repositories;
 
 namespace Service.Orders.Persistence
@@ -66,6 +68,7 @@ namespace Service.Orders.Persistence
 				// TODO __##__ For additional Unit Of Work implementations add here.
 				.AddScoped<IOrderDb, OrderDataBase>()
 				// TODO __##__ IRepository implementations add here.
+				.AddScoped<IOrderRepository, OrderRepository>()
 				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, OrderDbContext>>()
 				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, OrderDbContext>>()
 				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, OrderDbContext>>()
