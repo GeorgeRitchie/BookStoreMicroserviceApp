@@ -52,13 +52,13 @@ namespace Service.Orders.Persistence.Configurations
 			builder.Property(oi => oi.BookId).IsRequired(true)
 				.HasConversion(oi => oi.Value, value => new BookId(value));
 
-			builder.Property(book => book.Title).IsRequired(true).HasMaxLength(100);
+			builder.Property(oi => oi.Title).IsRequired(true).HasMaxLength(100);
 
-			builder.Property(book => book.ISBN).IsRequired(false).HasMaxLength(20);
+			builder.Property(oi => oi.ISBN).IsRequired(false).HasMaxLength(20);
 
-			builder.Property(book => book.Cover).IsRequired(false);
+			builder.Property(oi => oi.Cover).IsRequired(false);
 
-			builder.Property(book => book.Language).IsRequired(true).HasMaxLength(5);
+			builder.Property(oi => oi.Language).IsRequired(true).HasMaxLength(5);
 
 			builder.Property(oi => oi.SourceId).IsRequired(true)
 				.HasConversion(oi => oi.Value, value => new BookSourceId(value));
