@@ -19,6 +19,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Persistence.Converters;
 using Service.Catalog.Domain.BookSources;
+using Service.Catalog.IntegrationEvents;
 using Service.Catalog.Persistence.Contracts;
 using Shared.Extensions;
 

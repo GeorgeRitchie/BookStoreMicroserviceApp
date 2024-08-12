@@ -17,6 +17,7 @@
 
 using Service.Catalog.Domain.Books;
 using Service.Catalog.Domain.BookSources.Events;
+using Service.Catalog.IntegrationEvents;
 
 namespace Service.Catalog.Domain.BookSources
 {
