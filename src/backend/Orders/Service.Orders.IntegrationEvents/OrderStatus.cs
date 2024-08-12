@@ -16,6 +16,7 @@
 */
 
 using Domain.Primitives;
+using Newtonsoft.Json;
 
 namespace Service.Orders.IntegrationEvents
 {
@@ -34,8 +35,9 @@ namespace Service.Orders.IntegrationEvents
 		/// Initializes a new instance of the <see cref="OrderStatus"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private OrderStatus(string name, int value) : base(name, value)
 		{
 		}
-	}
+    }
 }

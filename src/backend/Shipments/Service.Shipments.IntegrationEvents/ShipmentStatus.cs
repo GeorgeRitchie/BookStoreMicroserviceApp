@@ -16,6 +16,7 @@
 */
 
 using Domain.Primitives;
+using Newtonsoft.Json;
 
 namespace Service.Shipments.IntegrationEvents
 {
@@ -32,6 +33,7 @@ namespace Service.Shipments.IntegrationEvents
 		/// Initializes a new instance of the <see cref="ShipmentStatus"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private ShipmentStatus(string name, int value) : base(name, value)
 		{
 		}

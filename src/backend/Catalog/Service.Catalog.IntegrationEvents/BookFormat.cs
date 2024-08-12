@@ -16,6 +16,7 @@
 */
 
 using Domain.Primitives;
+using Newtonsoft.Json;
 
 namespace Service.Catalog.IntegrationEvents
 {
@@ -36,6 +37,7 @@ namespace Service.Catalog.IntegrationEvents
 		/// Initializes a new instance of the <see cref="BookFormat"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private BookFormat(string name, string value) : base(name, value)
 		{
 		}

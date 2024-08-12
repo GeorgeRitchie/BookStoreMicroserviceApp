@@ -15,6 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Newtonsoft.Json;
+
 namespace Service.Catalog.Domain.Categories
 {
 	/// <summary>
@@ -28,6 +30,7 @@ namespace Service.Catalog.Domain.Categories
 		/// Initializes a new instance of the <see cref="CategoryImageType"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private CategoryImageType(string name, int value) : base(name, value)
 		{
 		}

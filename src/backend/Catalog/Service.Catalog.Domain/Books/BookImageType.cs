@@ -15,6 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Newtonsoft.Json;
+
 namespace Service.Catalog.Domain.Books
 {
 	/// <summary>
@@ -30,6 +32,7 @@ namespace Service.Catalog.Domain.Books
 		/// Initializes a new instance of the <see cref="BookImageType"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private BookImageType(string name, int value) : base(name, value)
 		{
 		}

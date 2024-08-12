@@ -16,6 +16,7 @@
 */
 
 using Domain.Primitives;
+using Newtonsoft.Json;
 
 namespace Service.Payments.IntegrationEvents
 {
@@ -33,6 +34,7 @@ namespace Service.Payments.IntegrationEvents
 		/// Initializes a new instance of the <see cref="PaymentStatus"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private PaymentStatus(string name, int value) : base(name, value)
 		{
 		}
