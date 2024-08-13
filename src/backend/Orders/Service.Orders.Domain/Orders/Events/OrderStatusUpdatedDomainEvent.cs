@@ -26,6 +26,7 @@ namespace Service.Orders.Domain.Orders.Events
 	/// </summary>
 	/// <param name="Id">The event identifier.</param>
 	/// <param name="OccurredOnUtc">The event occurred date and time.</param>
+	/// <param name="OrderId">The order identifier.</param>
 	/// <param name="CustomerId">The customer identifier.</param>
 	/// <param name="Status">The order status.</param>
 	/// <param name="OrderedDateTimeUtc">The ordered date and time.</param>
@@ -34,6 +35,7 @@ namespace Service.Orders.Domain.Orders.Events
 	public sealed record OrderStatusUpdatedDomainEvent(
 		Guid Id,
 		DateTime OccurredOnUtc,
+		Guid OrderId,
 		CustomerId CustomerId,
 		OrderStatus Status,
 		DateTime OrderedDateTimeUtc,

@@ -110,6 +110,7 @@ namespace Service.Orders.Domain.Orders
 				.Ensure(o => o.items?.Count > 0, OrderErrors.EmptyOrderItems())
 				.Tap(o => o.RaiseDomainEvent(new OrderCreatedDomainEvent(Guid.NewGuid(),
 												DateTime.UtcNow,
+												o.Id.Value,
 												o.CustomerId,
 												o.Status,
 												o.OrderedDateTimeUtc,
@@ -128,6 +129,7 @@ namespace Service.Orders.Domain.Orders
 				Status = status;
 				RaiseDomainEvent(new OrderStatusUpdatedDomainEvent(Guid.NewGuid(),
 									DateTime.UtcNow,
+									Id.Value,
 									CustomerId,
 									Status,
 									OrderedDateTimeUtc,
