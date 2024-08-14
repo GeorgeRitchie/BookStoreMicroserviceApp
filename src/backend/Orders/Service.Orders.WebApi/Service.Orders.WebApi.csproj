@@ -19,6 +19,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
     <PackageReference Include="MassTransit" Version="8.2.3" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
@@ -50,6 +51,12 @@
     <ProjectReference Include="..\..\..\Common\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Common\Shared\Shared.csproj" />
     <ProjectReference Include="..\Service.Orders.Infrastructure\Service.Orders.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\Catalog\Service.Catalog.IntegrationEvents\Protos\BookService.proto" GrpcServices="Client">
+      <Link>Protos\BookService.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>
