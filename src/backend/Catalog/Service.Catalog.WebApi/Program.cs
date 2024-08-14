@@ -24,6 +24,7 @@ using Serilog;
 using Service.Catalog.WebApi.Extensions;
 using Service.Catalog.WebApi.Middlewares;
 using Service.Catalog.WebApi.Options;
+using Service.Catalog.WebApi.Services;
 using Service.Catalog.WebApi.Utility;
 
 LoggingUtility.Run(() =>
@@ -97,6 +98,9 @@ LoggingUtility.Run(() =>
 	webApplication.UseAuthorization();
 
 	webApplication.MapControllers();
+
+	// TODO __##__ Add your Grpc service endpoint mappings here
+	webApplication.MapGrpcService<GrpcBookService>();
 
 	webApplication.Run();
 });

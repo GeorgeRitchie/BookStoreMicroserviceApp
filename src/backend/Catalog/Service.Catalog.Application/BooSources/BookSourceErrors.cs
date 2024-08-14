@@ -44,5 +44,18 @@ namespace Service.Catalog.Application.BooSources
 		/// </summary>
 		internal static Error InvalidBookFormat
 			=> new("BookSource.InvalidBookFormat", "Invalid book format.");
+
+		/// <summary>
+		/// Gets error for case when some required book sources not found.
+		/// </summary>
+		internal static Error SomeEntitiesNotFound
+			=> new NotFoundError("BookSource.SomeEntitiesNotFound", "Some book sources not found.");
+
+		/// <summary>
+		/// Gets error quantity decrease to negative value.
+		/// </summary>
+		internal static Func<BookSourceId, Error> QuantityLessThanZero
+			=> bookSourceId => new("BookSource.InvalidQuantityDecrease",
+					$"The quantity for book source {bookSourceId.Value} cannot be decreased to a negative value.");
 	}
 }
