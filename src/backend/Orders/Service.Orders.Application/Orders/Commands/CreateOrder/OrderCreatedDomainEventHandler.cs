@@ -50,7 +50,7 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 
 			if (order == null)
 			{
-				logger.LogWarning("Received domain event {eventName} that does not have entity with Id {id}",
+				logger.LogError("Received domain event {eventName} that does not have entity with Id {id}",
 					nameof(OrderCreatedDomainEvent),
 					notification.OrderId);
 				return;
@@ -63,7 +63,7 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 
 				if (result.IsFailure)
 				{
-					logger.LogWarning("Failed decrease paper books amount: {@errors}", result.Errors);
+					logger.LogError("Failed decrease paper books amount: {@errors}", result.Errors);
 
 					order.UpdateStatus(OrderStatus.Failed);
 					repository.Update(order);
