@@ -16,7 +16,6 @@
 */
 
 using Application.EventBus;
-using MediatR;
 using Service.Catalog.IntegrationEvents;
 using Service.Orders.Application.Common.Interfaces;
 using Service.Orders.Domain;
@@ -71,7 +70,31 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 			}
 			else if (notification.Status == OrderStatus.ShippingProcessing)
 			{
-				// TODO finish it
+				await eventBus.PublishAsync(new ShipmentRequestedIntegrationEvent(
+					notification.Id,
+					notification.OccurredOnUtc,
+					notification.OrderId,
+					notification.CustomerId.Value,
+					notification.OrderedDateTimeUtc,
+					notification.Address is null ? null : new DeliveryAddress(
+						notification.Address.Country,
+						notification.Address.Region,
+						notification.Address.District,
+						notification.Address.City,
+						notification.Address.Street,
+						notification.Address.Home),
+					notification.Items.Select(i => new OrderedItem(
+													i.Id.Value,
+													i.BookId.Value,
+													i.Title,
+													i.ISBN,
+													i.Cover,
+													i.Language,
+													i.SourceId.Value,
+													i.Format.Name,
+													i.UnitPrice,
+													i.Quantity))
+										.ToList()), cancellationToken);
 			}
 			else if (notification.Status == OrderStatus.Failed)
 			{
@@ -96,11 +119,35 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 			}
 			else if (notification.Status == OrderStatus.Completed)
 			{
-				// TODO finish it
+				await eventBus.PublishAsync(new OrderCompletedIntegrationEvent(
+					notification.Id,
+					notification.OccurredOnUtc,
+					notification.OrderId,
+					notification.CustomerId.Value,
+					notification.OrderedDateTimeUtc,
+					notification.Address is null ? null : new DeliveryAddress(
+						notification.Address.Country,
+						notification.Address.Region,
+						notification.Address.District,
+						notification.Address.City,
+						notification.Address.Street,
+						notification.Address.Home),
+					notification.Items.Select(i => new OrderedItem(
+													i.Id.Value,
+													i.BookId.Value,
+													i.Title,
+													i.ISBN,
+													i.Cover,
+													i.Language,
+													i.SourceId.Value,
+													i.Format.Name,
+													i.UnitPrice,
+													i.Quantity))
+										.ToList()), cancellationToken);
 			}
 			else
 			{
-				logger.LogError("Received domain event {eventName} with unknow status {unknownStatus}", 
+				logger.LogError("Received domain event {eventName} with unknow status {unknownStatus}",
 					nameof(OrderStatusUpdatedDomainEvent),
 					notification.Status);
 			}

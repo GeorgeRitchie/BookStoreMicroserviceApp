@@ -15,24 +15,22 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Application.EventBus;
-
 namespace Service.Orders.IntegrationEvents
 {
 	/// <summary>
-	/// Represents the integration event to initiate purchase.
+	/// Represents the address to deliver the purchased items.
 	/// </summary>
-	/// <param name="Id">The event identifier.</param>
-	/// <param name="OccurredOnUtc">The event occurred date and time.</param>
-	/// <param name="OrderId">The order identifier.</param>
-	/// <param name="CustomerId">The customer identifier.</param>
-	/// <param name="OrderedDateTimeUtc">The ordered date and time.</param>
-	/// <param name="Items">Ordered items.</param>
-	public sealed record PaymentRequestedIntegrationEvent(
-		Guid Id,
-		DateTime OccurredOnUtc,
-		Guid OrderId,
-		Guid CustomerId,
-		DateTime OrderedDateTimeUtc,
-		List<OrderedItem> Items) : IntegrationEvent(Id, OccurredOnUtc);
+	/// <param name="Country">The delivery address country.</param>
+	/// <param name="Region">The delivery address region.</param>
+	/// <param name="District">The delivery address district.</param>
+	/// <param name="City">The delivery address city.</param>
+	/// <param name="Street">The delivery address street.</param>
+	/// <param name="Home">The delivery address home.</param>
+	public sealed record DeliveryAddress(
+		string Country,
+		string Region,
+		string District,
+		string City,
+		string Street,
+		string Home);
 }

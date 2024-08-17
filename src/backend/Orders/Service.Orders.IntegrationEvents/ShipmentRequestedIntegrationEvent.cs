@@ -20,19 +20,21 @@ using Application.EventBus;
 namespace Service.Orders.IntegrationEvents
 {
 	/// <summary>
-	/// Represents the integration event to initiate purchase.
+	/// Represents the integration event to initiate shipment.
 	/// </summary>
 	/// <param name="Id">The event identifier.</param>
 	/// <param name="OccurredOnUtc">The event occurred date and time.</param>
 	/// <param name="OrderId">The order identifier.</param>
 	/// <param name="CustomerId">The customer identifier.</param>
 	/// <param name="OrderedDateTimeUtc">The ordered date and time.</param>
+	/// <param name="Address">Delivery address.</param>
 	/// <param name="Items">Ordered items.</param>
-	public sealed record PaymentRequestedIntegrationEvent(
+	public sealed record ShipmentRequestedIntegrationEvent(
 		Guid Id,
 		DateTime OccurredOnUtc,
 		Guid OrderId,
 		Guid CustomerId,
 		DateTime OrderedDateTimeUtc,
+		DeliveryAddress? Address,
 		List<OrderedItem> Items) : IntegrationEvent(Id, OccurredOnUtc);
 }

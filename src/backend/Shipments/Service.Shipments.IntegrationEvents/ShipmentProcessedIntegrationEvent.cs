@@ -16,23 +16,22 @@
 */
 
 using Application.EventBus;
+using Shared.Errors;
 
-namespace Service.Orders.IntegrationEvents
+namespace Service.Shipments.IntegrationEvents
 {
 	/// <summary>
-	/// Represents the integration event to initiate purchase.
+	/// Represents the integration event for the shipment processed result.
 	/// </summary>
 	/// <param name="Id">The event identifier.</param>
 	/// <param name="OccurredOnUtc">The event occurred date and time.</param>
-	/// <param name="OrderId">The order identifier.</param>
-	/// <param name="CustomerId">The customer identifier.</param>
-	/// <param name="OrderedDateTimeUtc">The ordered date and time.</param>
-	/// <param name="Items">Ordered items.</param>
-	public sealed record PaymentRequestedIntegrationEvent(
+	/// <param name="OrderId">The order identifier this shipment belongs to.</param>
+	/// <param name="StatusName">The result status name.</param>
+	/// <param name="Error">The error of failure result.</param>
+	public sealed record ShipmentProcessedIntegrationEvent(
 		Guid Id,
 		DateTime OccurredOnUtc,
 		Guid OrderId,
-		Guid CustomerId,
-		DateTime OrderedDateTimeUtc,
-		List<OrderedItem> Items) : IntegrationEvent(Id, OccurredOnUtc);
+		string StatusName,
+		Error? Error) : IntegrationEvent(Id, OccurredOnUtc);
 }

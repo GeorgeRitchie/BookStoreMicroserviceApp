@@ -106,6 +106,7 @@ namespace Service.Orders.Domain.Orders
 				Status = OrderStatus.Pending,
 				OrderedDateTimeUtc = DateTime.UtcNow,
 				items = items?.ToList()!,
+				// TODO make shipment creation now
 			})
 				.Ensure(o => o.items?.Count > 0, OrderErrors.EmptyOrderItems())
 				.Tap(o => o.RaiseDomainEvent(new OrderCreatedDomainEvent(Guid.NewGuid(),

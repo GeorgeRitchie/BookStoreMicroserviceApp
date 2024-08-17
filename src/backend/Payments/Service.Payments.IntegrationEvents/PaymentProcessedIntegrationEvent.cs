@@ -16,23 +16,24 @@
 */
 
 using Application.EventBus;
+using Shared.Errors;
 
-namespace Service.Orders.IntegrationEvents
+namespace Service.Payments.IntegrationEvents
 {
 	/// <summary>
-	/// Represents the integration event to initiate purchase.
+	/// Represents the integration event for the payment processed result.
 	/// </summary>
 	/// <param name="Id">The event identifier.</param>
 	/// <param name="OccurredOnUtc">The event occurred date and time.</param>
-	/// <param name="OrderId">The order identifier.</param>
-	/// <param name="CustomerId">The customer identifier.</param>
-	/// <param name="OrderedDateTimeUtc">The ordered date and time.</param>
-	/// <param name="Items">Ordered items.</param>
-	public sealed record PaymentRequestedIntegrationEvent(
+	/// <param name="OrderId">The order identifier this payment belongs to.</param>
+	/// <param name="StatusName">The result status name.</param>
+	/// <param name="Error">The error of failure result.</param>
+	/// <param name="UserInteractionUrl">The url used by user to finish payment process.</param>
+	public sealed record PaymentProcessedIntegrationEvent(
 		Guid Id,
 		DateTime OccurredOnUtc,
 		Guid OrderId,
-		Guid CustomerId,
-		DateTime OrderedDateTimeUtc,
-		List<OrderedItem> Items) : IntegrationEvent(Id, OccurredOnUtc);
+		string StatusName,
+		Error? Error,
+		string? UserInteractionUrl) : IntegrationEvent(Id, OccurredOnUtc);
 }

@@ -19,7 +19,8 @@ using Infrastructure.EventBus;
 using MassTransit;
 using Service.Orders.Domain;
 using Service.Orders.Infrastructure.Idempotence;
-using Service.Orders.IntegrationEvents;
+using Service.Payments.IntegrationEvents;
+using Service.Shipments.IntegrationEvents;
 
 namespace Service.Orders.Infrastructure.Consumers
 {
@@ -32,6 +33,7 @@ namespace Service.Orders.Infrastructure.Consumers
 		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
 		{
 			registrationConfigurator.AddConsumer<IntegrationEventConsumer<PaymentProcessedIntegrationEvent, IOrderDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<ShipmentProcessedIntegrationEvent, IOrderDb>>();
 
 			// TODO __##__ Add here message-broker message consumers
 		}
