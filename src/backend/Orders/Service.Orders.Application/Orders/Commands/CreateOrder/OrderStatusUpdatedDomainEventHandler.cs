@@ -18,7 +18,6 @@
 using Application.EventBus;
 using Service.Catalog.IntegrationEvents;
 using Service.Orders.Application.Common.Interfaces;
-using Service.Orders.Domain;
 using Service.Orders.Domain.Orders;
 using Service.Orders.Domain.Orders.Events;
 using Service.Orders.IntegrationEvents;
@@ -35,13 +34,11 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 	/// <param name="grpcService">The grpc service.</param>
 	/// <param name="eventBus">The event bus.</param>
 	/// <param name="repository">The order repository.</param>
-	/// <param name="db">The database.</param>
 	internal sealed class OrderStatusUpdatedDomainEventHandler(
 		ILogger<OrderStatusUpdatedDomainEventHandler> logger,
 		IOrderGrpcService grpcService,
 		IEventBus eventBus,
-		IOrderRepository repository,
-		IOrderDb db)
+		IOrderRepository repository)
 		: IDomainEventHandler<OrderStatusUpdatedDomainEvent>
 	{
 		/// <inheritdoc />
