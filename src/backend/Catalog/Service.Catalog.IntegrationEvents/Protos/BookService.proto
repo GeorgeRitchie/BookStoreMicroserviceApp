@@ -1,0 +1,50 @@
+/* 
+	BookStore
+	Copyright (c) 2024, Sharifjon Abdulloev.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License, version 3.0, 
+	as published by the Free Software Foundation.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License, version 3.0, for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+syntax = "proto3";
+
+option csharp_namespace = "Service.Catalog.IntegrationEvents.Grpcs";
+
+package book_service;
+
+message DecreaseInput {
+	repeated BookDto bookDtos = 1;
+}
+
+message IncreaseInput {
+	repeated BookDto bookDtos = 1;
+}
+
+message ActionResult {
+	bool status = 1;
+	ErrorMessage error = 2;
+}
+
+message BookDto {
+	string bookId = 1;
+	uint32 quantity = 2;
+}
+
+message ErrorMessage {
+	string key = 1;
+	string message = 2;
+}
+
+service BookService {
+	rpc DecreasePaperBookSourceQuantity (DecreaseInput) returns (ActionResult);
+	rpc IncreasePaperBookSourceQuantity (IncreaseInput) returns (ActionResult);
+}

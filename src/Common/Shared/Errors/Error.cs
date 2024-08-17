@@ -48,27 +48,39 @@ namespace Shared.Errors
 		/// <summary>
 		/// Gets the error code.
 		/// </summary>
-		public string Code { get; }
+		public string Code { get; private set; }
 
 		/// <summary>
 		/// Gets the error message.
 		/// </summary>
-		public string Message { get; }
+		public string Message { get; private set; }
 
 		/// <summary>
 		/// Gets the error description (optional).
 		/// </summary>
-		public string? Description { get; } = null;
+		public string? Description { get; private set; } = null;
 
 		/// <summary>
 		/// Gets the error source (optional).
 		/// </summary>
-		public string? Source { get; } = null;
+		public string? Source { get; private set; } = null;
 
 		/// <summary>
 		/// Gets the inner error (optional).
 		/// </summary>
-		public Error? InnerError { get; } = null;
+		public Error? InnerError { get; private set; } = null;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Error"/> class.
+		/// </summary>
+		/// <remarks>
+		/// Required for deserialization.
+		/// </remarks>
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+		private Error()
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+		{
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Error"/> class with the specified code and message.

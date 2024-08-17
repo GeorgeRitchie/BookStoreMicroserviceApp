@@ -28,7 +28,7 @@ namespace Service.Catalog.Infrastructure.Idempotence
 	/// </summary>
 	/// <typeparam name="TIntegrationEvent">The integration event type.</typeparam>
 	/// <remarks>
-	/// Initializes a new instance of the <see cref="IntegrationEventConsumer{TIntegrationEvent}"/> class.
+	/// Initializes a new instance of the <see cref="IntegrationEventConsumer{TIntegrationEvent, IDb}"/> class.
 	/// </remarks>
 	/// <param name="repository">The Repository of <see cref="InboxMessage"/>.</param>
 	/// <param name="db">The database.</param>

@@ -39,7 +39,7 @@ namespace Service.Catalog.WebApi.ServiceInstallers.EventBus
 		/// Determines whether RabbitMQ is enabled based on the configuration settings.
 		/// </summary>
 		/// <param name="configuration">The application configuration instance.</param>
-		/// <returns>True if RabbitMQ is enabled; otherwise, false.</returns>
+		/// <returns><see langword="true"/> if RabbitMQ is enabled; otherwise, <see langword="false"/>.</returns>
 		public static bool IsRabbitMqEnabled(IConfiguration configuration)
 			=> configuration.GetValue<bool>(RabbitMqEnablePropPath);
 	}

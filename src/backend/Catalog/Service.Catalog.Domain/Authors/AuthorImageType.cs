@@ -15,6 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Newtonsoft.Json;
+
 namespace Service.Catalog.Domain.Authors
 {
 	/// <summary>
@@ -30,6 +32,7 @@ namespace Service.Catalog.Domain.Authors
 		/// Initializes a new instance of the <see cref="AuthorImageType"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private AuthorImageType(string name, int value) : base(name, value)
 		{
 		}

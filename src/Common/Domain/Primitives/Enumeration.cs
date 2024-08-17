@@ -37,18 +37,27 @@ namespace Domain.Primitives
 		/// <summary>
 		/// Gets the name of the enumeration member.
 		/// </summary>
-		public string Name { get; }
+		public string Name { get; private set; }
 
 		/// <summary>
 		/// Gets the value of the enumeration member.
 		/// </summary>
-		public TEnumValue Value { get; }
+		public TEnumValue Value { get; private set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Enumeration{TEnum, TEnumValue}"/> class with a name and value.
 		/// </summary>
 		/// <param name="name">The name of the enumeration member.</param>
 		/// <param name="value">The value of the enumeration member.</param>
+		/// <remarks>
+		/// If you have troubles with deserialization of enumeration, add this attribute [JsonConstructor] for your enum constructor.
+		/// <code>
+		/// [JsonConstructor]
+		/// private OrderStatus(string name, int value) : base(name, value)
+		/// {
+		/// }
+		/// </code>
+		/// </remarks>
 		/// <exception cref="ArgumentNullException">Thrown when <paramref name="name"/> or <paramref name="value"/> is <see langword="null"/> or empty.</exception>
 		protected Enumeration(string name, TEnumValue value)
 		{

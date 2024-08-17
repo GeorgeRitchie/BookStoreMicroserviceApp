@@ -15,7 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Service.Catalog.Domain.BookSources;
+using Service.Catalog.IntegrationEvents;
 
 namespace Service.Catalog.Application.BooSources.Commands.CreateBookSource
 {

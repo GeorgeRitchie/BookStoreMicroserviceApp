@@ -34,7 +34,7 @@ namespace Service.Catalog.WebApi.ServiceInstallers.EventBus
 				.ConfigureOptions<RabbitMqOptionsSetup>()
 				.AddMassTransit(busConfigurator =>
 				{
-					busConfigurator.SetKebabCaseEndpointNameFormatter();
+					busConfigurator.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: nameof(Catalog), includeNamespace: false));
 
 					busConfigurator.AddConsumersFromAssemblies(Infrastructure.AssemblyReference.Assembly);
 

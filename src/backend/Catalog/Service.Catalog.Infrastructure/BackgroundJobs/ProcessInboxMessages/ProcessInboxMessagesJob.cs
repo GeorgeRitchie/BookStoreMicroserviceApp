@@ -25,6 +25,7 @@ using Polly;
 using Polly.Retry;
 using Quartz;
 using Service.Catalog.Domain;
+using Shared.Helpers;
 using Shared.Repositories;
 
 namespace Service.Catalog.Infrastructure.BackgroundJobs.ProcessInboxMessages
@@ -39,6 +40,7 @@ namespace Service.Catalog.Infrastructure.BackgroundJobs.ProcessInboxMessages
 		{
 			TypeNameHandling = TypeNameHandling.All,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+			ContractResolver = new PrivateSetterResolver(),
 		};
 
 		private readonly IServiceProvider _serviceProvider;

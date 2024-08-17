@@ -15,7 +15,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Service.Catalog.Domain.BookSources
+using Domain.Primitives;
+using Newtonsoft.Json;
+
+namespace Service.Catalog.IntegrationEvents
 {
 	/// <summary>
 	/// Represents the book source format enumeration.
@@ -34,6 +37,7 @@ namespace Service.Catalog.Domain.BookSources
 		/// Initializes a new instance of the <see cref="BookFormat"/> class.
 		/// </summary>
 		/// <inheritdoc/>
+		[JsonConstructor]
 		private BookFormat(string name, string value) : base(name, value)
 		{
 		}

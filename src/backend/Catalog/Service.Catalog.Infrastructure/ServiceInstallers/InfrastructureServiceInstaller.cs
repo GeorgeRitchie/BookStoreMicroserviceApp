@@ -25,7 +25,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the CategoryWrite service infrastructure service installer.
+	/// Represents the Catalog service infrastructure service installer.
 	/// </summary>
 	internal sealed class InfrastructureServiceInstaller : IServiceInstaller
 	{

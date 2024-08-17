@@ -22,7 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the CategoryWrite service authorization service installer.
+	/// Represents the Catalog service authorization service installer.
 	/// </summary>
 	internal sealed class AuthorizationServiceInstaller : IServiceInstaller
 	{

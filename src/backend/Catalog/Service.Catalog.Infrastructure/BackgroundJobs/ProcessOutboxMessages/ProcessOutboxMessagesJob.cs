@@ -26,6 +26,7 @@ using Polly;
 using Polly.Retry;
 using Quartz;
 using Service.Catalog.Domain;
+using Shared.Helpers;
 using Shared.Repositories;
 
 namespace Service.Catalog.Infrastructure.BackgroundJobs.ProcessOutboxMessages
@@ -40,6 +41,7 @@ namespace Service.Catalog.Infrastructure.BackgroundJobs.ProcessOutboxMessages
 		{
 			TypeNameHandling = TypeNameHandling.All,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+			ContractResolver = new PrivateSetterResolver(),
 		};
 
 		private readonly IPublisher _publisher;
