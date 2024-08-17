@@ -20,6 +20,7 @@ using Service.Orders.Domain.Orders.Events;
 using Service.Orders.Domain.Payments;
 using Service.Orders.Domain.Shipments;
 using Service.Orders.IntegrationEvents;
+using Service.Shipments.IntegrationEvents;
 
 namespace Service.Orders.Domain.Orders
 {
@@ -98,15 +99,16 @@ namespace Service.Orders.Domain.Orders
 		/// </summary>
 		/// <param name="customerId">The customer identifier.</param>
 		/// <param name="items">The ordering items.</param>
+		/// <param name="address">The delivery address of the order.</param>
 		/// <returns>The new <see cref="Order"/> instance or <see cref="Result{TValue}"/> with validation errors.</returns>
-		public static Result<Order> Create(CustomerId customerId, IEnumerable<OrderItem> items)
+		public static Result<Order> Create(CustomerId customerId, IEnumerable<OrderItem> items, Address? address = null)
 			=> Result.Success(new Order(new OrderId(Guid.NewGuid()), false)
 			{
 				CustomerId = customerId,
 				Status = OrderStatus.Pending,
 				OrderedDateTimeUtc = DateTime.UtcNow,
 				items = items?.ToList()!,
-				// TODO make shipment creation now
+				Shipment = Shipment.Create(ShipmentStatus.Pending, address).Value,
 			})
 				.Ensure(o => o.items?.Count > 0, OrderErrors.EmptyOrderItems())
 				.Tap(o => o.RaiseDomainEvent(new OrderCreatedDomainEvent(Guid.NewGuid(),

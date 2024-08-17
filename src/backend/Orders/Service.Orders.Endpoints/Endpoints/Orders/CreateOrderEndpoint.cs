@@ -16,6 +16,7 @@
 */
 
 using Service.Orders.Application.Orders.Commands.CreateOrder;
+using Service.Orders.Endpoints.Contracts.Orders;
 using Service.Orders.Endpoints.Routes;
 
 namespace Service.Orders.Endpoints.Endpoints.Orders
@@ -28,7 +29,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 	/// </remarks>
 	/// <param name="sender">Mediator request sender.</param>
 	public sealed class CreateOrderEndpoint(ISender sender) : EndpointBaseAsync
-		.WithRequest<IEnumerable<OrderItemDto>>
+		.WithRequest<CreateOrderRequest>
 		.WithActionResult<Guid>
 	{
 		// TODO [Authorize]
@@ -40,14 +41,15 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 			Summary = "Creates a new order.",
 			Description = "Creates a new order for current user based on the specified request.",
 			Tags = [OrderRoutes.Tag])]
-		public override async Task<ActionResult<Guid>> HandleAsync([FromBody] IEnumerable<OrderItemDto> request,
+		public override async Task<ActionResult<Guid>> HandleAsync([FromBody] CreateOrderRequest request,
 																CancellationToken cancellationToken = default)
 			=> await Result.Create(request)
 					.Map(r => new CreateOrderCommand
 					{
 						// TODO when authorization is done, get customer id from jwt token
 						CustomerId = Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B"),
-						Items = request,
+						Items = request.Items,
+						Address = request.Address,
 					})
 					.Bind(command => sender.Send(command, cancellationToken))
 					.Match(orderId => CreatedAtRoute(nameof(GetOrderByIdEndpoint), new { orderId }, orderId),

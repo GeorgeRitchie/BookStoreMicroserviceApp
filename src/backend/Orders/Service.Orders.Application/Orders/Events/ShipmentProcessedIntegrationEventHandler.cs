@@ -45,7 +45,7 @@ namespace Service.Orders.Application.Orders.Events
 				return;
 			}
 
-			order.Shipment!.Update(ShipmentStatus.FromName(integrationEvent.StatusName)!);
+			order.Shipment?.Update(ShipmentStatus.FromName(integrationEvent.StatusName)!);
 
 			if (integrationEvent.StatusName == ShipmentStatus.Shipped.Name)
 			{

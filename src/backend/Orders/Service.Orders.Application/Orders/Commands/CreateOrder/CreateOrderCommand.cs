@@ -31,6 +31,47 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 		/// Ordering items.
 		/// </summary>
 		public IEnumerable<OrderItemDto> Items { get; set; }
+
+		/// <summary>
+		/// Delivery address.
+		/// </summary>
+		public AddressDto? Address { get; set; }
+	}
+
+	/// <summary>
+	/// Represents the order delivery address.
+	/// </summary>
+	public sealed class AddressDto
+	{
+		/// <summary>
+		/// Shipping address country.
+		/// </summary>
+		public string Country { get; set; }
+
+		/// <summary>
+		/// Shipping address region.
+		/// </summary>
+		public string Region { get; set; }
+
+		/// <summary>
+		/// Shipping address district.
+		/// </summary>
+		public string District { get; set; }
+
+		/// <summary>
+		/// Shipping address city.
+		/// </summary>
+		public string City { get; set; }
+
+		/// <summary>
+		/// Shipping address street.
+		/// </summary>
+		public string Street { get; set; }
+
+		/// <summary>
+		/// Shipping address home.
+		/// </summary>
+		public string Home { get; set; }
 	}
 
 	/// <summary>

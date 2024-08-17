@@ -18,6 +18,7 @@
 using Service.Orders.Domain;
 using Service.Orders.Domain.OrderItems;
 using Service.Orders.Domain.Orders;
+using Service.Orders.Domain.Shipments;
 
 namespace Service.Orders.Application.Orders.Commands.CreateOrder
 {
@@ -50,7 +51,15 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 				.ToArray();
 
 			return await Result.Combine(orderItemsResults)
-				.Bind(() => Order.Create(new CustomerId(request.CustomerId), orderItemsResults.Select(i => i.Value)!)
+				.Bind(() => request.Address is null
+								? Result.Success<Address>(null)
+								: Address.Create(request.Address.Country,
+												request.Address.Region,
+												request.Address.District,
+												request.Address.City,
+												request.Address.Street,
+												request.Address.Home))
+				.Bind(address => Order.Create(new CustomerId(request.CustomerId), orderItemsResults.Select(i => i.Value)!, address)
 				.Tap<Order>(order => repository.Create(order)))
 				.Tap(() => db.SaveChangesAsync(cancellationToken))
 				.Map(o => o.Id.Value);
