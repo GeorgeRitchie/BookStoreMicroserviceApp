@@ -29,7 +29,11 @@ using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
 using Service.Carts.Domain;
+using Service.Carts.Domain.Books;
+using Service.Carts.Domain.BookSources;
+using Service.Carts.Domain.Carts;
 using Service.Carts.Persistence.Contracts;
+using Service.Carts.Persistence.Repositories;
 using Shared.Repositories;
 
 namespace Service.Carts.Persistence
@@ -66,6 +70,9 @@ namespace Service.Carts.Persistence
 				// TODO __##__ For additional Unit Of Work implementations add here.
 				.AddScoped<ICartDb, CartDataBase>()
 				// TODO __##__ IRepository implementations add here.
+				.AddScoped<ICartRepository, CartRepository>()
+				.AddScoped<IBookRepository, BookRepository>()
+				.AddScoped<IBookSourceRepository, BookSourceRepository>()
 				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, CartDbContext>>()
 				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, CartDbContext>>()
 				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, CartDbContext>>()

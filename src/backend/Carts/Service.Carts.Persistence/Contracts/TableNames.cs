@@ -23,6 +23,26 @@ namespace Service.Carts.Persistence.Contracts
 	internal static class TableNames
 	{
 		/// <summary>
+		/// The carts table.
+		/// </summary>
+		internal const string Carts = "carts";
+
+		/// <summary>
+		/// The cart items table.
+		/// </summary>
+		internal const string CartItems = "cart_items";
+
+		/// <summary>
+		/// The books table.
+		/// </summary>
+		internal const string Books = "books";
+
+		/// <summary>
+		/// The book sources table.
+		/// </summary>
+		internal const string BookSources = "book_sources";
+
+		/// <summary>
 		/// The inbox messages table.
 		/// </summary>
 		internal const string InboxMessages = "inbox_messages";
