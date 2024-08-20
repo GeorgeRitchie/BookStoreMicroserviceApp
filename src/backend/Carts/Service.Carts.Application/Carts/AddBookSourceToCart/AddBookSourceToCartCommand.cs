@@ -15,24 +15,29 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Repositories;
+using Service.Carts.Domain.BookSources;
+using Service.Carts.Domain.Carts;
 
-namespace Service.Carts.Domain.Carts
+namespace Service.Carts.Application.Carts.AddBookSourceToCart
 {
 	/// <summary>
-	/// Represents the Cart repository interface.
+	/// Represents the command to add book source to cart.
 	/// </summary>
-	public interface ICartRepository : IRepository<Cart, CartId>
+	public sealed class AddBookSourceToCartCommand : ICommand
 	{
 		/// <summary>
-		/// Returns the cart by customer identifier if exists, otherwise <see langword="null"/>.
+		/// Customer identifier the cart belongs to.
 		/// </summary>
-		/// <param name="customerId">The customer identifier to search by.</param>
-		/// <param name="cancellationToken">The cancelation token.</param>
-		/// <returns>The cart entity.</returns>
-		/// <remarks>
-		/// The <see cref="Cart.Items"/> is included.
-		/// </remarks>
-		Task<Cart?> GetCartByCustomerId(CustomerId customerId, CancellationToken cancellationToken = default);
+		public CustomerId CustomerId { get; set; }
+
+		/// <summary>
+		/// Book source to add to cart.
+		/// </summary>
+		public BookSourceId BookSourceId { get; set; }
+
+		/// <summary>
+		/// Quantity to add to book source in cart item.
+		/// </summary>
+		public uint QuantityToAdd { get; set; }
 	}
 }

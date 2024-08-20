@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Microsoft.EntityFrameworkCore;
 using Persistence.Repositories;
 using Service.Carts.Domain.Carts;
 
@@ -30,5 +31,13 @@ namespace Service.Carts.Persistence.Repositories
 	internal sealed class CartRepository(CartDbContext context)
 		: Repository<Cart, CartId, CartDbContext>(context), ICartRepository
 	{
+		/// <inheritdoc/>
+		public Task<Cart?> GetCartByCustomerId(CustomerId customerId, CancellationToken cancellationToken = default)
+		{
+			return dbSet.Include(i => i.Items)
+							.ThenInclude(i => i.BookSource)
+								.ThenInclude(bs => bs.Book)
+						.FirstOrDefaultAsync(i => i.CustomerId == customerId, cancellationToken);
+		}
 	}
 }

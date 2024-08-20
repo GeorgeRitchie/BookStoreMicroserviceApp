@@ -15,24 +15,23 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Shared.Repositories;
-
-namespace Service.Carts.Domain.Carts
+namespace Service.Carts.Endpoints.Routes
 {
 	/// <summary>
-	/// Represents the Cart repository interface.
+	/// Contains values used for cart endpoints routing stuff.
 	/// </summary>
-	public interface ICartRepository : IRepository<Cart, CartId>
+	internal static class CartRoutes
 	{
-		/// <summary>
-		/// Returns the cart by customer identifier if exists, otherwise <see langword="null"/>.
-		/// </summary>
-		/// <param name="customerId">The customer identifier to search by.</param>
-		/// <param name="cancellationToken">The cancelation token.</param>
-		/// <returns>The cart entity.</returns>
-		/// <remarks>
-		/// The <see cref="Cart.Items"/> is included.
-		/// </remarks>
-		Task<Cart?> GetCartByCustomerId(CustomerId customerId, CancellationToken cancellationToken = default);
+		internal const string Tag = "Carts";
+
+		internal const string BaseUri = "api/v{version:apiVersion}/carts";
+
+		internal const string Get = $"{BaseUri}/getusercart";
+
+		internal const string Clear = $"{BaseUri}/clearusercart";
+
+		internal const string AddBookToCart = $"{BaseUri}/addbooktocart";
+
+		internal const string RemoveBookFromCart = $"{BaseUri}/removebookfromcart";
 	}
 }
