@@ -130,7 +130,7 @@ namespace Service.Carts.Domain.Books
 		/// <param name="cover">Book cover image source.</param>
 		/// <param name="description">Book description.</param>
 		/// <returns>The updated book.</returns>
-		public Result<Book> UpdateAsync(
+		public Result<Book> Update(
 			string title,
 			string? isbn,
 			string language,

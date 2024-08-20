@@ -17,6 +17,9 @@
 
 using Infrastructure.EventBus;
 using MassTransit;
+using Service.Carts.Domain;
+using Service.Carts.Infrastructure.Idempotence;
+using Service.Catalog.IntegrationEvents;
 
 namespace Service.Carts.Infrastructure.Consumers
 {
@@ -28,6 +31,12 @@ namespace Service.Carts.Infrastructure.Consumers
 		/// <inheritdoc />
 		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
 		{
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookCreatedIntegrationEvent, ICartDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookUpdatedIntegrationEvent, ICartDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookSourceCreatedIntegrationEvent, ICartDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookSourceUpdatedIntegrationEvent, ICartDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookSourceDeletedIntegrationEvent, ICartDb>>();
+
 			// TODO __##__ Add here message-broker message consumers
 		}
 	}
