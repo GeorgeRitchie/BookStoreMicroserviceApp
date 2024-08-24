@@ -65,19 +65,37 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Shipments.Integrati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Carts", "Carts", "{1C77E2D7-2BFD-4C9B-BEBF-9F2BF34668EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.Domain", "src\backend\Carts\Service.Carts.Domain\Service.Carts.Domain.csproj", "{2501A7D4-32EA-4270-87D9-B7AC6844DDC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.Domain", "src\backend\Carts\Service.Carts.Domain\Service.Carts.Domain.csproj", "{2501A7D4-32EA-4270-87D9-B7AC6844DDC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.Application", "src\backend\Carts\Service.Carts.Application\Service.Carts.Application.csproj", "{98B57BBD-C6B9-469D-AD5C-58813ED03835}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.Application", "src\backend\Carts\Service.Carts.Application\Service.Carts.Application.csproj", "{98B57BBD-C6B9-469D-AD5C-58813ED03835}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.Endpoints", "src\backend\Carts\Service.Carts.Endpoints\Service.Carts.Endpoints.csproj", "{7D7581F2-8BC8-409D-86CB-46920466E072}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.Endpoints", "src\backend\Carts\Service.Carts.Endpoints\Service.Carts.Endpoints.csproj", "{7D7581F2-8BC8-409D-86CB-46920466E072}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.Infrastructure", "src\backend\Carts\Service.Carts.Infrastructure\Service.Carts.Infrastructure.csproj", "{0B8E53FE-C0E7-4EDA-BED8-7CAD31A8E57E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.Infrastructure", "src\backend\Carts\Service.Carts.Infrastructure\Service.Carts.Infrastructure.csproj", "{0B8E53FE-C0E7-4EDA-BED8-7CAD31A8E57E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.IntegrationEvents", "src\backend\Carts\Service.Carts.IntegrationEvents\Service.Carts.IntegrationEvents.csproj", "{27F84DD8-FE25-4415-95F6-24704B1EC181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.IntegrationEvents", "src\backend\Carts\Service.Carts.IntegrationEvents\Service.Carts.IntegrationEvents.csproj", "{27F84DD8-FE25-4415-95F6-24704B1EC181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.Persistence", "src\backend\Carts\Service.Carts.Persistence\Service.Carts.Persistence.csproj", "{3D7337AC-8344-4AE3-AB82-64B0664106B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.Persistence", "src\backend\Carts\Service.Carts.Persistence\Service.Carts.Persistence.csproj", "{3D7337AC-8344-4AE3-AB82-64B0664106B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Carts.WebApi", "src\backend\Carts\Service.Carts.WebApi\Service.Carts.WebApi.csproj", "{D8DCA468-F0BA-4296-8863-88C34F8B6C9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.WebApi", "src\backend\Carts\Service.Carts.WebApi\Service.Carts.WebApi.csproj", "{D8DCA468-F0BA-4296-8863-88C34F8B6C9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Domain", "src\backend\Payments\Service.Payments.Domain\Service.Payments.Domain.csproj", "{3810661D-B659-4EB3-826F-C04A484EA641}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CD6B53B-634E-4A15-AFEA-75AF8C4540F5} = {4CD6B53B-634E-4A15-AFEA-75AF8C4540F5}
+		{761F8663-E9AD-4C5B-9403-A8469F633EE6} = {761F8663-E9AD-4C5B-9403-A8469F633EE6}
+		{78779A89-7AF5-4076-B932-379B95FA860C} = {78779A89-7AF5-4076-B932-379B95FA860C}
+		{9BFE9E7E-D025-446D-881A-0C15550CA32A} = {9BFE9E7E-D025-446D-881A-0C15550CA32A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Application", "src\backend\Payments\Service.Payments.Application\Service.Payments.Application.csproj", "{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Infrastructure", "src\backend\Payments\Service.Payments.Infrastructure\Service.Payments.Infrastructure.csproj", "{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Endpoints", "src\backend\Payments\Service.Payments.Endpoints\Service.Payments.Endpoints.csproj", "{1EE46023-8861-4BEA-94D8-0E21A75B58A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Persistence", "src\backend\Payments\Service.Payments.Persistence\Service.Payments.Persistence.csproj", "{E0F70934-91DF-454B-BB71-578C4F577298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.WebApi", "src\backend\Payments\Service.Payments.WebApi\Service.Payments.WebApi.csproj", "{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -205,6 +223,30 @@ Global
 		{D8DCA468-F0BA-4296-8863-88C34F8B6C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8DCA468-F0BA-4296-8863-88C34F8B6C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8DCA468-F0BA-4296-8863-88C34F8B6C9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3810661D-B659-4EB3-826F-C04A484EA641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3810661D-B659-4EB3-826F-C04A484EA641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3810661D-B659-4EB3-826F-C04A484EA641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3810661D-B659-4EB3-826F-C04A484EA641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE46023-8861-4BEA-94D8-0E21A75B58A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE46023-8861-4BEA-94D8-0E21A75B58A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE46023-8861-4BEA-94D8-0E21A75B58A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE46023-8861-4BEA-94D8-0E21A75B58A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0F70934-91DF-454B-BB71-578C4F577298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0F70934-91DF-454B-BB71-578C4F577298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0F70934-91DF-454B-BB71-578C4F577298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0F70934-91DF-454B-BB71-578C4F577298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -247,6 +289,12 @@ Global
 		{27F84DD8-FE25-4415-95F6-24704B1EC181} = {1C77E2D7-2BFD-4C9B-BEBF-9F2BF34668EC}
 		{3D7337AC-8344-4AE3-AB82-64B0664106B8} = {1C77E2D7-2BFD-4C9B-BEBF-9F2BF34668EC}
 		{D8DCA468-F0BA-4296-8863-88C34F8B6C9C} = {1C77E2D7-2BFD-4C9B-BEBF-9F2BF34668EC}
+		{3810661D-B659-4EB3-826F-C04A484EA641} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
+		{B9A8818A-6392-4EC0-81B0-F01C8C49CC55} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
+		{414F2DD6-60E1-4B03-B615-D03DEE3B24B5} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
+		{1EE46023-8861-4BEA-94D8-0E21A75B58A5} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
+		{E0F70934-91DF-454B-BB71-578C4F577298} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
+		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC2C67E6-9091-44CF-B200-E16EC3FE9C25}
