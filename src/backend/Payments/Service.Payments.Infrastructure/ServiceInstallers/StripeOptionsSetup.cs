@@ -15,27 +15,26 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Application.EventBus;
-using Infrastructure.Configuration;
-using Infrastructure.EventBus;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Service.Payments.Application.Common.Interfaces;
+using Microsoft.Extensions.Options;
 using Service.Payments.Infrastructure.Services;
 
 namespace Service.Payments.Infrastructure.ServiceInstallers
 {
 	/// <summary>
-	/// Represents the Payment service infrastructure service installer.
+	/// Represents the <see cref="StripeOptions"/> setup.
 	/// </summary>
-	internal sealed class InfrastructureServiceInstaller : IServiceInstaller
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="StripeOptionsSetup"/> class.
+	/// </remarks>
+	/// <param name="configuration">The configuration.</param>
+	internal sealed class StripeOptionsSetup(IConfiguration configuration)
+		: IConfigureOptions<StripeOptions>
 	{
+		private const string ConfigurationSectionName = "Service:Payment:Stripe";
+
 		/// <inheritdoc />
-		public void Install(IServiceCollection services, IConfiguration configuration) =>
-			services
-				.ConfigureOptions<StripeOptionsSetup>()
-				.AddScoped<IPaymentService, StripePaymentService>()
-				.TryAddTransient<IEventBus, EventBus>();
+		public void Configure(StripeOptions options)
+			=> configuration.GetSection(ConfigurationSectionName).Bind(options);
 	}
 }

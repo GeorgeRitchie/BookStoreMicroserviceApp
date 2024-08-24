@@ -15,25 +15,19 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.EventBus;
-using MassTransit;
-using Service.Orders.IntegrationEvents;
-using Service.Payments.Domain;
-using Service.Payments.Infrastructure.Idempotence;
-
-namespace Service.Payments.Infrastructure.Consumers
+namespace Service.Payments.Endpoints.Routes
 {
 	/// <summary>
-	/// Represents the consumer configuration for the Payment service.
+	/// Contains values used for payment endpoints routing stuff.
 	/// </summary>
-	internal sealed class ConsumerConfiguration : IConsumerConfiguration
+	internal static class PaymentRoutes
 	{
-		/// <inheritdoc />
-		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
-		{
-			registrationConfigurator.AddConsumer<IntegrationEventConsumer<PaymentRequestedIntegrationEvent, IPaymentDb>>();
+		internal const string Tag = "Payments";
 
-			// TODO __##__ Add here message-broker message consumers
-		}
+		internal const string BaseUri = "api/v{version:apiVersion}/payments";
+
+		internal const string Success = $"{BaseUri}/success";
+
+		internal const string Failure = $"{BaseUri}/failure";
 	}
 }

@@ -15,25 +15,26 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.EventBus;
-using MassTransit;
-using Service.Orders.IntegrationEvents;
-using Service.Payments.Domain;
-using Service.Payments.Infrastructure.Idempotence;
-
-namespace Service.Payments.Infrastructure.Consumers
+namespace Service.Payments.Infrastructure.Services
 {
 	/// <summary>
-	/// Represents the consumer configuration for the Payment service.
+	/// Represents the <see cref="StripePaymentService"/> options.
 	/// </summary>
-	internal sealed class ConsumerConfiguration : IConsumerConfiguration
+	internal sealed class StripeOptions
 	{
-		/// <inheritdoc />
-		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
-		{
-			registrationConfigurator.AddConsumer<IntegrationEventConsumer<PaymentRequestedIntegrationEvent, IPaymentDb>>();
+		/// <summary>
+		/// Gets the url for success redirect address.
+		/// </summary>
+		public string SuccessUrlAddress { get; set; }
 
-			// TODO __##__ Add here message-broker message consumers
-		}
+		/// <summary>
+		/// Gets the url for failure redirect address.
+		/// </summary>
+		public string FailureUrlAddress { get; set; }
+
+		/// <summary>
+		/// Gets the Stripe server api key.
+		/// </summary>
+		public string ApiKey { get; set; }
 	}
 }

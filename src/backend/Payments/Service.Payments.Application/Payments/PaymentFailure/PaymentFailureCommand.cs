@@ -15,25 +15,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.EventBus;
-using MassTransit;
-using Service.Orders.IntegrationEvents;
-using Service.Payments.Domain;
-using Service.Payments.Infrastructure.Idempotence;
-
-namespace Service.Payments.Infrastructure.Consumers
+namespace Service.Payments.Application.Payments.PaymentFailure
 {
 	/// <summary>
-	/// Represents the consumer configuration for the Payment service.
+	/// Represents the command to failure complete a payment.
 	/// </summary>
-	internal sealed class ConsumerConfiguration : IConsumerConfiguration
-	{
-		/// <inheritdoc />
-		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
-		{
-			registrationConfigurator.AddConsumer<IntegrationEventConsumer<PaymentRequestedIntegrationEvent, IPaymentDb>>();
-
-			// TODO __##__ Add here message-broker message consumers
-		}
-	}
+	/// <param name="PaymentId">The identifier of payment to complete.</param>
+	public sealed record PaymentFailureCommand(Guid PaymentId) : ICommand;
 }

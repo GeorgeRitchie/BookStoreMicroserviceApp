@@ -29,7 +29,9 @@ using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
 using Service.Payments.Domain;
+using Service.Payments.Domain.Payments;
 using Service.Payments.Persistence.Contracts;
+using Service.Payments.Persistence.Repositories;
 using Shared.Repositories;
 
 namespace Service.Payments.Persistence
@@ -66,6 +68,7 @@ namespace Service.Payments.Persistence
 				// TODO __##__ For additional Unit Of Work implementations add here.
 				.AddScoped<IPaymentDb, PaymentDataBase>()
 				// TODO __##__ IRepository implementations add here.
+				.AddScoped<IPaymentRepository, PaymentRepository>()
 				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, PaymentDbContext>>()
 				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, PaymentDbContext>>()
 				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, PaymentDbContext>>()

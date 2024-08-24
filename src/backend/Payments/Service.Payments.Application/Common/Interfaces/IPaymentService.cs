@@ -15,25 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.EventBus;
-using MassTransit;
-using Service.Orders.IntegrationEvents;
-using Service.Payments.Domain;
-using Service.Payments.Infrastructure.Idempotence;
+using Service.Payments.Domain.Payments;
 
-namespace Service.Payments.Infrastructure.Consumers
+namespace Service.Payments.Application.Common.Interfaces
 {
 	/// <summary>
-	/// Represents the consumer configuration for the Payment service.
+	/// Represents the abstraction of real payments services (e.g. Stripe).
 	/// </summary>
-	internal sealed class ConsumerConfiguration : IConsumerConfiguration
+	public interface IPaymentService
 	{
-		/// <inheritdoc />
-		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
-		{
-			registrationConfigurator.AddConsumer<IntegrationEventConsumer<PaymentRequestedIntegrationEvent, IPaymentDb>>();
-
-			// TODO __##__ Add here message-broker message consumers
-		}
+		/// <summary>
+		/// Creates a checkout session on third party payment session and returns the url for user to interact with and finish the payment process.
+		/// </summary>
+		/// <param name="payment">Payment information.</param>
+		/// <param name="cancellationToken">Cancelation token.</param>
+		/// <returns>The url to created checkout session.</returns>
+		Task<string> CreateCheckoutSessionWithUrlAsync(Payment payment, CancellationToken cancellationToken = default);
 	}
 }

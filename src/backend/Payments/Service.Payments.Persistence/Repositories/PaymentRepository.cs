@@ -15,25 +15,20 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Infrastructure.EventBus;
-using MassTransit;
-using Service.Orders.IntegrationEvents;
-using Service.Payments.Domain;
-using Service.Payments.Infrastructure.Idempotence;
+using Persistence.Repositories;
+using Service.Payments.Domain.Payments;
 
-namespace Service.Payments.Infrastructure.Consumers
+namespace Service.Payments.Persistence.Repositories
 {
 	/// <summary>
-	/// Represents the consumer configuration for the Payment service.
+	/// Represents repository implementation for <see cref="Payment"/> entity.
 	/// </summary>
-	internal sealed class ConsumerConfiguration : IConsumerConfiguration
+	/// <remarks>
+	/// Initializes a new instance of the <see cref="PaymentRepository"/> class.
+	/// </remarks>
+	/// <param name="dbContext">The database context.</param>
+	internal sealed class PaymentRepository(PaymentDbContext context)
+		: SoftDeletableRepository<Payment, PaymentId, PaymentDbContext>(context), IPaymentRepository
 	{
-		/// <inheritdoc />
-		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
-		{
-			registrationConfigurator.AddConsumer<IntegrationEventConsumer<PaymentRequestedIntegrationEvent, IPaymentDb>>();
-
-			// TODO __##__ Add here message-broker message consumers
-		}
 	}
 }
