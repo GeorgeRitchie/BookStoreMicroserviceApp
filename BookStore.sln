@@ -79,7 +79,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.Persistence",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Carts.WebApi", "src\backend\Carts\Service.Carts.WebApi\Service.Carts.WebApi.csproj", "{D8DCA468-F0BA-4296-8863-88C34F8B6C9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Domain", "src\backend\Payments\Service.Payments.Domain\Service.Payments.Domain.csproj", "{3810661D-B659-4EB3-826F-C04A484EA641}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Payments.Domain", "src\backend\Payments\Service.Payments.Domain\Service.Payments.Domain.csproj", "{3810661D-B659-4EB3-826F-C04A484EA641}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4CD6B53B-634E-4A15-AFEA-75AF8C4540F5} = {4CD6B53B-634E-4A15-AFEA-75AF8C4540F5}
 		{761F8663-E9AD-4C5B-9403-A8469F633EE6} = {761F8663-E9AD-4C5B-9403-A8469F633EE6}
@@ -87,15 +87,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Domain", "
 		{9BFE9E7E-D025-446D-881A-0C15550CA32A} = {9BFE9E7E-D025-446D-881A-0C15550CA32A}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Application", "src\backend\Payments\Service.Payments.Application\Service.Payments.Application.csproj", "{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Payments.Application", "src\backend\Payments\Service.Payments.Application\Service.Payments.Application.csproj", "{B9A8818A-6392-4EC0-81B0-F01C8C49CC55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Infrastructure", "src\backend\Payments\Service.Payments.Infrastructure\Service.Payments.Infrastructure.csproj", "{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Payments.Infrastructure", "src\backend\Payments\Service.Payments.Infrastructure\Service.Payments.Infrastructure.csproj", "{414F2DD6-60E1-4B03-B615-D03DEE3B24B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Endpoints", "src\backend\Payments\Service.Payments.Endpoints\Service.Payments.Endpoints.csproj", "{1EE46023-8861-4BEA-94D8-0E21A75B58A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Payments.Endpoints", "src\backend\Payments\Service.Payments.Endpoints\Service.Payments.Endpoints.csproj", "{1EE46023-8861-4BEA-94D8-0E21A75B58A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.Persistence", "src\backend\Payments\Service.Payments.Persistence\Service.Payments.Persistence.csproj", "{E0F70934-91DF-454B-BB71-578C4F577298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Payments.Persistence", "src\backend\Payments\Service.Payments.Persistence\Service.Payments.Persistence.csproj", "{E0F70934-91DF-454B-BB71-578C4F577298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Payments.WebApi", "src\backend\Payments\Service.Payments.WebApi\Service.Payments.WebApi.csproj", "{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Payments.WebApi", "src\backend\Payments\Service.Payments.WebApi\Service.Payments.WebApi.csproj", "{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Shipments.Domain", "src\backend\Shipments\Service.Shipments.Domain\Service.Shipments.Domain.csproj", "{7D45B15A-7A26-41CF-8716-AB4EB1570101}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Shipments.Application", "src\backend\Shipments\Service.Shipments.Application\Service.Shipments.Application.csproj", "{772C432D-ABE5-445C-B8BD-71AC8DECDE98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Shipments.Infrastructure", "src\backend\Shipments\Service.Shipments.Infrastructure\Service.Shipments.Infrastructure.csproj", "{9E0AA416-E8F7-4495-9B13-3698F9C4A457}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Shipments.Endpoints", "src\backend\Shipments\Service.Shipments.Endpoints\Service.Shipments.Endpoints.csproj", "{B5A653A9-E5BE-4BD3-A6D7-ADFE22563BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Shipments.Persistence", "src\backend\Shipments\Service.Shipments.Persistence\Service.Shipments.Persistence.csproj", "{FFAEF930-5614-4355-BB79-4824BCE434EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Shipments.WebApi", "src\backend\Shipments\Service.Shipments.WebApi\Service.Shipments.WebApi.csproj", "{F210724E-7676-4FC5-B746-CEBA40F47E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -247,6 +259,30 @@ Global
 		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D45B15A-7A26-41CF-8716-AB4EB1570101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D45B15A-7A26-41CF-8716-AB4EB1570101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D45B15A-7A26-41CF-8716-AB4EB1570101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D45B15A-7A26-41CF-8716-AB4EB1570101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{772C432D-ABE5-445C-B8BD-71AC8DECDE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{772C432D-ABE5-445C-B8BD-71AC8DECDE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{772C432D-ABE5-445C-B8BD-71AC8DECDE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{772C432D-ABE5-445C-B8BD-71AC8DECDE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E0AA416-E8F7-4495-9B13-3698F9C4A457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E0AA416-E8F7-4495-9B13-3698F9C4A457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E0AA416-E8F7-4495-9B13-3698F9C4A457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E0AA416-E8F7-4495-9B13-3698F9C4A457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A653A9-E5BE-4BD3-A6D7-ADFE22563BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A653A9-E5BE-4BD3-A6D7-ADFE22563BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A653A9-E5BE-4BD3-A6D7-ADFE22563BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A653A9-E5BE-4BD3-A6D7-ADFE22563BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFAEF930-5614-4355-BB79-4824BCE434EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFAEF930-5614-4355-BB79-4824BCE434EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFAEF930-5614-4355-BB79-4824BCE434EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFAEF930-5614-4355-BB79-4824BCE434EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F210724E-7676-4FC5-B746-CEBA40F47E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F210724E-7676-4FC5-B746-CEBA40F47E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F210724E-7676-4FC5-B746-CEBA40F47E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F210724E-7676-4FC5-B746-CEBA40F47E85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -295,6 +331,12 @@ Global
 		{1EE46023-8861-4BEA-94D8-0E21A75B58A5} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
 		{E0F70934-91DF-454B-BB71-578C4F577298} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
 		{BC8D9420-6EBC-4FC7-AF4B-074135C7804E} = {7FC836B2-15B6-4F62-9B19-9768BA9B1C19}
+		{7D45B15A-7A26-41CF-8716-AB4EB1570101} = {DE3789DC-A0C1-4904-99E7-3E6FD9E6CB42}
+		{772C432D-ABE5-445C-B8BD-71AC8DECDE98} = {DE3789DC-A0C1-4904-99E7-3E6FD9E6CB42}
+		{9E0AA416-E8F7-4495-9B13-3698F9C4A457} = {DE3789DC-A0C1-4904-99E7-3E6FD9E6CB42}
+		{B5A653A9-E5BE-4BD3-A6D7-ADFE22563BB9} = {DE3789DC-A0C1-4904-99E7-3E6FD9E6CB42}
+		{FFAEF930-5614-4355-BB79-4824BCE434EC} = {DE3789DC-A0C1-4904-99E7-3E6FD9E6CB42}
+		{F210724E-7676-4FC5-B746-CEBA40F47E85} = {DE3789DC-A0C1-4904-99E7-3E6FD9E6CB42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC2C67E6-9091-44CF-B200-E16EC3FE9C25}
