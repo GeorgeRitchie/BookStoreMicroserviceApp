@@ -17,6 +17,10 @@
 
 using Infrastructure.EventBus;
 using MassTransit;
+using Service.Catalog.IntegrationEvents;
+using Service.Orders.IntegrationEvents;
+using Service.Shipments.Domain;
+using Service.Shipments.Infrastructure.Idempotence;
 
 namespace Service.Shipments.Infrastructure.Consumers
 {
@@ -28,6 +32,12 @@ namespace Service.Shipments.Infrastructure.Consumers
 		/// <inheritdoc />
 		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
 		{
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookCreatedIntegrationEvent, IShipmentDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookUpdatedIntegrationEvent, IShipmentDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookSourceCreatedIntegrationEvent, IShipmentDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<BookSourceUpdatedIntegrationEvent, IShipmentDb>>();
+			registrationConfigurator.AddConsumer<IntegrationEventConsumer<ShipmentRequestedIntegrationEvent, IShipmentDb>>();
+
 			// TODO __##__ Add here message-broker message consumers
 		}
 	}
