@@ -23,6 +23,26 @@ namespace Service.Shipments.Persistence.Contracts
 	internal static class TableNames
 	{
 		/// <summary>
+		/// The books table.
+		/// </summary>
+		internal const string Books = "books";
+
+		/// <summary>
+		/// The book sources table.
+		/// </summary>
+		internal const string BookSources = "book_sources";
+
+		/// <summary>
+		/// The shipment items table.
+		/// </summary>
+		internal const string ShipmentItems = "shipment_items";
+
+		/// <summary>
+		/// The shipments table.
+		/// </summary>
+		internal const string Shipments = "shipments";
+
+		/// <summary>
 		/// The inbox messages table.
 		/// </summary>
 		internal const string InboxMessages = "inbox_messages";

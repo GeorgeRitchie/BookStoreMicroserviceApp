@@ -29,7 +29,11 @@ using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
 using Service.Shipments.Domain;
+using Service.Shipments.Domain.Books;
+using Service.Shipments.Domain.BookSources;
+using Service.Shipments.Domain.Shipments;
 using Service.Shipments.Persistence.Contracts;
+using Service.Shipments.Persistence.Repositories;
 using Shared.Repositories;
 
 namespace Service.Shipments.Persistence
@@ -66,6 +70,9 @@ namespace Service.Shipments.Persistence
 				// TODO __##__ For additional Unit Of Work implementations add here.
 				.AddScoped<IShipmentDb, ShipmentDataBase>()
 				// TODO __##__ IRepository implementations add here.
+				.AddScoped<IShipmentRepository, ShipmentRepository>()
+				.AddScoped<IBookRepository, BookRepository>()
+				.AddScoped<IBookSourceRepository, BookSourceRepository>()
 				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, ShipmentDbContext>>()
 				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, ShipmentDbContext>>()
 				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, ShipmentDbContext>>()
