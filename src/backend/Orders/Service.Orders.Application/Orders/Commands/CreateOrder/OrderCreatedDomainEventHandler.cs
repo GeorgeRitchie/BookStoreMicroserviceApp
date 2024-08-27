@@ -45,6 +45,7 @@ namespace Service.Orders.Application.Orders.Commands.CreateOrder
 		public async Task Handle(OrderCreatedDomainEvent notification, CancellationToken cancellationToken)
 		{
 			var order = await repository.GetAll()
+											.Include(o => o.Items)
 											.FirstOrDefaultAsync(o => o.Id == new OrderId(notification.OrderId),
 																cancellationToken);
 

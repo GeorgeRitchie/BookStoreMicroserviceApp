@@ -105,6 +105,7 @@ namespace Service.Orders.Application.Orders.Events
 		private Order? GetOrder(PaymentProcessedIntegrationEvent integrationEvent)
 		{
 			var order = orderRepository.GetAll()
+					.Include(o => o.Items)
 					.Include(o => o.Payment)
 					.FirstOrDefault(i => i.Id == new OrderId(integrationEvent.OrderId));
 

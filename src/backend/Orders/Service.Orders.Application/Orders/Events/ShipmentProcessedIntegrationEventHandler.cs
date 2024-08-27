@@ -59,6 +59,7 @@ namespace Service.Orders.Application.Orders.Events
 		private Order? GetOrder(ShipmentProcessedIntegrationEvent integrationEvent)
 		{
 			var order = orderRepository.GetAll()
+					.Include(o => o.Items)
 					.Include(o => o.Shipment)
 					.FirstOrDefault(i => i.Id == new OrderId(integrationEvent.OrderId));
 

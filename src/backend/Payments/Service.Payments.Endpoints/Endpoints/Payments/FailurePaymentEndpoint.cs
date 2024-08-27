@@ -32,7 +32,7 @@ namespace Service.Payments.Endpoints.Endpoints.Payments
 		.WithActionResult
 	{
 		// TODO [Authorize]
-		[HttpPost(PaymentRoutes.Failure)]
+		[HttpGet(PaymentRoutes.Failure)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ApiVersion("1.0")]
