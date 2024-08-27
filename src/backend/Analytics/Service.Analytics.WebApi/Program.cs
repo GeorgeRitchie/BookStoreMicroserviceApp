@@ -98,5 +98,7 @@ LoggingUtility.Run(() =>
 
 	webApplication.MapControllers();
 
+	webApplication.MapGraphQL();
+
 	webApplication.Run();
 });

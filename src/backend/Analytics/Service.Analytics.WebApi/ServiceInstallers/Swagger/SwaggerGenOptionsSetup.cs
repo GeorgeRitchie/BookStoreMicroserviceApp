@@ -177,7 +177,7 @@ namespace Service.Analytics.WebApi.ServiceInstallers.Swagger
 		private static string GetXmlDocumentationFileFor(Assembly assembly)
 		{
 			var xmlFile = $"{assembly.GetName().Name}.xml";
-			var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+			var xmlPath = System.IO.Path.Combine(AppContext.BaseDirectory, xmlFile);
 
 			return xmlPath;
 		}

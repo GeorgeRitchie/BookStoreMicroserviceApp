@@ -46,7 +46,9 @@ namespace Service.Analytics.Infrastructure.ServiceInstallers
 					includeInternalTypes: true)
 				.AddValidatorsFromAssembly(BaseApplication.AssemblyReference.Assembly, includeInternalTypes: true)
 				// TODO __##__ Add here your AutoMapper mappers, or assemblies that contain such mappers
-				.AddAutoMapper(config => config.AddProfile(new AssemblyMappingProfile(AnalyticsApplication.AssemblyReference.Assembly)))
+				//.AddAutoMapper(config => config.AddProfile(new AssemblyMappingProfile(AnalyticsApplication.AssemblyReference.Assembly)))
+				// This will add all mapping profiles from all assemblies in running application.
+				.AddAutoMapper(config => config.AddProfile(new AssemblyMappingProfile()))
 				.Tap(DecorateDomainEventHandlersWithIdempotency)
 				.Tap(AddAndDecorateIntegrationEventHandlersWithIdempotency);
 
