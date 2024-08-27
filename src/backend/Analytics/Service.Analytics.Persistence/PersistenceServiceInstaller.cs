@@ -29,7 +29,9 @@ using Persistence.Options;
 using Persistence.Outbox;
 using Persistence.Repositories;
 using Service.Analytics.Domain;
+using Service.Analytics.Domain.Orders;
 using Service.Analytics.Persistence.Contracts;
+using Service.Analytics.Persistence.Repositories;
 using Shared.Repositories;
 
 namespace Service.Analytics.Persistence
@@ -66,6 +68,7 @@ namespace Service.Analytics.Persistence
 				// TODO __##__ For additional Unit Of Work implementations add here.
 				.AddScoped<IAnalyticsDb, AnalyticsDataBase>()
 				// TODO __##__ IRepository implementations add here.
+				.AddScoped<IOrderRepository, OrderRepository>()
 				.AddScoped<IRepository<OutboxMessage, Guid>, Repository<OutboxMessage, Guid, AnalyticsDbContext>>()
 				.AddScoped<IRepository<OutboxMessageConsumer, Guid>, Repository<OutboxMessageConsumer, Guid, AnalyticsDbContext>>()
 				.AddScoped<IRepository<InboxMessage, Guid>, Repository<InboxMessage, Guid, AnalyticsDbContext>>()
