@@ -20,6 +20,7 @@ using HealthChecks.UI.Client;
 using Infrastructure.Extensions;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
+using OpenTelemetry.Logs;
 using Serilog;
 using Service.Catalog.WebApi.Extensions;
 using Service.Catalog.WebApi.Middlewares;
@@ -43,6 +44,7 @@ LoggingUtility.Run(() =>
 				Service.Catalog.Infrastructure.AssemblyReference.Assembly);
 
 	builder.Host.UseSerilogWithConfiguration();
+	builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter());
 
 	WebApplication webApplication = builder.Build();
 
@@ -79,9 +81,7 @@ LoggingUtility.Run(() =>
 									.AllowAnyOrigin());
 
 	webApplication.UseGlobalExceptionHandlerMiddleware()
-					.UseCorrelationTokenMiddleware()
-					.UseSerilogRequestLogging()
-					.UsePerformanceLoggingMiddleware();
+					.UseSerilogRequestLogging();
 
 	webApplication.MapHealthChecks("/health", new HealthCheckOptions()
 	{
