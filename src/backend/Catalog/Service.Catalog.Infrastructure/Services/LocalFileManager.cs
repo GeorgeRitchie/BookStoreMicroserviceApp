@@ -17,7 +17,6 @@
 
 using Application.Extensions;
 using Application.Models;
-using Application.ServiceLifetimes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -32,16 +31,16 @@ namespace Service.Catalog.Infrastructure.Services
 	/// Current implementation is for local file system storing.
 	/// </remarks>
 	/// <remarks>
-	/// Initializes new instance of the <see cref="FileManager"/> class.
+	/// Initializes new instance of the <see cref="LocalFileManager"/> class.
 	/// </remarks>
 	/// <param name="logger">The logger.</param>
 	/// <param name="environment">The application environment.</param>
 	/// <param name="httpContextAccessor">The HttpContext accessor.</param>
-	internal sealed class FileManager(
-		ILogger<FileManager> logger,
+	internal sealed class LocalFileManager(
+		ILogger<LocalFileManager> logger,
 		IWebHostEnvironment environment,
 		IHttpContextAccessor httpContextAccessor)
-		: IFileManager, IScoped
+		: IFileManager
 	{
 		// TODO __##__ Assuming for real production deployment, this implementation will be replaced with one that stores files in cloud based storages
 

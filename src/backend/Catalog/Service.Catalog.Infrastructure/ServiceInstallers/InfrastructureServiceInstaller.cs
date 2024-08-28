@@ -16,11 +16,15 @@
 */
 
 using Application.EventBus;
+using Azure.Storage.Blobs;
 using Infrastructure.Configuration;
 using Infrastructure.EventBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
+using Service.Catalog.Application.Common.Services;
+using Service.Catalog.Infrastructure.Services;
 
 namespace Service.Catalog.Infrastructure.ServiceInstallers
 {
@@ -32,6 +36,14 @@ namespace Service.Catalog.Infrastructure.ServiceInstallers
 		/// <inheritdoc />
 		public void Install(IServiceCollection services, IConfiguration configuration) =>
 			services
+				// .AddSingleton<IFileManager, LocalFileManager>()
+				.ConfigureOptions<AzureBlobOptionsSetup>()
+				.AddSingleton<IFileManager, AzureBlobFileManager>()
+				.AddSingleton(sp =>
+				{
+					var options = sp.GetRequiredService<IOptions<AzureBlobOptions>>().Value;
+					return new BlobServiceClient(options.ConnectionString);
+				})
 				.TryAddTransient<IEventBus, EventBus>();
 	}
 }
