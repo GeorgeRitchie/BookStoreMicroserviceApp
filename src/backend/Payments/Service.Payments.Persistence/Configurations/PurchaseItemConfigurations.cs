@@ -1,0 +1,89 @@
+﻿/* 
+	BookStore
+	Copyright (c) 2024, Sharifjon Abdulloev.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License, version 3.0, 
+	as published by the Free Software Foundation.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License, version 3.0, for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Persistence.Converters;
+using Service.Catalog.IntegrationEvents;
+using Service.Payments.Domain.PurchaseItems;
+using Service.Payments.Persistence.Contracts;
+using Shared.Extensions;
+
+namespace Service.Payments.Persistence.Configurations
+{
+	/// <summary>
+	/// Represents the <see cref="PurchaseItem"/> entity configuration.
+	/// </summary>
+	internal sealed class PurchaseItemConfigurations : IEntityTypeConfiguration<PurchaseItem>
+	{
+		/// <inheritdoc />
+		public void Configure(EntityTypeBuilder<PurchaseItem> builder) =>
+			 builder
+				.Tap(ConfigureDataStructure)
+				.Tap(ConfigureIndexes);
+
+		private static void ConfigureDataStructure(EntityTypeBuilder<PurchaseItem> builder)
+		{
+			builder.ToTable(TableNames.PurchaseItems);
+
+			builder.HasKey(oi => oi.Id);
+
+			builder.Property(oi => oi.Id).ValueGeneratedNever()
+							.HasConversion(oiId => oiId.Value, value => new PurchaseItemId(value));
+
+			builder.Property(oi => oi.IsDeleted).IsRequired().HasDefaultValue(false);
+
+			builder.HasQueryFilter(oi => oi.IsDeleted == false);
+
+			builder.Property(oi => oi.OrderItemId).IsRequired(true)
+				.HasConversion(oi => oi.Value, value => new OrderItemId(value));
+
+			builder.Property(oi => oi.BookId).IsRequired(true)
+				.HasConversion(oi => oi.Value, value => new BookId(value));
+
+			builder.Property(oi => oi.Title).IsRequired(true).HasMaxLength(100);
+
+			builder.Property(oi => oi.ISBN).IsRequired(false).HasMaxLength(20);
+
+			builder.Property(oi => oi.Cover).IsRequired(false);
+
+			builder.Property(oi => oi.Language).IsRequired(true).HasMaxLength(5);
+
+			builder.Property(oi => oi.SourceId).IsRequired(true)
+				.HasConversion(oi => oi.Value, value => new BookSourceId(value));
+
+			builder.Property(oi => oi.Quantity).IsRequired(true);
+
+			builder.Property(oi => oi.UnitPrice).IsRequired(true);
+
+			builder.Property(bs => bs.Format)
+					.HasConversion<EnumerationConverter<BookFormat, string>>()
+					.IsRequired();
+
+			builder.Property(oi => oi.CreatedOnUtc).IsRequired();
+
+			builder.Property(oi => oi.ModifiedOnUtc).IsRequired(false);
+		}
+
+		private static void ConfigureIndexes(EntityTypeBuilder<PurchaseItem> builder)
+		{
+			builder.HasIndex(oi => oi.BookId);
+			builder.HasIndex(oi => oi.OrderItemId);
+			builder.HasIndex(oi => oi.SourceId);
+		}
+	}
+}

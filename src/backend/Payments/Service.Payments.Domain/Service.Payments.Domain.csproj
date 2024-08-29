@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\..\Common\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\Catalog\Service.Catalog.IntegrationEvents\Service.Catalog.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Orders\Service.Orders.IntegrationEvents\Service.Orders.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\Service.Payments.IntegrationEvents\Service.Payments.IntegrationEvents.csproj" />
+  </ItemGroup>
+
+</Project>
