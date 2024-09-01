@@ -43,6 +43,32 @@ namespace Service.Identity.Data
 						Id = Guid.NewGuid(),
 						Name = "ReadShipment",
 					},
+
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "EditAuthors",
+					},
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "EditBooks",
+					},
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "EditBookSources",
+					},
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "EditCategories",
+					},
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "EditPublishers",
+					},
 				],
 			},
 			new Role(Guid.NewGuid(), Role.User)

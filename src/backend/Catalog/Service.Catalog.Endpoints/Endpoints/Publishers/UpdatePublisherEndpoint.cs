@@ -32,7 +32,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Publishers
 		.WithRequest<UpdatePublisherRequest>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditPublishers)]
 		[HttpPut(PublisherRoutes.Update)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

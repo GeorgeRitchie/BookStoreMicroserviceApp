@@ -31,7 +31,8 @@ namespace Service.Catalog.Endpoints.Endpoints.BookSources
 		.WithRequest<Guid>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditBookSources)]
 		[HttpDelete(BookSourceRoutes.Delete)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]

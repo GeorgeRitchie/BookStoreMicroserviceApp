@@ -31,7 +31,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Authors
 		.WithRequest<CreateAuthorRequest>
 		.WithActionResult<Guid>
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditAuthors)]
 		[HttpPost(AuthorRoutes.Create)]
 		[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

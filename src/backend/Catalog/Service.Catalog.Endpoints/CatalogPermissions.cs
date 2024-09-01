@@ -15,14 +15,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-global using Ardalis.ApiEndpoints;
-global using Asp.Versioning;
-global using Endpoints.Authorization;
-global using Endpoints.Extensions;
-global using MediatR;
-global using Microsoft.AspNetCore.Authorization;
-global using Microsoft.AspNetCore.Http;
-global using Microsoft.AspNetCore.Mvc;
-global using Service.Catalog.Endpoints.Routes;
-global using Shared.Results;
-global using Swashbuckle.AspNetCore.Annotations;
+namespace Service.Catalog.Endpoints
+{
+	/// <summary>
+	/// Represents the Catalog module permissions.
+	/// </summary>
+	internal static class CatalogPermissions
+	{
+		internal const string EditAuthors = "EditAuthors";
+
+		internal const string EditBooks = "EditBooks";
+
+		internal const string EditBookSources = "EditBookSources";
+
+		internal const string EditCategories = "EditCategories";
+
+		internal const string EditPublishers = "EditPublishers";
+	}
+}

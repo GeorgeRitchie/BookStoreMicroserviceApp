@@ -64,10 +64,9 @@ LoggingUtility.Run(() =>
 
 				// Use this if you use OAUTH2 (OIDC)
 				// TODO __##__ set swagger client credentials of OIDC
-				opt.OAuth2RedirectUrl("https://localhost:1501/swagger/index.html");
-				opt.OAuthClientId("swagger-ui-4206B798-EE73-4CEB-B0F1-7A5B827EDA61");
+				opt.OAuthClientId("swagger-client-3F9610DD-0032-41FA-92F5-397E6B66AE15");
 				opt.OAuthAppName("Swagger UI");
-				opt.OAuthClientSecret("swagger-ui-secret-string");
+				opt.OAuthClientSecret("swagger-ui-DF669678-66B8-4982-890A-E52F7632A3BA");
 				opt.OAuthUsePkce();
 			}
 			opt.InjectStylesheet("/swagger-ui/SwaggerDark.css");
@@ -93,6 +92,8 @@ LoggingUtility.Run(() =>
 	webApplication.UseHttpsRedirection();
 
 	webApplication.UseStaticFiles();
+
+	webApplication.UseRouting();
 
 	webApplication.UseAuthentication();
 	webApplication.UseAuthorization();

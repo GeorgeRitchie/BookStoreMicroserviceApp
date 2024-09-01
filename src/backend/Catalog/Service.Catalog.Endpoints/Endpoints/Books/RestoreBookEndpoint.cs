@@ -31,7 +31,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Books
 		.WithRequest<Guid>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditBooks)]
 		[HttpPut(BookRoutes.Restore)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
