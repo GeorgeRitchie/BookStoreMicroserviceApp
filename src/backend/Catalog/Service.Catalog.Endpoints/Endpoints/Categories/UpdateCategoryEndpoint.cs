@@ -33,7 +33,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Categories
 		.WithRequest<UpdateCategoryRequest>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditCategories)]
 		[HttpPut(CategoryRoutes.Update)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

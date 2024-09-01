@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Authorization\Authorization.csproj" />
     <ProjectReference Include="..\..\..\Common\Endpoints\Endpoints.csproj" />
     <ProjectReference Include="..\Service.Catalog.Application\Service.Catalog.Application.csproj" />
   </ItemGroup>

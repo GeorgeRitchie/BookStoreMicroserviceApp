@@ -32,7 +32,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 		.WithRequest<CreateOrderRequest>
 		.WithActionResult<Guid>
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpPost(OrderRoutes.Create)]
 		[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -46,8 +46,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 			=> await Result.Create(request)
 					.Map(r => new CreateOrderCommand
 					{
-						// TODO when authorization is done, get customer id from jwt token
-						CustomerId = Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B"),
+						CustomerId = Guid.Parse(HttpContext.User.GetIdentityProviderId()),
 						Items = request.Items,
 						Address = request.Address,
 					})

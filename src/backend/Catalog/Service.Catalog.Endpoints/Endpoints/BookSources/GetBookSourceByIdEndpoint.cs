@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Authorization.Services;
 using Service.Catalog.Application.BooSources.Queries.GetBookSourceById;
 using Service.Catalog.Domain.BookSources;
 
@@ -27,11 +28,12 @@ namespace Service.Catalog.Endpoints.Endpoints.BookSources
 	/// Initiates a new instance of the <see cref="GetBookSourceByIdEndpoint"/> class.
 	/// </remarks>
 	/// <param name="sender">Mediator request sender.</param>
-	public sealed class GetBookSourceByIdEndpoint(ISender sender) : EndpointBaseAsync
+	/// <param name="permissionService">User permissions manager.</param>
+	public sealed class GetBookSourceByIdEndpoint(ISender sender, IPermissionService permissionService) : EndpointBaseAsync
 		.WithRequest<Guid>
 		.WithActionResult<BookSourceDto>
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpGet(BookSourceRoutes.GetById, Name = nameof(GetBookSourceByIdEndpoint))]
 		[ProducesResponseType(typeof(BookSourceDto), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,9 +45,10 @@ namespace Service.Catalog.Endpoints.Endpoints.BookSources
 		public override async Task<ActionResult<BookSourceDto>> HandleAsync([FromQuery] Guid bookSourceId,
 															CancellationToken cancellationToken = default) =>
 			await sender.Send(new GetBookSourceByIdQuery(
-									new BookSourceId(bookSourceId),
-									false),// TODO when identity server is done, make this value default false, but for users with specific permission (owner of site) set true
-								cancellationToken)
+								new BookSourceId(bookSourceId),
+								permissionService.GetPermissionsAsync(HttpContext.User.GetIdentityProviderId(), cancellationToken)
+													.Result.Any(p => p == CatalogPermissions.EditBookSources)),
+							cancellationToken)
 				.Match(Ok, this.HandleFailure);
 	}
 }

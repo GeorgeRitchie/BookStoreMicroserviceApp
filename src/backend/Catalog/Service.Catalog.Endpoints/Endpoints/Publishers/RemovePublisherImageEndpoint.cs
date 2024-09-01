@@ -33,7 +33,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Publishers
 		.WithRequest<RemovePublisherImageRequest>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditPublishers)]
 		[HttpPut(PublisherRoutes.RemoveImage)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

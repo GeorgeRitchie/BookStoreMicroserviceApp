@@ -17,6 +17,7 @@
 
 global using Ardalis.ApiEndpoints;
 global using Asp.Versioning;
+global using Endpoints.Authorization;
 global using Endpoints.Extensions;
 global using MediatR;
 global using Microsoft.AspNetCore.Authorization;

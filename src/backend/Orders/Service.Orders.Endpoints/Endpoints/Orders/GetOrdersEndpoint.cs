@@ -32,7 +32,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 		.WithoutRequest
 		.WithActionResult<OrderDto>
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpGet(OrderRoutes.GetAll)]
 		[ProducesResponseType(typeof(OrderDto), StatusCodes.Status200OK)]
 		[ApiVersion("1.0")]
@@ -43,8 +43,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 		public override async Task<ActionResult<OrderDto>> HandleAsync(CancellationToken cancellationToken = default)
 			=> await sender.Send(new GetOrdersQuery
 			{
-				// TODO when authorization is done, get customer id from jwt token
-				CustomerId = new CustomerId(Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B")),
+				CustomerId = new CustomerId(Guid.Parse(HttpContext.User.GetIdentityProviderId())),
 			}, cancellationToken).Match(Ok, this.HandleFailure);
 	}
 }

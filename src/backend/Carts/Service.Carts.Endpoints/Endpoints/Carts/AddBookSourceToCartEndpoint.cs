@@ -34,7 +34,7 @@ namespace Service.Carts.Endpoints.Endpoints.Carts
 		.WithRequest<AddBookSourceRequest>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpPut(CartRoutes.AddBookToCart)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -48,8 +48,7 @@ namespace Service.Carts.Endpoints.Endpoints.Carts
 																CancellationToken cancellationToken = default)
 			=> await sender.Send(new AddBookSourceToCartCommand
 			{
-				// TODO when authorization is done, get customer id from jwt token
-				CustomerId = new CustomerId(Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B")),
+				CustomerId = new CustomerId(Guid.Parse(HttpContext.User.GetIdentityProviderId())),
 				BookSourceId = new BookSourceId(request.BookSourceId),
 				QuantityToAdd = request.QuantityToAdd,
 			},

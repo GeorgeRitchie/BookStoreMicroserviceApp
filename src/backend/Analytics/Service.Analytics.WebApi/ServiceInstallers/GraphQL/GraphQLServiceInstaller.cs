@@ -33,6 +33,7 @@ namespace Service.Analytics.WebApi.ServiceInstallers.GraphQL
 		public void Install(IServiceCollection services, IConfiguration configuration)
 			=> services
 					.AddGraphQLServer()
+					.AddAuthorization()
 					.AddQueryType<Queries>()
 					.AddProjections()
 					.AddSorting()

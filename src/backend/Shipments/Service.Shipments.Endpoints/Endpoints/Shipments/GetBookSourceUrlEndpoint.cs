@@ -34,7 +34,7 @@ namespace Service.Shipments.Endpoints.Endpoints.Shipments
 		.WithRequest<GetBookSourceUrlRequests>
 		.WithActionResult<string>
 	{
-		// TODO [Authorize] only for customer only for e-books
+		[Authorize]
 		[HttpGet(ShipmentRoutes.GetBookSourceUrl)]
 		[ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -47,8 +47,7 @@ namespace Service.Shipments.Endpoints.Endpoints.Shipments
 		public override async Task<ActionResult<string>> HandleAsync([FromQuery] GetBookSourceUrlRequests requests,
 															CancellationToken cancellationToken = default)
 			=> await sender.Send(new GetBookSourceUrlQuery(
-											// TODO when authorization is done, get customer id from jwt token
-											new CustomerId(Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B")),
+											new CustomerId(Guid.Parse(HttpContext.User.GetIdentityProviderId())),
 											new OrderId(requests.OrderId),
 											new BookSourceId(requests.BookSourceId)),
 								cancellationToken)

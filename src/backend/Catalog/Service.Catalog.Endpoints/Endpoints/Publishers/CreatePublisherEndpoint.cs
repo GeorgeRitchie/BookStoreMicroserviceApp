@@ -30,7 +30,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Publishers
 		.WithRequest<CreatePublisherCommand>
 		.WithActionResult<Guid>
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditPublishers)]
 		[HttpPost(PublisherRoutes.Create)]
 		[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

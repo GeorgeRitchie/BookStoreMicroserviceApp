@@ -17,6 +17,7 @@
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using HotChocolate.Authorization;
 using Service.Analytics.Domain.Orders;
 using Service.Analytics.WebApi.GraphQL.Vms;
 
@@ -35,6 +36,7 @@ namespace Service.Analytics.WebApi.GraphQL
 		[UseProjection]
 		[UseFiltering]
 		[UseSorting]
+		[Authorize("ReadAnalytics")]
 		public IQueryable<OrderVm> Read([Service] IOrderRepository orderRepository, [Service] IMapper mapper)
 			=> orderRepository.GetAllAsNoTracking().ProjectTo<OrderVm>(mapper.ConfigurationProvider);
 	}
