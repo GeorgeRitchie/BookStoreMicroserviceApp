@@ -16,6 +16,7 @@
 */
 
 using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -30,12 +31,17 @@ namespace Service.Carts.WebApi.ServiceInstallers.Swagger
 	/// Initializes a new instance of the <see cref="SwaggerGenOptionsSetup"/> class.
 	/// </remarks>
 	/// <param name="provider">The Api Versioning provider.</param>
-	internal sealed class SwaggerGenOptionsSetup(IApiVersionDescriptionProvider provider)
+	/// <param name="bearerOptions">The Jwt Bearer Options.</param>
+	internal sealed class SwaggerGenOptionsSetup(
+		IApiVersionDescriptionProvider provider,
+		IOptions<JwtBearerOptions> bearerOptions)
 		: IConfigureOptions<SwaggerGenOptions>
 	{
 		/// <inheritdoc />
 		public void Configure(SwaggerGenOptions options)
 		{
+			var baseUri = bearerOptions.Value.Authority;
+
 			foreach (var description in provider.ApiVersionDescriptions)
 			{
 				var apiVersion = description.ApiVersion.ToString();
@@ -76,20 +82,7 @@ namespace Service.Carts.WebApi.ServiceInstallers.Swagger
 					Type = SecuritySchemeType.OAuth2,
 					Flows = new OpenApiOAuthFlows
 					{
-						Password = new OpenApiOAuthFlow
-						{// TODO __##__ Replace with real url of identity server 4
-							AuthorizationUrl = new Uri("https://localhost:1521/connect/authorize"),
-							TokenUrl = new Uri("https://localhost:1521/connect/token"),
-							RefreshUrl = new Uri("https://localhost:1521/connect/token"),
-							Scopes = new Dictionary<string, string>
-							{
-								{ "openid", "OpenID" },
-								{ "profile", "Profile" },
-								{ "Template", "Web Api" },
-							}
-						},
-
-						//AuthorizationCode = new OpenApiOAuthFlow
+						//Password = new OpenApiOAuthFlow
 						//{// TODO __##__ Replace with real url of identity server 4
 						//	AuthorizationUrl = new Uri("https://localhost:1521/connect/authorize"),
 						//	TokenUrl = new Uri("https://localhost:1521/connect/token"),
@@ -100,7 +93,20 @@ namespace Service.Carts.WebApi.ServiceInstallers.Swagger
 						//		{ "profile", "Profile" },
 						//		{ "Template", "Web Api" },
 						//	}
-						//}
+						//},
+
+						AuthorizationCode = new OpenApiOAuthFlow
+						{// TODO __##__ Replace with real url of identity server 4
+							AuthorizationUrl = new Uri($"{baseUri}/connect/authorize"),
+							TokenUrl = new Uri($"{baseUri}/connect/token"),
+							RefreshUrl = new Uri($"{baseUri}/connect/token"),
+							Scopes = new Dictionary<string, string>
+							{
+								{ "openid", "OpenID" },
+								{ "profile", "Profile" },
+								{ "common_scope", "Web Api" },
+							}
+						}
 					}
 				});
 
