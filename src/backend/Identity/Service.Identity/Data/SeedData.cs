@@ -79,13 +79,13 @@ namespace Service.Identity.Data
 		private static void UpdateRoles(ApplicationDbContext userManagementDb)
 		{
 			var dbRoles = userManagementDb.Roles.ToList();
-			var rolesToAdd = roles.Except(dbRoles).ToList();
+			var rolesToAdd = roles.Except(dbRoles, new RoleNameComparer()).ToList();
 			if (rolesToAdd.Count != 0)
 			{
 				userManagementDb.Roles.AddRange(rolesToAdd);
 				userManagementDb.SaveChanges();
 			}
-			var rolesToRemove = dbRoles.Except(roles).ToList();
+			var rolesToRemove = dbRoles.Except(roles, new RoleNameComparer()).ToList();
 			if (rolesToRemove.Count != 0)
 			{
 				userManagementDb.Roles.RemoveRange(rolesToRemove);
@@ -97,13 +97,13 @@ namespace Service.Identity.Data
 		{
 			var dbPermissions = userManagementDb.Permissions.ToList();
 			var permissions = roles.SelectMany(i => i.Permissions).Distinct().ToList();
-			var permissionsToAdd = permissions.Except(dbPermissions).ToList();
+			var permissionsToAdd = permissions.Except(dbPermissions, new PermissionNameComparer()).ToList();
 			if (permissionsToAdd.Count != 0)
 			{
 				userManagementDb.Permissions.AddRange(permissionsToAdd);
 				userManagementDb.SaveChanges();
 			}
-			var permissionsToRemove = dbPermissions.Except(permissions).ToList();
+			var permissionsToRemove = dbPermissions.Except(permissions, new PermissionNameComparer()).ToList();
 			if (permissionsToRemove.Count != 0)
 			{
 				userManagementDb.Permissions.RemoveRange(permissionsToRemove);
@@ -153,6 +153,38 @@ namespace Service.Identity.Data
 				}
 				context.SaveChanges();
 			}
+		}
+	}
+
+	internal class RoleNameComparer : IEqualityComparer<Role>
+	{
+		public bool Equals(Role x, Role y)
+		{
+			if (x == null || y == null)
+				return false;
+
+			return x.NormalizedName == y.NormalizedName;
+		}
+
+		public int GetHashCode(Role obj)
+		{
+			return obj.Name?.GetHashCode() ?? 0;
+		}
+	}
+
+	internal class PermissionNameComparer : IEqualityComparer<Permission>
+	{
+		public bool Equals(Permission x, Permission y)
+		{
+			if (x == null || y == null)
+				return false;
+
+			return x.Name == y.Name;
+		}
+
+		public int GetHashCode(Permission obj)
+		{
+			return obj.Name?.GetHashCode() ?? 0;
 		}
 	}
 }
