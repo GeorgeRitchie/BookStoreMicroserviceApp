@@ -84,10 +84,8 @@ LoggingUtility.Run(() =>
 
 	webApplication.MapHealthChecks("/health", new HealthCheckOptions()
 	{
-		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-	});
-	// TODO add authorization and also add health check policy that allows access to specific type of users
-	//.RequireAuthorization();
+		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+	}).RequireAuthorization("ReadHealthCheck");
 
 	webApplication.UseHttpsRedirection();
 

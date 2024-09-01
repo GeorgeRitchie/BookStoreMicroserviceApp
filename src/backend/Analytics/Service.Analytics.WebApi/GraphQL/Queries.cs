@@ -36,7 +36,7 @@ namespace Service.Analytics.WebApi.GraphQL
 		[UseProjection]
 		[UseFiltering]
 		[UseSorting]
-		[Authorize(Roles = ["admin"])]
+		[Authorize("ReadAnalytics")]
 		public IQueryable<OrderVm> Read([Service] IOrderRepository orderRepository, [Service] IMapper mapper)
 			=> orderRepository.GetAllAsNoTracking().ProjectTo<OrderVm>(mapper.ConfigurationProvider);
 	}

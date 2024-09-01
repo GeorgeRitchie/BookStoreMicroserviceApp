@@ -17,6 +17,7 @@
 
 using HealthChecks.UI.Client;
 using Infrastructure.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using OpenTelemetry.Logs;
 using Serilog;
@@ -65,14 +66,12 @@ LoggingUtility.Run(() =>
 									.AllowAnyHeader()
 									.AllowAnyMethod()
 									.AllowAnyOrigin());
-
 	app.UseSerilogRequestLogging();
 
 	app.MapHealthChecks("/health", new HealthCheckOptions()
 	{
-		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-	})
-	.RequireAuthorization(policy => policy.RequireRole(Role.Admin));
+		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+	}).RequireAuthorization("ReadHealthCheck");
 
 	app.UseHttpsRedirection();
 

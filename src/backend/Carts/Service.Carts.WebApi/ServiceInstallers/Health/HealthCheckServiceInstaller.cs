@@ -18,6 +18,7 @@
 using Infrastructure.Configuration;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
 using Service.Carts.Persistence;
 using Service.Carts.WebApi.ServiceInstallers.DistributedCaching;
 using Service.Carts.WebApi.ServiceInstallers.EventBus;
@@ -44,7 +45,18 @@ namespace Service.Carts.WebApi.ServiceInstallers.Health
 						?? string.Empty);
 
 			if (RabbitMqOptionsSetup.IsRabbitMqEnabled(configuration))
-				healthCheckBuilder.AddRabbitMQ();
+				healthCheckBuilder.AddRabbitMQ((serviceProvider, options) =>
+				{
+					var rabbitMqOptions = serviceProvider.GetRequiredService<IOptions<RabbitMqOptions>>().Value;
+					options.ConnectionFactory = new ConnectionFactory()
+					{
+						HostName = rabbitMqOptions.Host,
+						VirtualHost = rabbitMqOptions.VirtualHost,
+						UserName = rabbitMqOptions.Username,
+						Password = rabbitMqOptions.Password,
+						Port = AmqpTcpEndpoint.UseDefaultPort
+					};
+				});
 
 			// TODO __##__ Add here health checks for new stuff that needed to be health monitored
 		}

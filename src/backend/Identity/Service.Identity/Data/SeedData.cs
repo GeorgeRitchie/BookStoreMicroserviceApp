@@ -75,6 +75,12 @@ namespace Service.Identity.Data
 						Id = Guid.NewGuid(),
 						Name = "ReadAnalytics",
 					},
+
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "ReadHealthCheck",
+					},
 				],
 			},
 			new Role(Guid.NewGuid(), Role.User)
