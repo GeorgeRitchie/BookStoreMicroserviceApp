@@ -31,7 +31,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Categories
 		.WithRequest<Guid>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditCategories)]
 		[HttpPut(CategoryRoutes.Restore)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

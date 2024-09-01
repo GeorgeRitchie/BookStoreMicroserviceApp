@@ -32,7 +32,7 @@ namespace Service.Carts.Endpoints.Endpoints.Carts
 		.WithoutRequest
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpDelete(CartRoutes.Clear)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ApiVersion("1.0")]
@@ -43,8 +43,7 @@ namespace Service.Carts.Endpoints.Endpoints.Carts
 		public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
 			=> await sender.Send(new ClearCartCommand
 			{
-				// TODO when authorization is done, get customer id from jwt token
-				CustomerId = new CustomerId(Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B")),
+				CustomerId = new CustomerId(Guid.Parse(HttpContext.User.GetIdentityProviderId())),
 			},
 				cancellationToken)
 				.Match(NoContent, this.HandleFailure);

@@ -30,7 +30,8 @@ namespace Service.Catalog.Endpoints.Endpoints.BookSources
 		.WithRequest<UpdateBookSourceCommand>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditBookSources)]
 		[HttpPut(BookSourceRoutes.Update)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

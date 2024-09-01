@@ -30,7 +30,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Books
 		.WithRequest<RemoveCategoryCommand>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditBooks)]
 		[HttpPut(BookRoutes.RemoveCategory)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

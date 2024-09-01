@@ -31,7 +31,7 @@ namespace Service.Payments.Endpoints.Endpoints.Payments
 		.WithRequest<Guid>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpGet(PaymentRoutes.Success)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]

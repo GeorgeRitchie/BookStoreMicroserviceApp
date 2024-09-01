@@ -32,7 +32,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Categories
 		.WithRequest<CreateCategoryRequest>
 		.WithActionResult<Guid>
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditCategories)]
 		[HttpPost(CategoryRoutes.Create)]
 		[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

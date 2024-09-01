@@ -32,7 +32,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 		.WithRequest<Guid>
 		.WithActionResult<OrderDto>
 	{
-		// TODO [Authorize]
+		[Authorize]
 		[HttpGet(OrderRoutes.GetById, Name = nameof(GetOrderByIdEndpoint))]
 		[ProducesResponseType(typeof(OrderDto), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -45,8 +45,7 @@ namespace Service.Orders.Endpoints.Endpoints.Orders
 															CancellationToken cancellationToken = default)
 			=> await sender.Send(new GetOrderByIdQuery(
 											new OrderId(orderId),
-											// TODO when authorization is done, get customer id from jwt token
-											new CustomerId(Guid.Parse("866DFFC0-C7F6-4477-912C-76586BC0485B"))),
+											new CustomerId(Guid.Parse(HttpContext.User.GetIdentityProviderId()))),
 								cancellationToken)
 							.Match(Ok, this.HandleFailure);
 	}

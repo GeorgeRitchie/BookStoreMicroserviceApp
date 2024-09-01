@@ -32,7 +32,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Authors
 		.WithRequest<UpdateAuthorRequest>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditAuthors)]
 		[HttpPut(AuthorRoutes.Update)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

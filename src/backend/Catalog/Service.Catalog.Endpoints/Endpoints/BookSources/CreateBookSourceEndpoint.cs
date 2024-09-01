@@ -30,7 +30,8 @@ namespace Service.Catalog.Endpoints.Endpoints.BookSources
 		.WithRequest<CreateBookSourceCommand>
 		.WithActionResult<Guid>
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditBookSources)]
 		[HttpPost(BookSourceRoutes.Create)]
 		[ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

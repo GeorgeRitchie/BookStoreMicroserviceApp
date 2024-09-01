@@ -111,19 +111,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Shipments.WebApi", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analytics", "Analytics", "{8CEFCAE7-0E96-4CF2-8325-7FA9C4AE1B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.Domain", "src\backend\Analytics\Service.Analytics.Domain\Service.Analytics.Domain.csproj", "{20EF7274-D8E8-4806-B62C-8F175FDAB901}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.Domain", "src\backend\Analytics\Service.Analytics.Domain\Service.Analytics.Domain.csproj", "{20EF7274-D8E8-4806-B62C-8F175FDAB901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.Application", "src\backend\Analytics\Service.Analytics.Application\Service.Analytics.Application.csproj", "{3E35A206-A673-4BD5-A1B3-0867C145BCFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.Application", "src\backend\Analytics\Service.Analytics.Application\Service.Analytics.Application.csproj", "{3E35A206-A673-4BD5-A1B3-0867C145BCFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.Endpoints", "src\backend\Analytics\Service.Analytics.Endpoints\Service.Analytics.Endpoints.csproj", "{57EE1F73-7FE7-4351-B43F-8A950C750DCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.Endpoints", "src\backend\Analytics\Service.Analytics.Endpoints\Service.Analytics.Endpoints.csproj", "{57EE1F73-7FE7-4351-B43F-8A950C750DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.Infrastructure", "src\backend\Analytics\Service.Analytics.Infrastructure\Service.Analytics.Infrastructure.csproj", "{D1B29BDA-E95E-4454-94ED-C40783ED3143}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.Infrastructure", "src\backend\Analytics\Service.Analytics.Infrastructure\Service.Analytics.Infrastructure.csproj", "{D1B29BDA-E95E-4454-94ED-C40783ED3143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.IntegrationEvents", "src\backend\Analytics\Service.Analytics.IntegrationEvents\Service.Analytics.IntegrationEvents.csproj", "{0F635817-944B-45E4-8169-EAB049F4E345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.IntegrationEvents", "src\backend\Analytics\Service.Analytics.IntegrationEvents\Service.Analytics.IntegrationEvents.csproj", "{0F635817-944B-45E4-8169-EAB049F4E345}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.Persistence", "src\backend\Analytics\Service.Analytics.Persistence\Service.Analytics.Persistence.csproj", "{1D15AA16-2743-4640-A4F9-9B7B4068CDDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.Persistence", "src\backend\Analytics\Service.Analytics.Persistence\Service.Analytics.Persistence.csproj", "{1D15AA16-2743-4640-A4F9-9B7B4068CDDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Analytics.WebApi", "src\backend\Analytics\Service.Analytics.WebApi\Service.Analytics.WebApi.csproj", "{ED21487A-48F8-4214-8F73-300F650C7CDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.WebApi", "src\backend\Analytics\Service.Analytics.WebApi\Service.Analytics.WebApi.csproj", "{ED21487A-48F8-4214-8F73-300F650C7CDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{B8124AD1-EBA6-4CC2-A86C-E74D68C7B753}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Identity", "src\backend\Identity\Service.Identity\Service.Identity.csproj", "{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -327,6 +331,10 @@ Global
 		{ED21487A-48F8-4214-8F73-300F650C7CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED21487A-48F8-4214-8F73-300F650C7CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED21487A-48F8-4214-8F73-300F650C7CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -389,6 +397,8 @@ Global
 		{0F635817-944B-45E4-8169-EAB049F4E345} = {8CEFCAE7-0E96-4CF2-8325-7FA9C4AE1B27}
 		{1D15AA16-2743-4640-A4F9-9B7B4068CDDC} = {8CEFCAE7-0E96-4CF2-8325-7FA9C4AE1B27}
 		{ED21487A-48F8-4214-8F73-300F650C7CDE} = {8CEFCAE7-0E96-4CF2-8325-7FA9C4AE1B27}
+		{B8124AD1-EBA6-4CC2-A86C-E74D68C7B753} = {E28D425B-9C6F-40AB-B252-4D296DC97852}
+		{A6D8FE47-B772-4C6F-8B03-A757B3CF2199} = {B8124AD1-EBA6-4CC2-A86C-E74D68C7B753}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC2C67E6-9091-44CF-B200-E16EC3FE9C25}

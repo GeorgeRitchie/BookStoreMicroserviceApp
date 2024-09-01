@@ -33,7 +33,8 @@ namespace Service.Catalog.Endpoints.Endpoints.Books
 		.WithRequest<SetBookImageRequest>
 		.WithActionResult
 	{
-		// TODO [Authorize]
+		[Authorize]
+		[HasPermission(CatalogPermissions.EditBooks)]
 		[HttpPut(BookRoutes.SetImage)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -20,7 +20,7 @@ namespace Authorization.Services
 	/// <summary>
 	/// Represents the permission service interface.
 	/// </summary>
-	internal interface IPermissionService
+	public interface IPermissionService
 	{
 		/// <summary>
 		/// Gets the permissions for the user with the specified user identifier.
