@@ -16,6 +16,7 @@
 */
 
 using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -30,12 +31,17 @@ namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 	/// Initializes a new instance of the <see cref="SwaggerGenOptionsSetup"/> class.
 	/// </remarks>
 	/// <param name="provider">The Api Versioning provider.</param>
-	internal sealed class SwaggerGenOptionsSetup(IApiVersionDescriptionProvider provider)
+	/// <param name="bearerOptions">The Jwt Bearer Options.</param>
+	internal sealed class SwaggerGenOptionsSetup(
+		IApiVersionDescriptionProvider provider,
+		IOptions<JwtBearerOptions> bearerOptions)
 		: IConfigureOptions<SwaggerGenOptions>
 	{
 		/// <inheritdoc />
 		public void Configure(SwaggerGenOptions options)
 		{
+			var baseUri = bearerOptions.Value.Authority;
+
 			foreach (var description in provider.ApiVersionDescriptions)
 			{
 				var apiVersion = description.ApiVersion.ToString();
@@ -67,9 +73,6 @@ namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 					}
 				});
 
-
-				var baseUri = "https://localhost:7078";
-				
 				// configure to enable authentication and authorization in server program by swagger UI
 				// Use this if you want to use OAUTH2 (OIDC)
 				options.AddSecurityDefinition($"AuthToken {apiVersion}",
