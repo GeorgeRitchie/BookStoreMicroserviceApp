@@ -38,7 +38,7 @@ namespace Service.Identity.Data
 			{
 				Permissions =
 				[
-
+					
 				],
 			},
 		];
@@ -69,8 +69,9 @@ namespace Service.Identity.Data
 				var role = roles.First(i => i.Name == dbRole.Name);
 				if (dbRole.Permissions.Count != role.Permissions.Count)
 				{
+					var permissionsNames = role.Permissions.Select(i => i.Name).ToList();
 					dbRole.Permissions.Clear();
-					dbRole.Permissions = userManagementDb.Permissions.Where(i => role.Permissions.Any(o => o.Name == i.Name)).ToList();
+					dbRole.Permissions = userManagementDb.Permissions.Where(i => permissionsNames.Contains(i.Name)).ToList();
 					userManagementDb.SaveChanges();
 				}
 			}

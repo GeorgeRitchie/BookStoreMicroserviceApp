@@ -28,6 +28,8 @@ namespace Service.Identity.Consumers
 		/// <inheritdoc />
 		public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
 		{
+			registrationConfigurator.AddConsumer<UserPermissionsRequestConsumer>();
+
 			// TODO __##__ Add here message-broker message consumers
 		}
 	}

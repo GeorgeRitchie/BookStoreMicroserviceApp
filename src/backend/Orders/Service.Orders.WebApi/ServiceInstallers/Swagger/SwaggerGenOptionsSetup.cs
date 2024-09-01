@@ -67,6 +67,9 @@ namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 					}
 				});
 
+
+				var baseUri = "https://localhost:7078";
+				
 				// configure to enable authentication and authorization in server program by swagger UI
 				// Use this if you want to use OAUTH2 (OIDC)
 				options.AddSecurityDefinition($"AuthToken {apiVersion}",
@@ -76,20 +79,7 @@ namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 					Type = SecuritySchemeType.OAuth2,
 					Flows = new OpenApiOAuthFlows
 					{
-						Password = new OpenApiOAuthFlow
-						{// TODO __##__ Replace with real url of identity server 4
-							AuthorizationUrl = new Uri("https://localhost:1521/connect/authorize"),
-							TokenUrl = new Uri("https://localhost:1521/connect/token"),
-							RefreshUrl = new Uri("https://localhost:1521/connect/token"),
-							Scopes = new Dictionary<string, string>
-							{
-								{ "openid", "OpenID" },
-								{ "profile", "Profile" },
-								{ "Template", "Web Api" },
-							}
-						},
-
-						//AuthorizationCode = new OpenApiOAuthFlow
+						//Password = new OpenApiOAuthFlow
 						//{// TODO __##__ Replace with real url of identity server 4
 						//	AuthorizationUrl = new Uri("https://localhost:1521/connect/authorize"),
 						//	TokenUrl = new Uri("https://localhost:1521/connect/token"),
@@ -100,7 +90,20 @@ namespace Service.Orders.WebApi.ServiceInstallers.Swagger
 						//		{ "profile", "Profile" },
 						//		{ "Template", "Web Api" },
 						//	}
-						//}
+						//},
+
+						AuthorizationCode = new OpenApiOAuthFlow
+						{// TODO __##__ Replace with real url of identity server 4
+							AuthorizationUrl = new Uri($"{baseUri}/connect/authorize"),
+							TokenUrl = new Uri($"{baseUri}/connect/token"),
+							RefreshUrl = new Uri($"{baseUri}/connect/token"),
+							Scopes = new Dictionary<string, string>
+							{
+								{ "openid", "OpenID" },
+								{ "profile", "Profile" },
+								{ "common_scope", "Web Api" },
+							}
+						}
 					}
 				});
 

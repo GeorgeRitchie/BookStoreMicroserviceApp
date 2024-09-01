@@ -127,7 +127,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Analytics.WebApi", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{B8124AD1-EBA6-4CC2-A86C-E74D68C7B753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Identity", "src\backend\Identity\Service.Identity\Service.Identity.csproj", "{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Identity", "src\backend\Identity\Service.Identity\Service.Identity.csproj", "{A6D8FE47-B772-4C6F-8B03-A757B3CF2199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
