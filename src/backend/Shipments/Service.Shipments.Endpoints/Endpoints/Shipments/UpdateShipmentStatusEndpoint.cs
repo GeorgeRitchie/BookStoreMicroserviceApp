@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Endpoints.Authorization;
 using Service.Shipments.Application.Shipments.UpdateShipmentStatus;
 using Service.Shipments.Endpoints.Routes;
 
@@ -31,7 +32,8 @@ namespace Service.Shipments.Endpoints.Endpoints.Shipments
 		.WithRequest<UpdateShipmentStatusCommand>
 		.WithActionResult
 	{
-		// TODO [Authorize] only for seller
+		[Authorize]
+		[HasPermission(ShipmentPermissions.UpdateShipment)]
 		[HttpPut(ShipmentRoutes.UpdateStatus)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

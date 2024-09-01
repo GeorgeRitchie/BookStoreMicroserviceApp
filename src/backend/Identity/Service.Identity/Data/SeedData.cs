@@ -16,10 +16,12 @@
 */
 
 using Duende.IdentityServer.EntityFramework.Mappers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Service.Identity.Options;
 using Service.Identity.ServiceInstallers.IDS;
+using Service.Identity.Services;
 
 namespace Service.Identity.Data
 {
@@ -31,14 +33,23 @@ namespace Service.Identity.Data
 			{
 				Permissions =
 				[
-
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "UpdateShipment",
+					},
+					new Permission
+					{
+						Id = Guid.NewGuid(),
+						Name = "ReadShipment",
+					},
 				],
 			},
 			new Role(Guid.NewGuid(), Role.User)
 			{
 				Permissions =
 				[
-					
+
 				],
 			},
 		];
@@ -57,8 +68,41 @@ namespace Service.Identity.Data
 			UpdatePermissions(userManagementDb);
 			UpdateRoles(userManagementDb);
 			UpdateRolePermissions(userManagementDb);
+			AddAdminIfNotExist(scope);
 
 			MigrateAndSeedIdsDatabases(scope);
+		}
+
+		private static void AddAdminIfNotExist(IServiceScope scope)
+		{
+			var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+			var users = userManager.GetUsersInRoleAsync(Role.Admin).Result;
+			var smtpOptions = scope.ServiceProvider.GetRequiredService<IOptions<SmtpOptions>>().Value;
+			if (users.Count == 0)
+			{
+				var admin = new User()
+				{
+					FirstName = smtpOptions.From,
+					LastName = smtpOptions.From,
+					UserName = smtpOptions.From,  // Set the username directly here
+					Email = smtpOptions.From,      // Set the email directly here
+					EmailConfirmed = true          // Ensure the email is marked as confirmed
+				};
+
+				var result = userManager.CreateAsync(admin, "Hello1!").Result;
+				if (result.Succeeded == false)
+				{
+					throw new Exception(result.Errors.First().Code);
+				}
+				else
+				{
+					var roleResult = userManager.AddToRoleAsync(admin, Role.Admin).Result;
+					if (roleResult.Succeeded == false)
+					{
+						throw new Exception(roleResult.Errors.First().Code);
+					}
+				}
+			}
 		}
 
 		private static void UpdateRolePermissions(ApplicationDbContext userManagementDb)

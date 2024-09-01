@@ -15,6 +15,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Endpoints.Authorization;
 using Service.Shipments.Application.Shipments.GetShipments;
 using Service.Shipments.Endpoints.Routes;
 
@@ -31,7 +32,8 @@ namespace Service.Shipments.Endpoints.Endpoints.Shipments
 		.WithRequest<GetShipmentsQuery>
 		.WithActionResult<ShipmentDto>
 	{
-		// TODO [Authorize] (only for seller)
+		[Authorize]
+		[HasPermission(ShipmentPermissions.ReadShipment)]
 		[HttpGet(ShipmentRoutes.GetAll)]
 		[ProducesResponseType(typeof(ShipmentDto), StatusCodes.Status200OK)]
 		[ApiVersion("1.0")]
