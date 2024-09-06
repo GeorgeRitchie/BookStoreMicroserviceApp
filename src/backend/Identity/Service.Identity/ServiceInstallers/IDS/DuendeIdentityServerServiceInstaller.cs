@@ -20,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Extensions;
 using Service.Identity.Data;
 using Service.Identity.Data.Constants;
+using Service.Identity.Options;
 using Service.Identity.ServiceInstallers.DataBase;
 
 namespace Service.Identity.ServiceInstallers.IDS
@@ -36,6 +37,8 @@ namespace Service.Identity.ServiceInstallers.IDS
 
 			services.AddIdentityServer(options =>
 			{
+				options.IssuerUri = configuration.GetValue<string>(BlazorOptionsSetup.ConfigurationSectionName + ":" + nameof(BlazorOptions.AuthorityName));
+
 				options.Events.RaiseErrorEvents = true;
 				options.Events.RaiseInformationEvents = true;
 				options.Events.RaiseFailureEvents = true;

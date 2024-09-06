@@ -26,5 +26,15 @@ namespace Service.Identity.Options
 		/// Determines to apply or not migrations automatically.
 		/// </summary>
 		public bool EnableAutoMigration { get; set; } = false;
+
+		/// <summary>
+		/// Gets the authority name to use while issuing tokens.
+		/// </summary>
+		public string AuthorityName { get; set; }
+
+		/// <summary>
+		/// Gets the flag to enable or disable Https redirection.
+		/// </summary>
+		public bool EnableHttpsRedirection { get; set; } = true;
 	}
 }

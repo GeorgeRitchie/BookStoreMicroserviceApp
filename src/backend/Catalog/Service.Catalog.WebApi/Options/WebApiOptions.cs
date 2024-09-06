@@ -28,8 +28,18 @@ namespace Service.Catalog.WebApi.Options
 		public bool EnableSwaggerUI { get; init; } = false;
 
 		/// <summary>
-		/// Gets the max http request handling time in milliseconds that can be used for performance validation.
+		/// Gets the flag to enable or disable automatic database migrations
 		/// </summary>
-		public long MaxRequestHandlingTimeMilliseconds { get; init; } = 500;
+		public bool EnableAutoMigrations { get; init; } = false;
+
+		/// <summary>
+		/// Gets Identity base url.
+		/// </summary>
+		public string IdentityBaseUrl { get; set; }
+
+		/// <summary>
+		/// Gets the flag to enable or disable Https redirection.
+		/// </summary>
+		public bool EnableHttpsRedirection { get; set; } = true;
 	}
 }

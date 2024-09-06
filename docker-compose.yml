@@ -1,0 +1,669 @@
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    container_name: azurite
+    hostname: azurite
+    restart: always
+    ports:
+      - "10000:10000"  # Blob service
+      - "10001:10001"  # Queue service
+      - "10002:10002"  # Table service
+    volumes:
+      - azurite_data:/data
+    networks:
+      - app-network
+  
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "3322_SQL_Pass"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - app-network
+
+  redis:
+    image: redis
+    container_name: redis-cache
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672" # RabbitMQ management UI
+    networks:
+      - app-network
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+
+  service.orders.webapi:
+    image: ${DOCKER_REGISTRY-}serviceorderswebapi
+    build:
+      context: .
+      dockerfile: src/backend/Orders/Service.Orders.WebApi/Dockerfile
+    container_name: order-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7115:8081"
+      - "5162:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=sqlserver,1433;Database=Order;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ApiVersioning__DefaultApiVersion=1.0
+      - ApiVersioning__AssumeDefaultVersionWhenUnspecified=true
+      - ApiVersioning__ReportApiVersions=true
+      - ApiExplorer__GroupNameFormat='v'VVV
+      - ApiExplorer__SubstituteApiVersionInUrl=true
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Order
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=order-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=book_program
+      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__IncludeErrorDetails=true
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Order__BackgroundJobs__ProcessInboxMessages__IntervalInSeconds=1
+      - Service__Order__BackgroundJobs__ProcessInboxMessages__RetryCount=3
+      - Service__Order__BackgroundJobs__ProcessInboxMessages__BatchSize=50
+      - Service__Order__BackgroundJobs__ProcessOutboxMessages__IntervalInSeconds=1
+      - Service__Order__BackgroundJobs__ProcessOutboxMessages__RetryCount=3
+      - Service__Order__BackgroundJobs__ProcessOutboxMessages__BatchSize=50
+      - Service__Order__WebApiOptions__EnableSwaggerUI=true
+      - Service__Order__WebApiOptions__EnableAutoMigrations=true
+      - Service__Order__WebApiOptions__EnableHttpsRedirection=false
+      - Service__Order__WebApiOptions__IdentityBaseUrl=http://localhost:5262
+      - Service__Order__GrpcOptions__Url=https://example.com
+      - Service__Order__GrpcOptions__RetryCount=3
+     
+
+  service.payments.webapi:
+    image: ${DOCKER_REGISTRY-}servicepaymentswebapi
+    build:
+      context: .
+      dockerfile: src/backend/Payments/Service.Payments.WebApi/Dockerfile
+    container_name: payment-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7202:8081"
+      - "5105:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=sqlserver,1433;Database=Payment;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ApiVersioning__DefaultApiVersion=1.0
+      - ApiVersioning__AssumeDefaultVersionWhenUnspecified=true
+      - ApiVersioning__ReportApiVersions=true
+      - ApiExplorer__GroupNameFormat='v'VVV
+      - ApiExplorer__SubstituteApiVersionInUrl=true
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Payment
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=payment-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=book_program
+      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__IncludeErrorDetails=true
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Payment__BackgroundJobs__ProcessInboxMessages__IntervalInSeconds=1
+      - Service__Payment__BackgroundJobs__ProcessInboxMessages__RetryCount=3
+      - Service__Payment__BackgroundJobs__ProcessInboxMessages__BatchSize=50
+      - Service__Payment__BackgroundJobs__ProcessOutboxMessages__IntervalInSeconds=1
+      - Service__Payment__BackgroundJobs__ProcessOutboxMessages__RetryCount=3
+      - Service__Payment__BackgroundJobs__ProcessOutboxMessages__BatchSize=50
+      - Service__Payment__WebApiOptions__EnableSwaggerUI=true
+      - Service__Payment__WebApiOptions__EnableAutoMigrations=true
+      - Service__Payment__WebApiOptions__EnableHttpsRedirection=false
+      - Service__Payment__WebApiOptions__IdentityBaseUrl=http://localhost:5262
+      - Service__Payment__GrpcOptions__Url=https://example.com
+      - Service__Payment__GrpcOptions__RetryCount=3
+      - Service__Payment__Stripe__SuccessUrlAddress=http://localhost:5105/api/v1/payments/success
+      - Service__Payment__Stripe__FailureUrlAddress=http://localhost:5105/api/v1/payments/failure
+      - Service__Payment__Stripe__ApiKey=
+     
+
+  service.shipments.webapi:
+    image: ${DOCKER_REGISTRY-}serviceshipmentswebapi
+    build:
+      context: .
+      dockerfile: src/backend/Shipments/Service.Shipments.WebApi/Dockerfile
+    container_name: shipment-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7048:8081"
+      - "5202:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=sqlserver,1433;Database=Shipment;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ApiVersioning__DefaultApiVersion=1.0
+      - ApiVersioning__AssumeDefaultVersionWhenUnspecified=true
+      - ApiVersioning__ReportApiVersions=true
+      - ApiExplorer__GroupNameFormat='v'VVV
+      - ApiExplorer__SubstituteApiVersionInUrl=true
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Shipment
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=shipment-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=book_program
+      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__IncludeErrorDetails=true
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Shipment__BackgroundJobs__ProcessInboxMessages__IntervalInSeconds=1
+      - Service__Shipment__BackgroundJobs__ProcessInboxMessages__RetryCount=3
+      - Service__Shipment__BackgroundJobs__ProcessInboxMessages__BatchSize=50
+      - Service__Shipment__BackgroundJobs__ProcessOutboxMessages__IntervalInSeconds=1
+      - Service__Shipment__BackgroundJobs__ProcessOutboxMessages__RetryCount=3
+      - Service__Shipment__BackgroundJobs__ProcessOutboxMessages__BatchSize=50
+      - Service__Shipment__WebApiOptions__EnableSwaggerUI=true
+      - Service__Shipment__WebApiOptions__EnableAutoMigrations=true
+      - Service__Shipment__WebApiOptions__EnableHttpsRedirection=false
+      - Service__Shipment__WebApiOptions__IdentityBaseUrl=http://localhost:5262
+      - Service__Shipment__GrpcOptions__Url=https://example.com
+      - Service__Shipment__GrpcOptions__RetryCount=3
+     
+
+  service.analytics.webapi:
+    image: ${DOCKER_REGISTRY-}serviceanalyticswebapi
+    build:
+      context: .
+      dockerfile: src/backend/Analytics/Service.Analytics.WebApi/Dockerfile
+    container_name: analytics-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7133:8081"
+      - "5142:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=sqlserver,1433;Database=Analytics;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ApiVersioning__DefaultApiVersion=1.0
+      - ApiVersioning__AssumeDefaultVersionWhenUnspecified=true
+      - ApiVersioning__ReportApiVersions=true
+      - ApiExplorer__GroupNameFormat='v'VVV
+      - ApiExplorer__SubstituteApiVersionInUrl=true
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Analytics
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=analytics-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=book_program
+      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__IncludeErrorDetails=true
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Analytics__BackgroundJobs__ProcessInboxMessages__IntervalInSeconds=1
+      - Service__Analytics__BackgroundJobs__ProcessInboxMessages__RetryCount=3
+      - Service__Analytics__BackgroundJobs__ProcessInboxMessages__BatchSize=50
+      - Service__Analytics__BackgroundJobs__ProcessOutboxMessages__IntervalInSeconds=1
+      - Service__Analytics__BackgroundJobs__ProcessOutboxMessages__RetryCount=3
+      - Service__Analytics__BackgroundJobs__ProcessOutboxMessages__BatchSize=50
+      - Service__Analytics__WebApiOptions__EnableSwaggerUI=true
+      - Service__Analytics__WebApiOptions__EnableAutoMigrations=true
+      - Service__Analytics__WebApiOptions__EnableHttpsRedirection=false
+      - Service__Analytics__WebApiOptions__IdentityBaseUrl=http://localhost:5262
+      - Service__Analytics__GrpcOptions__Url=https://example.com
+      - Service__Analytics__GrpcOptions__RetryCount=3
+     
+
+  service.carts.webapi:
+    image: ${DOCKER_REGISTRY-}servicecartswebapi
+    build:
+      context: .
+      dockerfile: src/backend/Carts/Service.Carts.WebApi/Dockerfile
+    container_name: cart-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7145:8081"
+      - "5084:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=sqlserver,1433;Database=Cart;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ApiVersioning__DefaultApiVersion=1.0
+      - ApiVersioning__AssumeDefaultVersionWhenUnspecified=true
+      - ApiVersioning__ReportApiVersions=true
+      - ApiExplorer__GroupNameFormat='v'VVV
+      - ApiExplorer__SubstituteApiVersionInUrl=true
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Cart
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=cart-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=book_program
+      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__IncludeErrorDetails=true
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Cart__BackgroundJobs__ProcessInboxMessages__IntervalInSeconds=1
+      - Service__Cart__BackgroundJobs__ProcessInboxMessages__RetryCount=3
+      - Service__Cart__BackgroundJobs__ProcessInboxMessages__BatchSize=50
+      - Service__Cart__BackgroundJobs__ProcessOutboxMessages__IntervalInSeconds=1
+      - Service__Cart__BackgroundJobs__ProcessOutboxMessages__RetryCount=3
+      - Service__Cart__BackgroundJobs__ProcessOutboxMessages__BatchSize=50
+      - Service__Cart__WebApiOptions__EnableSwaggerUI=true
+      - Service__Cart__WebApiOptions__EnableAutoMigrations=true
+      - Service__Cart__WebApiOptions__EnableHttpsRedirection=false
+      - Service__Cart__WebApiOptions__IdentityBaseUrl=http://localhost:5262
+      - Service__Cart__GrpcOptions__Url=https://example.com
+      - Service__Cart__GrpcOptions__RetryCount=3
+     
+
+  service.catalog.webapi:
+    image: ${DOCKER_REGISTRY-}servicecatalogwebapi
+    build:
+      context: .
+      dockerfile: src/backend/Catalog/Service.Catalog.WebApi/Dockerfile
+    container_name: catalog-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+      - azurite
+    networks:
+      - app-network
+    ports:
+      - "7101:8081"
+      - "5081:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=sqlserver,1433;Database=Catalog;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ApiVersioning__DefaultApiVersion=1.0
+      - ApiVersioning__AssumeDefaultVersionWhenUnspecified=true
+      - ApiVersioning__ReportApiVersions=true
+      - ApiExplorer__GroupNameFormat='v'VVV
+      - ApiExplorer__SubstituteApiVersionInUrl=true
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Catalog
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=catalog-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=book_program
+      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__IncludeErrorDetails=true
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Catalog__BackgroundJobs__ProcessInboxMessages__IntervalInSeconds=1
+      - Service__Catalog__BackgroundJobs__ProcessInboxMessages__RetryCount=3
+      - Service__Catalog__BackgroundJobs__ProcessInboxMessages__BatchSize=50
+      - Service__Catalog__BackgroundJobs__ProcessOutboxMessages__IntervalInSeconds=1
+      - Service__Catalog__BackgroundJobs__ProcessOutboxMessages__RetryCount=3
+      - Service__Catalog__BackgroundJobs__ProcessOutboxMessages__BatchSize=50
+      - Service__Catalog__WebApiOptions__EnableSwaggerUI=true
+      - Service__Catalog__WebApiOptions__EnableAutoMigrations=true
+      - Service__Catalog__WebApiOptions__EnableHttpsRedirection=false
+      - Service__Catalog__WebApiOptions__IdentityBaseUrl=http://localhost:5262
+      - Service__Catalog__GrpcOptions__Url=https://example.com
+      - Service__Catalog__GrpcOptions__RetryCount=3
+      - Service__Catalog__Azure__Blob__ConnectionString=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;QueueEndpoint=http://azurite:10001/devstoreaccount1;TableEndpoint=http://azurite:10002/devstoreaccount1;
+      - Service__Catalog__Azure__Blob__ContainerName=files
+     
+
+  service.identity:
+    image: ${DOCKER_REGISTRY-}serviceidentity
+    build:
+      context: .
+      dockerfile: src/backend/Identity/Service.Identity/Dockerfile
+    container_name: identity-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7078:8081"
+      - "5262:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__UserManagementDbConnectionString=Server=sqlserver,1433;Database=UserManagement;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - ConnectionStrings__IdsDbConnectionString=Server=sqlserver,1433;Database=IDS;User ID=sa;Password=3322_SQL_Pass;TrustServerCertificate=True
+      - OTEL__EXPORTER__OTLP__ENDPOINT=http://localhost:4318
+      - Serilog__Using__0=Serilog.Sinks.Console
+      - Serilog__Using__1=Serilog.Sinks.File
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Warning
+      # - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore.Database.Command=Information  # TODO __##__ remove this on production
+      - Serilog__MinimumLevel__Override__System=Warning
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__Enrich__1=WithProperty
+      - Serilog__Properties__ModuleName=Identity
+      - Serilog__WriteTo__0__Name=Console
+      - Serilog__WriteTo__0__Args__outputTemplate=[{Timestamp:HH:mm:ss} {Level:u3} {ModuleName}] {Message:lj}{NewLine}{Exception}
+      - Serilog__WriteTo__1__Name=File
+      - Serilog__WriteTo__1__Args__path=logs/ProgramLog-.txt
+      - Serilog__WriteTo__1__Args__rollingInterval=Day
+      - Serilog__WriteTo__1__Args__rollOnFileSizeLimit=true
+      - Serilog__WriteTo__1__Args__formatter=Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact
+      - Authorization__Permissions__CacheKeyPrefix=identity-permissions-
+      - Authorization__Permissions__CacheTimeInSeconds=180
+      - JwtBearer__Audience=
+      - JwtBearer__Authority=
+      - JwtBearer__IncludeErrorDetails=false
+      - JwtBearer__RequireHttpsMetadata=false
+      - JwtBearer__SaveToken=true
+      - JwtBearer__TokenValidationParameters__ValidateIssuer=true
+      - JwtBearer__TokenValidationParameters__ValidIssuer=
+      - JwtBearer__TokenValidationParameters__ValidateAudience=true
+      - JwtBearer__TokenValidationParameters__ValidAudience=
+      - JwtBearer__TokenValidationParameters__ValidateLifetime=true
+      - JwtBearer__TokenValidationParameters__NameClaimType=sub
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__VirtualHost=/
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - RabbitMQ__EnableRabbitMQ=true
+      - Redis__Configuration=redis-cache:6379
+      - Redis__InstanceName=SampleInstance
+      - Redis__EnableRedis=true
+      - Service__Identity__BlazorOptions__EnableAutoMigration=true
+      - Service__Identity__BlazorOptions__EnableHttpsRedirection=false
+      - Service__Identity__BlazorOptions__AuthorityName=http://localhost:5262
+      - Service__Identity__GrpcOptions__Url=https://example.com
+      - Service__Identity__GrpcOptions__RetryCount=3
+      - Service__Identity__SmtpOptions__Host=smtp.gmail.com
+      - Service__Identity__SmtpOptions__Port=587
+      - Service__Identity__SmtpOptions__EnableSsl=true
+      - Service__Identity__SmtpOptions__Username=
+      - Service__Identity__SmtpOptions__Password=
+      - Service__Identity__SmtpOptions__From=
+     
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: src/backend/ApiGateway/ApiGateway/Dockerfile
+    container_name: api-gateway-service
+    depends_on:
+      - sqlserver
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+    ports:
+      - "7027:8081"
+      - "5269:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ReverseProxy__Routes__catalog-route__ClusterId=catalog-cluster
+      - ReverseProxy__Routes__catalog-route__Match__Path=catalog/{**catch-all}
+      - ReverseProxy__Routes__catalog-route__Transforms__0__PathPattern={**catch-all}
+
+      - ReverseProxy__Routes__analytics-route__ClusterId=analytics-cluster
+      - ReverseProxy__Routes__analytics-route__Match__Path=analytics/{**catch-all}
+      - ReverseProxy__Routes__analytics-route__Transforms__0__PathPattern={**catch-all}
+
+      - ReverseProxy__Routes__carts-route__ClusterId=carts-cluster
+      - ReverseProxy__Routes__carts-route__Match__Path=carts/{**catch-all}
+      - ReverseProxy__Routes__carts-route__Transforms__0__PathPattern={**catch-all}
+
+      - ReverseProxy__Routes__orders-route__ClusterId=orders-cluster
+      - ReverseProxy__Routes__orders-route__Match__Path=orders/{**catch-all}
+      - ReverseProxy__Routes__orders-route__Transforms__0__PathPattern={**catch-all}
+
+      - ReverseProxy__Routes__payments-route__ClusterId=payments-cluster
+      - ReverseProxy__Routes__payments-route__Match__Path=payments/{**catch-all}
+      - ReverseProxy__Routes__payments-route__Transforms__0__PathPattern={**catch-all}
+
+      - ReverseProxy__Routes__shipments-route__ClusterId=shipments-cluster
+      - ReverseProxy__Routes__shipments-route__Match__Path=shipments/{**catch-all}
+      - ReverseProxy__Routes__shipments-route__Transforms__0__PathPattern={**catch-all}
+
+      - ReverseProxy__Clusters__catalog-cluster__LoadBalancingPolicy=RoundRobin
+      - ReverseProxy__Clusters__catalog-cluster__Destinations__destination1__Address=http://catalog-service:5081
+
+      - ReverseProxy__Clusters__analytics-cluster__LoadBalancingPolicy=RoundRobin
+      - ReverseProxy__Clusters__analytics-cluster__Destinations__destination1__Address=http://analytics-service:5142
+
+      - ReverseProxy__Clusters__carts-cluster__LoadBalancingPolicy=RoundRobin
+      - ReverseProxy__Clusters__carts-cluster__Destinations__destination1__Address=http://carts-service:5084
+
+      - ReverseProxy__Clusters__orders-cluster__LoadBalancingPolicy=RoundRobin
+      - ReverseProxy__Clusters__orders-cluster__Destinations__destination1__Address=http://order-service:5162
+
+      - ReverseProxy__Clusters__payments-cluster__LoadBalancingPolicy=RoundRobin
+      - ReverseProxy__Clusters__payments-cluster__Destinations__destination1__Address=http://payments-service:5105
+
+      - ReverseProxy__Clusters__shipments-cluster__LoadBalancingPolicy=RoundRobin
+      - ReverseProxy__Clusters__shipments-cluster__Destinations__destination1__Address=http://shipments-service:5202
+
+volumes:
+  rabbitmq_data:
+  sqlserverdata:
+  azurite_data:
+
+networks:
+  app-network:
+    name: app-bridge-network
+    driver: bridge
+
+
+
+
+
+
+
+

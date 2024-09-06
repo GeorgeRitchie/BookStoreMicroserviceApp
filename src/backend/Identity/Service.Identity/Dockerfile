@@ -13,6 +13,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/backend/Identity/Service.Identity/Service.Identity.csproj", "src/backend/Identity/Service.Identity/"]
+COPY ["src/Common/Application/Application.csproj", "src/Common/Application/"]
+COPY ["src/Common/Domain/Domain.csproj", "src/Common/Domain/"]
+COPY ["src/Common/Shared/Shared.csproj", "src/Common/Shared/"]
+COPY ["src/Common/Authorization/Authorization.csproj", "src/Common/Authorization/"]
+COPY ["src/Common/Infrastructure/Infrastructure.csproj", "src/Common/Infrastructure/"]
+COPY ["src/Common/Persistence/Persistence.csproj", "src/Common/Persistence/"]
 RUN dotnet restore "./src/backend/Identity/Service.Identity/Service.Identity.csproj"
 COPY . .
 WORKDIR "/src/src/backend/Identity/Service.Identity"
