@@ -94,7 +94,7 @@ services:
       - Authorization__Permissions__CacheKeyPrefix=order-permissions-
       - Authorization__Permissions__CacheTimeInSeconds=180
       - JwtBearer__Audience=book_program
-      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__Authority=http://service.identity:8080
       - JwtBearer__IncludeErrorDetails=true
       - JwtBearer__RequireHttpsMetadata=false
       - JwtBearer__SaveToken=true
@@ -122,7 +122,7 @@ services:
       - Service__Order__WebApiOptions__EnableAutoMigrations=true
       - Service__Order__WebApiOptions__EnableHttpsRedirection=false
       - Service__Order__WebApiOptions__IdentityBaseUrl=http://localhost:5262
-      - Service__Order__GrpcOptions__Url=https://example.com
+      - Service__Order__GrpcOptions__Url=https://service.catalog.webapi:8081
       - Service__Order__GrpcOptions__RetryCount=3
      
 
@@ -171,7 +171,7 @@ services:
       - Authorization__Permissions__CacheKeyPrefix=payment-permissions-
       - Authorization__Permissions__CacheTimeInSeconds=180
       - JwtBearer__Audience=book_program
-      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__Authority=http://service.identity:8080
       - JwtBearer__IncludeErrorDetails=true
       - JwtBearer__RequireHttpsMetadata=false
       - JwtBearer__SaveToken=true
@@ -201,8 +201,8 @@ services:
       - Service__Payment__WebApiOptions__IdentityBaseUrl=http://localhost:5262
       - Service__Payment__GrpcOptions__Url=https://example.com
       - Service__Payment__GrpcOptions__RetryCount=3
-      - Service__Payment__Stripe__SuccessUrlAddress=http://localhost:5105/api/v1/payments/success
-      - Service__Payment__Stripe__FailureUrlAddress=http://localhost:5105/api/v1/payments/failure
+      - Service__Payment__Stripe__SuccessUrlAddress=https://localhost:7202/api/v1/payments/success
+      - Service__Payment__Stripe__FailureUrlAddress=https://localhost:7202/api/v1/payments/failure
       - Service__Payment__Stripe__ApiKey=
      
 
@@ -251,7 +251,7 @@ services:
       - Authorization__Permissions__CacheKeyPrefix=shipment-permissions-
       - Authorization__Permissions__CacheTimeInSeconds=180
       - JwtBearer__Audience=book_program
-      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__Authority=http://service.identity:8080
       - JwtBearer__IncludeErrorDetails=true
       - JwtBearer__RequireHttpsMetadata=false
       - JwtBearer__SaveToken=true
@@ -328,7 +328,7 @@ services:
       - Authorization__Permissions__CacheKeyPrefix=analytics-permissions-
       - Authorization__Permissions__CacheTimeInSeconds=180
       - JwtBearer__Audience=book_program
-      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__Authority=http://service.identity:8080
       - JwtBearer__IncludeErrorDetails=true
       - JwtBearer__RequireHttpsMetadata=false
       - JwtBearer__SaveToken=true
@@ -405,7 +405,7 @@ services:
       - Authorization__Permissions__CacheKeyPrefix=cart-permissions-
       - Authorization__Permissions__CacheTimeInSeconds=180
       - JwtBearer__Audience=book_program
-      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__Authority=http://service.identity:8080
       - JwtBearer__IncludeErrorDetails=true
       - JwtBearer__RequireHttpsMetadata=false
       - JwtBearer__SaveToken=true
@@ -483,7 +483,7 @@ services:
       - Authorization__Permissions__CacheKeyPrefix=catalog-permissions-
       - Authorization__Permissions__CacheTimeInSeconds=180
       - JwtBearer__Audience=book_program
-      - JwtBearer__Authority=http://10.0.0.34:5262
+      - JwtBearer__Authority=http://service.identity:8080
       - JwtBearer__IncludeErrorDetails=true
       - JwtBearer__RequireHttpsMetadata=false
       - JwtBearer__SaveToken=true
@@ -633,22 +633,22 @@ services:
       - ReverseProxy__Routes__shipments-route__Transforms__0__PathPattern={**catch-all}
 
       - ReverseProxy__Clusters__catalog-cluster__LoadBalancingPolicy=RoundRobin
-      - ReverseProxy__Clusters__catalog-cluster__Destinations__destination1__Address=http://catalog-service:5081
+      - ReverseProxy__Clusters__catalog-cluster__Destinations__destination1__Address=http://catalog-service:8080
 
       - ReverseProxy__Clusters__analytics-cluster__LoadBalancingPolicy=RoundRobin
-      - ReverseProxy__Clusters__analytics-cluster__Destinations__destination1__Address=http://analytics-service:5142
+      - ReverseProxy__Clusters__analytics-cluster__Destinations__destination1__Address=http://analytics-service:8080
 
       - ReverseProxy__Clusters__carts-cluster__LoadBalancingPolicy=RoundRobin
-      - ReverseProxy__Clusters__carts-cluster__Destinations__destination1__Address=http://carts-service:5084
+      - ReverseProxy__Clusters__carts-cluster__Destinations__destination1__Address=http://carts-service:8080
 
       - ReverseProxy__Clusters__orders-cluster__LoadBalancingPolicy=RoundRobin
-      - ReverseProxy__Clusters__orders-cluster__Destinations__destination1__Address=http://order-service:5162
+      - ReverseProxy__Clusters__orders-cluster__Destinations__destination1__Address=http://order-service:8080
 
       - ReverseProxy__Clusters__payments-cluster__LoadBalancingPolicy=RoundRobin
-      - ReverseProxy__Clusters__payments-cluster__Destinations__destination1__Address=http://payments-service:5105
+      - ReverseProxy__Clusters__payments-cluster__Destinations__destination1__Address=http://payments-service:8080
 
       - ReverseProxy__Clusters__shipments-cluster__LoadBalancingPolicy=RoundRobin
-      - ReverseProxy__Clusters__shipments-cluster__Destinations__destination1__Address=http://shipments-service:5202
+      - ReverseProxy__Clusters__shipments-cluster__Destinations__destination1__Address=http://shipments-service:8080
 
 volumes:
   rabbitmq_data:
