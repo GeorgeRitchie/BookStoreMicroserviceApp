@@ -19,9 +19,11 @@ using Asp.Versioning.ApiExplorer;
 using HealthChecks.UI.Client;
 using Infrastructure.Extensions;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OpenTelemetry.Logs;
 using Serilog;
+using Service.Orders.Persistence;
 using Service.Orders.WebApi.Extensions;
 using Service.Orders.WebApi.Middlewares;
 using Service.Orders.WebApi.Options;
@@ -48,6 +50,12 @@ LoggingUtility.Run(() =>
 	WebApplication webApplication = builder.Build();
 
 	var webApiOptions = webApplication.Services.GetRequiredService<IOptions<WebApiOptions>>().Value;
+
+	if (webApiOptions.EnableAutoMigrations)
+	{
+		var applicationDbContext = webApplication.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
+		applicationDbContext.Database.MigrateAsync().Wait();
+	}
 
 	if (webApiOptions.EnableSwaggerUI)
 	{
@@ -86,7 +94,8 @@ LoggingUtility.Run(() =>
 		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 	}).RequireAuthorization("ReadHealthCheck");
 
-	webApplication.UseHttpsRedirection();
+	if (webApiOptions.EnableHttpsRedirection)
+		webApplication.UseHttpsRedirection();
 
 	webApplication.UseStaticFiles();
 

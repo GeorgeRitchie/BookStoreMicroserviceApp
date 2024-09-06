@@ -28,7 +28,7 @@ namespace Service.Identity.Options
 	/// <param name="configuration">The configuration.</param>
 	internal sealed class BlazorOptionsSetup(IConfiguration configuration) : IConfigureOptions<BlazorOptions>
 	{
-		private const string ConfigurationSectionName = "Service:Identity:BlazorOptions";
+		public const string ConfigurationSectionName = "Service:Identity:BlazorOptions";
 
 		/// <inheritdoc />
 		public void Configure(BlazorOptions options)

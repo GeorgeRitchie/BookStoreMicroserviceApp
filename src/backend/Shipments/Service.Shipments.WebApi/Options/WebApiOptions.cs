@@ -26,5 +26,20 @@ namespace Service.Shipments.WebApi.Options
 		/// Gets the flag to enable or disable Swagger UI.
 		/// </summary>
 		public bool EnableSwaggerUI { get; init; } = false;
+
+		/// <summary>
+		/// Gets the flag to enable or disable automatic database migrations
+		/// </summary>
+		public bool EnableAutoMigrations { get; init; } = false;
+
+		/// <summary>
+		/// Gets Identity base url.
+		/// </summary>
+		public string IdentityBaseUrl { get; set; }
+
+		/// <summary>
+		/// Gets the flag to enable or disable Https redirection.
+		/// </summary>
+		public bool EnableHttpsRedirection { get; set; } = true;
 	}
 }

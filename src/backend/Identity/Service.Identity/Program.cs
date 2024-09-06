@@ -17,8 +17,8 @@
 
 using HealthChecks.UI.Client;
 using Infrastructure.Extensions;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Options;
 using OpenTelemetry.Logs;
 using Serilog;
 using Service.Identity.Components;
@@ -47,6 +47,8 @@ LoggingUtility.Run(() =>
 
 	WebApplication app = builder.Build();
 
+	var blazorOptions = app.Services.GetRequiredService<IOptions<BlazorOptions>>().Value;
+
 	SeedData.EnsureSeedData(app);
 
 	// Configure the HTTP request pipeline.
@@ -73,7 +75,8 @@ LoggingUtility.Run(() =>
 		ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 	}).RequireAuthorization("ReadHealthCheck");
 
-	app.UseHttpsRedirection();
+	if (blazorOptions.EnableHttpsRedirection)
+		app.UseHttpsRedirection();
 
 	app.UseRouting();
 

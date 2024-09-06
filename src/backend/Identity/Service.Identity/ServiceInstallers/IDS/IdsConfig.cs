@@ -69,7 +69,13 @@ namespace Service.Identity.ServiceInstallers.IDS
 						"https://localhost:7115/swagger/oauth2-redirect.html",
 						"https://localhost:7202/swagger/oauth2-redirect.html",
 						"https://localhost:7048/swagger/oauth2-redirect.html",
-						"https://localhost:3040/swagger/oauth2-redirect.html",
+
+						"http://localhost:5142/swagger/oauth2-redirect.html",
+						"http://localhost:5084/swagger/oauth2-redirect.html",
+						"http://localhost:5081/swagger/oauth2-redirect.html",
+						"http://localhost:5162/swagger/oauth2-redirect.html",
+						"http://localhost:5105/swagger/oauth2-redirect.html",
+						"http://localhost:5202/swagger/oauth2-redirect.html",
 
 					},
 					PostLogoutRedirectUris = {
@@ -79,7 +85,13 @@ namespace Service.Identity.ServiceInstallers.IDS
 						"https://localhost:7115/swagger/signout-callback-oidc",
 						"https://localhost:7202/swagger/signout-callback-oidc",
 						"https://localhost:7048/swagger/signout-callback-oidc",
-						"https://localhost:3040/swagger/signout-callback-oidc",
+
+						"http://localhost:5142/swagger/signout-callback-oidc",
+						"http://localhost:5084/swagger/signout-callback-oidc",
+						"http://localhost:5081/swagger/signout-callback-oidc",
+						"http://localhost:5162/swagger/signout-callback-oidc",
+						"http://localhost:5105/swagger/signout-callback-oidc",
+						"http://localhost:5202/swagger/signout-callback-oidc",
 					},
 
 					AllowedScopes =
@@ -103,7 +115,13 @@ namespace Service.Identity.ServiceInstallers.IDS
 						"https://localhost:7115",
 						"https://localhost:7202",
 						"https://localhost:7048",
-						"https://localhost:3040",
+
+						"http://localhost:5142",
+						"http://localhost:5084",
+						"http://localhost:5081",
+						"http://localhost:5162",
+						"http://localhost:5105",
+						"http://localhost:5202",
 					},
 
 					RequireConsent = false,

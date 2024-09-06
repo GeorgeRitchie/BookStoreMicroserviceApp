@@ -19,6 +19,7 @@ using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Service.Shipments.WebApi.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -31,16 +32,16 @@ namespace Service.Shipments.WebApi.ServiceInstallers.Swagger
 	/// Initializes a new instance of the <see cref="SwaggerGenOptionsSetup"/> class.
 	/// </remarks>
 	/// <param name="provider">The Api Versioning provider.</param>
-	/// <param name="bearerOptions">The Jwt Bearer Options.</param>
+	/// <param name="apiOptions">The Web Api Options.</param>
 	internal sealed class SwaggerGenOptionsSetup(
 		IApiVersionDescriptionProvider provider,
-		IOptions<JwtBearerOptions> bearerOptions)
+		IOptions<WebApiOptions> apiOptions)
 		: IConfigureOptions<SwaggerGenOptions>
 	{
 		/// <inheritdoc />
 		public void Configure(SwaggerGenOptions options)
 		{
-			var baseUri = bearerOptions.Value.Authority;
+			var baseUri = apiOptions.Value.IdentityBaseUrl.TrimEnd('/');
 
 			foreach (var description in provider.ApiVersionDescriptions)
 			{
